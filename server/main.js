@@ -1,12 +1,10 @@
+var path = require('path');
 var express = require('express');
+const port = 7080;
 var app = express();
 
-// создаём маршрут
-app.get('/', function(req, res) {
-  res.sendfile('./public/index.html');
-});
+app.use(express.static(path.join(__dirname, '/../public')));
 
-
-app.listen(7060);
+app.listen(port);
 
 console.log('e');
