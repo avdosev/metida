@@ -1,27 +1,72 @@
-/* @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 
 body {
-    background: rgb(255, 255, 225);
+    background: #f7f7f7;
     margin: 0;  
+    
 }
 a { 
     text-decoration: none;
 }
 
+
 .layout_body {
-    background: rgb(25, 255, 225);
-    width: 65%;
-    float: left;
+    background: #f7f7f7;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 15px 10px 10px 20px;
+    font-size: 18px;
+    font-family: 'Oswald'; /*шрифт сменить */
+    
+    /* box-shadow: 0 14px 5px rgba(0,0,0,0.25), 0 10px 5px rgba(0,0,0,0.22); */
 }
 
-.rightSection {
-    background: rgb(251, 25, 225);
+ .rightSection {
+    margin-left: 20px;
+    margin-top: -180vh;  /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
     height: 100vh;
-}
+    width: 25vh;
+
+    float: right;
+    font-family: 'Oswald'; /*шрифт сменить */
+
+    /* box-shadow: 0 4px 10px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22); */
+} 
 
 .layout_bar {
+    
+}
+
+.content article img {
+    border: 10px black;
+}
+
+.header {
     display: flex;
-} */
+    align-content: space-between;
+    font-family: 'Yanone Kaffeesatz';
+    font-size: 26px;
+    height: 5vh;
+    margin-left: 1vh;
+    margin-top: 1vh;
+}
+
+.header .regSection {
+
+}
+
+ .content {
+    display: flex;
+    justify-content: center;
+    float: left;
+
+} 
+
+hr {
+    height: 4px;
+}
