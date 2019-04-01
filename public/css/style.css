@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+/* @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
@@ -14,7 +14,7 @@ a {
 .layout_body {
     background: rgb(25, 255, 225);
     width: 65%;
-    float: left;/* sorry for this */
+    float: left;
 }
 
 .rightSection {
@@ -24,5 +24,4 @@ a {
 
 .layout_bar {
     display: flex;
-    /* align-content: space-between; */
-}
+} */
