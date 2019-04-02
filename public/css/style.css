@@ -12,7 +12,6 @@ a {
     text-decoration: none;
 }
 
-
 .layout_body {
     background: #f7f7f7;
     width: 55%;
@@ -54,8 +53,8 @@ a {
 }
 
 .header .regSection {
-    margin-right: auto;;
-
+    margin-left: auto;
+    margin-right: 2vh;
 }
 
  .content {
