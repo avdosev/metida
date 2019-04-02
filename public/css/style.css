@@ -5,12 +5,22 @@
 
 body {
     background: #f7f7f7;
-    margin: 0;  
+    margin: 0;     
 }
 
 a { 
     text-decoration: none;
 }
+
+hr {
+    height: 4px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    float: left;
+} 
 
 .layout_body {
     width: 55%;
@@ -23,6 +33,19 @@ a {
     
 }
 
+.content .post_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .post_text img {
+    max-width: 100%;
+    height: auto;
+    border: 10px black;
+    border-radius: 15px; /* хз может убрать */
+}
+
  .rightSection {
     margin-left: 20px;
     margin-top: -180vh;  /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
@@ -32,10 +55,6 @@ a {
     font-family: 'Oswald'; /*шрифт сменить */
 
 } 
-
-.content article img {
-    border: 10px black;
-}
 
 .header {
     display: flex;
@@ -49,7 +68,7 @@ a {
 
 .header .regSection {
     margin-left: auto;
-    margin-right: 2vh;
+    margin-right: 2rem;
 }
 .header .regSection a {
     margin-right: 0.5vh;
