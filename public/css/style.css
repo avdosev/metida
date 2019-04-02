@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+
+body {
+    background: #f7f7f7;
+    margin: 0;     
+}
+
+a { 
+    text-decoration: none;
+}
+
+hr {
+    height: 4px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    float: left;
+} 
+
+.layout_body {
+    background: #f7f7f7;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 15px 10px 10px 20px;
+    font-size: 18px;
+    font-family: 'Oswald'; /*шрифт сменить */
+    
+    /* box-shadow: 0 14px 5px rgba(0,0,0,0.25), 0 10px 5px rgba(0,0,0,0.22); */
+}
+
+.content .post_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content .post_text img {
+    max-width: 100%;
+    height: auto;
+    border: 10px black;
+    border-radius: 15px; /* хз может убрать */
+}
+
+ .rightSection {
+    margin-left: 20px;
+    margin-top: -180vh;  /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
+    height: 100vh;
+    width: 25vh;
+
+    float: right;
+    font-family: 'Oswald'; /*шрифт сменить */
+
+    /* box-shadow: 0 4px 10px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22); */
+} 
+
+.header {
+    display: flex;
+    align-content: space-between;
+    font-family: 'Yanone Kaffeesatz';
+    font-size: 26px;
+    height: 5vh;
+    margin-left: 1vh;
+    margin-top: 1vh;
+}
+
+.header .regSection {
+    margin-left: auto;
+    margin-right: 2rem;
+}
