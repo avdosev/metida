@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser'); //dont use yet
 const port = 7080;
 
-//const indexRoute = require('/routes/index');
+//const indexRoute = require('/routes/index'); //пока не хочу роуты выкидыать в отдельный файл
 // const registerRoute = require('/routes/register');
 
 const app = express();
