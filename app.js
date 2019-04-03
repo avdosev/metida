@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser'); //dont use yet
 const port = 7080;
+//const {check, validationResult} = require('express-validator/check');
 
 //const indexRoute = require('/routes/index'); //пока не хочу роуты выкидыать в отдельный файл
 // const registerRoute = require('/routes/register');
@@ -28,9 +29,14 @@ app.get('/signIn', (req, res, next) => {
     res.render('signIn');
 });
 
-// app.get('/articles/:name', (req, res, next) => {
-//     res.render('index', {newsId: req.params.name});
-// });
+
+
+app.post('/signIn/createUser',  (req, res, next) => {
+    //тут будут проверки на стороне сервера
+    
+});
+
+
 
 
 

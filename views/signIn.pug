@@ -6,7 +6,14 @@ head
   title registration
   style
     include ../public/css/style.css
+    include ../public/css/input.css
+  
+body
+  include modules/header 
+  //- охуеть так можно да
+  input(type="email" placeholder="Type email" required pattern="^.+@.*$") 
+  input(type="password" placeholder="Type password" required pattern=".{5,}")
+  input(type="password" placeholder="Retype password" required )
 
-include modules/header 
-//- охуеть так можно да
+  button.submit(href="/createUser")
 
