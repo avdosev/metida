@@ -38,14 +38,9 @@ app.post('/signIn/createUser',  (req, res, next) => {
 
 
 
-
-
-
-
-
-app.listen(port);
-
-console.log('server was started');
+app.listen(port, () => {
+    console.log('Server started on' + port + 'port')
+})
 
 
 module.exports = app; //catch this in /bin/www

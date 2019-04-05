@@ -1,3 +1,10 @@
 {
-  "lockfileVersion": 1
+  "lockfileVersion": 1,
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "pug": "^2.0.3",
+    "sequelize": "^5.2.12"
+  }
 }
