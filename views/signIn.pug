@@ -14,7 +14,7 @@ body
 
   - var authorised = ' '
 
-  form(action="/signIn", method="post")
+  form(novalidate='' action="/signIn", method="post")
     input#email(type="email" name="email" placeholder="Type email" required pattern="^.+@.*$") 
     
     input#login(type="login" name="login" placeholder="Type login" required pattern="^.+@.*$") 
