@@ -11,14 +11,16 @@ head
 body
   include modules/header 
   //- охуеть так можно да
-  .login 
-    input(type="email" placeholder="Type email" required pattern="^.+@.*$") 
-    //- .match No match
-    input(type="login" placeholder="Type login" required pattern="^.+@.*$") 
-    //- .match No match
-    input(type="password" placeholder="Type password" required pattern=".{5,}")
-    //- .match No match
+
+  - var authorised = ' '
+
+  form(action="/signIn", method="post")
+    input#email(type="email" name="email" placeholder="Type email" required pattern="^.+@.*$") 
+    
+    input#login(type="login" name="login" placeholder="Type login" required pattern="^.+@.*$") 
+
+    input#password(type="password" name="password" placeholder="Type password" required pattern=".{5,}")
+
     input(type="password" placeholder="Retype password" required )
-    //- .match No match
-    a(href="/signIn/createUser") Submit
+    input(type="submit" value="OK")
 

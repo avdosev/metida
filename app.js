@@ -1,9 +1,8 @@
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser'); //dont use yet
 const port = 7080;
-//const {check, validationResult} = require('express-validator/check');
 const route = require('./routes/index');
+
 
 const app = express();
 
@@ -14,11 +13,16 @@ app.set('view engine', 'pug');
 
 const favicon = require('serve-favicon');//пока не робит, в хедере пуга тоже лежит подключение иконки
 app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
+//почему-то у меня появилась эта херня(потом пропала)
 
-app.use('/', route);
+
+
+
+
+app.use('/', route); //маршутизация и обработка запросов
 
 app.listen(port, () => {
-    console.log('Server started on' + port + 'port')
+    console.log('Server started on ' + port + ' port')
 })
 
 
