@@ -5,6 +5,7 @@
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "pug": "^2.0.3",
-    "sequelize": "^5.2.12"
+    "sequelize": "^5.2.12",
+    "serve-favicon": "^2.5.0"
   }
 }
