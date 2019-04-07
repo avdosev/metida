@@ -7,6 +7,11 @@ const userController = require('../controllers/users-controller')
 route.use(express.json());
 const bcrypt = require('bcrypt-nodejs');
 
+const debug = (req, res, next) => {
+    console.log("req body:", req.body);
+    next();
+}
+
 route.get('/', (req, res, next) => { //next only for middleware func lel
     res.render('index');
 })
@@ -20,7 +25,7 @@ route.get('/signIn', (req, res, next) => {
 });
 
 //const urlencodedParser = bodyParser.urlencoded({extended: false});
-route.post("/signIn", userValidator, userController.create);
+route.post("/signIn", debug, userValidator, userController.create);
 
 
 module.exports = route;

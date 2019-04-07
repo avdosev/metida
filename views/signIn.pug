@@ -14,9 +14,9 @@ body
   .inputForm
     form.reg(action="/signIn", method="post" )
       p Email
-      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^.+@.*$')
+      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
       p Login
-      input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^.+@.*$')
+      input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
       p Retype password
