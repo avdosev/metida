@@ -35,3 +35,12 @@ p {
     margin-top: 1rem;
 }
 
+/* цвета можно будет подправить */
+input[type=button] {
+    border: 1px solid black;
+    background-color: #80808073
+}
+input[type=button]:active {
+    border: 1px solid grey;
+    background-color: whitesmoke;
+}
