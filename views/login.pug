@@ -6,7 +6,17 @@ head
   title login
   style
     include ../public/css/style.css
+    include ../public/css/input.css
 
-include modules/header 
-//- охуеть так можно да
+body
+  include modules/header 
+  .inputForm
+    form.reg(action="/signIn", method="post" )
+      p Email
+      input#email(type='email', name='email', placeholder='Type email',  pattern='^.+@.*$')
+      p Password
+      input#password(type='password', name='password', placeholder='Type password',  pattern='.{5,}')
+      input#submit(type="submit" value="OK")
+
+
 

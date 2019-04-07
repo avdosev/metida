@@ -42,7 +42,7 @@ a {
     border-radius: 15px; /* хз может убрать */
 }
 
- .rightSection {
+.rightSection {
     margin-left: 20px;
     margin-top: -180vh;  /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
     height: 100vh;
@@ -57,4 +57,15 @@ a {
     justify-content: center;
     float: left;
 } 
+
+code {
+    background-color: #2E2F30;
+    color: white;
+    padding-left: 10px;
+    margin-left: 100px;
+    width: 500px; 
+    border-radius: 3px;
+
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
 
