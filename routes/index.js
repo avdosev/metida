@@ -3,6 +3,7 @@ var route = express.Router();
 const bodyParser = require('body-parser'); 
 const { userValidator } = require('../services/validator');
 const userController = require('../controllers/users-controller')
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 route.use(express.json());
 const bcrypt = require('bcrypt-nodejs');
@@ -24,8 +25,6 @@ route.get('/signIn', (req, res, next) => {
     res.render('signIn');
 });
 
-//const urlencodedParser = bodyParser.urlencoded({extended: false});
-route.post("/signIn", debug, userValidator, userController.create);
-
+route.post("/signIn", urlencodedParser, debug, userValidator, userController.create);
 
 module.exports = route;
