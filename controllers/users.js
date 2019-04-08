@@ -10,8 +10,8 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "12345"
+    user: "metidaSQL",
+    password: "1234"
 });
 
 function create(req, res, next) {
@@ -24,15 +24,15 @@ function create(req, res, next) {
     
     var counter=0;
     //INSERT INTO CUSTOMERS (ID,email,login,password) VALUES (1,'snippet@mail.ru', 'sanya', 'passwd');
-    connection.query("INSERT INTO usersafterregistration.users (ID, email,login,password) VALUES (" + counter + ", '" + req.body.email + "' , '" + req.body.login + "' , '" + req.body.password + "')", function(err, rows, fields){
+    connection.query("INSERT INTO usersDB.users (ID, email,login,password) VALUES (" + counter + ", '" + req.body.email + "' , '" + req.body.login + "' , '" + req.body.password + "')", function(err, rows, fields){
         if(err) return console.log(err);
         counter++;
     })
     
-    connection.query("SELECT * FROM usersafterregistration.users", function(err, rows, fields){
+    connection.query("SELECT * FROM usersDB.users", function(err, rows, fields){
         if(err) return console.log(err);
         console.log(rows);
-    })
+    }) //функция отладки
 
     connection.end(function(err){
         if(err) return console.log(err);
