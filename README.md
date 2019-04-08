@@ -35,22 +35,18 @@ npm install
 
 <h3>/models, /migrations, /seeders</h3>
 <h4>Работа с БД</h4>
-<p>Cоздаем юзера SqlDbg с паролем 1234. Мне пох, что это в открытом доступе. Команды для справки:
 <p> ТАК, я сделал очень низкоуровневыми функциями работу с БД(так делать не хорошо, куча файлов вообще не используется(папки, указанные выше + config/)) 
 <p>Команды, чтобы можно было обойтись без изменения моего кода)))) 
 <p>Вводим в MySQL Command Line:
-<pre><code>
-create database usersDB; 
+<pre><code>create database usersDB; 
 create table usersDB.users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(20), password VARCHAR(20));
-CREATE USER 'metidaSQL'@'localhost' IDENTIFIED BY '123';
-GRANT ALL PRIVILEGES ON usersDB.users TO 'metidaSQL'@'localhost';
-ALTER USER 'metidaSQL'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
- </code> </pre>
+create user 'metidaSQL'@'localhost' identified by '123';
+grant all privileges on usersDB.users to 'metidaSQL'@'localhost';
+alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>
 <p>Без последней строчки какие-то баги 
 <p>Для очищения таблицы юзать 
-<pre><code> truncate  usersafterregistration.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
+<pre><code> truncate usersDB.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
 
-Все <b><u>названия</b></u>, я думаю <b><u>поменяю</b></u> через день, это небольшая заплатка, которая хотя бы робит.
 <p>http://docs.sequelizejs.com/manual/migrations.html
 
 <p> Пока чет не робит миграция 

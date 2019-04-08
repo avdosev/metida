@@ -25,8 +25,8 @@ function create(req, res, next) {
     var counter=0;
     //INSERT INTO CUSTOMERS (ID,email,login,password) VALUES (1,'snippet@mail.ru', 'sanya', 'passwd');
     connection.query("INSERT INTO usersDB.users (ID, email,login,password) VALUES (" + counter + ", '" + req.body.email + "' , '" + req.body.login + "' , '" + req.body.password + "')", function(err, rows, fields){
-        if(err) return console.log(err);
-        counter++;
+        if(err) return console.log(err);//ой а что выше за монстр 
+        //counter++; //и так плюсует из-за свойств созданного поля(см readme)
     })
     
     connection.query("SELECT * FROM usersDB.users", function(err, rows, fields){
@@ -34,7 +34,7 @@ function create(req, res, next) {
         console.log(rows);
     }) //функция отладки
 
-    connection.end(function(err){
+    connection.end(function(err){ //вылет сервера происходит не из-за этого
         if(err) return console.log(err);
         console.log("Disconnect");
     });
