@@ -1,7 +1,8 @@
 const path = require('path');
 const express = require('express');
+const route = require('./routes/main');
+
 const port = 7080;
-const route = require('./routes/index');
 
 const app = express();
 
