@@ -36,7 +36,19 @@ npm install
 <h3>/models, /migrations, /seeders</h3>
 <h4>Работа с БД</h4>
 <p>Cоздаем юзера SqlDbg с паролем 1234. Мне пох, что это в открытом доступе. Команды для справки:
+<p> ТАК, я сделал очень низкоуровневыми функциями работу с БД(так делать не хорошо, куча файлов вообще не используется(папки, указанные выше + config/))
+Команды, чтобы можно было обойтись без изменения моего кода)))) Вводим в MySQL Command Line
+<pre><code>UPDATE user SET Password = PASSWORD('12345') WHERE User = 'root';
+create database usersafterregistration; 
+use usersafterregistration;
+create table users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(20), password VARCHAR(20));  </code> </pre>
+
+Для очищения таблицы юзать 
+<pre><code> truncate  usersafterregistration.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
+
+Все <b><u>названия</b></u>, я думаю <b><u>поменяю</b></u> через день, это небольшая заплатка, которая хотя бы робит.
 <p>http://docs.sequelizejs.com/manual/migrations.html
+
 <p> Пока чет не робит миграция 
 
 <h3>/bin</h3>

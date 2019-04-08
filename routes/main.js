@@ -9,7 +9,7 @@ route.use(express.json());
 const bcrypt = require('bcrypt-nodejs');
 
 const debug = (req, res, next) => {
-    console.log("req body:", req.body);
+    //console.log("req body:", req.body);
     next();
 }
 
@@ -25,7 +25,10 @@ route.get('/signin', (req, res, next) => {
     res.render('signin');
 });
 
+
+
 route.post("/signin", urlencodedParser, debug, userCreateValidator, userController.create);
 route.post("/login", urlencodedParser, debug, userLoginValidator, userController.login)
+
 
 module.exports = route;
