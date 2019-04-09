@@ -6,7 +6,6 @@ const userController = require('../controllers/users')
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 route.use(express.json());
-const bcrypt = require('bcrypt-nodejs');
 
 const debug = (req, res, next) => {
     //console.log("req body:", req.body);
