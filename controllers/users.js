@@ -5,7 +5,6 @@ const bcryptjs = require('bcrypt-nodejs');
 // скорее всего когда ты вызываешь функцию require то тебе возвращается module.export
 // из-за чего ты должен писать конструкцию "const { **** }"
 // ПС:возможно ето не так
-var passport = require('passport');
 
 function create(req, res, next) {
     const errors = validationResult(req);
@@ -17,7 +16,10 @@ function create(req, res, next) {
         where: { email: req.body.email}  //тут только те проверки, в которых не обойдешься без запрсов к БД
     }).then(newUser => {
         if(newUser) {
-            return Promise.reject({statusCode: 422, message: "Email is used"}); //не хватается нигде, вылетит исключение
+            Promise.reject(new Error("Почта уже использована")).then(function(error) {
+                //console.log(error); 
+                return error; // повторно выбрасываем ошибку, вызывая новый reject
+              });
         }
         else {
             var twa=0;

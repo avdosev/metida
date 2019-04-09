@@ -29,5 +29,12 @@ route.get('/signin', (req, res, next) => {
 route.post("/signin", urlencodedParser, debug, userCreateValidator, userController.create);
 route.post("/login", urlencodedParser, debug, userLoginValidator, userController.login)
 
+//const passport = require('passport');
+// route.post("/login", urlencodedParser, debug, 
+//             userLoginValidator, /*userController.login*/ 
+//             passport.authenticate('local', { 
+//                 successRedirect: '/',
+//                 failureRedirect: '/login'}) );
+
 
 module.exports = route;
