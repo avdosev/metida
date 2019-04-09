@@ -39,7 +39,7 @@ npm install
 <p>Команды, чтобы можно было обойтись без изменения моего кода)))) 
 <p>Вводим в MySQL Command Line:
 <pre><code>create database usersDB; 
-create table usersDB.users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(20), password VARCHAR(20));
+create table usersDB.users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(25), password VARCHAR(100) created_at datetime updated_at datetime);
 create user 'metidaSQL'@'localhost' identified by '123';
 grant all privileges on usersDB.users to 'metidaSQL'@'localhost';
 alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>

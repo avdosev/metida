@@ -16,6 +16,7 @@ app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 
 app.use('/', route); //маршутизация и обработка запросов
 
+
 app.listen(port, () => {
     console.log('Server started on ' + port + ' port')
 })
