@@ -6,7 +6,6 @@ const userController = require('../controllers/users')
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 route.use(express.json());
-const bcrypt = require('bcrypt-nodejs');
 
 const debug = (req, res, next) => {
     //console.log("req body:", req.body);
@@ -29,6 +28,13 @@ route.get('/signin', (req, res, next) => {
 
 route.post("/signin", urlencodedParser, debug, userCreateValidator, userController.create);
 route.post("/login", urlencodedParser, debug, userLoginValidator, userController.login)
+
+//const passport = require('passport');
+// route.post("/login", urlencodedParser, debug, 
+//             userLoginValidator, /*userController.login*/ 
+//             passport.authenticate('local', { 
+//                 successRedirect: '/',
+//                 failureRedirect: '/login'}) );
 
 
 module.exports = route;
