@@ -1,18 +1,10 @@
 const { User } = require('../models') // так я не понял епта почему тут нет цепочечных инклудов 
+const { validationResult } = require('express-validator/check');
+const bcryptjs = require('bcrypt-nodejs');
 // сасатъ это не инклуды из си
 // скорее всего когда ты вызываешь функцию require то тебе возвращается module.export
 // из-за чего ты должен писать конструкцию "const { **** }"
 // ПС:возможно ето не так
-
-const { validationResult } = require('express-validator/check');
-
-const mysql = require('mysql');
-
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "metidaSQL",
-    password: "1234"
-});
 
 function create(req, res, next) {
     const errors = validationResult(req);
@@ -20,32 +12,33 @@ function create(req, res, next) {
         return res.status(422).json({errors: errors.array()});
     }
 
-    connection.connect();
-    
-    var counter=0;
-    //INSERT INTO CUSTOMERS (ID,email,login,password) VALUES (1,'snippet@mail.ru', 'sanya', 'passwd');
-    connection.query("INSERT INTO usersDB.users (ID, email,login,password) VALUES (" + counter + ", '" + req.body.email + "' , '" + req.body.login + "' , '" + req.body.password + "')", function(err, rows, fields){
-        if(err) return console.log(err);//ой а что выше за монстр 
-        //counter++; //и так плюсует из-за свойств созданного поля(см readme)
+    User.findOne( {
+        where: { email: req.body.email}  //тут только те проверки, в которых не обойдешься без запрсов к БД
+    }).then(newUser => {
+        if(newUser) {
+            Promise.reject(new Error("Почта уже использована")).then(function(error) {
+                //console.log(error); 
+                return error; // повторно выбрасываем ошибку, вызывая новый reject
+              });
+        }
+        else {
+            var twa=0;
+            const {login, email, password} = req.body;
+            const salt = bcryptjs.genSaltSync(10);
+            const passwordHash = bcryptjs.hashSync(password, salt);
+            return User.create({twa, login, email, password: passwordHash}); //twa - переменная для id (в бд плюсанется автоматически)
+        //как мы работаем с хешпаролем
+        //хешфункция всегда возвращает одно и тоже значение при одинаковом вводе, поэтому все будет норм ебать
+        //зашифровываем пароль однажды и кидаем это в БД(мы пароль юзера знать не будем, хеш работает в одну сторону)
+        //если юзер хочет сменить пароль, просто хешируем новый пароль и обновляем запись
+        }
+    }).then (newUser => {
+        res.json(newUser);
     })
-    
-    connection.query("SELECT * FROM usersDB.users", function(err, rows, fields){
-        if(err) return console.log(err);
-        console.log(rows);
-    }) //функция отладки
-
-    connection.end(function(err){ //вылет сервера происходит не из-за этого
-        if(err) return console.log(err);
-        console.log("Disconnect");
-    });
+       
 
     res.send(req.body); 
 
-    // const salt = bcrypt.genSaltSync(10);
-    // reg.password = bcrypt.hashSync(reg.password, salt);
-    // console.log(reg);
-    // res.send(reg); 
-    // проверяем есть ли данные поля в нашей бд, и если есть, идем нахер
 }
 
 function login(req, res, next) {
@@ -53,6 +46,7 @@ function login(req, res, next) {
     if(!errors.isEmpty()) {
         return res.status(422).json({errors: errors.array()});
     }
+
 }
 
 module.exports = {

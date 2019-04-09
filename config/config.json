@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "SqlDbg",
+    "username": "metidaSQL",
     "password": "1234",
-    "database": "database_development",
+    "database": "usersDB",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
