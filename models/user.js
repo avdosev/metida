@@ -1,23 +1,18 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    email: DataTypes.STRING,
-    login: DataTypes.STRING,
-    password: DataTypes.STRING,
-    createdAt: {
-      field: 'created_at',
-      type:  DataTypes.DATE,
-    },
-    updatedAt: {
-      field: 'updated_at',
-      type:  DataTypes.DATE,
+module.exports = function(sequelize, Sequelize) {
+  var User = sequelize.define("user", {
+    id: { autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER },
+    firstname: { type: Sequelize.STRING, notEmpty: true },
+    lastname: { type: Sequelize.STRING, notEmpty: true },
+    username: { type: Sequelize.TEXT },
+    about: { type: Sequelize.TEXT },
+    email: { type: Sequelize.STRING, validate: { isEmail: true } },
+    password: { type: Sequelize.STRING, allowNull: false },
+    last_login: { type: Sequelize.DATE },
+    status: {
+      type: Sequelize.ENUM("active", "inactive"),
+      defaultValue: "active"
     }
-  }, {});
-  User.associate = function(models) {
-    // associations can be defined here
-  };
+  });
+
   return User;
 };
-
-
-

@@ -3,23 +3,20 @@ head
   meta(charset='UTF-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  title registration
+  title signin
   style
     include ../public/css/style.css
     include ../public/css/input.css
-  
+
 body
   include modules/header 
-
-  .inputForm
-    form.reg(action="/signIn", method="post" )
+  .inputForm 
+    form.reg(action="/signin", method="post")
       p Email
-      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
-      p Login
-      input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
+      input#email(type='email', name='email', placeholder='Type email',  pattern='^.+@.*$')
       p Password
-      input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
-      p Retype password
-      input(type="password" placeholder="Retype password" required )
+      input#password(type='password', name='password', placeholder='Type password',  pattern='.{5,}')
       input#submit(type="submit" value="OK")
+
+
 

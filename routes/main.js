@@ -1,40 +1,39 @@
-var express = require('express');
-var route = express.Router();
-const bodyParser = require('body-parser'); 
+const authController = require("../controllers/authcontroller.js");
 const { userCreateValidator, userLoginValidator } = require('../services/validator');
-const userController = require('../controllers/users')
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+const bodyParser = require('body-parser'); 
 
-route.use(express.json());
+module.exports = function(app, passport) {
+    
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    const urlencodedParser = bodyParser.urlencoded({extended: false});
+  app.get("/register", authController.register);
 
-const debug = (req, res, next) => {
-    //console.log("req body:", req.body);
-    next();
-}
+  app.get("/signin", authController.signin);
 
-route.get('/', (req, res, next) => { //next only for middleware func lel
+  app.post("/register", /*urlencodedParser, userCreateValidator, */ passport.authenticate("local-signup", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/register"
+    })
+  );
+
+  app.get("/", (req, res, next) => {
     res.render('index');
-})
+  });
+  
+  app.get("/dashboard", isLoggedIn, authController.dashboard);
 
-route.get('/login', (req, res, next) => {
-    res.render('login');
-});
+  app.get("/logout", authController.logout);
 
-route.get('/signin', (req, res, next) => {
-    res.render('signin');
-});
+  app.post("/signin", /*urlencodedParser, userLoginValidator,*/ passport.authenticate("local-signin", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/signin"
+    })
+  );
 
-
-
-route.post("/signin", urlencodedParser, debug, userCreateValidator, userController.create);
-route.post("/login", urlencodedParser, debug, userLoginValidator, userController.login)
-
-//const passport = require('passport');
-// route.post("/login", urlencodedParser, debug, 
-//             userLoginValidator, /*userController.login*/ 
-//             passport.authenticate('local', { 
-//                 successRedirect: '/',
-//                 failureRedirect: '/login'}) );
-
-
-module.exports = route;
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) 
+        return next();
+    res.redirect("/signin");
+  }
+};
