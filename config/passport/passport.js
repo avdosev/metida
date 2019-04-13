@@ -23,24 +23,28 @@ module.exports = function(passport, user) {
   passport.use(
     "local-signup",
     new LocalStrategy({
+
         usernameField: "email",
         passwordField: "password",
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
-      (req, res, email, password) => {
+      (req, email, password, done) => {
         const generateHash = function(password) {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
         };
 
         User.findOne({ where: { email: email } }).then(function(user) {
           if (user) {
-            return done(null, false, { message: "That email is already taken" });
+            return done(null, false, {
+              message: "That email is already taken"
+            });
           } else {
             const userPassword = generateHash(password);
             const data = {
               email: email,
-              password: userPassword
-              //это все, остальное пока не используется, можно в личном кабинете будет доабвить доп пункты, которые запишутся в БД
+              password: userPassword,
+              firstname: req.body.firstname,
+              lastname: req.body.lastname
             };
 
             User.create(data).then(function(newUser, created) {
@@ -76,10 +80,10 @@ module.exports = function(passport, user) {
         };
 
         User.findOne({ where: { email: email } })
-          .then( (user) => {
+          .then(function(user) {
             if (!user) {
-              return res.status(400).json({error: "Почта уже использована"});
-              //return done(null, false, { message: "Email does not exist" });
+              //return res.status(400).json({error: "Почта уже использована"});
+              return done(null, false, { message: "Email does not exist" });
             }
 
             if (!isValidPassword(user.password, password)) {

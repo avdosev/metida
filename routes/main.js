@@ -11,7 +11,7 @@ module.exports = function(app, passport) {
 
   app.get("/signin", authController.signin);
 
-  app.post("/register", /*urlencodedParser, userCreateValidator, */ passport.authenticate("local-signup", {
+  app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
       successRedirect: "/dashboard",
       failureRedirect: "/register"
     })
@@ -25,7 +25,7 @@ module.exports = function(app, passport) {
 
   app.get("/logout", authController.logout);
 
-  app.post("/signin", /*urlencodedParser, userLoginValidator,*/ passport.authenticate("local-signin", {
+  app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
       successRedirect: "/dashboard",
       failureRedirect: "/signin"
     })
