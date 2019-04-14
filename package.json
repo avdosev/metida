@@ -1,21 +1,22 @@
 {
-  "name": "sequelize-passport-example",
-  "version": "1.0.0",
-  "description": "Using Passport with Sequelize and MySQL",
-  "main": "server.js",
+  "name": "metida",
+  "version": "0.1.0",
+  "description": "Small blog-platform",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lyndachiwetelu/using-passport-with-sequelize-and-mysql.git"
+    "url": "git+https://github.com/avdosev/metida"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lyndachiwetelu/node-passport-with-sequelize-and-mysql-example/issues"
+    "url": "https://github.com/avdosev/metida/issues"
   },
-  "homepage": "https://github.com/lyndachiwetelu/node-passport-with-sequelize-and-mysql-example#readme",
+  "homepage": "https://github.com/avdosev/metida#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
