@@ -2,7 +2,6 @@ a {
   text-decoration: none;
 }
 
-
 hr {
   border: 0;
   height: 1px;
@@ -22,6 +21,14 @@ hr {
   margin-left: 1vh;
   margin-top: 1vh;
 }
+
+
+.logoImg {
+  height: 3rem; /*ы */
+  background-color: black;
+  color: white;
+
+} 
 
 .regSection {
   margin-left: auto;

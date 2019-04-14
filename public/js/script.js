@@ -6,7 +6,7 @@ function start() {
 }
 
 function highLighter(element, configUrl) {
-    while(!confirm("sosi pisos"));
+    //while(!confirm("sosi pisos"));
     var codeText = element.textContent;
     getData('./public/json/' + configUrl, initHighLighter); // тут я так понимаю неверный путь 
                                                                  // да тут должнен быть другой юрл
