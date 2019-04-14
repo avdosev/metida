@@ -7,16 +7,12 @@ signin = (req, res, next) => {
   res.render("signin");
 };
 
-dashboard = (req, res, next) => {
-  res.render("dashboard");
-};
-
 createArticle = (req, res, next) => {
   res.render("createArticle");
 };
 
 logout = (req, res, next) => {
-  req.session.destroy(function(err) {
+  req.session.destroy((err) =>{
     res.redirect("/");
   });
 };
@@ -25,7 +21,6 @@ logout = (req, res, next) => {
 module.exports = {
   register,
   signin,
-  dashboard,
   createArticle,
   logout
 }
