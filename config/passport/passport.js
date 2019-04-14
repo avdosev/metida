@@ -1,17 +1,17 @@
 //load bcrypt
 const bCrypt = require("bcrypt-nodejs");
 
-module.exports = function(passport, user) {
+module.exports = (passport, user) => {
   const User = user;
   const LocalStrategy = require("passport-local").Strategy;
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser((user, done)  =>{
     done(null, user.id);
   });
 
   // used to deserialize the user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id).then(function(user) {
+  passport.deserializeUser((id, done)  =>{
+    User.findById(id).then((user)  => {
       if (user) {
         done(null, user.get());
       } else {
@@ -22,18 +22,16 @@ module.exports = function(passport, user) {
 
   passport.use(
     "local-signup",
-    new LocalStrategy({
-
-        usernameField: "email",
+    new LocalStrategy({ usernameField: "email",
         passwordField: "password",
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       (req, email, password, done) => {
-        const generateHash = function(password) {
+        const generateHash = (password)  => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
         };
 
-        User.findOne({ where: { email: email } }).then(function(user) {
+        User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
             return done(null, false, {
               message: "That email is already taken"
@@ -43,11 +41,9 @@ module.exports = function(passport, user) {
             const data = {
               email: email,
               password: userPassword,
-              firstname: req.body.firstname,
-              lastname: req.body.lastname
             };
 
-            User.create(data).then(function(newUser, created) {
+            User.create(data).then( (newUser, created) => {
               if (!newUser) {
                 return done(null, false);
               }
@@ -82,21 +78,19 @@ module.exports = function(passport, user) {
         User.findOne({ where: { email: email } })
           .then(function(user) {
             if (!user) {
-              //return res.status(400).json({error: "Почта уже использована"});
               return done(null, false, { message: "Email does not exist" });
             }
 
             if (!isValidPassword(user.password, password)) {
-              //return res.status(400).json({error: "Почта уже использована"});
+              //return new Error({ error: "Incorrect password." })
               return done(null, false, { message: "Incorrect password." });
             }
 
             const userinfo = user.get();
-            return done(null, userinfo);
+              return done(null, userinfo);
           })
           .catch(function(err) {
             console.log("Error:", err);
-
             return done(null, false, {
               message: "Something went wrong with your Signin"
             });

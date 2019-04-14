@@ -2,11 +2,12 @@ const authController = require("../controllers/authcontroller.js");
 const { userCreateValidator, userLoginValidator } = require('../services/validator');
 const bodyParser = require('body-parser'); 
 
-module.exports = function(app, passport) {
+module.exports = (app, passport) => {
     
-    app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
-    const urlencodedParser = bodyParser.urlencoded({extended: false});
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
+  const urlencodedParser = bodyParser.urlencoded({extended: false});
+
   app.get("/register", authController.register);
 
   app.get("/signin", authController.signin);
@@ -31,7 +32,7 @@ module.exports = function(app, passport) {
     })
   );
 
-  function isLoggedIn(req, res, next) {
+  function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle
     if (req.isAuthenticated()) 
         return next();
     res.redirect("/signin");
