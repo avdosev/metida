@@ -2,12 +2,23 @@
 
 <h2> 5.6% </h2>
 
+<h3>Развертка на linux машине </h3>
+<p> Есть <a href="https://github.com/Sapfir0/deploymentMetida">небольшой</a> скрипт, поднимающий сервер на unix)
+
+<h3>Развертка на Windows машине </h3>
 <p>Для установки всех пакетов и запуска сервера
 <pre><code>npm install
 npm start</pre></code>
 
-<h3>Развертка на linux сервере </h3>
-<p> Есть <a href="https://github.com/Sapfir0/deploymentMetida">небольшой</a> скрипт, поднимающий сервер на unix)
+<p>Вводим в MySQL Command Line:
+<p> Таблица и поля в ней создадутся автоматически
+<pre><code>create database usersDB2; 
+create user 'metidaSQL'@'localhost' identified with mysql_native_password by '1234';
+grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';</code></pre>
+
+<p>Для очищения таблицы юзать 
+<pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще в текущей БД)
+
 
 <p>Если ты пришел и не понимаешь что тут происходит, я тебе расскажу хотя бы про структуру проекта
 
@@ -37,20 +48,6 @@ npm start</pre></code>
 <h3>/views/modules </h3>
 <h4>Элементы сайта, которые должны отображаться больше, чем на одной странице.</h4>
 <p>Чтобы не копировать код(dry ofc), мы создаем отельный файлик, который инклудим с требуемой страницы. Конечно же, для наших файлов-модулей необходим и стайл модуль, поэтому кидаем такие же модульные стили в /public/css/modules
-
-<h3>/models, /migrations, /seeders</h3>
-<h4>Работа с БД</h4>
-<p>Команды, чтобы можно было обойтись без изменения моего кода)))) 
-<p>Вводим в MySQL Command Line:
-<p> Таблица и поля в ней создадутся автоматически
-<pre><code>create database usersDB2; 
-create user 'metidaSQL'@'localhost' identified by '1234';
-grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
-alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>
-<p>Для очищения таблицы юзать 
-<pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
-
-<p> Пока чет не робит миграция 
 
 <h3>/bin</h3>
 <p>Есть идея создать там точку входа, чтобы именно файл www, отвечал за саму инициализацию сервера, как в express-generator

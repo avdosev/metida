@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/avdosev/metida#readme",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",
