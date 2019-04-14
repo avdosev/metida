@@ -1,7 +1,9 @@
 function logRequest(req, res, next) {
-    console.log(req.body);
-    console.log(req.url);
-    console.log(req.method)
+    console.log("REQUEST:")
+    console.log("body: ",req.body);
+    console.log("url: ",req.url);
+    console.log("method: ",req.method)
+    console.log("END REQUEST")
     next();
 }
 
