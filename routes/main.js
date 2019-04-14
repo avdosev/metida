@@ -3,6 +3,7 @@ const { userCreateValidator, userLoginValidator } = require('../services/validat
 const bodyParser = require('body-parser'); 
 
 const initAuthControllers = (app, passport) => {
+
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -12,7 +13,7 @@ const initAuthControllers = (app, passport) => {
   app.get("/signin", authController.signin);
 
   app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
-      successRedirect: "/dashboard",
+      successRedirect: "/",
       failureRedirect: "/register"
     })
   );
@@ -22,14 +23,17 @@ const initAuthControllers = (app, passport) => {
   });
   //дашборд - это уведомление о успешной авторизации юзера
   //т.к. у меня не работает отлов ошибок, мне нужен этот костыль
-  app.get("/dashboard", isLoggedIn, authController.dashboard);
+  //уже нет
+  //ответил я сам себе
 
-  app.get("/createArticle", isLoggedIn, authController.createArticle)
+  app.get("/createArticle", isLoggedIn, authController.createArticle);
+
+  //app.post("/createArticle", );
 
   app.get("/logout", authController.logout);
 
   app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
-      successRedirect: "/dashboard",
+      successRedirect: "/",
       failureRedirect: "/signin"
     })
   );

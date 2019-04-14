@@ -14,7 +14,8 @@ npm start</pre></code>
 <p> Таблица и поля в ней создадутся автоматически
 <pre><code>create database usersDB2; 
 create user 'metidaSQL'@'localhost' identified with mysql_native_password by '1234';
-grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';</code></pre>
+grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
+grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';</code></pre>
 
 <p>Для очищения таблицы юзать 
 <pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще в текущей БД)
@@ -24,7 +25,7 @@ grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';</code></pre>
 
 <h3> /config </h3>
 <h4>Настройки базы данных </h4>
-<p>Рекомендую создать такой же аккаунт с таким же логином и паролем
+<p>Рекомендую создать такой же аккаунт с таким же логином и паролем(см выше)
 
 <h3>/routes</h3>
 <h4>Маршрутизация </h4>
