@@ -1,55 +1,101 @@
-const { User } = require('../models') // так я не понял епта почему тут нет цепочечных инклудов 
-const { validationResult } = require('express-validator/check');
-const bcryptjs = require('bcrypt-nodejs');
-// сасатъ это не инклуды из си
-// скорее всего когда ты вызываешь функцию require то тебе возвращается module.export
-// из-за чего ты должен писать конструкцию "const { **** }"
-// ПС:возможно ето не так
+//load bcrypt
+const bCrypt = require("bcrypt-nodejs");
 
-function create(req, res, next) {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()) {
-        return res.status(422).json({errors: errors.array()});
-    }
+module.exports = (passport, user) => {
+  const User = user;
+  const LocalStrategy = require("passport-local").Strategy;
 
-    User.findOne( {
-        where: { email: req.body.email}  //тут только те проверки, в которых не обойдешься без запрсов к БД
-    }).then(newUser => {
-        if(newUser) {
-            Promise.reject(new Error("Почта уже использована")).then(function(error) {
-                //console.log(error); 
-                return error; // повторно выбрасываем ошибку, вызывая новый reject
-              });
-        }
-        else {
-            var twa=0;
-            const {login, email, password} = req.body;
-            const salt = bcryptjs.genSaltSync(10);
-            const passwordHash = bcryptjs.hashSync(password, salt);
-            return User.create({twa, login, email, password: passwordHash}); //twa - переменная для id (в бд плюсанется автоматически)
-        //как мы работаем с хешпаролем
-        //хешфункция всегда возвращает одно и тоже значение при одинаковом вводе, поэтому все будет норм ебать
-        //зашифровываем пароль однажды и кидаем это в БД(мы пароль юзера знать не будем, хеш работает в одну сторону)
-        //если юзер хочет сменить пароль, просто хешируем новый пароль и обновляем запись
-        }
-    }).then (newUser => {
-        res.json(newUser);
-    })
-       
+  passport.serializeUser((user, done)  =>{
+    done(null, user.id);
+  });
 
-    res.send(req.body); 
+  // used to deserialize the user
+  passport.deserializeUser((id, done)  =>{
+    User.findById(id).then((user)  => {
+      if (user) {
+        done(null, user.get());
+      } else {
+        done(user.errors, null);
+      }
+    });
+  });
 
-}
+  passport.use(
+    "local-signup",
+    new LocalStrategy({ usernameField: "email",
+        passwordField: "password",
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+      },
+      (req, email, password, done) => {
+        const generateHash = (password)  => {
+          return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+        };
 
-function login(req, res, next) {
-    const errors = validationResult(req);
-    if(!errors.isEmpty()) {
-        return res.status(422).json({errors: errors.array()});
-    }
+        User.findOne({ where: { email: email } }).then((user) =>  {
+          if (user) {
+            return done(null, false, {
+              message: "That email is already taken"
+            });
+          } else {
+            const userPassword = generateHash(password);
+            const data = {
+              email: email,
+              password: userPassword,
+            };
 
-}
+            User.create(data).then( (newUser, created) => {
+              if (!newUser) {
+                return done(null, false);
+              }
 
-module.exports = {
-    create,
-    login
-}
+              if (newUser) {
+                return done(null, newUser);
+              }
+            });
+          }
+        });
+      }
+    )
+  );
+
+  //LOCAL SIGNIN
+  passport.use(
+    "local-signin",
+    new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField: "email",
+        passwordField: "password",
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+      },
+
+      (req, email, password, done) => {
+        const User = user;
+
+        const isValidPassword = (userpass, password) => {
+          return bCrypt.compareSync(password, userpass);
+        };
+
+        User.findOne({ where: { email: email } })
+          .then(function(user) {
+            if (!user) {
+              return done(null, false, { message: "Email does not exist" });
+            }
+
+            if (!isValidPassword(user.password, password)) {
+              //return new Error({ error: "Incorrect password." })
+              return done(null, false, { message: "Incorrect password." });
+            }
+
+            const userinfo = user.get();
+              return done(null, userinfo);
+          })
+          .catch(function(err) {
+            console.log("Error:", err);
+            return done(null, false, {
+              message: "Something went wrong with your Signin"
+            });
+          });
+      }
+    )
+  );
+};

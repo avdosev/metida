@@ -1,5 +1,4 @@
 const { body } = require('express-validator/check');
-const { sanitizeBody } = require('express-validator/filter');
 
 const emailVaidator = body('email').isEmail().normalizeEmail();
 
@@ -9,16 +8,16 @@ const loginValidator = body('login').not().isEmpty().trim()
 
 const passwordValidator = body('password').not().isEmpty().trim()
                             .isLength({min:5}).withMessage('so short').trim()
-                            .isLength({max: 50}).withMessage('very big'); //хуя
+                            .isLength({max: 50}).withMessage('very big'); 
 
 const validators = {  
     userCreateValidator: [
         emailVaidator,
         loginValidator,
-        passwordValidator 
+        passwordValidator
     ],
     userLoginValidator: [
-        loginValidator,
+        emailVaidator,
         passwordValidator
     ]
 }

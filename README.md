@@ -35,25 +35,31 @@ npm install
 
 <h3>/models, /migrations, /seeders</h3>
 <h4>Работа с БД</h4>
-<p> ТАК, я сделал очень низкоуровневыми функциями работу с БД(так делать не хорошо, куча файлов вообще не используется(папки, указанные выше + config/)) 
 <p>Команды, чтобы можно было обойтись без изменения моего кода)))) 
 <p>Вводим в MySQL Command Line:
-<pre><code>create database usersDB; 
-create table usersDB.users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(25), password VARCHAR(100) created_at datetime, updated_at datetime);
+<p> Таблица и поля в ней создадутся автоматически
+<pre><code>create database usersDB2; 
 create user 'metidaSQL'@'localhost' identified by '1234';
-grant all privileges on usersDB.users to 'metidaSQL'@'localhost';
+grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
 alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>
-<p>Без последней строчки какие-то баги 
 <p>Для очищения таблицы юзать 
-<pre><code> truncate usersDB.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
-
-<p>http://docs.sequelizejs.com/manual/migrations.html
+<pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
 
 <p> Пока чет не робит миграция 
 
 <h3>/bin</h3>
 <p>Есть идея создать там точку входа, чтобы именно файл www, отвечал за саму инициализацию сервера, как в express-generator
 
+<h3>Развертка на linux сервере </h3>
+<p> Есть <a href="https://github.com/Sapfir0/deploymentMetida">небольшой</a> скрипт, поднимающий сервер на unix)
+
+<h3>Docker</h3>
+<p>Это контейнер 
+<img src="https://im0-tub-ru.yandex.net/i?id=9c8143a2c07d5d1b78dbad9b2567a6ae-l&n=13">
+<p> Создание контейнера
+<pre><code>docker build .
+docker images
+docker run <IMAGE_ID> </code></pre>
 
 <p>Теперь, если ты сделал что-то, и не смог исправить ошибку, или просто нашел баг в работе и не смог сразу поправить, возможно, стоит создать issue с этой ошибкой, чтобы она мозолила глаза и кто-нибудь(хм) ее пофиксил
 

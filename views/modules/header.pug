@@ -1,11 +1,11 @@
 modules/header.pug
-//- link(rel='icon', href='./favicon.ico', type='image/x-icon')
 style
   include ../../public/css/modules/header.css
 header.header
-  .logo
-    img(src='#', alt='Metida')
+  .logo  
+    <a href="/"> <img src='#', alt='Metida'>  </a>
+    //- <h3> Ты зашел под ником #{authorised} </h3>
   form.regSection
-    a(href='/login') &Vcy;&ocy;&jcy;&tcy;&icy;
-    a(href='/signIn') &Rcy;&iecy;&gcy;&icy;&scy;&tcy;&rcy;&acy;&tscy;&icy;&yacy;
+    a#signIn(href='/signIn') Войти
+    a#register(href='/register') Регистрация
 hr
