@@ -2,8 +2,7 @@ const authController = require("../controllers/authcontroller.js");
 const { userCreateValidator, userLoginValidator } = require('../services/validator');
 const bodyParser = require('body-parser'); 
 
-module.exports = (app, passport) => {
-    
+const initAuthControllers = (app, passport) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   const urlencodedParser = bodyParser.urlencoded({extended: false});
@@ -38,3 +37,8 @@ module.exports = (app, passport) => {
     res.redirect("/signin");
   }
 };
+
+
+module.exports = {
+  initAuthControllers
+}

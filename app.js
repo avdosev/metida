@@ -6,9 +6,14 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const models = require("./models");
 
+
+const { loadPasportStrategies } = require("./controllers/users");
+const { initAuthControllers } = require("./routes/main.js");
+const { logRequest } = require("./debug.js");
+
 const port = 7080;
 
-//For BodyParser
+// For BodyParser
 // app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.json());
 
@@ -29,11 +34,11 @@ const favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 
 
-const authRoute = require("./routes/main.js")(app, passport);
+app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 
+const authRoute = initAuthControllers(app, passport);
 
-//load passport strategies
-require("./controllers/users")(passport, models.user);
+loadPasportStrategies(passport, models.user);
 
 //Sync Database
 models.sequelize

@@ -8,12 +8,15 @@ function start() {
 function highLighter(element, configUrl) {
     // alert("sosi")
     var codeText = element.textContent;
-    getData('./public/js/config/' + configUrl, initHighLighter);///////////////////////////////////////тут я так понимаю неверный путь
+    getData('./public/js/config/' + configUrl, initHighLighter); // тут я так понимаю неверный путь 
+                                                                 // да тут должнен быть другой юрл
+                                                                 // типо такого metida.com/api/getpublicfile/namejsconfig
+                                                                 // и тогда будет нормальный запрос
     function initHighLighter(lexTable) {
         var text = "";
         while (codeText.length != 0) {
             for (var param in lexTable) {
-                var str = codeText.match(lexTable[param].regexp);//ищем а потом удаляем
+                var str = codeText.match(lexTable[param].regexp); // ищем а потом удаляем
                 if (str !== null) {
                     codeText = codeText.replace(lexTable[param].regexp, '');
                     if (lexTable[param].color != undefined) text += `<span style = 'color: ${lexTable[param].color}'>${str[0]}</span>`;
@@ -45,15 +48,16 @@ function getData(url, callback) {
             return;
         }
         if (xhr.status === 200) {
-        callback(JSON.parse(xhr.responseText, function(key,value) {
-            if (key === "regexp") {
-                return RegExp(value); 
-            }
-            else {
-                console.log("xhr.status=  " + xhr.status);
-                return value;
-            }
-         }));
+            console.log(xhr.responseText)
+            callback(JSON.parse(xhr.responseText, function(key,value) {
+                if (key === "regexp") {
+                    return RegExp(value); 
+                }
+                else {
+                    console.log("xhr.status=  " + xhr.status);
+                    return value;
+                }
+            }));
         }
     }
 }

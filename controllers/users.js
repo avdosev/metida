@@ -1,7 +1,7 @@
 //load bcrypt
 const bCrypt = require("bcrypt-nodejs");
 
-module.exports = (passport, user) => {
+const loadPasportStrategies = (passport, user) => {
   const User = user;
   const LocalStrategy = require("passport-local").Strategy;
 
@@ -99,3 +99,7 @@ module.exports = (passport, user) => {
     )
   );
 };
+
+module.exports = {
+  loadPasportStrategies
+}
