@@ -44,8 +44,6 @@ grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
 alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>
 <p>Для очищения таблицы юзать 
 <pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
-<p> 60 символов - длина хеша(50) + соль(10)
-<p>http://docs.sequelizejs.com/manual/migrations.html
 
 <p> Пока чет не робит миграция 
 

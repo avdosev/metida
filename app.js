@@ -33,7 +33,7 @@ const authRoute = require("./routes/main.js")(app, passport);
 
 
 //load passport strategies
-require("./config/passport/passport")(passport, models.user);
+require("./controllers/users")(passport, models.user);
 
 //Sync Database
 models.sequelize

@@ -1,3 +1,8 @@
+a {
+  text-decoration: none;
+}
+
+
 hr {
   border: 0;
   height: 1px;
@@ -21,7 +26,6 @@ hr {
 .regSection {
   margin-left: auto;
   margin-right: 2rem;
-
 }
 
 .regSection a {
@@ -30,32 +34,30 @@ hr {
   font-family: arial,sans-serif;
   font-size: 14px;
   font-weight: bold;
-  color: rgb(68,68,68);
   user-select: none;
-  padding: .2em 1.2em;
+  padding: .3em 1.2em;
   outline: none;
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 2px;
-  background: rgb(245,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+  border-radius: 3px;
   transition: all .218s ease 0s;
 }
-.regSection a:hover {
-  color: rgb(24,24,24);
-  border: 1px solid rgb(198,198,198);
-  background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-  box-shadow: 0 1px 2px rgba(0,0,0,.1);
-}
- .regSection a:active {
-  color: rgb(51,51,51);
-  border: 1px solid rgb(204,204,204);
-  background: rgb(238,238,238) linear-gradient(rgb(238,238,238), rgb(224,224,224));
-  box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+
+
+.regSection #register { 
+  background-color: #333;
+  color: whitesmoke;
 }
 
- #register { /*почему-то не робит */
-  background: rgb(5,245,245) linear-gradient(#f4f4f4, #f1f1f1);
+.regSection #signIn {
+  background-color: #ccc;
+  color: black;
 }
 
-#signIn {
+.regSection #register:hover { 
+  background-color: steelblue;
+  color: whitesmoke;
+}
 
+.regSection #signIn:hover {
+  background-color: steelblue;
+  color: white;
 }
