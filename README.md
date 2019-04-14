@@ -37,14 +37,13 @@ npm install
 <h4>Работа с БД</h4>
 <p>Команды, чтобы можно было обойтись без изменения моего кода)))) 
 <p>Вводим в MySQL Command Line:
-<pre><code>create database usersDB; 
-create table usersDB.users (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, email VARCHAR(50), login VARCHAR(25), password VARCHAR(60), created_at datetime, updated_at datetime);
+<p> Таблица и поля в ней создадутся автоматически
+<pre><code>create database usersDB2; 
 create user 'metidaSQL'@'localhost' identified by '1234';
-grant all privileges on usersDB.users to 'metidaSQL'@'localhost';
+grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
 alter user 'metidaSQL'@'localhost' identified WITH mysql_native_password BY '1234';</code></pre>
-<p>Без последней строчки какие-то баги 
 <p>Для очищения таблицы юзать 
-<pre><code> truncate usersDB.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
+<pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще вошли в текущую БД)
 <p> 60 символов - длина хеша(50) + соль(10)
 <p>http://docs.sequelizejs.com/manual/migrations.html
 
