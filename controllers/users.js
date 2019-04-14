@@ -1,4 +1,3 @@
-//load bcrypt
 const bCrypt = require("bcrypt-nodejs");
 
 const loadPasportStrategies = (passport, user) => {
@@ -33,14 +32,15 @@ const loadPasportStrategies = (passport, user) => {
 
         User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
-            return done(null, false, {
-              message: "That email is already taken"
-            });
+            return done(null, false, { message: "That email is already taken" });
           } else {
             const userPassword = generateHash(password);
+            console.log(req.body.login);
             const data = {
               email: email,
-              password: userPassword,
+              username: req.body.login,
+              password: userPassword, //зашифрованный
+              
             };
 
             User.create(data).then( (newUser, created) => {
