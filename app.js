@@ -10,6 +10,7 @@ const { loadPasportStrategies } = require("./controllers/users");
 const { initAuthControllers } = require("./routes/main.js");
 const { logRequest } = require("./debug.js");
 
+
 const port = 7080;
 
 // For Passport
@@ -29,7 +30,7 @@ const favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 
 
-app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
+//app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 
 const authRoute = initAuthControllers(app, passport);
 
@@ -51,3 +52,7 @@ app.listen(port, (err) => {
   else 
     console.log(err);
 });
+
+// подгрузка публик изображений  
+const { getFile } = require("./controllers/get.js");
+app.get("/public/:filefolder/:filename", logRequest, getFile);
