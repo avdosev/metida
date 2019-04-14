@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', start);
 //window.onload = start;
 
 function start() {
-    highLighter(document.querySelector('code.js-language'), 'lexem-table.json');
+    highLighter(document.querySelector('code.js-language'), 'lexem_table.json');
 }
 
 function highLighter(element, configUrl) {
-    // alert("sosi")
+    while(!confirm("sosi pisos"));
     var codeText = element.textContent;
-    getData('./public/js/config/' + configUrl, initHighLighter); // тут я так понимаю неверный путь 
+    getData('./public/json/' + configUrl, initHighLighter); // тут я так понимаю неверный путь 
                                                                  // да тут должнен быть другой юрл
                                                                  // типо такого metida.com/api/getpublicfile/namejsconfig
                                                                  // и тогда будет нормальный запрос
@@ -25,7 +25,7 @@ function highLighter(element, configUrl) {
                 }
             }
             if (str == null) { alert("you regexp don`t ready"); break; }
-            console.log(codeText);
+            // console.log(codeText); //пользователю не нужно такое логирование
         }
         element.innerHTML = text;
     }
@@ -48,13 +48,13 @@ function getData(url, callback) {
             return;
         }
         if (xhr.status === 200) {
-            console.log(xhr.responseText)
+            //console.log(xhr.responseText)
             callback(JSON.parse(xhr.responseText, function(key,value) {
                 if (key === "regexp") {
                     return RegExp(value); 
                 }
                 else {
-                    console.log("xhr.status=  " + xhr.status);
+                    //console.log("xhr.status = " + xhr.status);
                     return value;
                 }
             }));
