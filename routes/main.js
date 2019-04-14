@@ -20,8 +20,11 @@ const initAuthControllers = (app, passport) => {
   app.get("/", (req, res, next) => {
     res.render('index');
   });
-  
+  //дашборд - это уведомление о успешной авторизации юзера
+  //т.к. у меня не работает отлов ошибок, мне нужен этот костыль
   app.get("/dashboard", isLoggedIn, authController.dashboard);
+
+  app.get("/createArticle", isLoggedIn, authController.createArticle)
 
   app.get("/logout", authController.logout);
 
