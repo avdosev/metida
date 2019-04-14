@@ -1,0 +1,40 @@
+{
+    
+    "indentation": {
+        "regexp": "^(\\s+)"
+    },
+    "keywords": {
+        "regexp": "^(var|function|return|while|for|if|else|break|null|true|false)\\b",
+        "color": "#638eb8"
+    },
+    "ident": {
+        "regexp": "^([A-Za-z_$]\\w*)\\b"
+    },
+    "string_constant": {
+        "regexp": "^((\".*?\")|('.*?'))",
+        "color": "#EC7600"
+    },
+    "operators": {
+        "regexp": "^(((=?|!?)={1,2})|(\\+|-){1,2}|<=?|>=?)"
+    },
+    "comment": {
+        "regexp": "^(\/\/(.*?)\n)|(\/[*]([\\s\\S]*?)[*]\/)",
+        "color": "grey"
+    },
+    "separators": {
+        "regexp": "^([[\\])(\\}\\{;,;.]{1})"
+    },
+    "digit_const": {
+        "regexp": "^(\\d+)\\b",
+        "color": "#FFB52C"
+    },
+    "error": {
+        "regexp": "^(.*?)(?=[\\s]|[\\n])",
+        "color": "#D70000"
+    }
+}
+
+
+
+
+
