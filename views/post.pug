@@ -1,0 +1,21 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title metida
+  style
+    include ../public/css/style.css
+    include ../public/css/layout_body.css
+    include ../public/css/content.css
+  script
+    include ../public/js/highlighter.js
+    
+
+body
+    include modules/header 
+
+    .layout_body
+        article.post_text
+            h1 #{name}
+            p #{text}

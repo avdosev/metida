@@ -16,6 +16,14 @@ const initAuthControllers = (app, passport) => {
   app.get("/logout", authController.logout);
 
 
+  app.get('/post/:id', getArticleFromSQL , authController.articles);
+
+  function getArticleFromSQL(req, res, next) {
+
+    next();
+  }
+  
+  
   //app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
   app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
