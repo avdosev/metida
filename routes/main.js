@@ -8,33 +8,21 @@ const initAuthControllers = (app, passport) => {
   app.use(bodyParser.json());
   const urlencodedParser = bodyParser.urlencoded({extended: false});
 
+  app.get("/", authController.index );
   app.get("/register", authController.register);
-
   app.get("/signin", authController.signin);
+  app.get("/home", isLoggedIn, authController.home);
+  app.get("/createArticle", isLoggedIn, authController.createArticle);
+  app.get("/logout", authController.logout);
+
+
+  //app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
   app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
-      successRedirect: "/",
-      failureRedirect: "/register"
+    successRedirect: "/",
+    failureRedirect: "/register"
     })
   );
-
-  app.get("/", (req, res, next) => {
-    res.render('index');
-  });
-  app.get("/home", (req, res, next) => {
-    res.render('home');
-  });
-
-  //дашборд - это уведомление о успешной авторизации юзера
-  //т.к. у меня не работает отлов ошибок, мне нужен этот костыль
-  //уже нет
-  //ответил я сам себе
-
-  app.get("/createArticle", isLoggedIn, authController.createArticle);
-
-  //app.post("/createArticle", );
-
-  app.get("/logout", authController.logout);
 
   app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
       successRedirect: "/",

@@ -1,21 +1,22 @@
 <h1> Процент готовности проекта </h1>
 
-<h2> 5.6% </h2>
+<h2> 8.6% </h2>
 
 <h3>Развертка на linux машине </h3>
 <p> Есть <a href="https://github.com/Sapfir0/deploymentMetida">небольшой</a> скрипт, поднимающий сервер на unix)
 
 <h3>Развертка на Windows машине </h3>
-<p>Для установки всех пакетов и запуска сервера
+<p>Для установки всех пакетов и запуска сервера:
+<p>Команды терминала:
 <pre><code>npm install
 npm start</pre></code>
 
-<p>Вводим в MySQL Command Line:
-<p> Таблица и поля в ней создадутся автоматически
+<p>Команды MySQL Command Line:
 <pre><code>create database usersDB2; 
 create user 'metidaSQL'@'localhost' identified with mysql_native_password by '1234';
 grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
 grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';</code></pre>
+<p> Таблица и поля в ней создадутся автоматически
 
 <p>Для очищения таблицы юзать 
 <pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще в текущей БД)
