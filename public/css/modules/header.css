@@ -68,3 +68,33 @@ hr {
   background-color: steelblue;
   color: white;
 }
+
+.regSection #home { 
+  background-color: #333;
+  color: whitesmoke;
+}
+
+.regSection #logout {
+  background-color: #ccc;
+  color: black;
+}
+
+.regSection #logout:hover { 
+  background-color: steelblue;
+  color: whitesmoke;
+}
+
+.regSection #home:hover {
+  background-color: steelblue;
+  color: white;
+}
+
+.regSection #createArticle { 
+  background-color: #333;
+  color: whitesmoke;
+}
+
+.regSection #createArticle:hover {
+  background-color: steelblue;
+  color: white;
+}
