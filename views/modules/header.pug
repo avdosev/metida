@@ -9,9 +9,9 @@ header.header
   form.regSection 
   
     if authorised 
-      a#logout(href='/logout') Выйти
       a#home(href='/home') Профиль
       a#createArticle(href='/createArticle') Написать
+      a#logout(href='/logout') Выйти
     else
       a#signIn(href='/signIn') Войти
       a#register(href='/register') Регистрация
