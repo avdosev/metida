@@ -1,0 +1,24 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(http-equiv='X-UA-Compatible', content='ie=edge')
+  title registration
+  style
+    include ../public/css/style.css
+    include ../public/css/create_article.css
+    include ../public/css/layout_body.css
+  //- script
+  //-   include https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js
+
+body
+  include modules/header 
+
+  .layout_body
+    form.pushArticle(action="/createArticle", method="post")
+      <h3>Заголовок:</h3>
+      <input type="text" name="title" value=""  />
+      <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
+      <textarea class="create_area" name="text", cols="30", rows="7"> </textarea>
+      input#submit(type="submit" value="OK")
+

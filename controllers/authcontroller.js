@@ -8,7 +8,7 @@ signin = (req, res, next) => {
 };
 
 createArticle = (req, res, next) => {
-  res.render("createArticle", { authorised : req.isAuthenticated() });
+  res.render("create_article", { authorised : req.isAuthenticated() });
 };
 
 home = (req, res, next) => {

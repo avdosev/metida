@@ -41,7 +41,7 @@ models.sequelize
     console.log("Nice! Database looks fine");
   })
   .catch(function(err) {
-    console.log(err, "Something went wrong with the Database Update!");
+    console.log("Something went wrong with the Database Update!");
   });
 
 
@@ -49,7 +49,7 @@ app.listen(port, (err) => {
   if (!err) 
     console.log("Server started on " + port + " port");
   else 
-    console.log(err);
+    console.log("Server not started");
 });
 
 // подгрузка публик изображений  
