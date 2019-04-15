@@ -19,8 +19,12 @@ const initAuthControllers = (app, passport) => {
   );
 
   app.get("/", (req, res, next) => {
-    res.render('index');
+    if ( req.isAuthenticated() )
+      auth = true;
+    else auth = false;
+    res.render('index', { authorised : auth } );
   });
+
   app.get("/home", isLoggedIn, (req, res, next) => {
     res.render('home');
   });
@@ -34,7 +38,12 @@ const initAuthControllers = (app, passport) => {
 
   app.get("/createArticle", isLoggedIn, authController.createArticle);
 
-  //app.post("/createArticle", );
+  // app.get("/post/id", (req,res,next) => {
+  //   req.
+  //   res.send(id);
+  // })
+
+  app.post("/createArticle", );
 
   app.get("/logout", authController.logout);
 

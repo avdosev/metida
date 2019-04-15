@@ -5,13 +5,14 @@ header.header
   .logo  
     a(href='/')
       img(src='./public/img/logo.webp', alt='Metida' class="logoImg")   
-    //- <h3> Ты зашел под ником #{authorised} </h3>
+    //- <h3> Ты зашел под ником #{authorised} </h3> //отрицательный если лел
   form.regSection 
   
-    a#signIn(href='/signIn') Войти
-    a#register(href='/register') Регистрация
-    a#logout(href='/logout') Выйти
-    a#home(href='/home') Профиль
-    a#createArticle(href='/createArticle') Написать
+    if authorised 
+      a#logout(href='/logout') Выйти
+      a#home(href='/home') Профиль
+      a#createArticle(href='/createArticle') Написать
+    else
+      a#signIn(href='/signIn') Войти
+      a#register(href='/register') Регистрация
 hr
-//-  ну ***** тут каша 
