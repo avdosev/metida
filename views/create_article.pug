@@ -6,14 +6,16 @@ head
   title registration
   style
     include ../public/css/style.css
+    include ../public/css/create_article.css
+    include ../public/css/layout_body.css
   //- script
   //-   include https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js
 
 body
   include modules/header 
 
-
-  form.pushArticle(action="/createArticle", method="post")
-    <textarea class="createArticle" name="text", cols="30", rows="7"> </textarea>
-    input#submit(type="submit" value="OK")
+  .layout_body
+    form.pushArticle(action="/createArticle", method="post")
+      <textarea class="createArticle" name="text", cols="30", rows="7"> </textarea>
+      input#submit(type="submit" value="OK")
 
