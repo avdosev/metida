@@ -1,4 +1,5 @@
 const bCrypt = require("bcrypt-nodejs");
+const { validationResult } = require('express-validator/check');
 
 const loadPasportStrategies = (passport, user) => {
   const User = user;
@@ -30,6 +31,11 @@ const loadPasportStrategies = (passport, user) => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
         };
 
+        const errors = validationResult(req);
+        if (!errors.isEmpty() ) {
+          return done(null, false, { errors: errors.array()});
+        }
+
         User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
             return done(null, false, { message: "That email is already taken" });
@@ -58,6 +64,10 @@ const loadPasportStrategies = (passport, user) => {
     )
   );
 
+  
+
+
+
   //LOCAL SIGNIN
   passport.use(
     "local-signin",
@@ -65,7 +75,7 @@ const loadPasportStrategies = (passport, user) => {
         // by default, local strategy uses username and password, we will override with email
         usernameField: "email",
         passwordField: "password",
-        passReqToCallback: true // allows us to pass back the entire request to the callback
+        passReqToCallback: true  //позволяет нам передать весь запрос на обратный вызов
       },
 
       (req, email, password, done) => {

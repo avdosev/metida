@@ -21,9 +21,11 @@ const initAuthControllers = (app, passport) => {
   app.get("/", (req, res, next) => {
     res.render('index');
   });
-  app.get("/home", (req, res, next) => {
+  app.get("/home", isLoggedIn, (req, res, next) => {
     res.render('home');
   });
+
+  app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
   //дашборд - это уведомление о успешной авторизации юзера
   //т.к. у меня не работает отлов ошибок, мне нужен этот костыль
