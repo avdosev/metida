@@ -12,36 +12,6 @@ a {
     text-decoration: none;
 }
 
-.content {
-    display: flex;
-    justify-content: center;
-    float: left;
-} 
-
-.layout_body {
-    width: 65%;
-    display: flex;
-    justify-content: center;
-    border-radius: 5px;
-    padding: 15px 10px 10px 20px;
-    font-size: 18px;
-    font-family: 'Oswald'; /*шрифт сменить */
-    
-}
-
-.content .post_text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content .post_text img {
-    max-width: 100%;
-    height: auto;
-    border: 10px black;
-    border-radius: 15px; /* хз может убрать */
-}
-
 .rightSection {
     margin-left: 20px;
     margin-top: -180vh;  /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
@@ -49,23 +19,4 @@ a {
     width: 25vh;
     float: right;
     font-family: 'Oswald'; /*шрифт сменить */
-
-} 
-
- .content {
-    display: flex;
-    justify-content: center;
-    float: left;
-} 
-
-code {
-    background-color: #2E2F30;
-    color: white;
-    padding-left: 10px;
-    margin-left: 100px;
-    width: 500px; 
-    border-radius: 3px;
-
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
 }
-
