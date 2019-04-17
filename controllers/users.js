@@ -22,7 +22,9 @@ const loadPasportStrategies = (passport, user) => {
 
   passport.use(
     "local-signup",
-    new LocalStrategy({ usernameField: "email",
+    new LocalStrategy(
+      {
+        usernameField: "email",
         passwordField: "password",
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
@@ -45,7 +47,7 @@ const loadPasportStrategies = (passport, user) => {
             const data = {
               email: email,
               username: req.body.login,
-              password: userPassword, //зашифрованный
+              password: userPassword, // зашифрованный
               
             };
 
