@@ -8,7 +8,6 @@ const initAuthControllers = (app, passport) => {
   app.use(bodyParser.json());
   const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-  app.use( authController.errorPage);
 
   app.get("/", authController.index );
   app.get("/register", authController.register);
@@ -24,7 +23,8 @@ const initAuthControllers = (app, passport) => {
     next();
   }
   
-  
+  app.use( authController.errorPage);
+
   //app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
   app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
