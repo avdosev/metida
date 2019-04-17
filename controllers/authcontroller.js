@@ -24,8 +24,8 @@ articles = (req,res,next) => {
   // res.nameToInsert = nameToInsert;
   // res.textToInsert = textToInsert;
   ////ыыыыыы как вынести этот блок, чтобы мы получали на вход эти переменные
-  res.render('post', {authorised : req.isAuthenticated(), name : nameToInsert, text: textToInsert}
-)};
+  res.render('post', {authorised : req.isAuthenticated(), name : nameToInsert, text: textToInsert})
+};
 
 logout = (req, res, next) => {
   req.session.destroy((err) =>{
@@ -37,11 +37,16 @@ index = (req, res, next) => {
   res.render('index', { authorised : req.isAuthenticated() } );
 }
 
+errorPage = (req, res, next) => {
+  res.render('error_page');
+}
+
 module.exports = {
   register,
   signin,
   home,
   createArticle,
+  errorPage,
   index,
   articles,
   logout

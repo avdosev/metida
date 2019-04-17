@@ -8,15 +8,16 @@ const initAuthControllers = (app, passport) => {
   app.use(bodyParser.json());
   const urlencodedParser = bodyParser.urlencoded({extended: false});
 
+  app.use( authController.errorPage);
+
   app.get("/", authController.index );
   app.get("/register", authController.register);
   app.get("/signin", authController.signin);
   app.get("/home", isLoggedIn, authController.home);
   app.get("/createArticle", isLoggedIn, authController.createArticle);
   app.get("/logout", authController.logout);
-
-
   app.get('/post/:id', getArticleFromSQL , authController.articles);
+  
 
   function getArticleFromSQL(req, res, next) {
 
