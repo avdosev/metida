@@ -29,6 +29,7 @@ const loadPasportStrategies = (passport, user) => {
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       (req, email, password, done) => {
+        
         const generateHash = (password)  => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
         };

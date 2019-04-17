@@ -23,14 +23,15 @@ const initAuthControllers = (app, passport) => {
     next();
   }
   
-  app.use( authController.errorPage);
 
-  //app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
   app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
     successRedirect: "/",
     failureRedirect: "/register"
-    })
+    }), 
+    (req, res, next) => {
+      console.log("ВОЗВРАТ ОТВЕТА " +req);
+    }
   );
 
   app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
@@ -38,6 +39,7 @@ const initAuthControllers = (app, passport) => {
       failureRedirect: "/signin"
     })
   );
+  //app.use( authController.errorPage);
 
   function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle
     if (req.isAuthenticated()) 
