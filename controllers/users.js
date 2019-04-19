@@ -10,12 +10,12 @@ const loadPasportStrategies = (passport, user) => {
   });
 
   // для логаута (камингаута)
-  passport.deserializeUser((id, done)  =>{
-    User.findById(id).then((user)  => {
+  passport.deserializeUser((id, done)  =>{ 
+    User.findById(id).then((user)  => { //находим юзера
       if (user) {
-        done(null, user.get());
+        done(null, user.get()); //нашли
       } else {
-        done(user.errors, null);
+        done(user.errors, null); //не нашли
       }
     });
   });
@@ -69,10 +69,6 @@ const loadPasportStrategies = (passport, user) => {
       }
     )
   );
-
-  function puk2(err) {
-
-  }
 
 
 
