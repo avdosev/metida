@@ -26,7 +26,7 @@ const loadPasportStrategies = (passport, user) => {
       usernameField: "email",
       passwordField: "password",
       passReqToCallback: true
-    },
+    }, 
       (req, email, password, done) => {
         
         const generateHash = (password)  => {
@@ -41,8 +41,8 @@ const loadPasportStrategies = (passport, user) => {
 
         User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
-            done(null, false);
-            throw new Error("That email is already taken");
+            return done(null, false, 
+              req.flash('message','email already used'));
           } else {
             const userPassword = generateHash(password);
             console.log(req.body.login);
@@ -60,6 +60,7 @@ const loadPasportStrategies = (passport, user) => {
               }
 
               if (newUser) {
+                console.log("User " + req.body.email + " registration succesful")
                 return done(null, newUser); //все ок
               }
             });
@@ -69,7 +70,9 @@ const loadPasportStrategies = (passport, user) => {
     )
   );
 
-  
+  function puk2(err) {
+
+  }
 
 
 
@@ -106,6 +109,7 @@ const loadPasportStrategies = (passport, user) => {
               return done(null, userinfo);
           })
           .catch(  (err) => {
+            
             console.log("Ошибка :", err); //у нас произошла ошибка выше по коду и мы начали
             done(null, false);
             

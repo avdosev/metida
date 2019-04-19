@@ -25,18 +25,18 @@ const initAuthControllers = (app, passport) => {
   
 
 
-  app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
-    successRedirect: "/",
-    failureRedirect: "/register"
-    }), 
-    (req, res, next) => {
-      console.log("ВОЗВРАТ ОТВЕТА " +req);
-    }
-  );
+  app.post("/register", urlencodedParser, userCreateValidator, 
+      passport.authenticate("local-signup", {
+      successRedirect: "/",
+      //failureRedirect: "/register",
+      failureFlash: 'Invalid username or password.'
+      }
+      ));
 
   app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
       successRedirect: "/",
-      failureRedirect: "/signin"
+      failureRedirect: "/signin",
+      failureFlash : true 
     })
   );
   //app.use( authController.errorPage);
