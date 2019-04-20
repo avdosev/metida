@@ -22,7 +22,7 @@ const initAuthControllers = (app, passport) => {
 
     next();
   }
-  const { ffa } = require('../controllers/articlesController')
+  const Article = require('../models/articles')
   app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
    (req, res, next)=> {
            const text = {
