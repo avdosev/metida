@@ -23,9 +23,7 @@ const initAuthControllers = (app, passport) => {
     next();
   }
 
-  app.post("/createArticle", urlencodedParser, (req, res, next) => {
-    console.log(req.body.art);
-  } )
+  app.post("/createArticle", urlencodedParser,   )
 
 
   app.post("/register", urlencodedParser, userCreateValidator, 
