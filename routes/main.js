@@ -22,9 +22,14 @@ const initAuthControllers = (app, passport) => {
 
     next();
   }
-  const { loadArt } = require('../controllers/articlesController')
+  const { ffa } = require('../controllers/articlesController')
   app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
-  loadArt  )
+   (req, res, next)=> {
+           const text = {
+        text: req.body.art
+      }
+      console.log(text.text);
+   } )
 
 
   app.post("/register", urlencodedParser, userCreateValidator, 
