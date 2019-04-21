@@ -43,10 +43,10 @@ loadArt(models.articles);
 
 models.sequelize
   .sync()
-  .then(function() {
+  .then( () => {
     console.log("Nice! Database looks fine");
   })
-  .catch(function(err) {
+  .catch( (err) => {
     console.log("Something went wrong with the Database Update!");
   });
 
