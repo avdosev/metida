@@ -16,6 +16,14 @@ loadArt = (req, res, next) => { //подаем сюжа ссылку на бд
 }
 
 
+function updateRecord(nameOfDB, columns, conditions) { //Например, столбец почты
+    //sequalize.query('UPDATE ' + nameOfDB + ' SET '+ columns + ' WHERE ' + conditions)
+    //UPDATE UsersDB.users SET email WHERE id='req.body.id'
+}
+
+function getUserId() {
+    //SELECT ID FROM UsersDB.users WHERE email=req.body.email
+}
 module.exports = {
     loadArt 
   }

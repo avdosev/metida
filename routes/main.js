@@ -18,25 +18,27 @@ const initAuthControllers = (app, passport) => {
   app.get('/post/:id', getArticleFromSQL , authController.articles);
   
 
+  const { Article } = require('../models/articles');
+  
   function getArticleFromSQL(req, res, next) {
-
-    next();
+    
+    Article.findRow(req.params.id, id); //value/column //первое значение - полученное от клиента - второе - название столбца в бд, в которой ищем айди, который равен первому аргументу
+    next(); //render
   }
-  const Article = require('../models/articles')
+
+  function pushArticleToSQL(req, res, next) {
+    Article.create( {header: req.body.header, content: req.body.art } );
+    next(); //render
+  }
+
   app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
-   (req, res, next)=> {
-           const text = {
-        text: req.body.art
-      }
-      console.log(text.text);
-   } )
+  pushArticleToSQL );
 
 
   app.post("/register", urlencodedParser, userCreateValidator, 
       passport.authenticate("local-signup", {
       successRedirect: "/",
-      //failureRedirect: "/register",
-      failureFlash: 'Invalid username or password.'
+      failureRedirect: "/register",
       }
       ));
 
@@ -46,6 +48,7 @@ const initAuthControllers = (app, passport) => {
       failureFlash : true 
     })
   );
+
   //app.use( authController.errorPage);
 
   function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle

@@ -42,7 +42,7 @@ const loadPasportStrategies = (passport, user) => {
         User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
             return done(null, false, 
-              req.flash('message','email already used'));
+              req.flash('message','email already used')); //req флеш не робит так как хочу я
           } else {
             const userPassword = generateHash(password);
             console.log(req.body.login);
