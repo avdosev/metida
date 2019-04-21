@@ -22,22 +22,31 @@ const initAuthControllers = (app, passport) => {
 
     next();
   }
-  
-  app.use( authController.errorPage);
+  const Article = require('../models/articles')
+  app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
+   (req, res, next)=> {
+           const text = {
+        text: req.body.art
+      }
+      console.log(text.text);
+   } )
 
-  //app.post("/update", urlencodedParser, userCreateValidator, ); //возможно пойдет createValidator
 
-  app.post("/register", urlencodedParser, userCreateValidator,  passport.authenticate("local-signup", {
-    successRedirect: "/",
-    failureRedirect: "/register"
-    })
-  );
+  app.post("/register", urlencodedParser, userCreateValidator, 
+      passport.authenticate("local-signup", {
+      successRedirect: "/",
+      //failureRedirect: "/register",
+      failureFlash: 'Invalid username or password.'
+      }
+      ));
 
   app.post("/signin", urlencodedParser, userLoginValidator, passport.authenticate("local-signin", {
       successRedirect: "/",
-      failureRedirect: "/signin"
+      failureRedirect: "/signin",
+      failureFlash : true 
     })
   );
+  //app.use( authController.errorPage);
 
   function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle
     if (req.isAuthenticated()) 

@@ -5,42 +5,44 @@ const loadPasportStrategies = (passport, user) => {
   const User = user;
   const LocalStrategy = require("passport-local").Strategy;
 
-  passport.serializeUser((user, done)  =>{
+  passport.serializeUser((user, done)  =>{ 
     done(null, user.id);
   });
 
-  // used to deserialize the user
-  passport.deserializeUser((id, done)  =>{
-    User.findById(id).then((user)  => {
+  // для логаута (камингаута)
+  passport.deserializeUser((id, done)  =>{ 
+    User.findById(id).then((user)  => { //находим юзера
       if (user) {
-        done(null, user.get());
+        done(null, user.get()); //нашли
       } else {
-        done(user.errors, null);
+        done(user.errors, null); //не нашли
       }
     });
   });
 
   passport.use(
     "local-signup",
-    new LocalStrategy(
-      {
-        usernameField: "email",
-        passwordField: "password",
-        passReqToCallback: true // allows us to pass back the entire request to the callback
-      },
+    new LocalStrategy({
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true
+    }, 
       (req, email, password, done) => {
+        
         const generateHash = (password)  => {
           return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
         };
 
         const errors = validationResult(req);
         if (!errors.isEmpty() ) {
-          return done(null, false, { errors: errors.array()});
+          done(null, false );
+          throw new Error("Что-то пошло не так", { errors: errors.array()});
         }
 
         User.findOne({ where: { email: email } }).then((user) =>  {
           if (user) {
-            return done(null, false, { message: "That email is already taken" });
+            return done(null, false, 
+              req.flash('message','email already used'));
           } else {
             const userPassword = generateHash(password);
             console.log(req.body.login);
@@ -53,11 +55,13 @@ const loadPasportStrategies = (passport, user) => {
 
             User.create(data).then( (newUser, created) => {
               if (!newUser) {
-                return done(null, false);
+                done(null, false);
+                throw new Error("Что-то пошло не так");
               }
 
               if (newUser) {
-                return done(null, newUser);
+                console.log("User " + req.body.email + " registration succesful")
+                return done(null, newUser); //все ок
               }
             });
           }
@@ -65,8 +69,6 @@ const loadPasportStrategies = (passport, user) => {
       }
     )
   );
-
-  
 
 
 
@@ -90,22 +92,25 @@ const loadPasportStrategies = (passport, user) => {
         User.findOne({ where: { email: email } })
           .then(function(user) {
             if (!user) {
-              return done(null, false, { message: "Email does not exist" });
+              done(null, false);
+              throw new Error("Email does not exist")
             }
 
             if (!isValidPassword(user.password, password)) {
-              //return new Error({ error: "Incorrect password." })
-              return done(null, false, { message: "Incorrect password." });
+              done(null, false);
+              throw new Error("Incorrect password.")
             }
 
             const userinfo = user.get();
               return done(null, userinfo);
           })
-          .catch(function(err) {
-            console.log("Error:", err);
-            return done(null, false, {
-              message: "Something went wrong with your Signin"
-            });
+          .catch(  (err) => {
+            
+            console.log("Ошибка :", err); //у нас произошла ошибка выше по коду и мы начали
+            done(null, false);
+            
+            //throw new Error( "Что-то пошло не так.")
+            
           });
       }
     )
