@@ -1,6 +1,6 @@
 <h1> Процент готовности проекта </h1>
 
-<h2> 8.6% </h2>
+<h2> 10.6% </h2>
 
 <h3>Развертка на linux машине </h3>
 <p> Есть <a href="https://github.com/Sapfir0/deploymentMetida">небольшой</a> скрипт, поднимающий сервер на unix)
@@ -13,11 +13,13 @@ npm start</pre></code>
 
 <p>Команды MySQL Command Line:
 <pre><code>create database usersDB2; 
-create user 'metidaSQL'@'localhost' identified with mysql_native_password by '1234';
+create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
 grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
 grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';</code></pre>
 <p> Таблица и поля в ней создадутся автоматически
 
+<h3> Важно! В последней версии был изменен пароль от базы юзеров, чтобы соотвествововть минимальным требованиям безопасности. Вводим команду для фикса:</h3>
+<pre><code>ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES;</code></pre> 
 <p>Для очищения таблицы юзать 
 <pre><code> truncate usersDB2.users</code></pre> (либо не обращаемся через точку, если мы все еще в текущей БД)
 

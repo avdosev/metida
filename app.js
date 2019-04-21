@@ -1,3 +1,5 @@
+var flash = require('connect-flash');
+
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -5,8 +7,10 @@ const passport = require("passport");
 const session = require("express-session");
 const models = require("./models");
 
+app.use(flash());
 
 const { loadPasportStrategies } = require("./controllers/users");
+const { loadArt } = require("./controllers/articlesController");
 const { initAuthControllers } = require("./routes/main.js");
 const { logRequest } = require("./debug.js");
 
@@ -34,6 +38,8 @@ app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
 const authRoute = initAuthControllers(app, passport);
 
 loadPasportStrategies(passport, models.user);
+loadArt(models.articles);
+
 
 models.sequelize
   .sync()
