@@ -1,17 +1,22 @@
 const articlesInit = require('../models/articles');
 const models = require('../models');
-const Article = articlesInit(models.sequelize, models.Sequelize); // здесь точно косяк тк я не понимаю как работать с бд
+//const Article = articlesInit(models.sequelize, models.Sequelize); // здесь точно косяк тк я не понимаю как работать с бд
+const Article = models.article; // здесь точно косяк тк я не понимаю как работать с бд
 
 function getArticleFromSQL(req, res, next) {
-    const id = 13465;
-    console.log("article:", Article);
-    Article.findOne({id}, (err, data) => {
-        console.log("promise");
-        console.log(`err: ${err}`);
-        console.log(`data: ${data}`);
+    console.log(req.params.id)
+    Article.findOne({ where: { id: req.params.id } }).then((user) => {
+       if(user) {
+            console.log("user == true? rly?");
+       }
+        console.log(user.header);
+        console.log(user.content);
+
+        res.render('post', {authorised : req.isAuthenticated(), name : user.header, text: user.content})
+
     }); //value/column //первое значение - полученное от клиента - второе - название столбца в бд, в которой ищем айди, который равен первому аргументу
     
-    next(); //render
+    
 }
 
 function pushArticleToSQL(req, res, next) {
