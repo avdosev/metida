@@ -1,10 +1,11 @@
+const articlesInit = require('../models/articles');
 const models = require('../models');
-const Article = models.article; // здесь точно косяк тк я не понимаю как работать с бд
+const Article = articlesInit(models.sequelize, models.Sequelize); // здесь точно косяк тк я не понимаю как работать с бд
 
 function getArticleFromSQL(req, res, next) {
     const id = 13465;
-    console.log(Article)
-    Article.findById(id, (err, data) => {
+    console.log("article:", Article);
+    Article.findOne({id}, (err, data) => {
         console.log("promise");
         console.log(`err: ${err}`);
         console.log(`data: ${data}`);
