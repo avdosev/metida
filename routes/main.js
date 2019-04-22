@@ -1,6 +1,7 @@
 const authController = require("../controllers/authcontroller.js");
 const { userCreateValidator, userLoginValidator } = require('../services/validator');
 const bodyParser = require('body-parser'); 
+const { pushArticleToSQL, getArticleFromSQL } = require('../controllers/article.js');
 
 const initAuthControllers = (app, passport) => {
 
@@ -15,24 +16,10 @@ const initAuthControllers = (app, passport) => {
   app.get("/home", isLoggedIn, authController.home);
   app.get("/createArticle", isLoggedIn, authController.createArticle);
   app.get("/logout", authController.logout);
-  app.get('/post/:id', getArticleFromSQL , authController.articles);
-  
-
-  const { Article } = require('../models/articles');
-  
-  function getArticleFromSQL(req, res, next) {
-    
-    Article.findRow(req.params.id, id); //value/column //первое значение - полученное от клиента - второе - название столбца в бд, в которой ищем айди, который равен первому аргументу
-    next(); //render
-  }
-
-  function pushArticleToSQL(req, res, next) {
-    Article.create( {header: req.body.header, content: req.body.art } );
-    next(); //render
-  }
+  app.get('/post/:id', /*getArticleFromSQL ,*/ authController.articles);
 
   app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
-  pushArticleToSQL );
+    pushArticleToSQL );
 
 
   app.post("/register", urlencodedParser, userCreateValidator, 

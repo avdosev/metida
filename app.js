@@ -9,38 +9,36 @@ const models = require("./models");
 
 app.use(flash());
 
-const { loadPasportStrategies } = require("./controllers/users");
-const { loadArt } = require("./controllers/articlesController");
 const { initAuthControllers } = require("./routes/main.js");
+const { loadPasportStrategies } = require("./controllers/users");
 const { logRequest } = require("./debug.js");
+const { port } = require("./config/server.js");
 
 
-const port = 7080;
 
 // For Passport
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
-); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
-
-//For Handlebars
-app.set("views", "./views");
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "pug");
-
-const favicon = require('serve-favicon');
-app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
-
-//app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
-
-const authRoute = initAuthControllers(app, passport);
-
-loadPasportStrategies(passport, models.user);
-loadArt(models.articles);
-
-
+  ); // session secret
+  app.use(passport.initialize());
+  app.use(passport.session()); // persistent login sessions
+  
+  
+  //For Handlebars
+  app.set("views", "./views");
+  app.set("views", path.join(__dirname, "views"));
+  app.set("view engine", "pug");
+  
+  const favicon = require('serve-favicon');
+  app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
+  
+  //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
+  
+  const authRoute = initAuthControllers(app, passport);
+  
+  loadPasportStrategies(passport, models.user);
+  
+  
 models.sequelize
   .sync()
   .then( () => {
