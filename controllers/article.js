@@ -1,9 +1,15 @@
 const models = require('../models');
-const Article = models.article;
+const Article = models.article; // здесь точно косяк тк я не понимаю как работать с бд
 
 function getArticleFromSQL(req, res, next) {
-    console.log(Article);
-    Article.findById(req.params.id, id); //value/column //первое значение - полученное от клиента - второе - название столбца в бд, в которой ищем айди, который равен первому аргументу
+    const id = 13465;
+    console.log(Article)
+    Article.findById(id, (err, data) => {
+        console.log("promise");
+        console.log(`err: ${err}`);
+        console.log(`data: ${data}`);
+    }); //value/column //первое значение - полученное от клиента - второе - название столбца в бд, в которой ищем айди, который равен первому аргументу
+    
     next(); //render
 }
 

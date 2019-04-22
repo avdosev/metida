@@ -15,7 +15,7 @@ home = (req, res, next) => {
   res.render('home', { authorised : req.isAuthenticated() }
 )};
 
-articles = (req,res,next) => {   
+articles = (req, res, next) => {   
   var textToInsert = 'Unable to load text.';
   var nameToInsert = 'Unable to load name.'; // значения по умолчанию
   // потом надо переделать на sql

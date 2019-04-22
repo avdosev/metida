@@ -5,12 +5,12 @@ const loadPasportStrategies = (passport, user) => {
   const User = user;
   const LocalStrategy = require("passport-local").Strategy;
 
-  passport.serializeUser((user, done)  =>{ 
+  passport.serializeUser((user, done) => { 
     done(null, user.id);
   });
 
   // для логаута (камингаута)
-  passport.deserializeUser((id, done)  =>{ 
+  passport.deserializeUser((id, done) => { 
     User.findById(id).then((user)  => { //находим юзера
       if (user) {
         done(null, user.get()); //нашли
