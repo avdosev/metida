@@ -15,11 +15,9 @@ hr {
 .header {
     display: flex;
     align-content: space-between;
-    font-family: 'Yanone Kaffeesatz';
+    font-family: 'Cabin', sans-serif;
     font-size: 26px;
-    /* height: 5vh; */
     margin-left: 1vh;
-    /* margin-top: 0.5rem; */
     max-height: 2srem;
 }
 
@@ -30,7 +28,6 @@ hr {
 
 .regSection {
     margin-left: auto;
-    /* margin-right: 2rem; */
     display: flex;
     align-items: center;
 }

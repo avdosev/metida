@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
 
 body {
     background: #f7f7f7;
@@ -14,9 +12,8 @@ a {
 
 .rightSection {
     margin-left: 20px;
-    margin-top: -180vh; /*чуваки это просто для того чтобы посмотреть как будет выглядель блок справа, мне кажется он не нужен */
     height: 100vh;
     width: 25vh;
     float: right;
-    font-family: 'Oswald'; /*шрифт сменить */
+    font-family: 'Cabin', sans-serif;
 }
