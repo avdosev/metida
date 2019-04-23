@@ -28,7 +28,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 const favicon = require('serve-favicon');
-app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
+app.use(favicon(path.join(__dirname,'public','img','logo.ico')));
 
 //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 

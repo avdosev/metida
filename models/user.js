@@ -8,11 +8,11 @@ module.exports = function(sequelize, Sequelize) {
     email: { type: Sequelize.STRING, validate: { isEmail: true } },
     password: { type: Sequelize.STRING, allowNull: false },
     last_login: { type: Sequelize.DATE },
-    // avatar: { type: Sequelize.STRING },
-    // activatedEmail: {  type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false } ,   
+    avatar: { type: Sequelize.STRING },
+    activatedEmail: {  type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false } ,   
     status: {
-      type: Sequelize.ENUM("active", "inactive"),
-      defaultValue: "active"
+      type: Sequelize.ENUM("offline", "online"),
+      defaultValue: "offline"
     }
   });
 
