@@ -11,8 +11,7 @@ app.use(flash());
 
 const { initAuthControllers } = require("./routes/main.js");
 const { loadPasportStrategies } = require("./controllers/users");
-const { logRequest } = require("./debug.js");
-const { port } = require("./config/server.js");
+const { port, imgDir } = require("./config/server.js");
 
 
 
@@ -28,12 +27,11 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 const favicon = require('serve-favicon');
-app.use(favicon(path.join(__dirname,'public','img','favicon.ico')));
+app.use(favicon(path.join(imgDir, 'favicon.ico')));
 
 //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 
 const authRoute = initAuthControllers(app, passport);
-
 loadPasportStrategies(passport, models.user);
   
   
@@ -53,7 +51,3 @@ app.listen(port, (err) => {
   else 
     console.log("Server not started");
 });
-
-// подгрузка публик изображений  
-const { getFile } = require("./controllers/get.js");
-app.get("/public/:filefolder/:filename", logRequest, getFile);

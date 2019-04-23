@@ -16,9 +16,9 @@ home = (req, res, next) => {
 )};
 
 articles = (req, res, next) => {
-  console.log(res.user);
-  nameToInsert = res.user.header;
-  textToInsert = res.user.content;
+  console.log(res.articles);
+  nameToInsert = res.articles.header;
+  textToInsert = res.articles.content;
   //console.log(req.user.header);//ВСЕ РЕНДЕРИТСЯ В article.js
   //console.log(req.user.content); //ЭТА ФУНКЦИЯ НЕ ИСПОЛЬЗУЕТСЯ
   res.render('post', {authorised : req.isAuthenticated(), name : nameToInsert, text: textToInsert})
