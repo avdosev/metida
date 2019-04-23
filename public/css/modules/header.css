@@ -1,101 +1,99 @@
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 hr {
-  border: 0;
-  height: 1px;
-  background: #333;
-  background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
-  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);
-  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);
-  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
 }
 
 .header {
-  display: flex;
-  align-content: space-between;
-  font-family: 'Yanone Kaffeesatz';
-  font-size: 26px;
-  /* height: 5vh; */
-  margin-left: 1vh;
-  /* margin-top: 0.5rem; */
-  max-height: 2srem;
+    display: flex;
+    align-content: space-between;
+    font-family: 'Yanone Kaffeesatz';
+    font-size: 26px;
+    /* height: 5vh; */
+    margin-left: 1vh;
+    /* margin-top: 0.5rem; */
+    max-height: 2srem;
 }
 
-
 .logoImg {
-  height: 3rem; /* ы */
-  padding: 7px 0px 0px 9px;
-} 
+    height: 3rem; /* ы */
+    padding: 7px 0px 0px 9px;
+}
 
 .regSection {
-  margin-left: auto;
-  /* margin-right: 2rem; */
-  display: flex;
-  align-items: center;
+    margin-left: auto;
+    /* margin-right: 2rem; */
+    display: flex;
+    align-items: center;
 }
 
 .regSection a {
-  margin-right: 0.5rem;
-  display: inline-block;
-  font-family: arial,sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  user-select: none;
-  padding: .3em 1.2em;
-  outline: none;
-  border-radius: 3px;
-  transition: all .218s ease 0s;
+    margin-right: 0.5rem;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.3em 1.2em;
+    outline: none;
+    border-radius: 3px;
+    transition: all 0.218s ease 0s;
 }
 
-
-.regSection #register { 
-  background-color: #333;
-  color: whitesmoke;
+.regSection #register {
+    background-color: #333;
+    color: whitesmoke;
 }
 
 .regSection #signIn {
-  background-color: #ccc;
-  color: black;
+    background-color: #ccc;
+    color: black;
 }
 
-.regSection #register:hover { 
-  background-color: steelblue;
-  color: whitesmoke;
+.regSection #register:hover {
+    background-color: steelblue;
+    color: whitesmoke;
 }
 
 .regSection #signIn:hover {
-  background-color: steelblue;
-  color: white;
+    background-color: steelblue;
+    color: white;
 }
 
-.regSection #home { 
-  background-color: #333;
-  color: whitesmoke;
+.regSection #home {
+    background-color: #333;
+    color: whitesmoke;
 }
 
 .regSection #logout {
-  background-color: #ccc;
-  color: black;
+    background-color: #ccc;
+    color: black;
 }
 
-.regSection #logout:hover { 
-  background-color: steelblue;
-  color: whitesmoke;
+.regSection #logout:hover {
+    background-color: steelblue;
+    color: whitesmoke;
 }
 
 .regSection #home:hover {
-  background-color: steelblue;
-  color: white;
+    background-color: steelblue;
+    color: white;
 }
 
-.regSection #createArticle { 
-  background-color: #333;
-  color: whitesmoke;
+.regSection #createArticle {
+    background-color: #333;
+    color: whitesmoke;
 }
 
 .regSection #createArticle:hover {
-  background-color: steelblue;
-  color: white;
+    background-color: steelblue;
+    color: white;
 }

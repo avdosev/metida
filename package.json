@@ -34,5 +34,8 @@
     "pug": "^2.0.3",
     "sequelize": "^5.7.4",
     "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "prettier": "1.17.0"
   }
 }

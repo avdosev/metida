@@ -8,7 +8,7 @@
     flex-direction: column;
     /* по идее тут нужно нечто другое, не vh я имею ввиду */
     /* height: 30vh;  */
-    width: 20rem; 
+    width: 20rem;
     justify-content: space-between;
 }
 
@@ -22,7 +22,7 @@ input {
 input:invalid {
     border: 1px solid red;
 }
-  
+
 input:valid {
     border: 1px solid black;
 }
@@ -36,11 +36,11 @@ p {
 }
 
 /* цвета можно будет подправить */
-input[type=button] {
+input[type='button'] {
     border: 1px solid black;
-    background-color: #80808073
+    background-color: #80808073;
 }
-input[type=button]:active {
+input[type='button']:active {
     border: 1px solid grey;
     background-color: whitesmoke;
 }

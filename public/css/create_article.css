@@ -10,7 +10,7 @@
 
 .create_area {
     padding: 20px 20px 0;
-    min-height: 500px!important;
+    min-height: 500px !important;
     min-width: 30vw;
     max-width: 60vw;
 }
@@ -22,7 +22,7 @@
     line-height: 15px;
 }
 
-input[type="text"] {
+input[type='text'] {
     margin: 0;
     padding: 0 10px;
     width: 30vw;
