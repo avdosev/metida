@@ -6,16 +6,12 @@
 .reg {
     display: flex;
     flex-direction: column;
-    /* по идее тут нужно нечто другое, не vh я имею ввиду */
-    /* height: 30vh;  */
     width: 20rem;
     justify-content: space-between;
 }
 
 input {
-    /* display: flex; */
     padding: 5px 5px 5px 2px;
-
     margin-left: 1rem;
 }
 
