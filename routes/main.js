@@ -36,7 +36,7 @@ const initAuthControllers = (app, passport) => {
     })
   );
 
-  app.use( authController.errorPage);
+  //app.use( authController.errorPage);
 
   function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle
     if (req.isAuthenticated()) 
