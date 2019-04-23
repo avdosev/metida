@@ -8,9 +8,9 @@ header.header
     //- <h3> Ты зашел под ником #{authorised} </h3> //отрицательный если лел
   form.regSection 
   
+    a#createArticle(href='/createArticle') Написать
     if authorised 
       a#home(href='/home') Профиль
-      a#createArticle(href='/createArticle') Написать
       a#logout(href='/logout') Выйти
     else
       a#signIn(href='/signIn') Войти

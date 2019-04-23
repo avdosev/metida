@@ -16,7 +16,7 @@ const initAuthControllers = (app, passport) => {
   app.get("/home", isLoggedIn, authController.home);
   app.get("/createArticle", isLoggedIn, authController.createArticle);
   app.get("/logout", authController.logout);
-  app.get('/post/:id', getArticleFromSQL, /*authController.articles*/);
+  app.get('/post/:id', getArticleFromSQL, authController.articles);
 
   app.post("/createArticle", urlencodedParser, /*отправить на модерацию */ 
     pushArticleToSQL );
@@ -36,7 +36,7 @@ const initAuthControllers = (app, passport) => {
     })
   );
 
-  //app.use( authController.errorPage);
+  app.use( authController.errorPage);
 
   function isLoggedIn(req, res, next) { //топовая проверка на допуск юзера до страницы /createArticle
     if (req.isAuthenticated()) 
