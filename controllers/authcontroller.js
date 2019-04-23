@@ -15,9 +15,12 @@ home = (req, res, next) => {
   res.render('home', { authorised : req.isAuthenticated() }
 )};
 
-articles = (req, res, next) => {   
-  console.log(req.user.header);//ВСЕ РЕНДЕРИТСЯ В article.js
-  console.log(req.user.content); //ЭТА ФУНКЦИЯ НЕ ИСПОЛЬЗУЕТСЯ
+articles = (req, res, next) => {
+  console.log(res.user);
+  nameToInsert = res.user.header;
+  textToInsert = res.user.content;
+  //console.log(req.user.header);//ВСЕ РЕНДЕРИТСЯ В article.js
+  //console.log(req.user.content); //ЭТА ФУНКЦИЯ НЕ ИСПОЛЬЗУЕТСЯ
   res.render('post', {authorised : req.isAuthenticated(), name : nameToInsert, text: textToInsert})
 };
 

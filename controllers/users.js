@@ -11,7 +11,7 @@ const loadPasportStrategies = (passport, user) => {
 
   // для логаута (камингаута)
   passport.deserializeUser((id, done) => { 
-    User.findById(id).then((user)  => { //находим юзера
+    User.findOne({ where: { id: id } }).then((user)  => { //находим юзера
       if (user) {
         done(null, user.get()); //нашли
       } else {
