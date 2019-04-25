@@ -40,7 +40,6 @@ const loadPasportStrategies = (passport, user) => {
 
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
-                    done(null, false);
                     throw new Error('Что-то пошло не так', {
                         errors: errors.array()
                     });
@@ -48,10 +47,10 @@ const loadPasportStrategies = (passport, user) => {
 
                 User.findOne({ where: { email: email } }).then(user => {
                     if (user) {
-                        return done( null, false ); //req флеш не робит так как хочу я
+                        throw new Error('Что-то пошло не так');
                     } else {
                         const userPassword = generateHash(password);
-                        console.log(req.body.login);
+                        //console.log(req.body.login);
                         const data = {
                             email: email,
                             username: req.body.login,
@@ -60,7 +59,6 @@ const loadPasportStrategies = (passport, user) => {
 
                         User.create(data).then((newUser, created) => {
                             if (!newUser) {
-                                done(null, false);
                                 throw new Error('Что-то пошло не так');
                             }
 
@@ -98,15 +96,12 @@ const loadPasportStrategies = (passport, user) => {
                 };
 
                 User.findOne({ where: { email: email } })
-                    .then(function(user) {
+                    .then( (user) => {
                         if (!user) {
-                            //done(null, false);
-                            throw new Error('Email does not exist');
-                            
+                            throw new Error('Email does not exist');  
                         }
 
                         if (!isValidPassword(user.password, password)) {
-                            //done(null, false);
                             throw new Error('Incorrect password.');
                         }
 
@@ -115,18 +110,11 @@ const loadPasportStrategies = (passport, user) => {
                     })
                     .catch(err => {
                         console.log('Ошибка :', err); //у нас произошла ошибка выше по коду и мы начали
-                        //debug(err);
-                        next();
-                        console.log("Этого не видно");
-                        //done(null, false);
                     });
             }
         )
     );
-    function debug(err) {
-        console.log(err);
-        //return Promise.reject({statusCode: 422, message: err});
-    }
+
 };
 
 module.exports = {
