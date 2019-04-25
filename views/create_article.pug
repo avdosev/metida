@@ -3,20 +3,22 @@ head
   meta(charset='UTF-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  title registration
+  title Create Article
   style
     include ../public/css/style.css
     include ../public/css/create_article.css
     include ../public/css/layout_body.css
-
+  script
+    include ../public/js/ckeditor/ckeditor.js
 body
   include modules/header 
-
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
-      <h3>Заголовок:</h3>
-      <input type="text" name="header" value=""  />
-      <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
-      <textarea class="create_area" name="art", cols="30", rows="7"> </textarea>
-      input#submit(type="submit" value="OK")
-
+    h3 Заголовок
+    <input type="text" name="header" value=""  />
+    <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
+    <textarea class="ckeditor" id="art" name="art" cols="70" rows="20"> </textarea>
+    input#submit(type="submit" value="OK")
+    script
+        CKEDITOR.replace('art')
+        
