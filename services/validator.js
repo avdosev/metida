@@ -26,7 +26,7 @@ const passwordValidator = body('password')
 const titleValidator = body('header')
     .not()
     .isEmpty()
-    isLength({min: 5, max: 255});
+    .isLength({min: 5, max: 255});
 
 const articleTextValidator = body('art')
     .not()
