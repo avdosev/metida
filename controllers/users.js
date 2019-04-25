@@ -70,9 +70,9 @@ const loadPasportStrategies = (passport, user) => {
 
                             if (newUser) {
                                 console.log(
-                                    'User ' +
-                                        req.body.email +
-                                        ' registration succesful'
+                                    'User ',
+                                    req.body.email,
+                                    ' registration succesful'
                                 );
                                 return done(null, newUser); //все ок
                             }
