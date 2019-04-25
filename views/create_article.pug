@@ -8,6 +8,8 @@ head
     include ../public/css/style.css
     include ../public/css/create_article.css
     include ../public/css/layout_body.css
+    include ../public/css/content.css
+  script(src="../../../public/js/article_page.js")
 
 body
   include modules/header 
@@ -15,8 +17,13 @@ body
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
       <h3>Заголовок:</h3>
-      <input type="text" name="header" value=""  />
+      <input type="text" id="header" name="header" value="" minlength="5" />
       <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
-      <textarea class="create_area" name="art", cols="30", rows="7"> </textarea>
-      input#submit(type="submit" value="OK")
+      label
+        input(type="checkbox" id="previews")
+        | Предпросмотр
+      <textarea class="create_area" id="article" name="art" cols="30", rows="7" minlength="10"> </textarea>
+      input#submit(type="submit" class="Btn" value="OK")
+    content.content
+      article.post_text
 
