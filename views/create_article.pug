@@ -8,17 +8,20 @@ head
     include ../public/css/style.css
     include ../public/css/create_article.css
     include ../public/css/layout_body.css
-  script
-    include ../public/js/ckeditor/ckeditor.js
+    
 body
   include modules/header 
+  script(type='text/javascript' src='../public/js/ckeditor/ckeditor.js')
+
+
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
     h3 Заголовок
     <input type="text" name="header" value=""  />
-    <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
-    <textarea class="ckeditor" id="art" name="art" cols="70" rows="20"> </textarea>
+    .description Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
+    #editor
+    script.
+        CKEDITOR.replace("editor")  
     input#submit(type="submit" value="OK")
-    script
-        CKEDITOR.replace('art')
+//- я хз, в скомпиленном html все норм
         
