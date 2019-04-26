@@ -29,7 +29,7 @@ const initAuthControllers = (app, passport) => {
     app.get('/register', authController.register);
     app.get('/signin', authController.signin);
     app.get('/home', isLoggedIn, authController.home);
-    app.get('/createArticle', isLoggedIn, authController.createArticle);
+    app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
     app.get('/logout', authController.logout);
     app.get('/post/:id', getArticleFromSQL, authController.articles);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
@@ -51,7 +51,8 @@ const initAuthControllers = (app, passport) => {
         userCreateValidator,
         passport.authenticate('local-signup', {
             successRedirect: '/',
-            failureRedirect: '/register'
+            failureRedirect: '/register',
+            failureFlash:true
         })
     );
 
