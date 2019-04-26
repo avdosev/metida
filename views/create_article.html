@@ -1,0 +1,159 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>Create Article</title><style>@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+body {
+    background: #f7f7f7;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.rightSection {
+    margin-left: 20px;
+    height: 100vh;
+    width: 25vh;
+    float: right;
+    font-family: 'Cabin', sans-serif;
+}
+.pushArticle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pushArticle * {
+    margin-bottom: 20px;
+}
+
+.create_area {
+    padding: 20px 20px 0;
+    min-height: 500px !important;
+    min-width: 30vw;
+    max-width: 60vw;
+}
+
+.description {
+    margin-top: 5px;
+    color: #7f428cb0;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+input[type='text'] {
+    margin: 0;
+    padding: 0 10px;
+    width: 30vw;
+    height: 34px;
+    border: 1px solid #d9d9d9;
+    color: #3b3b3b;
+    font-size: 15px;
+    line-height: 34px;
+}
+.layout_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    padding: 15px 10px 10px 20px;
+    font-size: 18px;
+    font-family: 'Cabin', sans-serif;
+}
+</style></head><body><modules/><header class="pug"></header><style>a {
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
+    background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+}
+
+.header {
+    display: flex;
+    align-content: space-between;
+    font-family: 'Cabin', sans-serif;
+    font-size: 26px;
+    margin-left: 1vh;
+    max-height: 2srem;
+}
+
+.logoImg {
+    height: 3rem; /* ы */
+    padding: 7px 0px 0px 9px;
+}
+
+.regSection {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.regSection a {
+    margin-right: 0.5rem;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.3em 1.2em;
+    outline: none;
+    border-radius: 3px;
+    transition: all 0.218s ease 0s;
+}
+
+.regSection #register {
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.regSection #signIn {
+    background-color: #ccc;
+    color: black;
+}
+
+.regSection #register:hover {
+    background-color: steelblue;
+    color: whitesmoke;
+}
+
+.regSection #signIn:hover {
+    background-color: steelblue;
+    color: white;
+}
+
+.regSection #home {
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.regSection #logout {
+    background-color: #ccc;
+    color: black;
+}
+
+.regSection #logout:hover {
+    background-color: steelblue;
+    color: whitesmoke;
+}
+
+.regSection #home:hover {
+    background-color: steelblue;
+    color: white;
+}
+
+.regSection #createArticle {
+    background-color: #333;
+    color: whitesmoke;
+}
+
+.regSection #createArticle:hover {
+    background-color: steelblue;
+    color: white;
+}
+</style><header class="header"><div class="logo"> <a href="/"><img class="logoImg" src="../public/img/logo.webp" alt="Metida"></a></div><form class="regSection"> <a id="signIn" href="/signIn">Войти</a><a id="register" href="/register">Регистрация</a></form></header><hr><script type="text/javascript" src="../public/js/ckeditor/ckeditor.js"></script><div class="layout_body"><form class="pushArticle" action="/createArticle" method="post"></form><h3>Заголовок</h3><input type="text" name="header" value=""  /><div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div><div id="editor"></div><script>CKEDITOR.replace("editor")  </script><input id="submit" type="submit" value="OK"></div></body>

@@ -1,10 +1,11 @@
-var flash = require('connect-flash');
+const flash = require('connect-flash');
 
 const path = require('path');
 const express = require('express');
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
+const favicon = require('serve-favicon');
 const models = require('./models');
 
 app.use(flash());
@@ -25,7 +26,6 @@ app.set('views', './views');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-const favicon = require('serve-favicon');
 app.use(favicon(path.join(imgDir, 'logo.ico')));
 
 //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
