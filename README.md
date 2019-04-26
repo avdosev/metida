@@ -12,29 +12,25 @@
 
 Команды терминала:
 
-    ```
-    npm install
-    npm start
-    ```
+    ``` npm install
+    npm start ```
 
 Команды MySQL Command Line:
 
-    ```
-    create database usersDB2; 
+    ``` create database usersDB2; 
     create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
     grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
-    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';
-    ```
+    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost'; ```
 
 Таблица и поля в ней создадутся автоматически
 
 ### Важно! В последней версии был изменен пароль от базы юзеров, чтобы соотвествововть минимальным требованиям безопасности. Вводим команду для фикса:
 
-    `ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES;`
+    ` ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES; `
 
 Для очищения таблицы юзать
 
-     `truncate usersDB2.users`
+     ` truncate usersDB2.users `
 
 (либо не обращаемся через точку, если мы все еще в текущей БД)
 
