@@ -12,27 +12,20 @@
 
 Команды терминала:
 
-    ```npm install
-    npm start ```
+    <code>npm install
+    npm start</code>
 
 Команды MySQL Command Line:
 
-    ``` create database usersDB2; 
+    <code>create database usersDB2; 
     create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
     grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
-    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost'; ```
+    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';</code>
 
 Таблица и поля в ней создадутся автоматически
 
-### Важно! В последней версии был изменен пароль от базы юзеров, чтобы соотвествововть минимальным требованиям безопасности. Вводим команду для фикса:
-
-    `ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES; `
-
-Для очищения таблицы юзать
-
-     `truncate usersDB2.users`
-
-(либо не обращаемся через точку, если мы все еще в текущей БД)
+Если обновоились поля в БД и у тебя интерпретатор выдает что-то вроде <code>Error: Unknown column 'puk' in 'field list' </code> , то тогда либо добавь новый столбец в локальную БД с соблюдением типов, либо урони ее
+<code>drop table usersDB2.pukTable; </code> 
 
 ## Структура проекта
 
@@ -77,10 +70,6 @@
 #### Элементы сайта, которые должны отображаться больше, чем на одной странице.
 
 Чтобы не копировать код(dry ofc), мы создаем отельный файлик, который инклудим с требуемой страницы. Конечно же, для наших файлов-модулей необходим и стайл модуль, поэтому кидаем такие же модульные стили в /public/css/modules
-
-### /bin
-
-Есть идея создать там точку входа, чтобы именно файл www, отвечал за саму инициализацию сервера, как в express-generator
 
 ## Код стайл
 
