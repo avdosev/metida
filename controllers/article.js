@@ -24,7 +24,7 @@ function pushArticleToSQL(req, res, next) {
         console.error(error);
     }
     // res.redirect('/'); // я бы не оч хотел попасть в начало после не успешного написания статьи
-    // next(); //render
+    next(); //render
 }
 
 module.exports = {

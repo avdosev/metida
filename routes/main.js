@@ -1,7 +1,8 @@
 const authController = require('../controllers/service.js');
 const {
     userCreateValidator,
-    userLoginValidator
+    userLoginValidator,
+    articleValidator
 } = require('../services/validator');
 const bodyParser = require('body-parser');
 
@@ -35,8 +36,13 @@ const initAuthControllers = (app, passport) => {
 
     app.post(
         '/createArticle',
-        urlencodedParser /*отправить на модерацию */,
-        pushArticleToSQL
+        urlencodedParser,
+        articleValidator, 
+        pushArticleToSQL,
+        /* отправить на модерацию */
+        (req, res) => {
+            res.render('success_page') // Не обязательно это
+        }
     );
 
     app.post(

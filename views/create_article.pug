@@ -8,7 +8,9 @@ head
     include ../public/css/style.css
     include ../public/css/create_article.css
     include ../public/css/layout_body.css
-    
+    include ../public/css/content.css
+  script(src="../../../public/js/article_page.js")
+
 body
   include modules/header 
   script(type='text/javascript' src='../public/js/ckeditor/ckeditor.js')
@@ -17,11 +19,16 @@ body
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
     h3 Заголовок
-    <input type="text" name="header" value=""  />
+    <input type="text" id="header" name="header" value="" minlength="5" />
     .description Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
     #editor
     script.
         CKEDITOR.replace("editor")  
-    input#submit(type="submit" value="OK")
-//- я хз, в скомпиленном html все норм
-        
+     label
+        input(type="checkbox" id="previews")
+        | Предпросмотр
+     input#submit(type="submit" class="Btn" value="OK")
+     content.content
+      article.post_text
+        input#submit(type="submit" value="OK")
+//- в скомпиленном html все норм     

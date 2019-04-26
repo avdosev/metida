@@ -23,9 +23,19 @@ const passwordValidator = body('password')
     .isLength({ max: 50 })
     .withMessage('very big');
 
+const titleValidator = body('header')
+    .not()
+    .isEmpty()
+    .isLength({min: 5, max: 255});
+
+const articleTextValidator = body('art')
+    .not()
+    .isEmpty()
+
 const validators = {
     userCreateValidator: [emailVaidator, loginValidator, passwordValidator],
-    userLoginValidator: [emailVaidator, passwordValidator]
+    userLoginValidator: [emailVaidator, passwordValidator],
+    articleValidator: [titleValidator, articleTextValidator]
 };
 
 module.exports = validators;
