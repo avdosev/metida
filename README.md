@@ -12,7 +12,7 @@
 
 Команды терминала:
 
-    ``` npm install
+    ```npm install
     npm start ```
 
 Команды MySQL Command Line:
@@ -26,11 +26,11 @@
 
 ### Важно! В последней версии был изменен пароль от базы юзеров, чтобы соотвествововть минимальным требованиям безопасности. Вводим команду для фикса:
 
-    ` ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES; `
+    `ALTER USER 'metidaSQL'@'localhost' IDENTIFIED BY '123456';FLUSH PRIVILEGES; `
 
 Для очищения таблицы юзать
 
-     ` truncate usersDB2.users `
+     `truncate usersDB2.users`
 
 (либо не обращаемся через точку, если мы все еще в текущей БД)
 
