@@ -12,19 +12,20 @@
 
 Команды терминала:
 
-    <code>npm install
-    npm start</code>
+    npm install
+    npm start
 
 Команды MySQL Command Line:
 
-    <code>create database usersDB2; 
+    create database usersDB2; 
     create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
     grant all privileges on usersDB2.users to 'metidaSQL'@'localhost';
-    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';</code>
+    grant all privileges on usersDB2.articles to 'metidaSQL'@'localhost';
 
 Таблица и поля в ней создадутся автоматически
 
-Если обновоились поля в БД и у тебя интерпретатор выдает что-то вроде <code>Error: Unknown column 'puk' in 'field list' </code> , то тогда либо добавь новый столбец в локальную БД с соблюдением типов, либо урони ее
+Если обновоились поля в БД и у тебя интерпретатор выдает что-то вроде 
+<code>Error: Unknown column 'puk' in 'field list' </code> , то тогда либо добавь новый столбец в локальную БД с соблюдением типов, либо урони ее
 <code>drop table usersDB2.pukTable; </code> 
 
 ## Структура проекта
