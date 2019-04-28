@@ -18,17 +18,16 @@ body
 
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
-    h3 Заголовок
-    <input type="text" id="header" name="header" value="" minlength="5" />
-    .description Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.
-    #editor
-    script.
-        CKEDITOR.replace("editor")  
-     label
+      <h3>Заголовок:</h3>
+      <input type="text" id="header" name="header" value="" minlength="5" />
+      <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
+      label
         input(type="checkbox" id="previews")
         | Предпросмотр
-     input#submit(type="submit" class="Btn" value="OK")
-     content.content
+      <textarea class="create_area" id="article" name="art" cols="30", rows="7" minlength="10"> </textarea>
+      input#submit(type="submit" class="Btn" value="OK")
+    content.content
       article.post_text
-        input#submit(type="submit" value="OK")
-//- в скомпиленном html все норм     
+//-     #editor //блок для редактора текста
+//-     script. //скриптовый блок
+//-         CKEDITOR.replace("editor")
