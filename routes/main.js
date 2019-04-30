@@ -34,6 +34,13 @@ const initAuthControllers = (app, passport) => {
     app.get('/post/:id', getArticleFromSQL, authController.articles);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
 
+    app.get('/pushComment', (req,res, next) => console.log(req.body.login))
+
+    app.post(
+        '/pushComment', (req,res, next) => console.log("puk")
+    )
+
+
     app.post(
         '/createArticle',
         urlencodedParser,
@@ -42,7 +49,7 @@ const initAuthControllers = (app, passport) => {
         /* отправить на модерацию */
         (req, res) => {
             res.render('success_page') // Не обязательно это
-        }
+        }//не верно, роутим на /post/:id
     );
 
     app.post(

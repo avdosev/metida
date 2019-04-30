@@ -1,4 +1,4 @@
-module.exports = function(sequelize, Sequelize) {
+module.exports = (sequelize, Sequelize) => {
     const Article = sequelize.define('article', {
         id: { autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER },
         header: { type: Sequelize.STRING, allowNull: false },
