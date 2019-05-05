@@ -40,6 +40,7 @@ models.sequelize
     })
     .catch(err => {
         console.log('Something went wrong with the Database Update!');
+        console.log("Crashed with error: "+ err)
     });
 
 app.listen(port, err => {
