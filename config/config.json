@@ -14,10 +14,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "",
-    "password": null,
-    "database": "",
-    "host": "127.0.0.1",
+    "use_env_variable": "DATABASE_URL",
+    "username": "be12a738587406",
+    "password": "9f446cea",
+    "database": "heroku_d00174d6884fb68",
+    "host": "*-*.herokuapp.com",
     "dialect": "mysql"
   }
 }
