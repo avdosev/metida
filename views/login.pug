@@ -13,7 +13,7 @@ body
   .inputForm 
     form.reg(action="/signIn", method="post")
       p Email
-      input#email(type='email', name='email', placeholder='Type email',  pattern='^.+@.*$')
+      input#email(type='email', name='email', placeholder='Type email',  pattern='^([\\w-]+\\.)*[\\w-]+\\@\\w+\\.\\w+$')
       p Password
       input#password(type='password', name='password', placeholder='Type password',  pattern='.{5,}')
       input#submit(type="submit" value="OK")

@@ -14,7 +14,7 @@ body
   .inputForm
     form.reg(action="/register", method="post", name="register")
       p Email
-      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
+      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^([\\w-]+\\.)*[\\w-]+\\@\\w+\\.\\w+$')
       .message #{message}
       p Login
       input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
