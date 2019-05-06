@@ -7,12 +7,14 @@ head
   style
     include ../public/css/style.css
     include ../public/css/input.css
-  
+  script
+    include ../public/js/script.js
+
 body
   include modules/header 
 
   .inputForm
-    form.reg(action="/register", method="post", name="register")
+    form.reg(action="/register", method="post", name="register" novalidate)
       p Email
       input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
       .message #{message}
