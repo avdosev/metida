@@ -12,6 +12,11 @@ const {
     getArticleFromSQL
 } = require('../controllers/article.js');
 
+const {
+    pushCommentToSQL,
+    getCommentsFromSQL
+} = require('../controllers/comments.js');
+
 //  проверка логирования
 const { isLoggedIn } = require('../controllers/logged.js');
 
@@ -32,17 +37,21 @@ const initAuthControllers = (app, passport) => {
     app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
     app.get('/logout', authController.logout);
     app.get('/post/:id', getArticleFromSQL, authController.articles);
+    app.get('/post/:id/comments', getCommentsFromSQL);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
+
+    app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)
+    
 
     app.post(
         '/createArticle',
         urlencodedParser,
         articleValidator, 
-        pushArticleToSQL,
         /* отправить на модерацию */
+        pushArticleToSQL,
         (req, res) => {
             res.render('success_page') // Не обязательно это
-        }
+        }//не верно, роутим на /post/:id
     );
 
     app.post(

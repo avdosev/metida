@@ -50,12 +50,12 @@ const loadPasportStrategies = (passport, user) => {
                         throw new Error('Что-то пошло не так');
                     } else {
                         const userPassword = generateHash(password);
-                        //console.log(req.body.login);
                         const data = {
                             email: email,
                             username: req.body.login,
                             password: userPassword // зашифрованный
                         };
+                        console.log(data.username);
 
                         User.create(data).then((newUser, created) => {
                             if (!newUser) {
@@ -90,6 +90,7 @@ const loadPasportStrategies = (passport, user) => {
 
             (req, email, password, next) => { //некст нас не кинет на следующий обработчик
                 const User = user;
+                console.log(req.body.login);
 
                 const isValidPassword = (userpass, password) => {
                     return bCrypt.compareSync(password, userpass);
