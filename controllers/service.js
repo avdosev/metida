@@ -17,7 +17,7 @@ home = (req, res, next) => {
 articles = (req, res, next) => {
     res.render('post', {
         authorised: req.isAuthenticated(),
-        name: res.article.headert,
+        name: res.article.header,
         text: res.article.content
     });
 };

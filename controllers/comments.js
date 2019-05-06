@@ -4,31 +4,41 @@ const Comment = commentsInit(models.sequelize, models.Sequelize);
 const User = models.User;
 
 
-function getCommentFromSQL(req, res, next) {
+function getCommentsFromSQL(req, res, next) {
+    console.log(req.body);
+    
+    const PostId = req.params.id;
 
-    Comment.findOne({ where: { id: /* */  } }).then(comment => {
+    Comment.findAll({ where: { articleId: PostId } }).then(comment => {
         if (comment) {
-            res.comment = comment;
-            next();
+            console.log(comment);
         }
     });
 }
 
 function pushCommentToSQL(req, res, next) {
-    console.log(req.body.comment);
-    //тут надо понять что делать с логином юзера
-    //User.findOne({ where: { id: req.params.id } }).then(article => { }
-
+    console.log(req.body);
+    const PostId = req.params.id;
+    console.log(PostId)
+    const AuthorId = 'puk'; // TODO fix
+    const TextComment = req.body.comment;
+    const AnsweringId = null;
     try {
-        Comment.create({/*author: ,*/  text: req.body.comment});
+        Comment.create({
+            author: AuthorId,
+            text: TextComment,
+            articleId: PostId, 
+            answeringId: AnsweringId 
+        }).then(() => {
+            res.send('sucsesfull puk');
+        });
     } catch (error) {
         console.error(error);
+        // res.redirect('/'); // хз что тут должно быть епта
     }
-    // res.redirect('/'); // я бы не оч хотел попасть в начало после не успешного написания статьи
-    next(); //render
 }
 
 module.exports = {
-    getArticleFromSQL,
-    pushArticleToSQL
+    getCommentsFromSQL,
+    pushCommentToSQL
 };
