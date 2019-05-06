@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "be12a738587406",
-    "password": "9f446cea",
-    "database": "heroku_d00174d6884fb68",
+    "username": "metidaSQL",
+    "password": "123456",
+    "database": "usersDB2",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
