@@ -40,15 +40,15 @@ const initAuthControllers = (app, passport) => {
     app.get('/post/:id/comments', getCommentsFromSQL);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
 
-    app.post('/pushComment', urlencodedParser, pushCommentToSQL)
-
+    app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)
+    
 
     app.post(
         '/createArticle',
         urlencodedParser,
         articleValidator, 
-        pushArticleToSQL,
         /* отправить на модерацию */
+        pushArticleToSQL,
         (req, res) => {
             res.render('success_page') // Не обязательно это
         }//не верно, роутим на /post/:id

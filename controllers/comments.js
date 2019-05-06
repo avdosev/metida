@@ -18,16 +18,19 @@ function getCommentsFromSQL(req, res, next) {
 
 function pushCommentToSQL(req, res, next) {
     console.log(req.body);
-    const PostId = req.params.id;
-    console.log(PostId)
+    console.log(req.params); //при такой расстановке мы получаем :id в артиклАйди
+    
+    const articleId = req.params.id;
+    console.log(articleId)
     const AuthorId = 'puk'; // TODO fix
     const TextComment = req.body.comment;
     const AnsweringId = null;
+
     try {
         Comment.create({
             author: AuthorId,
             text: TextComment,
-            articleId: PostId, 
+            articleId: articleId, 
             answeringId: AnsweringId 
         }).then(() => {
             res.send('sucsesfull puk');
