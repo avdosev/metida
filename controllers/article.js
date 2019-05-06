@@ -14,6 +14,13 @@ function getArticleFromSQL(req, res, next) {
     });
 }
 
+function getLastArticleFromSQL(req, res, next) {
+    Article.findOne()
+    // SELECT id FROM usersDB2.articles ORDER BY id DESC LIMIT 1
+    //в данном случае берем айди, а можем что угодно
+}
+
+
 function pushArticleToSQL(req, res, next) {
     console.log(req.body.header);
     console.log(req.body.art);
