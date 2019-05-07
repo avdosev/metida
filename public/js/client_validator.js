@@ -6,7 +6,6 @@ const passwordRow = document.getElementsByName("password")
 const loginRow = document.getElementsByName("login")
 const repasswordRow = document.getElementsByName("repassword")
 
-
 document.addEventListener('submit', (event) => {
     const email = emailRow[0].value
     const password = passwordRow[0].value
@@ -45,5 +44,6 @@ document.addEventListener('submit', (event) => {
     console.log("validation " + !!validationLogin([1]))
     //if (!validation)
         event.preventDefault() //если не пускать пользователя дальше, то вызываем это
+
 
 })
