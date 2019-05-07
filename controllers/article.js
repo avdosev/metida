@@ -70,6 +70,7 @@ function getTopArticles(req, res, next) {
     } else {
         callback([], 'not found function type request of toptypefnc')
     }
+    
 }
 
 function pushArticleToSQL(req, res, next) {

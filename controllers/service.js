@@ -29,7 +29,12 @@ logout = (req, res, next) => {
 };
 
 index = (req, res, next) => {
-    res.render('index', { authorised: req.isAuthenticated() });
+    res.render('index', {
+        authorised: req.isAuthenticated(),
+        countOfArticles: 2, ///////////////////////////////FIX 
+        header: res.articles[0].header,
+        disclaimer: res.articles[0].disclaimer
+    });
 };
 
 errorPage = (req, res, next) => {
