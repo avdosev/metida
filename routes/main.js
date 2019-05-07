@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 // загрузка/выгрузка стате
 const {
     pushArticleToSQL,
-    getArticleFromSQL
+    getArticleFromSQL,
+    getTopArticles
 } = require('../controllers/article.js');
 
 const {
@@ -39,6 +40,9 @@ const initAuthControllers = (app, passport) => {
     app.get('/post/:id', getArticleFromSQL, authController.articles);
     app.get('/post/:id/comments', getCommentsFromSQL);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
+    app.get('/top', urlencodedParser, getTopArticles, (req, res) => {
+        res.json(res.articles);
+    })
 
     app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)
     
