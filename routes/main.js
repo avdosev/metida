@@ -31,7 +31,7 @@ const initAuthControllers = (app, passport) => {
     app.use(bodyParser.json());
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-    app.get('/', authController.index);
+    app.get('/', urlencodedParser, getTopArticles, authController.index);
     app.get('/register', authController.register);
     app.get('/signin', authController.signin);
     app.get('/home', isLoggedIn, authController.home);
@@ -42,6 +42,10 @@ const initAuthControllers = (app, passport) => {
     app.get('/public/:filefolder/:filename', logRequest, getFile);
     app.get('/top', urlencodedParser, getTopArticles, (req, res) => {
         res.json(res.articles);
+        
+        console.log(res.articles[0].header);
+        console.log(res.articles[0].disclaimer);
+
     })
 
     app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)

@@ -16,4 +16,10 @@ include modules/header
 
 .layout_body
   content.content
-    | Умная лента
+    //- var countOfArticles;
+    - for (var i=0; i<countOfArticles; i++)
+        h3 !{header} 
+        //хотя тут мы вроде должны ссать на разметку юзеру, но все таки поставлю !
+        | !{disclaimer}
+        
+        
