@@ -11,6 +11,7 @@ head
     include ../public/css/post.css
   script
     include ../public/js/highlighter.js
+    include ../public/js/comment.js
     
 
 body
@@ -18,10 +19,12 @@ body
 
     .layout_body
       content.content
-        article.post_text
+        article.post_text(id=id)
           h1 #{name}
           p.text !{text}
-          .comment 
+          .comment_lenta 
+            h3 Комментарии:
+          .new_comment
             h3 Оставь коммент лох
             form(action="/post/" + id + "/pushComment", method="post")
                 textarea#comment(name="comment", cols="30", rows="10")
