@@ -46,7 +46,8 @@ const initAuthControllers = (app, passport) => {
     app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
 
-    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, Debug.logRequestValues, pushCommentToSQL)
+
+    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, Debug.logRequestValues, pushCommentToSQL, authController.freshCurrentPage);
     
     app.post(
         '/createArticle',
