@@ -37,20 +37,15 @@ const initAuthControllers = (app, passport) => {
     app.get('/home', isLoggedIn, authController.home);
     app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
     app.get('/logout', authController.logout);
-    app.get('/post/:id', getArticleFromSQL, authController.articles);
-    app.get('/post/:id/comments', getCommentsFromSQL);
+    app.get('/post/:id/', getArticleFromSQL, authController.articles);
+    app.get('/post/:id/comments', urlencodedParser, getCommentsFromSQL);
     app.get('/public/:filefolder/:filename', logRequest, getFile);
     app.get('/top', urlencodedParser, getTopArticles, (req, res) => {
         res.json(res.articles);
-        
-        console.log(res.articles[0].header);
-        console.log(res.articles[0].disclaimer);
-
     })
 
     app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)
     
-
     app.post(
         '/createArticle',
         urlencodedParser,
