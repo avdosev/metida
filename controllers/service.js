@@ -41,6 +41,17 @@ errorPage = (req, res, next) => {
     res.render('error_page');
 };
 
+freshCurrentPage = (req,res,next) => {
+    var currentUrl;
+    if ( req.url.indexOf("pushComment") != -1) { //т.е. мы только что запушили коммент и нам надо катиться назад, на*уй
+        currentUrl= req.url.slice(0, -11);
+    }
+    console.log(currentUrl)
+    res.redirect(currentUrl)
+    
+};
+
+
 module.exports = {
     register,
     signin,
@@ -49,5 +60,6 @@ module.exports = {
     errorPage,
     index,
     showArticle,
-    logout
+    logout,
+    freshCurrentPage
 };
