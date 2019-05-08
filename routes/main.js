@@ -28,7 +28,7 @@ const { isLoggedIn } = require('../controllers/logged.js');
 // подгрузка публик файлов
 const { getFile } = require('../controllers/get.js');
 
-const { logRequest } = require('../controllers/debug');
+const Debug = require('../controllers/debug');
 
 const initAuthControllers = (app, passport) => {
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,13 +42,11 @@ const initAuthControllers = (app, passport) => {
     app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
     app.get('/logout', authController.logout);
     app.get('/post/:id/', Handler.getArticle, getArticleFromSQL, authController.showArticle);
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL);
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
     app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
-    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, (req, res) => {
-        res.json(res.articles);
-    })
+    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
 
-    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushArticle, pushCommentToSQL)
+    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, Debug.logRequestValues, pushCommentToSQL)
     
     app.post(
         '/createArticle',

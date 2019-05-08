@@ -7,6 +7,18 @@ function logRequest(req, res, next) {
     next();
 }
 
+function logRequestValues(req, res, next) {
+    console.log('Request values: ', req.values);
+    next()
+}
+
+function logResponseValues(req, res, next) {
+    console.log('Response values: ', res.values);
+    next()
+}
+
 module.exports = {
-    logRequest
+    logRequest,
+    logRequestValues,
+    logResponseValues
 };
