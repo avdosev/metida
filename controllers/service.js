@@ -14,7 +14,7 @@ home = (req, res, next) => {
     res.render('home', { authorised: req.isAuthenticated() });
 };
 
-articles = (req, res, next) => {
+showArticle = (req, res, next) => {
     console.log(req.params.id);
     
     res.render('post', {
@@ -48,6 +48,6 @@ module.exports = {
     createArticle,
     errorPage,
     index,
-    articles,
+    showArticle,
     logout
 };

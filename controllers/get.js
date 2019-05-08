@@ -3,8 +3,8 @@ const path = require('path');
 const { mainDir } = require('../config/server');
 
 function getFile(req, res, next) {
-    var filename = req.url.match('\\w+/\\w+\\.\\w*$')[0]; // нужно правильно парсить
-    var filePath = path.join(mainDir, 'public', filename); //ыыы готово
+    const filename = req.values.FileName; // нужно правильно парсить
+    const filePath = path.join(mainDir, 'public', filename); //ыыы готово
     fs.readFile(filePath, (error, data) => {
         if (error) {
             console.log(

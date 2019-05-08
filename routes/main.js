@@ -18,6 +18,10 @@ const {
     getCommentsFromSQL
 } = require('../controllers/comments.js');
 
+const Handler = require('../controllers/request_handler.js')
+const Respondent = require('../controllers/respondent.js')
+
+
 //  проверка логирования
 const { isLoggedIn } = require('../controllers/logged.js');
 
@@ -31,26 +35,27 @@ const initAuthControllers = (app, passport) => {
     app.use(bodyParser.json());
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-    app.get('/', urlencodedParser, getTopArticles, authController.index);
+    app.get('/', urlencodedParser, authController.index);
     app.get('/register', authController.register);
     app.get('/signin', authController.signin);
     app.get('/home', isLoggedIn, authController.home);
     app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
     app.get('/logout', authController.logout);
-    app.get('/post/:id/', getArticleFromSQL, authController.articles);
-    app.get('/post/:id/comments', urlencodedParser, getCommentsFromSQL);
-    app.get('/public/:filefolder/:filename', logRequest, getFile);
-    app.get('/top', urlencodedParser, getTopArticles, (req, res) => {
+    app.get('/post/:id/', Handler.getArticle, getArticleFromSQL, authController.showArticle);
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL);
+    app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
+    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, (req, res) => {
         res.json(res.articles);
     })
 
-    app.post('/post/:id/pushComment', urlencodedParser, pushCommentToSQL)
+    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushArticle, pushCommentToSQL)
     
     app.post(
         '/createArticle',
         urlencodedParser,
         articleValidator, 
         /* отправить на модерацию */
+        Handler.pushArticle,
         pushArticleToSQL,
         (req, res) => {
             res.render('success_page') // Не обязательно это
