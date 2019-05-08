@@ -3,6 +3,12 @@ const models = require('../models');
 const Article = articlesInit(models.sequelize, models.Sequelize); // здесь точно косяк тк я не понимаю как работать с бд
 const { Op } = require('sequelize')
 
+function initValues(req) {
+    if (!req.values) {
+        req.values = new Object;
+    }
+}
+
 function getArticleFromSQL(req, res, next) {
     const id = req.values.id;
     Article.findOne({ where: { id } }).then(article => {
@@ -62,8 +68,9 @@ function getTopArticles(req, res, next) {
     const fnc = FuncByType[type];
     const callback = (value, error) => {
         if (error) 
-            console.log(error);            
-        res.articles = value;
+            console.log(error);
+        initValues(res)            
+        res.values.TopArticles = value;
         next()
     }
     if (fnc != undefined) {

@@ -3,16 +3,21 @@ const models = require('../models');
 const Comment = commentsInit(models.sequelize, models.Sequelize); 
 const User = models.User;
 
+function initValues(req) {
+    if (!req.values) {
+        req.values = new Object;
+    }
+}
 
 function getCommentsFromSQL(req, res, next) {
     const PostId = req.values.PostId;
-
+    initValues(res)
     Comment.findAll({ where: { articleId: PostId } }).then(comment => {
-        if (comment) {
-            for (var i=0; i<comment.length; i++) {
-                console.log(comment[i].text);
-            }
-        }
+        res.values.Comments = comment;
+        next()
+    }).catch(() => {
+        res.values.Comments = []
+        next()
     });
 }
 
@@ -22,16 +27,22 @@ function pushCommentToSQL(req, res, next) {
     const TextComment = req.values.TextComment;
     const AnsweringId = req.values.AnsweringId;
    
+    initValues(res)
+    
     Comment.create({
         author: AuthorId,
         text: TextComment,
         articleId: ArticleId, 
         answeringId: AnsweringId 
     }).then(() => {
-        res.send('sucsesfull puk');
-    }).catch( (error) => {
+        res.values.SuccessPushComment = true;
+        next()
+        //res.send('sucsesfull puk');
+    }).catch(error => {
+        res.values.SuccessPushComment = false;
         console.error(error);
-        res.send('error')
+        next()
+        //res.send('error')
     })
 }
 

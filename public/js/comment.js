@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const post = document.querySelector('.post_text')
     const id = post.id;
-    fetch(`./${id}/comments`).then(value => {
+    fetch(`/post/${id}/comments`).then(value => {
         console.log(value);
         return value.json()
     }).then((json => {
         console.log(json)
         const insertElem = document.querySelector('.comments_lenta')
-        insertComments(json[i], insertElem);
+        insertsComments(json, insertElem);
     })).catch(error => {
         console.error(error);
     })
