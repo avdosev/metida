@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', start);
 //window.onload = start;
 
 function start() {
-    highLighter(document.querySelector('code.js-language'), 'lexem_table.json');
+    const elem = document.querySelector('code.js-language');
+    if (elem)
+        highLighter(elem, 'lexem_table.json');
 }
 
 function highLighter(element, configUrl) {
