@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .inputForm {
     display: flex;
     justify-content: center;
@@ -20,15 +22,39 @@ input:invalid {
 }
 
 input:valid {
-    border: 1px solid black;
+    border: 1px solid rgb(81, 241, 134);
+}
+
+input:hover{
+    border: 1px solid blue;
 }
 
 p {
     margin-left: 1rem;
+    font-family: 'Lato', sans-serif;
+    font-size: 3vh;
 }
 
 #submit {
-    margin-top: 1rem;
+    margin-top: 4vh;
+    border: 1px solid black;
+    background: rgba(255, 255, 255, 0.1)
+}
+
+/* Тут хочу сделать разные цвета кнопки для верных и неверных значений, проблема в том, что я хз как передать на кнопку результат */
+#submit:invalid:hover{
+    background-color: rgba(255, 0, 0, 0.514);
+    transition: 0.3s;
+}
+
+#submit:valid:hover{
+    background-color: rgba(15, 233, 88, 0.68);
+    transition: 0.7s;
+    border-radius: 20px;
+}
+
+#submit:valid:active{
+    background-color: white;
 }
 
 /* цвета можно будет подправить */
