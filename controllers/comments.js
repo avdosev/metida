@@ -6,12 +6,15 @@ const User = models.User;
 
 function getCommentsFromSQL(req, res, next) {
     console.log(req.body);
+    console.log(req.params);
     
     const PostId = req.params.id;
 
     Comment.findAll({ where: { articleId: PostId } }).then(comment => {
         if (comment) {
-            console.log(comment);
+            for (var i=0; i<comment.length; i++) {
+                console.log(comment[i].text);
+            }
         }
     });
 }

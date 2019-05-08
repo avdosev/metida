@@ -9,17 +9,14 @@ head
     include ../public/css/layout_body.css
     include ../public/css/content.css
   script
-    include ../public/js/highlighter.js
+    include ../public/js/lenta.js
     
 
 include modules/header 
 
 .layout_body
   content.content
-    //- var countOfArticles;
-    - for (var i=0; i<countOfArticles; i++)
-        h3 !{header} 
-        //хотя тут мы вроде должны ссать на разметку юзеру, но все таки поставлю !
-        | !{disclaimer}
+    .lenta
+      h1 Умная лента
         
         

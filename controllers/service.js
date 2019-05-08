@@ -15,10 +15,13 @@ home = (req, res, next) => {
 };
 
 articles = (req, res, next) => {
+    console.log(req.params.id);
+    
     res.render('post', {
         authorised: req.isAuthenticated(),
         name: res.article.header,
-        text: res.article.content
+        text: res.article.content,
+        id: req.params.id
     });
 };
 
@@ -30,10 +33,7 @@ logout = (req, res, next) => {
 
 index = (req, res, next) => {
     res.render('index', {
-        authorised: req.isAuthenticated(),
-        countOfArticles: 2, ///////////////////////////////FIX 
-        header: res.articles[0].header,
-        disclaimer: res.articles[0].disclaimer
+        authorised: req.isAuthenticated()
     });
 };
 

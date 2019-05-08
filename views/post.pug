@@ -23,7 +23,7 @@ body
           p.text !{text}
           .comment 
             h3 Оставь коммент лох
-            form(action="/post/:id/pushComment", method="post")
+            form(action="/post/" + id + "/pushComment", method="post")
                 textarea#comment(name="comment", cols="30", rows="10")
                 input(type="submit") 
             

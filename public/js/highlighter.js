@@ -7,7 +7,7 @@ function start() {
 
 function highLighter(element, configUrl) {
     var codeText = element.textContent;
-    getData('../../../public/json/' + configUrl, initHighLighter); // тут я так понимаю неверный путь
+    getData('/public/json/' + configUrl, initHighLighter); // тут я так понимаю неверный путь
     // да тут должнен быть другой юрл
     // типо такого metida.com/api/getpublicfile/namejsconfig
     // и тогда будет нормальный запрос
