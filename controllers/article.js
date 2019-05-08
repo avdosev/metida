@@ -4,8 +4,8 @@ const Article = articlesInit(models.sequelize, models.Sequelize); // здесь 
 const { Op } = require('sequelize')
 
 function getArticleFromSQL(req, res, next) {
-    console.log(req.params.id);
-    Article.findOne({ where: { id: req.params.id } }).then(article => {
+    const id = req.values.id;
+    Article.findOne({ where: { id } }).then(article => {
         if (article) {
             res.article = article;
             next();
@@ -55,9 +55,10 @@ const FuncByType = {
 };
 
 function getTopArticles(req, res, next) {
-    const begin = 1;
-    const end = 10;
-    const type = 'date';
+    const begin = req.values.begin;
+    const end = req.values.end;
+    const type = req.values.type;
+
     const fnc = FuncByType[type];
     const callback = (value, error) => {
         if (error) 
@@ -74,11 +75,10 @@ function getTopArticles(req, res, next) {
 }
 
 function pushArticleToSQL(req, res, next) {
-    console.log(req.body.header);
-    console.log(req.body.art);
-    const header = req.body.header;
-    const content = req.body.art;
-    const disclaimer = 'puk';
+    const header = req.values.header;
+    const content = req.values.art;
+    const disclaimer = req.values.disclaimer;
+
     try {
         Article.create({ header, content, disclaimer });
     } catch (error) {
