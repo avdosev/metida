@@ -1,25 +1,33 @@
 document.addEventListener('DOMContentLoaded', start);
+///мне нихуя не нравится что мы не используем функции из валидации в авторизации, но пох
 
 function start() {
-    var form = document.getElementsByTagName('form')[0];
-    var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');
+    var loginError = document.querySelector('.loginError');
     var passwordError = document.querySelector('.passwordError');
     var repasswordError = document.querySelector('.repasswordError');
-    var loginError = document.querySelector('.loginError');
-    var password = document.querySelector('#password')
+
+    var email = document.getElementById('email');
     var login = document.getElementById("login")
+    var password = document.querySelector('#password')
     var repassword = document.getElementById("repassword")
 
+    function showError(widget, str) {
+        widget.innerHTML = str;
+        widget.className = 'error active';
+    }
+
+    function hideError(widget) {
+        widget.innerHTML = '';
+        widget.className = 'error';
+    }
+
     email.addEventListener('input', event => {
-            console.log(email.validity.valid);
-            if (email.validity.valid) {
-                emailError.innerHTML = '';
-                emailError.className = 'error';
+        if (email.validity.valid) {
+                hideError(emailError)
             }
             else {
-                emailError.innerHTML = 'Я же просил ввести емейл. Не зли меня';
-                emailError.className = 'error active';
+                showError(emailError,'Я же просил ввести емейл. Не зли меня')
             }
         },
         false
@@ -27,65 +35,56 @@ function start() {
 
     password.addEventListener('input', event => {
         if(password.validity.valid) {
-            passwordError.innerHTML = '';
-            passwordError.className = 'error';
+            hideError(passwordError)
 
             if (password.value == repassword.value) {
-                repasswordError.innerHTML = '';
-                repasswordError.className = 'error';
+                hideError(repasswordError)
             }
             else {
-                repasswordError.innerHTML = 'Пароли не совпадают. Ты пидр';
-                repasswordError.className = 'error active';
+                showError(repasswordError, 'Пароли не совпадают. Ты пидр')
             }
         }
         else {
-            passwordError.innerHTML = 'Пароль должен быть больше 5 символов';
-            passwordError.className = 'error active';
+            showError(passwordError, 'Пароль должен быть больше 5 символов')
         }
     })
 
 
     login.addEventListener('input', event => {
         if(login.validity.valid) {
-            loginError.innerHTML = '';
-            loginError.className = 'error';
+            hideError(loginError)
         }
         else {
-            loginError.innerHTML = 'Логин больше 3 символов';
-            loginError.className = 'error active';
+            showError(loginError,'Логин больше 3 символов')
         }
     })
 
     repassword.addEventListener('input', event => {
         if(repassword.validity.valid) {
-            repasswordError.innerHTML = '';
-            repasswordError.className = 'error';
-            
+            hideError(repasswordError)
+
             if (password.value == repassword.value) {
-                repasswordError.innerHTML = '';
-                repasswordError.className = 'error';
+                hideError(repasswordError)
             }
             else {
-                repasswordError.innerHTML = 'Пароли не совпадают. Ты пидр';
-                repasswordError.className = 'error active';
+                showError(repasswordError,'Пароли не совпадают. Ты пидр')
             }
         }
         else {
-            repasswordError.innerHTML = 'Пароль должен быть больше 5 символов';
-            repasswordError.className = 'error active';
+            showError(repasswordError,'Пароль должен быть больше 5 символов')
+
         }
     })
 
     
 
     document.addEventListener('submit', event => {
-            console.log('ЖМЯК');
-            if (!email.validity.valid && !password.validity.valid) {
-                emailError.innerHTML = 'Вводи почту дядя';
-                emailError.className = 'error active';
-                event.preventDefault();
+            console.log('ЖМЯК'); //тут будет проеб, т.к. это проверяет только по хтмл паттернам
+            //если пароли не равны, нас все равно пустят
+            if (!email.validity.valid || !password.validity.valid || !repassword.validity.valid || !login.validity.valid || password.value != repassword.value) {
+                    event.preventDefault();                
             }
+            //если все валидно, то отправляет форму
         },
         false
     );
