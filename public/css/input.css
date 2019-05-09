@@ -16,11 +16,23 @@
 input {
     padding: 5px 5px 5px 2px;
     margin-left: 1rem;
+    -webkit-appearance: none;
+    border: 1px solid #333;
+    font-family: inherit;
+    font-size: 90%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-input:invalid {
-    border: 1px solid red;
-}
+input:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+  
+  input:focus:invalid {
+    outline: none;
+  }
+  
 
 input:valid {
     border: 1px solid rgb(81, 241, 134);
@@ -29,6 +41,7 @@ input:valid {
 input:hover{
     border: 1px solid blue;
 }
+
 
 p {
     margin-left: 1rem;
@@ -70,3 +83,21 @@ input[type='button']:active {
     border: 1px solid grey;
     background-color: whitesmoke;
 }
+
+.error {
+    margin-left: 1rem;
+    width  : 95%;
+    padding: 0;
+   
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+   
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .error.active {
+    padding: 0.3em;
+  }
