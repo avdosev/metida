@@ -25,8 +25,11 @@ body
           .comments_lenta 
             h3 Комментарии:
           .new_comment
-            h3 Оставь коммент лох
-            form(action="/post/" + id + "/pushComment", method="post")
-                textarea#comment(name="comment", cols="30", rows="10")
-                input(type="submit") 
+            if authorised 
+                h3 Оставь коммент
+                form(action="/post/" + id + "/pushComment", method="post")
+                    textarea#comment(name="comment", cols="30", rows="10")
+                    input(type="submit") 
+            else
+                p Зарегистрируйся, если хочешь оставить коммент
             
