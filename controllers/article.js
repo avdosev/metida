@@ -83,10 +83,10 @@ function getTopArticles(req, res, next) {
 
 function pushArticleToSQL(req, res, next) {
     const header = req.values.header;
-    const content = req.values.art;
+    const content = req.values.content;
     const disclaimer = req.values.disclaimer;
-    console.log(disclaimer)
-    
+    console.log(content)
+
     try {
         Article.create({ header, content, disclaimer });
     } catch (error) {
