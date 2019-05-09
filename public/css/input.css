@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .inputForm {
     display: flex;
@@ -32,13 +33,16 @@ input:hover{
 p {
     margin-left: 1rem;
     font-family: 'Lato', sans-serif;
-    font-size: 3vh;
+    font-size: 1rem;
 }
 
 #submit {
-    margin-top: 4vh;
+    margin-top: 1.5rem;
     border: 1px solid black;
-    background: rgba(255, 255, 255, 0.1)
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.7s;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Тут хочу сделать разные цвета кнопки для верных и неверных значений, проблема в том, что я хз как передать на кнопку результат */
