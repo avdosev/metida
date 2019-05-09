@@ -7,8 +7,8 @@ head
   style
     include ../public/css/style.css
     include ../public/css/input.css
-//-   script
-//-     include ../public/js/client_validator.js
+  script
+    include ../public/js/register_validator.js
 
 
 body
@@ -17,13 +17,18 @@ body
   .inputForm
     form.reg(action="/register", method="post", name="register" novalidate)
       p Email
-      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^([\\w-]+\\.)*[\\w-]+\\@\\w+\\.\\w+$')
+      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='.+@.+')
+      <span class="emailError" aria-live="polite"></span>
       .message #{message}
       p Login
-      input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
+      input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w{3,20}$')
+      <span class="loginError" aria-live="polite"></span>
       p Password
-      input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
+      input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,50}')
+      <span class="passwordError" aria-live="polite"></span>
       p Retype password
       input#repassword(type="password" name='repassword', placeholder="Retype password" required )
-      input#submit(type="submit" value="Registration")
+      <span class="repasswordError" aria-live="polite"></span>
+      input#submit(type="submit"  value="Registration")
+
 
