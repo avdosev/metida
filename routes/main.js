@@ -39,7 +39,7 @@ const initAuthControllers = (app, passport) => {
     app.get('/register', authController.register);
     app.get('/signin', authController.signin);
     app.get('/home', isLoggedIn, authController.home);
-    app.get('/createArticle', /*isLoggedIn,*/ authController.createArticle);
+    app.get('/createArticle', isLoggedIn, authController.createArticle);
     app.get('/logout', authController.logout);
     app.get('/post/:id/', Handler.getArticle, getArticleFromSQL, authController.showArticle);
     app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
@@ -47,7 +47,8 @@ const initAuthControllers = (app, passport) => {
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
 
 
-    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, Debug.logRequestValues, pushCommentToSQL, authController.freshCurrentPage);
+    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, 
+                Debug.logRequestValues, pushCommentToSQL, authController.freshCurrentPage);
     
     app.post(
         '/createArticle',

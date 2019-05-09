@@ -35,7 +35,7 @@ input:invalid{
   
 
 input:valid {
-    border: 1px solid rgb(81, 241, 134);
+    border: 1px solid steelblue;
 }
 
 input:hover{
@@ -65,7 +65,8 @@ p {
 }
 
 #submit:valid:hover{
-    background-color: rgba(15, 233, 88, 0.68);
+    color: white;
+    background-color: steelblue;
     transition: 0.7s;
     border-radius: 20px;
 }

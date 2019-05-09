@@ -85,7 +85,8 @@ function pushArticleToSQL(req, res, next) {
     const header = req.values.header;
     const content = req.values.art;
     const disclaimer = req.values.disclaimer;
-
+    console.log(disclaimer)
+    
     try {
         Article.create({ header, content, disclaimer });
     } catch (error) {

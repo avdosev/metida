@@ -5,6 +5,24 @@
     width: 65%;
 }
 
+.post {
+    border-top: 2px solid grey;
+    margin-bottom: 20px;
+    width: 100%;
+}   
+.post a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.post a:hover {
+    color: steelblue;
+}
+
+.post p {
+    font-size: 18px;
+}
+
 .content .post_text {
     display: flex;
     flex-direction: column;
