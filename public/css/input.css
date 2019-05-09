@@ -15,9 +15,15 @@ input {
     margin-left: 1rem;
 }
 
-input:invalid {
-    border: 1px solid red;
-}
+input:invalid{
+    border-color: #900;
+    background-color: #FDD;
+  }
+  
+  input:focus:invalid {
+    outline: none;
+  }
+  
 
 input:valid {
     border: 1px solid black;
@@ -40,3 +46,20 @@ input[type='button']:active {
     border: 1px solid grey;
     background-color: whitesmoke;
 }
+
+.error {
+    width  : 100%;
+    padding: 0;
+   
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+   
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  .error.active {
+    padding: 0.3em;
+  }
