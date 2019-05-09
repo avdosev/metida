@@ -16,8 +16,8 @@ body
     form.reg(action="/signIn", method="post" novalidate)
       p Email
       input#email(type='email', name='email', placeholder='Type email',  pattern='.+@.+')
-      <span class="error" aria-live="polite"></span>
+      <span class="emailError" aria-live="polite"></span>
       p Password
       input#password(type='password', name='password', placeholder='Type password',  pattern='.{5,}')
-      <span class="error" aria-live="polite"></span>
+      <span class="passwordError" aria-live="polite"></span>
       input#submit(type="submit" value="OK")

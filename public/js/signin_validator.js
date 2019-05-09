@@ -1,40 +1,48 @@
+document.addEventListener('DOMContentLoaded', start);
 
-const emailRow = document.getElementsByName("email")[0]
-const passwordRow = document.getElementsByName("password")
-var error = document.querySelector('.error');
-console.log(emailRow)
-// const email = emailRow[0].value
-// const password = passwordRow[0].value
+function start() {
+    var form = document.getElementsByTagName('form')[0];
+    var email = document.getElementById('email');
+    var emailError = document.querySelector('.emailError');
+    var passwordError = document.querySelector('.passwordError');
+    var submit = document.querySelector("#submit")
+    var password = document.querySelector('#password')
 
-email.addEventListener("input", function (event) {
+    email.addEventListener('input', event => {
+            console.log(email.validity.valid);
+            if (email.validity.valid) {
+                emailError.innerHTML = '';
+                emailError.className = 'error';
+            }
+            else {
+                emailError.innerHTML = 'Я же просил ввести емейл. Не зли меня';
+                emailError.className = 'error active';
+            }
+        },
+        false
+    );
 
-  if (email.validity.valid) {
-    error.innerHTML = ""; // Сбросить содержимое сообщения
-    error.className = "error"; // Сбросить визуальное состояние сообщения
-  }
-}, false);
+    password.addEventListener('input', event => {
+        if(password.validity.valid) {
+            passwordError.innerHTML = '';
+            passwordError.className = 'error';
+        }
+        else {
+            passwordError.innerHTML = 'Пароль должен быть больше 5 символов';
+            passwordError.className = 'error active';
+        }
 
+        
+    })
 
-document.addEventListener("submit", function (event) {
-
-  if (!email.validity.valid) {
-    error.innerHTML = "I expect an e-mail, darling!";
-    error.className = "error active";
-    
-    event.preventDefault();
-  }
-}, false);
-
-
-
-// function validationLogin(email, password) {
-    
-//     if ( !!email.exec("^([\\w-]+\\.)*[\\w-]+\\@\\w+\\.\\w+$") ) {
-//         return false, "It's not email"
-//     }
-//     //я бля аутирую
-//     if ( !!password.match(".{5,}") ) {
-//         return false, "It's not password"
-//     }
-//     return true
-// }
+    document.addEventListener('submit', event => {
+            console.log('ЖМЯК');
+            if (!email.validity.valid && !password.validity.valid) {
+                emailError.innerHTML = 'Вводи почту дядя';
+                emailError.className = 'error active';
+                event.preventDefault();
+            }
+        },
+        false
+    );
+}

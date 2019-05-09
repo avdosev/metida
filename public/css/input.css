@@ -13,6 +13,12 @@
 input {
     padding: 5px 5px 5px 2px;
     margin-left: 1rem;
+    -webkit-appearance: none;
+    border: 1px solid #333;
+    font-family: inherit;
+    font-size: 90%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 input:invalid{
@@ -28,6 +34,7 @@ input:invalid{
 input:valid {
     border: 1px solid black;
 }
+
 
 p {
     margin-left: 1rem;
