@@ -85,15 +85,24 @@ function pushArticleToSQL(req, res, next) {
     const header = req.values.header;
     const content = req.values.content;
     const disclaimer = req.values.disclaimer;
-    console.log(content)
+
+    initValues(res)
 
     try {
-        Article.create({ header, content, disclaimer });
+        Article.create({ header, content, disclaimer })
+        .catch(error => {
+            console.error(error)
+            res.values.SuccessPushArticle = false
+            next()
+        })
+        .then((value) => {
+            res.values.SuccessPushArticle = true
+            res.values.PostId = value.dataValues.id;
+            next()
+        })
     } catch (error) {
         console.error(error);
     }
-    // res.redirect('/'); // я бы не оч хотел попасть в начало после не успешного написания статьи
-    next(); //render
 }
 
 module.exports = {

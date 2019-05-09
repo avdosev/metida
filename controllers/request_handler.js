@@ -8,7 +8,7 @@ function initValues(req) {
 // Articles
 
 function pushArticle(req, res, next) {
-    console.log(req.body)
+    //console.log(req.body)
     const header = req.body.header;
     const content = req.body.art;
     const disclaimer = req.body.disclaimer;

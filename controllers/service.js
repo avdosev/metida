@@ -15,8 +15,6 @@ home = (req, res, next) => {
 };
 
 showArticle = (req, res, next) => {
-    console.log(req.params.id);
-    
     res.render('post', {
         authorised: req.isAuthenticated(),
         name: res.article.header,

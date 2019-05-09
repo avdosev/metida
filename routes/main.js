@@ -57,9 +57,7 @@ const initAuthControllers = (app, passport) => {
         /* отправить на модерацию */
         Handler.pushArticle,
         pushArticleToSQL,
-        (req, res) => {
-            res.render('success_page') // Не обязательно это
-        }//не верно, роутим на /post/:id
+        Respondent.redirectToArticle
     );
 
     app.post(
