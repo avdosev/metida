@@ -85,6 +85,7 @@ function pushArticleToSQL(req, res, next) {
     const header = req.values.header;
     const content = req.values.content;
     const disclaimer = req.values.disclaimer;
+    const authorId = req.values.userId
 
     initValues(res)
 

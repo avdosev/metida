@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
         header: { type: Sequelize.STRING, allowNull: false },
         disclaimer: { type: Sequelize.TEXT, allowNull: false }, // TODO!!! fix allowNULL - false , и при добавлении делать дисклеймер
         content: { type: Sequelize.TEXT, allowNull: false },
-        raiting: { type: Sequelize.INTEGER, allowNull: true }
+        raiting: { type: Sequelize.INTEGER, defaultValue: 0 },
+        authorId: { type: Sequelize.INTEGER, allowNull: false } 
     });
 
     return Article;
