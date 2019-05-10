@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function insertPostPreview(objPost, insertedElem) {
+    //console.log(objPost)
     const url = `/post/${objPost.id}`
     const htmlPost = `
     <div class = "post">
         <a href = "${url}"><h3>${objPost.header}<h2></a>
+
         <p>${objPost.disclaimer}</p>
     </div>
     `
