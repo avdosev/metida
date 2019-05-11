@@ -53,7 +53,7 @@ const initAuthControllers = (app, passport) => {
     app.post(
         '/createArticle',
         urlencodedParser,
-        articleValidator, 
+        articleValidator,
         /* отправить на модерацию */
         Handler.pushArticle,
         pushArticleToSQL,

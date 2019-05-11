@@ -85,12 +85,12 @@ function pushArticleToSQL(req, res, next) {
     const header = req.values.header;
     const content = req.values.content;
     const disclaimer = req.values.disclaimer;
-    const authorId = req.values.userId
+    const authorId = req.values.authorId
 
     initValues(res)
 
     try {
-        Article.create({ header, content, disclaimer })
+        Article.create({ header, content, disclaimer, authorId })
         .catch(error => {
             console.error(error)
             res.values.SuccessPushArticle = false

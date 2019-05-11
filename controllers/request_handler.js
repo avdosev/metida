@@ -12,7 +12,7 @@ function pushArticle(req, res, next) {
     const header = req.body.header;
     const content = req.body.art;
     const disclaimer = req.body.disclaimer;
-    const authorId = req.values.userId;
+    const authorId = req.user.id;
 
     initValues(req)
 
