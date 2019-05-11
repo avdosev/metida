@@ -43,6 +43,7 @@ function insertComment(objComment, insertedElem) {
             <time class = "created_commit">${DateStr}</time>
         </div>
         <div class = "comment_text"><p>${Text}</p></div>
+        <a class="reply" href=#>Ответить</a> 
         <div class = "comment_childer" id = "child_comment_${Id}"></div>
     </div>
     `

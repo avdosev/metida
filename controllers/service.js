@@ -50,6 +50,12 @@ freshCurrentPage = (req,res,next) => {
 };
 
 
+authorProfile = (req, res, next) => {
+    console.log(req.values)
+    res.render('profile', { authorised: req.isAuthenticated() });
+}
+
+
 module.exports = {
     register,
     signin,
@@ -59,5 +65,6 @@ module.exports = {
     index,
     showArticle,
     logout,
-    freshCurrentPage
+    freshCurrentPage,
+    authorProfile
 };

@@ -45,9 +45,9 @@ const initAuthControllers = (app, passport) => {
     app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
     app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
+    app.get('/author/:login', authController.authorProfile )
 
-
-    app.post('/post/:id/pushComment', urlencodedParser, Handler.pushComment, 
+    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, 
                 Debug.logRequestValues, pushCommentToSQL, authController.freshCurrentPage);
     
     app.post(
