@@ -26,20 +26,57 @@ function insertsComments(objCommentArray, insertedElem) {
         }
     }
 }
-
+const currentDate = new Date()
 function insertComment(objComment, insertedElem) {
     //const AuthorUrl = ``
     const Author = objComment.author
     const Text = objComment.text
     const Id = objComment.id
+    const date = new Date(objComment.createdAt)
+    const DateStr = DateToStr(date);
 
     // впринципе можно менять
     const htmlPost = `
     <div class = "comment" id = "comment_${Id}">
-        <div class = "author_comment_block"></div>
+        <div class = "author_comment_block">
+            <a href = "/author/${Author}" class = "author_login">${Author}</a>
+            <time class = "created_commit">${DateStr}</time>
+        </div>
         <div class = "comment_text"><p>${Text}</p></div>
         <div class = "comment_childer" id = "child_comment_${Id}"></div>
     </div>
     `
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
+}
+
+function DateToStr(date) {
+    const now = new Date()
+    let str;
+    const nearlyDay = date.getYear() == now.getYear() && date.getMonth() == now.getMonth()
+    const subDay = now.getDate() - date.getDate()
+    
+    if (nearlyDay && subDay == 1) { // вчера
+        str = "вчера "
+    } else if (nearlyDay && subDay == 0) { // сегодня
+        str = "сегодня "
+    } else {
+        month = [
+            "Января",
+            "Февраля",
+            "Марта",
+            "Апреля",
+            "Мая",
+            "Июня",
+            "Июля",
+            "Августа",
+            "Сентября",
+            "Октября",
+            "Ноября",
+            "Декабря"
+        ]
+        str = `${date.getDate()} ${month[date.getMonth()-1]} ${date.getFullYear()}`
+    }
+
+    str += ' в ' + date.toLocaleTimeString()
+    return str;
 }
