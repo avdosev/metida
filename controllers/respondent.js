@@ -1,5 +1,5 @@
 function getComments(req, res, next) {
-    res.json(res.values.Comments);
+    res.json(res.values.comments);
 }
 
 function getTopArticles(req, res, next) {

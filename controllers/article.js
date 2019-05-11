@@ -13,7 +13,8 @@ function getArticleFromSQL(req, res, next) {
     const id = req.values.id;
     Article.findOne({ where: { id } }).then(article => {
         if (article) {
-            res.article = article;
+            initValues(res)
+            res.values.article = article;
             next();
         } else {
             res.render('error_page');
@@ -66,6 +67,7 @@ function getTopArticles(req, res, next) {
     const type = req.values.type;
 
     const fnc = FuncByType[type];
+
     const callback = (value, error) => {
         if (error) 
             console.log(error);
@@ -73,6 +75,7 @@ function getTopArticles(req, res, next) {
         res.values.TopArticles = value;
         next()
     }
+    
     if (fnc != undefined) {
         fnc(begin, end, callback);
     } else {
@@ -82,15 +85,12 @@ function getTopArticles(req, res, next) {
 }
 
 function pushArticleToSQL(req, res, next) {
-    const header = req.values.header;
-    const content = req.values.content;
-    const disclaimer = req.values.disclaimer;
-    const authorId = req.values.authorId
+    const article = req.values.article
 
     initValues(res)
 
     try {
-        Article.create({ header, content, disclaimer, authorId })
+        Article.create(article)
         .catch(error => {
             console.error(error)
             res.values.SuccessPushArticle = false
@@ -98,7 +98,7 @@ function pushArticleToSQL(req, res, next) {
         })
         .then((value) => {
             res.values.SuccessPushArticle = true
-            res.values.PostId = value.dataValues.id;
+            res.values.article = value.dataValues;
             next()
         })
     } catch (error) {

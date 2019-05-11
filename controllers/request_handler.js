@@ -15,11 +15,13 @@ function pushArticle(req, res, next) {
     const authorId = req.user.id;
 
     initValues(req)
-
-    req.values.header = header;
-    req.values.content = content;
-    req.values.disclaimer = disclaimer;
-    req.values.authorId = authorId
+    
+    req.values.article = { 
+        header, 
+        content, 
+        disclaimer, 
+        authorId 
+    }
 
     next()
 }
@@ -52,31 +54,34 @@ function getArticle(req, res, next) {
 // Comments
 
 function getComments(req, res, next) {
-    const PostId = req.params.id;
+    const articleId = req.params.id;
 
     initValues(req)
 
-    req.values.PostId = PostId;
+    req.values.comment = {
+        articleId
+    };
 
     next()
 }
 
 function pushComment(req, res, next) {
-    const ArticleId = req.params.id;
-    const AuthorId = 'puk'; // TODO fix
-    const TextComment = req.body.comment;
-    const AnsweringId = null;
+    const articleId = req.params.id;
+    const author = req.user.username; // TODO fix
+    const text = req.body.comment;
+    const answeringId = req.body.answeringId ? req.body.answeringId : null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
 
     initValues(req)
 
-    req.values.ArticleId = ArticleId;
-    req.values.AuthorId = AuthorId;
-    req.values.TextComment = TextComment;
-    req.values.AnsweringId = AnsweringId;
+    req.values.comment = { 
+        articleId, 
+        author, 
+        text, 
+        answeringId 
+    }
 
     next()
 }
-
 
 // Other
 

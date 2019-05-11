@@ -17,9 +17,9 @@ home = (req, res, next) => {
 showArticle = (req, res, next) => {
     res.render('post', {
         authorised: req.isAuthenticated(),
-        name: res.article.header,
-        text: res.article.content,
-        id: req.params.id
+        name: res.values.article.header,
+        text: res.values.article.content,
+        id:   res.values.article.id
     });
 };
 
@@ -40,11 +40,11 @@ errorPage = (req, res, next) => {
 };
 
 freshCurrentPage = (req,res,next) => {
-    var currentUrl;
+    let currentUrl;
     if ( req.url.indexOf("pushComment") != -1) { //т.е. мы только что запушили коммент и нам надо катиться назад, на*уй
-        currentUrl= req.url.slice(0, -11);
+        currentUrl = req.url.slice(0, -11); // это выглядит оч странно
     }
-    console.log(currentUrl)
+    console.log('fresh current page to url: ', currentUrl)
     res.redirect(currentUrl)
     
 };

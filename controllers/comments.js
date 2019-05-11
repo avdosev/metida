@@ -1,7 +1,6 @@
 const commentsInit = require('../models/comments');
 const models = require('../models');
 const Comment = commentsInit(models.sequelize, models.Sequelize); 
-const User = models.User;
 
 function initValues(req) {
     if (!req.values) {
@@ -10,39 +9,30 @@ function initValues(req) {
 }
 
 function getCommentsFromSQL(req, res, next) {
-    const PostId = req.values.PostId;
+    const commentValues = req.values.comment;
     initValues(res)
-    Comment.findAll({ where: { articleId: PostId } }).then(comment => {
-        res.values.Comments = comment;
+
+    Comment.findAll({ where: commentValues }).then(comment => {
+        res.values.comments = comment;
         next()
     }).catch(() => {
-        res.values.Comments = []
+        res.values.comments = []
         next()
     });
 }
 
 function pushCommentToSQL(req, res, next) {
-    const ArticleId = req.values.ArticleId;
-    const AuthorId = req.values.AuthorId;
-    const TextComment = req.values.TextComment;
-    const AnsweringId = req.values.AnsweringId;
-   
+    const comment = req.values.comment;
     initValues(res)
     
-    Comment.create({
-        author: AuthorId,
-        text: TextComment,
-        articleId: ArticleId, 
-        answeringId: AnsweringId 
-    }).then(() => {
+    Comment.create(comment)
+    .then(() => {
         res.values.SuccessPushComment = true;
         next()
-        //res.send('sucsesfull puk');
     }).catch(error => {
         res.values.SuccessPushComment = false;
         console.error(error);
         next()
-        //res.send('error')
     })
 }
 
