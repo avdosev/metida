@@ -56,12 +56,6 @@ const loadPasportStrategies = (passport, user) => {
                             password: userPassword // зашифрованный
                         };
                         console.log(data.username);
-                        if (!req.values) 
-                            req.values = new Object;
-                            
-                        req.values.username = data.username
-                        req.values.email = data.email
-                        req.values.userId = user.id
 
                         User.create(data).then((newUser, created) => {
                             if (!newUser) {
@@ -107,16 +101,6 @@ const loadPasportStrategies = (passport, user) => {
                         if (!user) {
                             throw new Error('Email does not exist');  
                         }
-
-                        if (!req.values) 
-                            req.values = new Object;
-
-                        
-                        req.values.username = user.username
-                        req.values.email = user.email
-                        req.values.userId = user.id
-                        console.log(req.values.username)
-                        console.log(req.values.userId)
 
                         if (!isValidPassword(user.password, password)) {
                             throw new Error('Incorrect password.');
