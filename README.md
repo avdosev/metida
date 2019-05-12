@@ -1,16 +1,19 @@
 # Процент готовности проекта
 
-## 15.6%
+## 25.6%
 
 ### CI
 
-We use travis CI 
+>когда некит добавит для своего репа поддержку, надо изменить ссылку ниже
 
 [![Build Status](https://travis-ci.com/Sapfir0/metida.svg?branch=master)](https://travis-ci.com/Sapfir0/metida)
 
+We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) service.
+
+
 ### Развертка на linux машине
 
-Есть [небольшой](https://github.com/Sapfir0/deploymentMetida) скрипт, поднимающий сервер на unix)
+Есть [небольшой](https://github.com/Sapfir0/scriptForOurLife/tree/master/deploymentMetida) скрипт, поднимающий сервер на unix)
 
 ### Развертка на Windows машине
 
