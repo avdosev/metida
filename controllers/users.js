@@ -61,7 +61,10 @@ const loadPasportStrategies = (passport, user) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }
-                            mailer('a')
+///////////////////////////////////////////////MAILER
+                            text = "<h1> Confirm </h1> <a href=\"metida.tech\" " 
+                            // mailer(data.email, "Confirm this email", text )
+
                             if (newUser) {
                                 return done(null, newUser); //все ок
                             }
