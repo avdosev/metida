@@ -1,4 +1,5 @@
 const nodemail = require('nodemailer');
+const config = require("./../config/server")
 
 module.exports = function(email, subject, message) {
     const mailTransport = nodemail.createTransport({
@@ -6,23 +7,23 @@ module.exports = function(email, subject, message) {
         secure: false,
         port: 25, //не ебу че за порт
         auth: {
-            user: "technakal@gmail.com",
-            pass: "nakaltech2019"
+            user: config.supportEmail,
+            pass: config.password
         }
     });
 
     info = {
-        from: 'Metida',
+        from: '"Metida company 👻" <technakal@gmail.com>',
         to: email,
-        subject: subject,
-        text: message
+        subject: subject, //заголовок
+        html: message
     };
 
     mailTransport.sendMail(info, (err, logs) => {
         if (err) {
             console.log(err);
         }
-        console.log(logs)
+        //console.log(logs.messageId)
     });
 }
 
