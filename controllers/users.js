@@ -1,5 +1,6 @@
 const bCrypt = require('bcrypt-nodejs');
 const { validationResult } = require('express-validator/check');
+const mailer = require("./email")
 
 const loadPasportStrategies = (passport, user) => {
     const User = user;
@@ -37,7 +38,7 @@ const loadPasportStrategies = (passport, user) => {
                         null
                     );
                 };
-
+                
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
                     throw new Error('Что-то пошло не так', {
@@ -55,19 +56,13 @@ const loadPasportStrategies = (passport, user) => {
                             username: req.body.login,
                             password: userPassword // зашифрованный
                         };
-                        console.log(data.username);
 
                         User.create(data).then((newUser, created) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }
-
+                            mailer('a')
                             if (newUser) {
-                                console.log(
-                                    'User ',
-                                    req.body.email,
-                                    ' registration succesful'
-                                );
                                 return done(null, newUser); //все ок
                             }
                         });
