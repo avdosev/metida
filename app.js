@@ -1,5 +1,4 @@
-const flash = require('connect-flash');
-
+//const flash = require('connect-flash');
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -8,17 +7,17 @@ const session = require('express-session');
 const favicon = require('serve-favicon');
 const models = require('./models');
 
-app.use(flash());
+//app.use(flash());
 
 const { initAuthControllers } = require('./routes/main.js');
 const { loadPasportStrategies } = require('./controllers/users');
 const { port, imgDir } = require('./config/server.js');
-
+const config = require("./config/server")
 // For Passport
 app.use(
-    session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })
+    session({ secret: config.secretKey, resave: true, saveUninitialized: true })
 ); // session secret
-app.use(passport.initialize());
+app.use(passport.initialize()); //возможно, нужно чистить сессии
 app.use(passport.session()); // persistent login sessions
 
 //For Handlebars
