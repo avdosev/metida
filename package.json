@@ -4,7 +4,7 @@
   "description": "Small blog-platform",
   "main": "app.js",
   "scripts": {
-    "test": "./tests/main.js",
+    "test": "",
     "start": "node app.js"
   },
   "repository": {
