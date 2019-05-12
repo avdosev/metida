@@ -63,7 +63,7 @@ const loadPasportStrategies = (passport, user) => {
                             }
 ///////////////////////////////////////////////MAILER
                             text = "<h1> Confirm </h1> <a href=\"metida.tech\" " 
-                            // mailer(data.email, "Confirm this email", text )
+                            mailer(data.email, "Confirm this email", text )
 
                             if (newUser) {
                                 return done(null, newUser); //все ок
