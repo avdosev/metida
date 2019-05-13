@@ -18,7 +18,7 @@ hr {
     font-family: 'Cabin', sans-serif;
     font-size: 26px;
     margin-left: 1vh;
-    max-height: 2srem;
+    max-height: 2rem;
 }
 
 .logoImg {
@@ -45,52 +45,17 @@ hr {
     transition: all 0.218s ease 0s;
 }
 
-.regSection #register {
+.regSection #register, #home, #createArticle  {
     background-color: #333;
     color: whitesmoke;
 }
 
-.regSection #signIn {
+.regSection #signIn, #logout {
     background-color: #ccc;
     color: black;
 }
 
-.regSection #register:hover {
+.regSection #register:hover, #signIn:hover, #logout:hover, #home:hover, #createArticle:hover {
     background-color: steelblue;
     color: whitesmoke;
-}
-
-.regSection #signIn:hover {
-    background-color: steelblue;
-    color: white;
-}
-
-.regSection #home {
-    background-color: #333;
-    color: whitesmoke;
-}
-
-.regSection #logout {
-    background-color: #ccc;
-    color: black;
-}
-
-.regSection #logout:hover {
-    background-color: steelblue;
-    color: whitesmoke;
-}
-
-.regSection #home:hover {
-    background-color: steelblue;
-    color: white;
-}
-
-.regSection #createArticle {
-    background-color: #333;
-    color: whitesmoke;
-}
-
-.regSection #createArticle:hover {
-    background-color: steelblue;
-    color: white;
-}
+}/* tipical button hover  */
