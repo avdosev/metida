@@ -25,6 +25,10 @@
     content: "отмена";
 }
 
+.comment_control {
+    margin-block-end: 5px
+}
+
 .comment{
     position: relative;
     margin-bottom: 60px;
