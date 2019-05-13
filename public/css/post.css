@@ -11,12 +11,22 @@ p {
     font-family: 'Montserrat', sans-serif; 
     line-height: 24px;
 }
-
+.comment{
+    position: relative;
+    margin-bottom: 60px;
+}
 .reply {
+    display: block;
+    position: absolute;
+    line-height: 2;
+    font-weight: bold;
+    margin-left: 68%;
+    margin-top: 0;
+    width: 55px;
+    text-align: center;
     font-size: 12px;
     text-decoration: none;
     color: white;
-    margin-left: 80%;
     background-color: steelblue;
     padding: 2px;
  

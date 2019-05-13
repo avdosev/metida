@@ -12,7 +12,7 @@ function redirectToArticle(req, res, next) {
         res.render('error_page')
         return ;
     }
-    const id = res.values.PostId
+    const id = res.values.article.id
     const url = `/post/${id}`
     res.redirect(url)
 }
