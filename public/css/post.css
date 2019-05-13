@@ -11,45 +11,6 @@ p {
     font-family: 'Montserrat', sans-serif; 
     line-height: 24px;
 }
-.comment{
-    position: relative;
-    margin-bottom: 60px;
-}
-.reply {
-    display: block;
-    position: absolute;
-    line-height: 2;
-    font-weight: bold;
-    margin-left: 68%;
-    margin-top: 0;
-    width: 55px;
-    text-align: center;
-    font-size: 12px;
-    text-decoration: none;
-    color: white;
-    background-color: steelblue;
-    padding: 2px;
- 
-}
-.reply:hover {
-    background-color: black;
-    transition: 0.5s;
-}
-
-.comment_childer {
-    margin-left: 20%;
-}
-
-/* .reply:hover::before {
-    background-color: black;
-    transition: 0.5s;
-}
-
-.reply:hover::after{
-    background-color: steelblue;
-    transition: 0.5s;
-} */
-
 
 .error {
     width  : 95%;
@@ -62,8 +23,8 @@ p {
    
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
-  
-  .error.active {
+}
+
+.error.active {
     padding: 0.3em;
-  }
+}

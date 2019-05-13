@@ -62,7 +62,7 @@ const loadPasportStrategies = (passport, user) => {
                                 throw new Error('Что-то пошло не так');
                             }
                             // MAILER
-                            text = "<h1> If you want chain this email with your profile in Metida.tech, confirm this email. If you didn't send several querys, ignore this. </h1> <a href=\"metida.tech\"> I accept </a>"
+                            const text = "<p> Поздравляем с регистрацие на Метида, для окончания регистрации подтвердите </p> <a href=\"metida.tech\"> Согласен </a>, если это были не вы игнорируете сообщение"
                             mailer(data.email, "Confirm this email", text )
 
                             if (newUser) {
