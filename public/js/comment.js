@@ -15,25 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         });
 
-    const comment = document.querySelector('#comment');
-    const commentError = document.querySelector('.commentError');
-    comment.addEventListener('input',event => {
-            //тут ошибка, он неправильно считывает регулярку
-            console.log(comment.validity.valid);
-            if (comment.validity.valid) {
+    comment.addEventListener('input', event => {
+            const commentError = document.querySelector('.commentError');
+            const value = comment.value
+            if (value.match(/^.{10,}/)) {
                 commentError.innerHTML = '';
-                commentError.className = 'error';
+                commentError.className = 'commentError error';
             } else {
-                commentError.innerHTML =
-                    'Коммент уж слишком маленький. Прям как ...';
-                commentError.className = 'error active';
+                commentError.innerHTML = 'Коммент уж слишком маленький. Прям как ...';
+                commentError.className = 'commentError error active';
             }
         },
         false
     );
 
-    document.addEventListener('submit',event => {
-            console.log('ЖМЯК');
+    document.addEventListener('submit', event => {
+            console.log('ЖМЯК', event);
             if (!comment.validity.valid) {
                 commentError.innerHTML = 'ОМАГАД';
                 commentError.className = 'error active';
@@ -92,18 +89,20 @@ function createClick(id) {
     control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
     
     const reply_block = `
-    <form class = "reply_comment" action="/pushComment", method="post" novalidate)
-        <textarea comment(name="comment", cols="30", rows="10", required='required', pattern='.{10,}'></textarea>
+    <div class = "new_comment reply_comment">
+    <form class = "reply_comment" action="${window.location.href}pushComment", method="post" novalidate>
+        <textarea class = "comment" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
         <input type="submit"></input>
         <span class="commentError" aria-live="polite"></span>
     </form>
+    </div>
     `
-    control_block.insertAdjacentHtml('afterend', reply_block)
+    control_block.insertAdjacentHTML('afterend', reply_block)
 }
 
 function cancelClick(id) {
     const reply_block = document.querySelector('.reply_comment')
-    reply_block.parentNode.removeChild(reply_block);
+    if (reply_block) reply_block.parentNode.removeChild(reply_block);
 
     document.querySelector(`#comment_${id} button[data-type=create]`).style.cssText = 'display: inline';
     document.querySelector(`#comment_${id} button[data-type=cancel]`).style.cssText = 'display: none';
