@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     document.addEventListener('submit', event => {
+            const item = event;
             console.log('ЖМЯК', event);
             if (!comment.validity.valid) {
                 commentError.innerHTML = 'ОМАГАД';
                 commentError.className = 'error active';
-                event.preventDefault();
             }
         },
         false
@@ -90,7 +90,7 @@ function createClick(id) {
     
     const reply_block = `
     <div class = "new_comment reply_comment">
-    <form class = "reply_comment" action="${window.location.href}pushComment", method="post" novalidate>
+    <form class = "reply_comment" action="${window.location.href}/pushComment?answeringId=${id}" method="post" novalidate>
         <textarea class = "comment" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
         <input type="submit"></input>
         <span class="commentError" aria-live="polite"></span>

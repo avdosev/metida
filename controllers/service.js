@@ -40,9 +40,9 @@ errorPage = (req, res, next) => {
 };
 
 freshCurrentPage = (req,res,next) => {
-    let currentUrl;
+    let currentUrl = req.url;
     if ( req.url.indexOf("pushComment") != -1) { //т.е. мы только что запушили коммент и нам надо катиться назад, на*уй
-        currentUrl = req.url.slice(0, -11); // это выглядит оч странно
+        currentUrl = req.url.slice(0, currentUrl.lastIndexOf('/')); // это выглядит оч странно
     }
     console.log('fresh current page to url: ', currentUrl)
     res.redirect(currentUrl)
