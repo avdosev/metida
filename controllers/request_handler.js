@@ -69,7 +69,14 @@ function pushComment(req, res, next) {
     const articleId = req.params.id;
     const author = req.user.username; // TODO fix
     const text = req.body.comment;
-    const answeringId = req.body.answeringId ? req.body.answeringId : null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
+    
+    let answeringId
+    if (req.body.answeringId)
+        answeringId = req.body.answeringId
+    else if (req.query.answeringId)
+        answeringId = req.query.answeringId
+    else 
+        answeringId = null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
 
     initValues(req)
 
