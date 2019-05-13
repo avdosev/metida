@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentError.className = 'error';
             } else {
                 commentError.innerHTML =
-                    'Коммент уж слишком маленький. Прям как ';
+                    'Коммент уж слишком маленький. Прям как ...';
                 commentError.className = 'error active';
             }
         },
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         false
     );
+
 });
 
 function insertsComments(objCommentArray, insertedElem) {
@@ -58,7 +59,7 @@ function insertsComments(objCommentArray, insertedElem) {
         }
     }
 }
-const currentDate = new Date();
+
 function insertComment(objComment, insertedElem) {
     //const AuthorUrl = ``
     const Author = objComment.author;
@@ -69,17 +70,44 @@ function insertComment(objComment, insertedElem) {
 
     // впринципе можно менять
     const htmlPost = `
-    <div class = "comment" id = "comment_${Id}">
+    <div class = "comment" id = "comment_${Id}" data-id = "${Id}">
         <div class = "author_comment_block">
             <a href = "/author/${Author}" class = "author_login">${Author}</a>
             <time class = "created_commit">${DateStr}</time>
         </div>
         <div class = "comment_text"><p>${Text}</p></div>
-        <a class="reply" href=#>Ответить</a> 
+        <div class = "control_block">
+            <button class = "reply comment_control" data-type="create" style = "display: inline" onclick="createClick(${Id})"></button>
+            <button class = "reply comment_control" data-type="cancel" style = "display: none" onclick="cancelClick(${Id})"></button>
+        </div> 
         <div class = "comment_childer" id = "child_comment_${Id}"></div>
     </div>`;
     insertedElem.insertAdjacentHTML('beforeend', htmlPost);
 }
+ 
+// можно по другому но пока так
+function createClick(id) {
+    const control_block = document.querySelector(`#comment_${id} .control_block`)
+    control_block.querySelector('button[data-type=create]').style.cssText = 'display: none';
+    control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
+    
+    const reply_block = `
+    <form class = "reply_comment" action="/pushComment", method="post" novalidate)
+        <textarea comment(name="comment", cols="30", rows="10", required='required', pattern='.{10,}'></textarea>
+        <input type="submit"></input>
+        <span class="commentError" aria-live="polite"></span>
+    </form>
+    `
+    control_block.insertAdjacentHtml('afterend', reply_block)
+}
+
+function cancelClick(id) {
+    const reply_block = document.querySelector('.reply_comment')
+    reply_block.parentNode.removeChild(reply_block);
+
+    document.querySelector(`#comment_${id} button[data-type=create]`).style.cssText = 'display: inline';
+    document.querySelector(`#comment_${id} button[data-type=cancel]`).style.cssText = 'display: none';
+} 
 
 function DateToStr(date) {
     const now = new Date();

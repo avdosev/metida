@@ -1,0 +1,63 @@
+.new_comment form {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.new_comment form *{
+    margin-block-end: 10px
+}
+
+.new_comment form textarea {
+    min-width: 400px;
+    min-height: 170px
+}
+
+.comment_childer {
+    margin-left: 20%;
+}
+
+.comment_control[data-type=create]::after {
+    content: "ответить";
+}
+
+.comment_control[data-type=cancel]::after {
+    content: "отмена";
+}
+
+.comment{
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.reply {
+    display: block;
+    /* position: absolute; */
+    line-height: 2;
+    font-weight: bold;
+    margin-left: 68%;
+    margin-top: 0;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+    background-color: steelblue;
+    padding: 4px;
+    outline: none;
+    border: 0;
+}
+
+.reply:hover {
+    background-color: black;
+    transition: 0.5s;
+}
+
+/* .reply:hover::before {
+    background-color: black;
+    transition: 0.5s;
+}
+
+.reply:hover::after{
+    background-color: steelblue;
+    transition: 0.5s;
+} */
