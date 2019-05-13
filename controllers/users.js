@@ -1,6 +1,6 @@
 const bCrypt = require('bcrypt-nodejs');
 const { validationResult } = require('express-validator/check');
-const mailer = require("./email")
+const mailer = require("../services/email")
 
 const loadPasportStrategies = (passport, user) => {
     const User = user;
@@ -61,7 +61,7 @@ const loadPasportStrategies = (passport, user) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }
-///////////////////////////////////////////////MAILER
+                            // MAILER
                             text = "<h1> If you want chain this email with your profile in Metida.tech, confirm this email. If you didn't send several querys, ignore this. </h1> <a href=\"metida.tech\"> I accept </a>"
                             mailer(data.email, "Confirm this email", text )
 
