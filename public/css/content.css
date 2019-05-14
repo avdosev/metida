@@ -2,14 +2,15 @@
     display: flex;
     justify-content: center;
     float: left;
-    width: 65%;
+    width: 45%;
 }
 
 .post {
     border-top: 2px solid grey;
     margin-bottom: 20px;
     width: 100%;
-}   
+}
+
 .post a {
     font-size: 20px;
     text-decoration: none;
@@ -17,6 +18,7 @@
     word-break: break-all;
     line-height: 30px;
 }
+
 .post a:hover {
     color: steelblue;
 }
@@ -37,7 +39,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 40vw;
+    /* max-width: 40vw; */
 }
 
 .content .post_text img {
@@ -62,4 +64,10 @@
     border-radius: 3px;
 
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 650px) {
+    .content {
+        width: 94%
+    }
 }
