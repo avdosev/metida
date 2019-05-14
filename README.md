@@ -35,7 +35,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ### Развертка на Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/avdosev/metida/tree/master)
+>оставляем некиту почитать [ссылочку](https://devcenter.heroku.com/articles/github-integration)
 
 ## Metida API
 
