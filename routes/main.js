@@ -52,6 +52,7 @@ const initAuthControllers = (app, passport) => {
     
     app.post(
         '/createArticle',
+        isLoggedIn,
         urlencodedParser,
         articleValidator,
         /* отправить на модерацию */

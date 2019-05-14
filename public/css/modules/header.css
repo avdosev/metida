@@ -59,3 +59,12 @@ hr {
     background-color: steelblue;
     color: whitesmoke;
 }/* tipical button hover  */
+
+@media screen and (max-width: 650px) {
+    .header {
+        height: 3rem;
+    }
+    .logoImg {
+        height: 2.4rem;
+    }
+}

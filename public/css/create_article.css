@@ -32,3 +32,11 @@ input[type='text'] {
     font-size: 15px;
     line-height: 34px;
 }
+
+
+@media screen and (max-width: 650px) {
+    form * {
+        width: 95%;
+        max-width: 95%
+    }
+}
