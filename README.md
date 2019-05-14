@@ -66,8 +66,6 @@ other : получаете сгенерированный html
 
 ## FAQ
 
-### MySql error
-
 Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
 
     Error: Unknown column 'puk' in 'field list'
@@ -76,16 +74,11 @@ other : получаете сгенерированный html
     
     drop table usersDB2.pukTable;  
 
-### Nodemailer MySql error
-
-    { [Error: connect ECONNREFUSED]
-    code: 'ECONNREFUSED',
-    errno: 'ECONNREFUSED',
-    syscall: 'connect' }
-
-Это проблема файрвола, фикси сам
-
-
+Nodemailer bug
+{ [Error: connect ECONNREFUSED]
+  code: 'ECONNREFUSED',
+  errno: 'ECONNREFUSED',
+  syscall: 'connect' }
 
 ## Структура проекта
 
