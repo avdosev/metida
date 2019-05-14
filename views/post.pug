@@ -27,10 +27,12 @@ body
             h3 Комментарии:
           .new_comment
             if authorised 
-                h3 Оставь коммент
+                h3 Оставить комментарий
                 form(action="/post/" + id + "/pushComment", method="post" novalidate)
-                    textarea#comment(name="comment", cols="30", rows="10", required='required', pattern='.{10,}')
-                    input(type="submit")
+                    textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
+                    .button
+                      input(type="submit", id="veiw", value = "Предпросмотр")
+                      input(type="submit", id="enter", value = "Отправить")
                     p <span class="commentError" aria-live="polite"></span>
             else
                 p Зарегистрируйся, если хочешь оставить коммент
