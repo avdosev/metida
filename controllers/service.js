@@ -1,20 +1,20 @@
-register = (req, res, next) => {
+const register = (req, res, next) => {
     res.render('register', { authorised: req.isAuthenticated() });
 };
 
-signin = (req, res, next) => {
+const signin = (req, res, next) => {
     res.render('signin', { authorised: req.isAuthenticated() });
 };
 
-createArticle = (req, res, next) => {
+const createArticle = (req, res, next) => {
     res.render('create_article', { authorised: req.isAuthenticated() });
 };
 
-home = (req, res, next) => {
+const home = (req, res, next) => {
     res.render('home', { authorised: req.isAuthenticated() });
 };
 
-showArticle = (req, res, next) => {
+const showArticle = (req, res, next) => {
     res.render('post', {
         authorised: req.isAuthenticated(),
         name: res.values.article.header,
@@ -23,23 +23,23 @@ showArticle = (req, res, next) => {
     });
 };
 
-logout = (req, res, next) => {
+const logout = (req, res, next) => {
     req.session.destroy(err => {
         res.redirect('/');
     });
 };
 
-index = (req, res, next) => {
+const index = (req, res, next) => {
     res.render('index', {
         authorised: req.isAuthenticated()
     });
 };
 
-errorPage = (req, res, next) => {
+const errorPage = (req, res, next) => {
     res.render('error_page');
 };
 
-freshCurrentPage = (req,res,next) => {
+const freshCurrentPage = (req,res,next) => {
     let currentUrl = req.url;
     if ( req.url.indexOf("pushComment") != -1) { //т.е. мы только что запушили коммент и нам надо катиться назад, на*уй
         currentUrl = req.url.slice(0, currentUrl.lastIndexOf('/')); // это выглядит оч странно
@@ -49,8 +49,7 @@ freshCurrentPage = (req,res,next) => {
     
 };
 
-
-authorProfile = (req, res, next) => {
+const authorProfile = (req, res, next) => {
     console.log(req.values)
     res.render('profile', { authorised: req.isAuthenticated() });
 }

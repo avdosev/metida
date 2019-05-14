@@ -18,7 +18,7 @@ hr {
     font-family: 'Cabin', sans-serif;
     font-size: 26px;
     margin-left: 1vh;
-    max-height: 2rem;
+    height: 4rem;  /* на большом монике все портится */
 }
 
 .logoImg {
