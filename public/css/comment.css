@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .new_comment form {
     display: flex;
     flex-direction: column;
-    align-items: center
 }
 
 .new_comment form *{
@@ -9,7 +10,7 @@
 }
 
 .new_comment form textarea {
-    min-width: 400px;
+    min-width: 800px;
     min-height: 170px
 }
 
@@ -34,6 +35,59 @@
     margin-bottom: 60px;
 }
 
+#comment{
+    resize: none;
+    border: 4px;
+    border-style: ridge;
+}
+
+.button{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Lato', sans-serif;
+}
+
+#veiw{
+    height: 30px;
+    width: 150px;
+    margin-left: 10px;
+    border: 1px;
+    border-style: solid;
+    border-color:black;
+    background-color: #f7f7f7;
+    transition: 0.5s;
+}
+
+#enter{
+    height: 30px;
+    width: 150px;
+    margin-right: 10px;
+    border: 3px;
+    border-style: double;
+    background-color: steelblue;
+    color: #f7f7f7;
+    transition: 0.5s;
+}
+
+#veiw:hover{
+    background-color: rgba(70, 131, 180, 0.75);
+    color: #f7f7f7;
+    transition: 0.5s;
+}
+
+#enter:hover{
+    background-color: rgba(70, 131, 180, 0.75);
+    transition: 0.5s;
+}
+
+#veiw:active{
+    background-color: rgba(70, 131, 180, 0.5);
+}
+
+#enter:active{
+    background-color: rgba(70, 131, 180, 0.5);
+}
+
 .reply {
     display: block;
     /* position: absolute; */
@@ -55,13 +109,3 @@
     background-color: black;
     transition: 0.5s;
 }
-
-/* .reply:hover::before {
-    background-color: black;
-    transition: 0.5s;
-}
-
-.reply:hover::after{
-    background-color: steelblue;
-    transition: 0.5s;
-} */
