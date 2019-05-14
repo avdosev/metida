@@ -27,15 +27,17 @@ function pushArticle(req, res, next) {
 }
 
 function getTopArticle(req, res, next) {
-    const begin = 1;
-    const end = 10;
-    const type = 'date';
+    const begin = req.body.begin ? req.body.begin : 0;
+    const end = req.body.end ? req.body.end : 10;
+    const type = req.body.type ? req.body.type : 'date';
+    const minDate = req.body.minDate ? new Date(req.body.minDate) : new Date(1999, 11, 11);
 
     initValues(req);
 
     req.values.begin = begin;
     req.values.end = end;
     req.values.type = type;
+    req.values.minDate = minDate;
 
     next()
 }

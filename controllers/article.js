@@ -12,33 +12,34 @@ function initValues(req) {
 function getArticleFromSQL(req, res, next) {
     const id = req.values.id;
     Article.findOne({ where: { id } }).then(article => {
-        if (article) {
-            initValues(res)
-            res.values.article = article;
-            next();
-        } else {
-            res.render('error_page');
-        }
+        initValues(res)
+        res.values.article = article;
+        next();
     });
 }
 
-function getTopRatingArticlesFromSQL(begin, end, callback) {
+function getTopRatingArticlesFromSQL(begin, end, minDate, callback) {
+
 }
 
-function getTopDateArticlesFromSQL(begin, end, callback) {
+function getTopDateArticlesFromSQL(begin, end, minDate, callback) {
     // SELECT * FROM `table` WHERE `date` BETWEEN '2010-10-21 0:00:00' AND '2012-10-21 23:59:59'
+    let count = end-begin
+    count = count < 0 ? -count : count;
     Article.findAll({
         attributes: [
             'id', 'header', 'disclaimer'
         ],
         where: {
             createdAt: {
-                [Op.gte]: new Date(1999, 11, 11), // просто дата можно вместо нее любую другую
+                [Op.gte]: minDate, // просто дата можно вместо нее любую другую
             }
         }, 
         order: [
             ['createdAt', 'DESC']
-        ]
+        ],
+        offset: begin, 
+        limit: count
     }).then((values) => {
         // TODO!!! filter interval
         callback(values, null);
@@ -47,7 +48,7 @@ function getTopDateArticlesFromSQL(begin, end, callback) {
     });
 }
 
-function getTopInterestedArticleFromSQL(begin, end, callback) {
+function getTopInterestedArticleFromSQL(begin, end, minDate, callback) {
 
 }
 // getTopFromSQL
@@ -65,6 +66,7 @@ function getTopArticles(req, res, next) {
     const begin = req.values.begin;
     const end = req.values.end;
     const type = req.values.type;
+    const minDate = req.values.minDate;
 
     const fnc = FuncByType[type];
 
@@ -77,7 +79,7 @@ function getTopArticles(req, res, next) {
     }
     
     if (fnc != undefined) {
-        fnc(begin, end, callback);
+        fnc(begin, end, minDate, callback);
     } else {
         callback([], 'not found function type request of toptypefnc')
     }

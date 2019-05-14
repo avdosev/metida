@@ -17,9 +17,22 @@ function redirectToArticle(req, res, next) {
     res.redirect(url)
 }
 
+function jsonArticle(req, res) {
+    if (res.values.article)
+        res.json(res.values.article)
+    else {
+        res.statusCode = 404;
+        res.send('not found')
+    }
+}
+
+const authController = require('./service.js');
+
 module.exports = {
     getComments,
     //pushComment,
     getTopArticles,
-    redirectToArticle
+    redirectToArticle,
+    jsonArticle,
+    ...authController
 };
