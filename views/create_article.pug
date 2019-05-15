@@ -19,16 +19,17 @@ body
   .layout_body
     form.pushArticle(action="/createArticle", method="post")
       <h3>Заголовок:</h3>
-      <input type="text" id="header" name="header" value="" minlength="5" />
-      <div class="description">Заголовок должен быть наполнен смыслом, чтобы можно было понять, о чем будет публикация.</div>
-      <div class="disclaimer">Дисклеймер или бан</div>
-      <textarea class="disclaimer" id="disclaimer" name="disclaimer" cols="30", rows="7" minlength="10"> </textarea>
+      <input type="text" id="header" name="header" placeholder="Заголовок должен передавать основной смысл публикации." value="" minlength="5" />
+      <div class="description">Заголовок должен передавать основной смысл публикации.</div>
+      <h3>Дисклеймер:</h3>
+      <textarea class="disclaimer" id="disclaimer" placeholder="Здесь приводится краткое описание статьи." name="disclaimer" cols="30", rows="7" minlength="10"></textarea>
+      <div class="description">Здесь приводится краткое описание статьи.</div> 
 
       label
         input(type="checkbox" id="previews")
         | Предпросмотр
-      <textarea class="create_area" id="article" name="art" cols="30", rows="7" minlength="10"> </textarea>
-      input#submit(type="submit" class="Btn" value="OK")
+      <textarea class="create_area" id="article" placeholder="Текст вашей статьи..." name="art" cols="30", rows="7" minlength="10"></textarea>
+      input#submit(type="submit" class="Btn" value="Отправить")
     content.content
       article.post_text
     //- #editor 
