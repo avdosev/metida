@@ -1,45 +1,47 @@
+const replicas = require("../../config/replicas")
 document.addEventListener('DOMContentLoaded', start);
 
 function start() {
-    var form = document.getElementsByTagName('form')[0];
     var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');
     var passwordError = document.querySelector('.passwordError');
-    var submit = document.querySelector("#submit")
     var password = document.querySelector('#password')
 
-    email.addEventListener('input', event => {
-            console.log(email.validity.valid);
+    function showError(widget, str) {
+        widget.innerHTML = str;
+        widget.className = 'error active';
+    }
+
+    function hideError(widget) {
+        widget.innerHTML = '';
+        widget.className = 'error';
+    }
+    
+    email.addEventListener('input', () => {
             if (email.validity.valid) {
-                emailError.innerHTML = '';
-                emailError.className = 'error';
+                hideError(emailError)
             }
             else {
-                emailError.innerHTML = 'Я же просил ввести емейл. Не зли меня';
-                emailError.className = 'error active';
+                showError(emailError, replicas.validators.strEmailError )
             }
         },
         false
     );
 
-    password.addEventListener('input', event => {
+    password.addEventListener('input', () => {
         if(password.validity.valid) {
-            passwordError.innerHTML = '';
-            passwordError.className = 'error';
+            hideError(passwordError)
         }
         else {
-            passwordError.innerHTML = 'Пароль должен быть больше 5 символов';
-            passwordError.className = 'error active';
+            showError(passwordError, replicas.validators.strPasswordError)    
         }
 
         
     })
 
     document.addEventListener('submit', event => {
-            console.log('ЖМЯК');
             if (!email.validity.valid && !password.validity.valid) {
-                emailError.innerHTML = 'Вводи почту дядя';
-                emailError.className = 'error active';
+                showError(emailError, replicas.validators.strEventEmailError)
                 event.preventDefault();
             }
         },
