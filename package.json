@@ -4,7 +4,7 @@
   "description": "Small blog-platform",
   "main": "app.js",
   "scripts": {
-    "test": "echo puk",
+    "test": "npm run lint",
     "start": "node app.js",
     "lint": "eslint \"./**/*.js\" "
   },

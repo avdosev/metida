@@ -42,13 +42,6 @@
     /* max-width: 40vw; */
 }
 
-.content .post_text img {
-    max-width: 100%;
-    height: auto;
-    border: 10px black;
-    border-radius: 15px; /* хз может убрать */
-}
-
 .content {
     display: flex;
     justify-content: center;
