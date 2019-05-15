@@ -4,8 +4,7 @@ const validators = {
     strEventEmailError: 'Вводи почту правильно',
     strRepasswordError: 'Пароли не совпадают.',
     strLoginError: 'Логин должен быть больше 3 символов'
-}
-
+};
 
 export { validators }
 

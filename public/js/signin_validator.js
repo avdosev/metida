@@ -1,5 +1,5 @@
 //import { validators }  from './replicas/replicas';
-const validators = {////поправить
+const validators = { ////неприемлимо
     strEmailError:  'Я же просил ввести емейл. Не зли меня',
     strPasswordError: 'Пароль должен быть больше 5 символов',
     strEventEmailError: 'Вводи почту правильно',
@@ -8,7 +8,6 @@ const validators = {////поправить
 }
 
 document.addEventListener('DOMContentLoaded', start);
-
 // function asyncScript(src, callback) {
 //     const script = document.createElement('script')
 //     script.src = src;
@@ -17,8 +16,15 @@ document.addEventListener('DOMContentLoaded', start);
 //     document.head.appendChild(script)
 // }
 
+function include(url) {
+    var script = document.createElement('script');
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+
 function start() {
     //asyncScript("./replicas/replicas")
+    include("./replicas")
 
     var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');

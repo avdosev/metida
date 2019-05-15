@@ -1,3 +1,8 @@
+comment1 = { 
+    commentError: "Коммент уж слишком маленький. Прям как ...",
+    commentEventError: "Коммент не удовлетворяет требованиям"
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const post = document.querySelector('.post_text');
     const id = post.id;
@@ -19,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     comment.addEventListener('input', () => {
             const value = comment.value
-            if (value.match(/^.{10,}/)) {
+            if (value.match(/^.{6,}/)) { 
                 commentError.innerHTML = '';
                 commentError.className = 'commentError error';
             } else {
-                commentError.innerHTML = 'Коммент уж слишком маленький. Прям как ...';
+                commentError.innerHTML = comment1.commentError;
                 commentError.className = 'commentError error active';
             }
         },
@@ -31,10 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     document.addEventListener('submit', event => {
-            const item = event;
             console.log('ЖМЯК', event);
             if (!comment.validity.valid) {
-                commentError.innerHTML = 'Коммент не удовлетворяет требованиям';
+                commentError.innerHTML = comment1.commentEventError;
                 commentError.className = 'error active';
                 event.preventDefault() //не пускаем его дальше
             }
