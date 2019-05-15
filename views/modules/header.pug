@@ -8,7 +8,9 @@ header.header
   form.regSection 
   
     if authorised 
-      a#createArticle(href='/createArticle') Написать
+      a#createArticle(href='/createArticle')
+        span.btn_text Написать
+        img.icon(src="/public/img/create_article_white_icon.png")
       a#home(href='/home') Профиль
       a#logout(href='/logout') Выйти
     else
