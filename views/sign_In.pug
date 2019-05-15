@@ -13,7 +13,7 @@ head
 body
   include modules/header 
   .inputForm 
-    form.reg(action="/signIn", method="post" novalidate)
+    form.reg(action="/sign_In", method="post" novalidate)
       p Email
       input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+')
       <span class="emailError" aria-live="polite"></span>
