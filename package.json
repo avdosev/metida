@@ -4,8 +4,9 @@
   "description": "Small blog-platform",
   "main": "app.js",
   "scripts": {
-    "test": "",
-    "start": "node app.js"
+    "test": "echo puk",
+    "start": "node app.js",
+    "lint": "eslint \"./**/*.js\" "
   },
   "repository": {
     "type": "git",
@@ -37,8 +38,9 @@
     "sequelize": "^5.7.4",
     "sequelize-cli": "^5.4.0",
     "serve-favicon": "^2.5.0"
-  },
-  "devDependencies": {
+},
+"devDependencies": {
+    "eslint": "^5.16.0",
     "prettier": "1.17.0"
   }
 }
