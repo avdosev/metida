@@ -132,7 +132,13 @@ function updateArticle(req, res, next) {
 }
 
 function removeArticle(req, res, next) {
-    
+    const article = req.values.article
+    Article.destroy({
+        where: {
+          id: article.id
+        },
+        truncate: true /* this will ignore where and truncate the table instead */
+    });
 }
 
 module.exports = {
