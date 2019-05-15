@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function insertPostPreview(objPost, insertedElem) {
-    //console.log(objPost)
     const url = `/post/${objPost.id}`
     const htmlPost = `
     <div class = "post">

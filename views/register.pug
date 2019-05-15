@@ -3,16 +3,17 @@ head
   meta(charset='UTF-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  title registration
+  title Регистрация
   style
     include ../public/css/style.css
     include ../public/css/input.css
-  script
-    include ../public/js/register_validator.js
+
 
 
 body
   include modules/header 
+  script(type='module', src='../public/js/register_validator.js')
+  script(type='text/javascript', src='../public/js/replicas.js')
 
   .inputForm
     form.reg(action="/register", method="post", name="register" novalidate)
