@@ -10,6 +10,13 @@ a {
     text-decoration: none;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    border: 10px black;
+    border-radius: 15px; /* хз может убрать */
+}
+
 .rightSection {
     margin-left: 20px;
     height: 100vh;
