@@ -1,3 +1,9 @@
+:root {
+    --main-bord-color: #d9d9d9;
+    --main-hover-color: blue;
+    --main-focus-color: steelblue;
+  }
+
 .pushArticle {
     display: flex;
     flex-direction: column;
@@ -12,20 +18,19 @@
 .create_area {
     outline: none;
     padding: 20px 20px 0;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--main-bord-color);
     min-height: 500px !important;
     width: 90%;
     resize: vertical;
 }
 
 .create_area:hover{
-    border-color: blue;
+    border-color: var(--main-hover-color);
 }
 
 .create_area:focus{
-    border-color: steelblue;
+    border-color: var(--main-focus-color);
 }
-
 
 #submit{
     height: 30px;
@@ -33,7 +38,7 @@
     margin-right: 10px;
     border: 3px;
     border-style: double;
-    background-color: steelblue;
+    background-color: #bea9d1;
     color: #f7f7f7;
     transition: 0.5s;
 }
@@ -50,7 +55,7 @@
 /* переделать минимальные и максимальные занчаения, тк при изменении размеров экрана происходит троллинг */
 .disclaimer{ 
     outline: none;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--main-bord-color);
     padding: 10px 20px 0;
     width: 35vw;
     min-height: 5vw;
@@ -59,27 +64,27 @@
 }
 
 .disclaimer:hover{
-    border-color: blue;
+    border-color: var(--main-hover-color);
 }
 
 .disclaimer:focus{
-    border-color: steelblue;
+    border-color: var(--main-focus-color);
 }
 
-.description {
+/* .description {
     margin-top: 5px;
     color: #7f428cb0;
     font-size: 15px;
     line-height: 15px;
     
-}
+} */
 
 #header {
     margin: 0;
     padding: 4px 20px 0px;
     width: 35vw;
     height: 34px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--main-bord-color);
     outline: none;
     color: #3b3b3b;
     font-size: 15px;
@@ -87,16 +92,12 @@
 }
 
 #header:hover{
-    border-color: blue;
+    border-color: var(--main-hover-color);
 }
 
 #header:focus{
-    border-color: steelblue;
+    border-color: var(--main-focus-color);
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9482b85df4808cd97ed444bbb2f697b4116117b3
 
 @media screen and (max-width: 650px) {
     form * {

@@ -28,11 +28,10 @@ input:invalid{
     background-color: #FDD;
   }
   
-  input:focus:invalid {
-    outline: none;
-  }
+input:focus:invalid {
+   outline: none;
+}
   
-
 input:valid {
     border: 1px solid steelblue;
 }
@@ -40,7 +39,6 @@ input:valid {
 input:hover{
     border: 1px solid blue;
 }
-
 
 p {
     font-family: 'Lato', sans-serif;
