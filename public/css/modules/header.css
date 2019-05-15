@@ -60,11 +60,29 @@ hr {
     color: whitesmoke;
 }/* tipical button hover  */
 
+#createArticle .btn_text {
+    display: inline;
+}
+#createArticle .icon {
+    display: none;
+}
+
 @media screen and (max-width: 650px) {
     .header {
         height: 3rem;
     }
     .logoImg {
         height: 2.4rem;
+        min-width: 10rem;
+    }
+    .regSection a {
+        padding: 0.1rem 0.3rem;
+    }
+    #createArticle .btn_text {
+        display: none;
+    }
+    #createArticle .icon {
+        display: inline;
+        height: 1.5rem;
     }
 }

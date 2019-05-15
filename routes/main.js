@@ -36,7 +36,7 @@ const initAuthControllers = (app, passport) => {
 
     app.get('/', urlencodedParser, Respondent.index);
     app.get('/register', Respondent.register);
-    app.get('/signin', Respondent.signin);
+    app.get('/sign_In', Respondent.signin);
     app.get('/home', isLoggedIn, Respondent.home);
     app.get('/createArticle', isLoggedIn, Respondent.createArticle);
     app.get('/logout', Respondent.logout);
@@ -73,12 +73,12 @@ const initAuthControllers = (app, passport) => {
     );
 
     app.post(
-        '/signin',
+        '/sign_In',
         urlencodedParser,
         userLoginValidator,
         passport.authenticate('local-signin', {
             successRedirect: '/',
-            failureRedirect: '/signin',
+            failureRedirect: '/sign_In',
             failureFlash: true
         })
     );

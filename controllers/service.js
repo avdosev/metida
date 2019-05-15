@@ -3,7 +3,7 @@ const register = (req, res, next) => {
 };
 
 const signin = (req, res, next) => {
-    res.render('signin', { authorised: req.isAuthenticated() });
+    res.render('sign_In', { authorised: req.isAuthenticated() });
 };
 
 const createArticle = (req, res, next) => {

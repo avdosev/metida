@@ -108,8 +108,42 @@ function pushArticleToSQL(req, res, next) {
     }
 }
 
+function updateArticle(req, res, next) {
+    const article = req.values.article
+    Article.update({
+        content: article.content,
+        header: article.header,
+        disclaimer: article.disclaimer
+    }, {
+        where: {
+            id: article.id
+        }
+    })
+    .catch(error => {
+        console.error(error)
+        res.values.success = false
+        next()
+    })
+    .then((value) => {
+        res.values.success = true
+        res.values.article = value.dataValues;
+        next()
+    })
+}
+
+function removeArticle(req, res, next) {
+    const article = req.values.article
+    Article.destroy({
+        where: {
+          id: article.id
+        },
+        truncate: true /* this will ignore where and truncate the table instead */
+    });
+}
+
 module.exports = {
     getArticleFromSQL,
     pushArticleToSQL,
-    getTopArticles
+    getTopArticles,
+    updateArticle
 };
