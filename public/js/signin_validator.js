@@ -1,45 +1,71 @@
+//import { validators }  from './replicas/replicas';
+const validators = { ////неприемлимо
+    strEmailError:  'Я же просил ввести емейл. Не зли меня',
+    strPasswordError: 'Пароль должен быть больше 5 символов',
+    strEventEmailError: 'Вводи почту правильно',
+    strRepasswordError: 'Пароли не совпадают.',
+    strLoginError: 'Логин должен быть больше 3 символов'
+}
+
 document.addEventListener('DOMContentLoaded', start);
+// function asyncScript(src, callback) {
+//     const script = document.createElement('script')
+//     script.src = src;
+//     script.async = true;
+//     script.onload = callback;
+//     document.head.appendChild(script)
+// }
+
+function include(url) {
+    var script = document.createElement('script');
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
 
 function start() {
-    var form = document.getElementsByTagName('form')[0];
+    //asyncScript("./replicas/replicas")
+    include("./replicas")
+
     var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');
     var passwordError = document.querySelector('.passwordError');
-    var submit = document.querySelector("#submit")
     var password = document.querySelector('#password')
 
-    email.addEventListener('input', event => {
-            console.log(email.validity.valid);
+    function showError(widget, str) {
+        widget.innerHTML = str;
+        widget.className = 'error active';
+    }
+
+    function hideError(widget) {
+        widget.innerHTML = '';
+        widget.className = 'error';
+    }
+    
+    email.addEventListener('input', () => {
             if (email.validity.valid) {
-                emailError.innerHTML = '';
-                emailError.className = 'error';
+                hideError(emailError)
             }
             else {
-                emailError.innerHTML = 'Я же просил ввести емейл. Не зли меня';
-                emailError.className = 'error active';
+                showError(emailError, validators.strEmailError )
             }
         },
         false
     );
 
-    password.addEventListener('input', event => {
+    password.addEventListener('input', () => {
         if(password.validity.valid) {
-            passwordError.innerHTML = '';
-            passwordError.className = 'error';
+            hideError(passwordError)
         }
         else {
-            passwordError.innerHTML = 'Пароль должен быть больше 5 символов';
-            passwordError.className = 'error active';
+            showError(passwordError, validators.strPasswordError)    
         }
 
         
     })
 
     document.addEventListener('submit', event => {
-            console.log('ЖМЯК');
             if (!email.validity.valid && !password.validity.valid) {
-                emailError.innerHTML = 'Вводи почту дядя';
-                emailError.className = 'error active';
+                showError(emailError, validators.strEventEmailError)
                 event.preventDefault();
             }
         },

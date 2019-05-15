@@ -1,20 +1,20 @@
-const register = (req, res, next) => {
+const register = (req, res ) => {
     res.render('register', { authorised: req.isAuthenticated() });
 };
 
-const signin = (req, res, next) => {
+const signin = (req, res ) => {
     res.render('sign_In', { authorised: req.isAuthenticated() });
 };
 
-const createArticle = (req, res, next) => {
+const createArticle = (req, res) => {
     res.render('create_article', { authorised: req.isAuthenticated() });
 };
 
-const home = (req, res, next) => {
+const home = (req, res ) => {
     res.render('home', { authorised: req.isAuthenticated() });
 };
 
-const showArticle = (req, res, next) => {
+const showArticle = (req, res ) => {
     res.render('post', {
         authorised: req.isAuthenticated(),
         name: res.values.article.header,
@@ -23,19 +23,19 @@ const showArticle = (req, res, next) => {
     });
 };
 
-const logout = (req, res, next) => {
+const logout = (req, res ) => {
     req.session.destroy(err => {
         res.redirect('/');
     });
 };
 
-const index = (req, res, next) => {
+const index = (req, res ) => {
     res.render('index', {
         authorised: req.isAuthenticated()
     });
 };
 
-const errorPage = (req, res, next) => {
+const errorPage = (req, res ) => {
     res.render('error_page');
 };
 
@@ -49,7 +49,7 @@ const freshCurrentPage = (req,res,next) => {
     
 };
 
-const authorProfile = (req, res, next) => {
+const authorProfile = (req, res ) => {
     console.log(req.values)
     res.render('profile', { authorised: req.isAuthenticated() });
 }
