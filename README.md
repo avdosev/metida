@@ -13,7 +13,8 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ### Развертка на linux машине
 
-Есть [небольшой](https://github.com/Sapfir0/scriptForOurLife/tree/master/deploymentMetida) скрипт, поднимающий сервер на unix)
+~~Есть [небольшой](https://github.com/Sapfir0/scriptForOurLife/tree/master/deploymentMetida) скрипт, поднимающий сервер на unix)~~
+Также, как и на windows. 
 
 ### Развертка на Windows машине
 
@@ -32,9 +33,27 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 Таблицы и поля в ней создадутся автоматически
 
-Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде 
-<code>Error: Unknown column 'puk' in 'field list' </code> , то тогда либо добавь новый столбец в локальную БД с соблюдением типов, либо урони ее
-<code>drop table usersDB2.pukTable; </code> 
+### Развертка на Heroku
+
+>оставляем некиту почитать [ссылочку](https://devcenter.heroku.com/articles/github-integration)
+
+## Metida API
+
+Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, ниже можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы.
+#### get
+1. `/post/:id/` - сформированную статью (html, в будущем возможен json)
+1. `/post/:id/non_parsed` - не сформированная статья в json
+1. `/post/:id/comments` - json массив, внутри которого все комментарии в отсортированном по дате порядке
+1. `/public/:filefolder/:filename` - файл, лежаший на сервере `css/js/img/json` , предназначеный для общего пользования
+1. `/top` - определенное количество статей в заданном порядке и количестве
+
+other : получаете сгенерированный html
+
+#### post 
+1. `/createArticle` - создается запись к бд на вход статья. Для отправки требуется регистрация юзера
+1. `/post/:id/pushComment` - вкидывание коммента, если answeringId не задан или равен null, то считается, что это ответ на статью, в противном случае на комментарий
+1. `/register` - аналогично следующему
+1. `/signin` - аналогично предыдущему
 
 ## Код стайл
 
@@ -47,6 +66,36 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 3. в то время как весь код в верблюжьем стайле: слышьЯВызываюПокемона()
 4. функции должны быть с максимально понятным названием 
 
+
+Теперь, если ты сделал что-то, и не смог исправить ошибку, или просто нашел баг в работе и не смог сразу поправить, возможно, стоит создать issue с этой ошибкой, чтобы она мозолила глаза и кто-нибудь(хм) ее пофиксил
+
+## FAQ
+
+### MySQL error
+
+Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
+
+    Error: Unknown column 'puk' in 'field list'
+
+, то тогда, либо добавь новый столбец в локальную БД с соблюдением типов, либо очисти ее
+    
+    drop table usersDB2.pukTable;  
+
+### Nodemailer errors
+#### Ошибка портов
+    { [Error: connect ECONNREFUSED]
+    code: 'ECONNREFUSED',
+    errno: 'ECONNREFUSED',
+    syscall: 'connect' }
+
+  Проверь настроки файрволла
+
+#### Ошибка хз
+    Please\n534-5.7.14 log in via your web browser and then try again.\n534-5.7.14  Learn more at\n534 5.7.14  https://support.google.com/mail/answer/78754 h123sm9284819qkf.5 - gsmtp',
+    responseCode: 534,
+    command: 'AUTH PLAIN' }
+
+Залогиниться мб
 
 ## Структура проекта
 
@@ -101,5 +150,3 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
     docker build .
     docker images
     docker run  
-
-Теперь, если ты сделал что-то, и не смог исправить ошибку, или просто нашел баг в работе и не смог сразу поправить, возможно, стоит создать issue с этой ошибкой, чтобы она мозолила глаза и кто-нибудь(хм) ее пофиксил
