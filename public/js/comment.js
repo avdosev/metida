@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const post = document.querySelector('.post_text');
     const id = post.id;
+    const commentError = document.querySelector('.commentError');
+
     fetch(`/post/${id}/comments`)
         .then(value => {
             console.log(value);
@@ -15,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         });
 
-    comment.addEventListener('input', event => {
-            const commentError = document.querySelector('.commentError');
+    comment.addEventListener('input', () => {
             const value = comment.value
             if (value.match(/^.{10,}/)) {
                 commentError.innerHTML = '';
@@ -33,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const item = event;
             console.log('ЖМЯК', event);
             if (!comment.validity.valid) {
-                commentError.innerHTML = 'ОМАГАД';
+                commentError.innerHTML = 'Коммент не удовлетворяет требованиям';
                 commentError.className = 'error active';
+                event.preventDefault() //не пускаем его дальше
             }
         },
         false

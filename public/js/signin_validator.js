@@ -1,7 +1,25 @@
-const replicas = require("../../config/replicas")
+//import { validators }  from './replicas/replicas';
+const validators = {////поправить
+    strEmailError:  'Я же просил ввести емейл. Не зли меня',
+    strPasswordError: 'Пароль должен быть больше 5 символов',
+    strEventEmailError: 'Вводи почту правильно',
+    strRepasswordError: 'Пароли не совпадают.',
+    strLoginError: 'Логин должен быть больше 3 символов'
+}
+
 document.addEventListener('DOMContentLoaded', start);
 
+// function asyncScript(src, callback) {
+//     const script = document.createElement('script')
+//     script.src = src;
+//     script.async = true;
+//     script.onload = callback;
+//     document.head.appendChild(script)
+// }
+
 function start() {
+    //asyncScript("./replicas/replicas")
+
     var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');
     var passwordError = document.querySelector('.passwordError');
@@ -22,7 +40,7 @@ function start() {
                 hideError(emailError)
             }
             else {
-                showError(emailError, replicas.validators.strEmailError )
+                showError(emailError, validators.strEmailError )
             }
         },
         false
@@ -33,7 +51,7 @@ function start() {
             hideError(passwordError)
         }
         else {
-            showError(passwordError, replicas.validators.strPasswordError)    
+            showError(passwordError, validators.strPasswordError)    
         }
 
         
@@ -41,7 +59,7 @@ function start() {
 
     document.addEventListener('submit', event => {
             if (!email.validity.valid && !password.validity.valid) {
-                showError(emailError, replicas.validators.strEventEmailError)
+                showError(emailError, validators.strEventEmailError)
                 event.preventDefault();
             }
         },

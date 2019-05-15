@@ -1,4 +1,11 @@
-const replicas = require('../../config/replicas');
+import { validators }  from './replicas/replicas'
+// const validators = { ////поправить
+//     strEmailError:  'Я же просил ввести емейл. Не зли меня',
+//     strPasswordError: 'Пароль должен быть больше 5 символов',
+//     strEventEmailError: 'Вводи почту правильно',
+//     strRepasswordError: 'Пароли не совпадают.',
+//     strLoginError: 'Логин должен быть больше 3 символов'
+// }
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -28,7 +35,7 @@ function start() {
                 hideError(emailError)
             }
             else {
-                showError(emailError, replicas.validators.strEmailError)
+                showError(emailError, validators.strEmailError)
             }
         },
         false
@@ -42,11 +49,11 @@ function start() {
                 hideError(repasswordError)
             }
             else {
-                showError(repasswordError, replicas.validators.strRepasswordError)
+                showError(repasswordError, validators.strRepasswordError)
             }
         }
         else {
-            showError(passwordError, replicas.validators.strPasswordError)
+            showError(passwordError, validators.strPasswordError)
         }
     })
 
@@ -56,7 +63,7 @@ function start() {
             hideError(loginError)
         }
         else {
-            showError(loginError, replicas.validators.strLoginError )
+            showError(loginError, validators.strLoginError )
         }
     })
 
@@ -68,11 +75,11 @@ function start() {
                 hideError(repasswordError)
             }
             else {
-                showError(repasswordError, replicas.validators.strRepasswordError)
+                showError(repasswordError, validators.strRepasswordError)
             }
         }
         else {
-            showError(repasswordError, replicas.validators.strPasswordError)
+            showError(repasswordError, validators.strPasswordError)
 
         }
     })
