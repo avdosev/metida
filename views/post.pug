@@ -31,7 +31,7 @@ body
                 form(action="/post/" + id + "/pushComment", method="post" novalidate)
                     textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
                     .button
-                      input(type="submit", id="veiw", value = "Предпросмотр")
+                      input(type="button", id="veiw", value = "Предпросмотр")
                       input(type="submit", id="enter", value = "Отправить")
                     p <span class="commentError" aria-live="polite"></span>
             else
