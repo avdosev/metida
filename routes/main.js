@@ -73,12 +73,12 @@ const initAuthControllers = (app, passport) => {
     );
 
     app.post(
-        '/signin',
+        '/sign_In',
         urlencodedParser,
         userLoginValidator,
         passport.authenticate('local-signin', {
             successRedirect: '/',
-            failureRedirect: '/signin',
+            failureRedirect: '/sign_In',
             failureFlash: true
         })
     );
