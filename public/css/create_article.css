@@ -93,6 +93,10 @@
 #header:focus{
     border-color: steelblue;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9482b85df4808cd97ed444bbb2f697b4116117b3
 
 @media screen and (max-width: 650px) {
     form * {

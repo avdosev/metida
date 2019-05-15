@@ -13,7 +13,8 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ### Развертка на linux машине
 
-Есть [небольшой](https://github.com/Sapfir0/scriptForOurLife/tree/master/deploymentMetida) скрипт, поднимающий сервер на unix)
+~~Есть [небольшой](https://github.com/Sapfir0/scriptForOurLife/tree/master/deploymentMetida) скрипт, поднимающий сервер на unix)~~
+Также, как и на windows. 
 
 ### Развертка на Windows машине
 
@@ -32,23 +33,27 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 Таблицы и поля в ней создадутся автоматически
 
+### Развертка на Heroku
+
+>оставляем некиту почитать [ссылочку](https://devcenter.heroku.com/articles/github-integration)
+
 ## Metida API
 
-наш сервер имеет уникальное многофункциональное удобное и не продуманное апи ниже можно чекнуть что ретюрнят основные методы и что нужно для их нормальной работы
+Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, ниже можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы.
 #### get
-1. /post/:id/ - сформированную статью (html, в будущем возможен json)
-1. /post/:id/non_parsed - Не сформированная статья в json
-1. /post/:id/comments - json массив внутри которого все комментарии в отсортированном по дате порядке
-1. /public/:filefolder/:filename - файл лежаший на сервере css/js/img/json предназначеный для общего пользования
-1. /top - определенное количество статей в заданом порядке и количестве
+1. `/post/:id/` - сформированную статью (html, в будущем возможен json)
+1. `/post/:id/non_parsed` - не сформированная статья в json
+1. `/post/:id/comments` - json массив, внутри которого все комментарии в отсортированном по дате порядке
+1. `/public/:filefolder/:filename` - файл, лежаший на сервере `css/js/img/json` , предназначеный для общего пользования
+1. `/top` - определенное количество статей в заданном порядке и количестве
 
 other : получаете сгенерированный html
 
 #### post 
-1. /createArticle - создается запись к бд на вход статья. Для отправки требуется регистрация юзера
-1. /post/:id/pushComment - вкидывание коммента, если answeringId не задан или равен null то считается что это ответ на статью в противном случае на комментарий
-1. /register - аналогично следующему
-1. /signin - аналогично предыдущему
+1. `/createArticle` - создается запись к бд на вход статья. Для отправки требуется регистрация юзера
+1. `/post/:id/pushComment` - вкидывание коммента, если answeringId не задан или равен null, то считается, что это ответ на статью, в противном случае на комментарий
+1. `/register` - аналогично следующему
+1. `/signin` - аналогично предыдущему
 
 ## Код стайл
 
@@ -66,7 +71,7 @@ other : получаете сгенерированный html
 
 ## FAQ
 
-### MySql error
+### MySQL error
 
 Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
 
@@ -76,16 +81,21 @@ other : получаете сгенерированный html
     
     drop table usersDB2.pukTable;  
 
-### Nodemailer MySql error
-
+### Nodemailer errors
+#### Ошибка портов
     { [Error: connect ECONNREFUSED]
     code: 'ECONNREFUSED',
     errno: 'ECONNREFUSED',
     syscall: 'connect' }
 
-Это проблема файрвола, фикси сам
+  Проверь настроки файрволла
 
+#### Ошибка хз
+    Please\n534-5.7.14 log in via your web browser and then try again.\n534-5.7.14  Learn more at\n534 5.7.14  https://support.google.com/mail/answer/78754 h123sm9284819qkf.5 - gsmtp',
+    responseCode: 534,
+    command: 'AUTH PLAIN' }
 
+Залогиниться мб
 
 ## Структура проекта
 
