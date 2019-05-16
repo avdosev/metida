@@ -3,6 +3,7 @@
     justify-content: center;
     float: left;
     flex-direction: column;
+    align-items: center;
     width: 45%;
 }
 

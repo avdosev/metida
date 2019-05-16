@@ -41,7 +41,7 @@
     border-style: ridge;
 }
 
-.button{
+.button {
     display: flex;
     justify-content: space-between;
     font-family: 'Lato', sans-serif;
