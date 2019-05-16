@@ -15,7 +15,7 @@
   },
   "production": {
     "username": "be81182ff73cbf",
-    "password": "8061ee7",
+    "password": "8061ee7e",
     "database": "heroku_67dc7b817fb9731",
     "host": "us-cdbr-iron-east-02.cleardb.net",
     "dialect": "mysql"
