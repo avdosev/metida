@@ -1,10 +1,12 @@
-modules/header.pug
 style
   include ../../public/css/modules/header.css
+
+//link(rel="stylesheet", href="../../public/css/modules/header.css")
+
 header.header
   .logo  
     a(href='/')
-      img(src='/public/img/logo.webp', alt='Metida' class="logoImg")   
+      img(src="/public/img/logo.png" alt='Metida' class="logoImg" ismap)   
   form.regSection 
   
     if authorised 

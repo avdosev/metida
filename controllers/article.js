@@ -10,8 +10,8 @@ function initValues(req) {
 }
 
 function getArticleFromSQL(req, res, next) {
-    const id = req.values.id;
-    Article.findOne({ where: { id } }).then(article => {
+    const article = req.values.article;
+    Article.findOne({ where: article }).then(article => {
         initValues(res)
         res.values.article = article;
         next();
@@ -136,8 +136,7 @@ function removeArticle(req, res, next) {
     Article.destroy({
         where: {
           id: article.id
-        },
-        truncate: true /* this will ignore where and truncate the table instead */
+        }
     });
 }
 
@@ -145,5 +144,6 @@ module.exports = {
     getArticleFromSQL,
     pushArticleToSQL,
     getTopArticles,
-    updateArticle
+    updateArticle,
+    removeArticle
 };

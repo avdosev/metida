@@ -1,7 +1,21 @@
+const validators = { ////поправить
+    strEmailError:  'Я же просил ввести емейл. Не зли меня',
+    strPasswordError: 'Пароль должен быть больше 5 символов',
+    strEventEmailError: 'Вводи почту правильно',
+    strRepasswordError: 'Пароли не совпадают.',
+    strLoginError: 'Логин должен быть больше 3 символов'
+}
+
+function include(url) {
+    var script = document.createElement('script');
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+
 document.addEventListener('DOMContentLoaded', start);
-///мне нихуя не нравится что мы не используем функции из валидации в авторизации, но пох
 
 function start() {
+    //include("./replicas")
     var emailError = document.querySelector('.emailError');
     var loginError = document.querySelector('.loginError');
     var passwordError = document.querySelector('.passwordError');
@@ -22,18 +36,18 @@ function start() {
         widget.className = 'error';
     }
 
-    email.addEventListener('input', event => {
+    email.addEventListener('input', () => {
         if (email.validity.valid) {
                 hideError(emailError)
             }
             else {
-                showError(emailError,'Я же просил ввести емейл. Не зли меня')
+                showError(emailError, validators.strEmailError)
             }
         },
         false
     );
 
-    password.addEventListener('input', event => {
+    password.addEventListener('input', () => {
         if(password.validity.valid) {
             hideError(passwordError)
 
@@ -41,25 +55,25 @@ function start() {
                 hideError(repasswordError)
             }
             else {
-                showError(repasswordError, 'Пароли не совпадают. Ты пидр')
+                showError(repasswordError, validators.strRepasswordError)
             }
         }
         else {
-            showError(passwordError, 'Пароль должен быть больше 5 символов')
+            showError(passwordError, validators.strPasswordError)
         }
     })
 
 
-    login.addEventListener('input', event => {
+    login.addEventListener('input', () => {
         if(login.validity.valid) {
             hideError(loginError)
         }
         else {
-            showError(loginError,'Логин больше 3 символов')
+            showError(loginError, validators.strLoginError )
         }
     })
 
-    repassword.addEventListener('input', event => {
+    repassword.addEventListener('input', () => {
         if(repassword.validity.valid) {
             hideError(repasswordError)
 
@@ -67,16 +81,15 @@ function start() {
                 hideError(repasswordError)
             }
             else {
-                showError(repasswordError,'Пароли не совпадают. Ты пидр')
+                showError(repasswordError, validators.strRepasswordError)
             }
         }
         else {
-            showError(repasswordError,'Пароль должен быть больше 5 символов')
+            showError(repasswordError, validators.strPasswordError)
 
         }
     })
 
-    
 
     document.addEventListener('submit', event => {
             console.log('ЖМЯК'); //тут будет проеб, т.к. это проверяет только по хтмл паттернам
