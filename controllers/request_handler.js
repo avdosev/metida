@@ -42,12 +42,12 @@ function getTopArticle(req, res, next) {
     next()
 }
 
-function getArticle(req, res, next) {
+function getArticleId(req, res, next) {
     const id = req.params.id
 
     initValues(req);
 
-    req.values.id = id;
+    req.values.article = { id };
 
     next()
 }
@@ -107,7 +107,7 @@ function getFile(req, res, next) {
 module.exports = {
     pushArticle,
     getTopArticle,
-    getArticle,
+    getArticleId,
     getComments,
     pushComment,
     getFile

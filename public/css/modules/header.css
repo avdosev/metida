@@ -21,7 +21,7 @@ hr {
     height: 4rem;  /* на большом монике все портится */
 }
 
-.logoImg {
+img.logoImg {
     height: 3rem; /* ы */
     padding: 7px 0px 0px 9px;
 }
@@ -71,7 +71,7 @@ hr {
     .header {
         height: 3rem;
     }
-    .logoImg {
+    img.logoImg {
         height: 2.4rem;
         min-width: 10rem;
     }

@@ -10,7 +10,9 @@ const bodyParser = require('body-parser');
 const {
     pushArticleToSQL,
     getArticleFromSQL,
-    getTopArticles
+    getTopArticles,
+    updateArticle, 
+    removeArticle
 } = require('../controllers/article.js');
 
 const {
@@ -34,21 +36,36 @@ const initAuthControllers = (app, passport) => {
     app.use(bodyParser.json());
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+    // -- PAGES --
+
     app.get('/', urlencodedParser, Respondent.index);
     app.get('/register', Respondent.register);
     app.get('/sign_In', Respondent.signin);
     app.get('/home', isLoggedIn, Respondent.home);
     app.get('/createArticle', isLoggedIn, Respondent.createArticle);
     app.get('/logout', Respondent.logout);
-    app.get('/post/:id/', Handler.getArticle, getArticleFromSQL, Respondent.showArticle);
-    app.get('/post/:id/non_parsed', Handler.getArticle, getArticleFromSQL, Respondent.jsonArticle);
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
-    app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
-    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
+    app.get('/post/:id/', Handler.getArticleId, getArticleFromSQL, Respondent.showArticle);
     app.get('/author/:login', Respondent.authorProfile )
 
+    // -- ARTICLES API -- 
+    
+    app.get('/post/:id/non_parsed', Handler.getArticleId, getArticleFromSQL, Respondent.jsonArticle);
+    // app.post('/post/:id/update', Handler.getArticle) // TODO
+    app.post('/post/:id/delete', Handler.getArticleId, removeArticle, Respondent.freshCurrentPage)
+    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
+    
+    // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
+    
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
     app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, 
-                Debug.logRequestValues, pushCommentToSQL, Respondent.freshCurrentPage);
+        Debug.logRequestValues, pushCommentToSQL, Respondent.freshCurrentPage
+    );
+    
+    // -- FILE API --
+
+    app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
+    
+    // -- (L)USERS API --
     
     app.post(
         '/createArticle',
@@ -60,7 +77,7 @@ const initAuthControllers = (app, passport) => {
         pushArticleToSQL,
         Respondent.redirectToArticle
     );
-
+    
     app.post(
         '/register',
         urlencodedParser,
