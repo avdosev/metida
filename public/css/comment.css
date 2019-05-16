@@ -5,7 +5,7 @@
     flex-direction: column;
 }
 
-.new_comment form *{
+.new_comment form * {
     margin-block-end: 10px
 }
 
@@ -108,4 +108,10 @@
 .reply:hover {
     background-color: black;
     transition: 0.5s;
+}
+
+@media screen and (max-width: 650px) {
+    .new_comment form textarea {
+        min-width: 300px;
+    }
 }
