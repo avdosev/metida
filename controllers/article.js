@@ -136,8 +136,7 @@ function removeArticle(req, res, next) {
     Article.destroy({
         where: {
           id: article.id
-        },
-        truncate: true /* this will ignore where and truncate the table instead */
+        }
     });
 }
 
