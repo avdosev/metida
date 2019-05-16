@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+:root {
+    --main-back-color: #333;
+    --ccc-color: #ccc;
+    --steel-color: steelblue;
+    --smoke-color: whitesmoke;
+    /* --main-hover-color: blue;
+    --main-focus-color: var(--steel-color); */
+  }
+
 a {
     text-decoration: none;
 }
@@ -5,11 +16,11 @@ a {
 hr {
     border: 0;
     height: 1px;
-    background: #333;
-    background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);
-    background-image: -moz-linear-gradient(left, #ccc, #333, #ccc);
-    background-image: -ms-linear-gradient(left, #ccc, #333, #ccc);
-    background-image: -o-linear-gradient(left, #ccc, #333, #ccc);
+    background: var(--main-back-color);
+    background-image: -webkit-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -moz-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -ms-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -o-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
 }
 
 .header {
@@ -46,28 +57,33 @@ img.logoImg {
 }
 
 .regSection #register, #home, #createArticle  {
-    background-color: #333;
-    color: whitesmoke;
+    background-color: var(--main-back-color);
+    color: var(--smoke-color);
 }
 
 .regSection #signIn, #logout {
-    background-color: #ccc;
+    background-color: var(--ccc-color);
     color: black;
 }
 
 .regSection #register:hover, #signIn:hover, #logout:hover, #home:hover, #createArticle:hover {
-    background-color: steelblue;
-    color: whitesmoke;
+    background-color: var(--steel-color);
+    color: var(--smoke-color);
 }/* tipical button hover  */
 
 #createArticle .btn_text {
     display: inline;
 }
-#createArticle .icon {
+nav {
     display: none;
 }
 
 @media screen and (max-width: 650px) {
+
+    .regSection {
+        margin-left: 10%;
+    }
+
     .header {
         height: 3rem;
     }
@@ -78,11 +94,70 @@ img.logoImg {
     .regSection a {
         padding: 0.1rem 0.3rem;
     }
-    #createArticle .btn_text {
+    #createArticle{
         display: none;
     }
-    #createArticle .icon {
-        display: inline;
-        height: 1.5rem;
+
+    #home {
+        display: none;
+    }
+
+    #logout {
+        display: none;
+    }
+
+    nav a {
+        text-decoration: none;
+        outline: none;
+        display: block;
+    }
+      
+    nav {
+        display: table;
+        margin: auto auto;
+        padding: 7px 0px 0px 0px;
+      }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0; 
+    }
+
+    .topmenu > li {
+        width: 55%;
+        float: right;
+        position: relative;
+    }
+
+    .topmenu li a:hover {
+        color: var(--steel-color); 
+    }
+      
+    .submenu {
+        background: var(--main-back-color);
+        position: absolute;
+        left: 0;
+        top: 100%;
+        z-index: 5;
+        width: 100px;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: 0 0;
+        transition: .5s ease-in-out;
+    }
+
+    .submenu a {
+        color: white;
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        padding: 12px 15px;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+      
+    .topmenu > li:hover .submenu {
+        opacity: 1;
+        transform: scaleY(1);
     }
 }
