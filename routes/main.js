@@ -24,7 +24,7 @@ const Handler = require('../controllers/request_handler.js')
 const Respondent = require('../controllers/respondent.js')
 
 //  проверка логирования
-const { isLoggedIn } = require('../controllers/logged.js');
+const { isLoggedIn, loggedCheker } = require('../controllers/logged.js');
 
 // подгрузка публик файлов
 const { getFile } = require('../controllers/get.js');
@@ -51,7 +51,7 @@ const initAuthControllers = (app, passport) => {
     
     app.get('/post/:id/non_parsed', Handler.getArticleId, getArticleFromSQL, Respondent.jsonArticle);
     // app.post('/post/:id/update', Handler.getArticle) // TODO
-    app.post('/post/:id/delete', Handler.getArticleId, removeArticle, Respondent.freshCurrentPage)
+    app.post('/post/:id/delete', loggedCheker, Handler.getArticleIdWithAuthor, removeArticle, Respondent.responseSuccess)
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
     
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок

@@ -18,6 +18,29 @@ function getArticleFromSQL(req, res, next) {
     });
 }
 
+function getArticlesByAuthor(begin, end, otherData, callback) {
+    let count = end-begin
+    count = count < 0 ? -count : count;
+    Article.findAll({
+        attributes: [
+            'id', 'header', 'disclaimer'
+        ],
+        where: {
+            authorId: otherData.authorId
+        }, 
+        order: [
+            ['createdAt', 'DESC']
+        ],
+        offset: begin, 
+        limit: count
+    }).then((values) => {
+        // TODO!!! filter interval
+        callback(values, null);
+    }).catch((error) => {
+        callback([], error)
+    });
+}
+
 function getTopRatingArticlesFromSQL(begin, end, otherData, callback) {
 
 }
@@ -59,7 +82,8 @@ function getTopInterestedArticleFromSQL(begin, end, otherData, callback) {
 const FuncByType = {
     'rating': getTopRatingArticlesFromSQL,
     'date': getTopDateArticlesFromSQL,
-    'interested': getTopInterestedArticleFromSQL
+    'interested': getTopInterestedArticleFromSQL,
+    'author': getArticlesByAuthor,
 };
 
 function getTopArticles(req, res, next) {
@@ -137,8 +161,13 @@ function removeArticle(req, res, next) {
     const article = req.values.article
     Article.destroy({
         where: {
-          id: article.id
+          id: article.id,
+          authorId: article.authorId
         }
+    }).then((value) => {
+        console.log(value);
+        initValues(res)
+        next()
     });
 }
 
