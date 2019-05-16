@@ -18,11 +18,11 @@ function getArticleFromSQL(req, res, next) {
     });
 }
 
-function getTopRatingArticlesFromSQL(begin, end, minDate, callback) {
+function getTopRatingArticlesFromSQL(begin, end, otherData, callback) {
 
 }
 
-function getTopDateArticlesFromSQL(begin, end, minDate, callback) {
+function getTopDateArticlesFromSQL(begin, end, otherData, callback) {
     // SELECT * FROM `table` WHERE `date` BETWEEN '2010-10-21 0:00:00' AND '2012-10-21 23:59:59'
     let count = end-begin
     count = count < 0 ? -count : count;
@@ -32,7 +32,7 @@ function getTopDateArticlesFromSQL(begin, end, minDate, callback) {
         ],
         where: {
             createdAt: {
-                [Op.gte]: minDate, // просто дата можно вместо нее любую другую
+                [Op.gte]: otherData.minDate, // просто дата можно вместо нее любую другую
             }
         }, 
         order: [
@@ -48,7 +48,7 @@ function getTopDateArticlesFromSQL(begin, end, minDate, callback) {
     });
 }
 
-function getTopInterestedArticleFromSQL(begin, end, minDate, callback) {
+function getTopInterestedArticleFromSQL(begin, end, otherData, callback) {
 
 }
 // getTopFromSQL
@@ -67,7 +67,9 @@ function getTopArticles(req, res, next) {
     const end = req.values.end;
     const type = req.values.type;
     const minDate = req.values.minDate;
-
+    const otherData = {
+        minDate
+    }
     const fnc = FuncByType[type];
 
     const callback = (value, error) => {
@@ -79,7 +81,7 @@ function getTopArticles(req, res, next) {
     }
     
     if (fnc != undefined) {
-        fnc(begin, end, minDate, callback);
+        fnc(begin, end, otherData, callback);
     } else {
         callback([], 'not found function type request of toptypefnc')
     }
