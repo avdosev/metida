@@ -20,6 +20,11 @@ body
     .layout_body
       content.content
         article.post_text(id=id)
+          form(action="/post/" + id +"/delete", method="post")
+            input(type="submit", id="enter", value = "Удалить статью")
+          form(action="/post/" + id +"/update", method="post")
+            input(type="submit", id="enter", value = "Редактировать статью")
+
           h1 #{name}
           !=text
         .comments_lenta.lenta
