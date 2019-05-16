@@ -53,7 +53,7 @@ const initAuthControllers = (app, passport) => {
     // app.post('/post/:id/update', Handler.getArticle) // TODO
     app.post('/post/:id/delete', loggedCheker, Handler.getArticleIdWithAuthor, removeArticle, Respondent.responseSuccess)
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
-    
+
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
     app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);

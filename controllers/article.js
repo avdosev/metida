@@ -156,7 +156,7 @@ function updateArticle(req, res, next) {
         next()
     })
 }
-
+const Comment = require("../models/comments")
 function removeArticle(req, res, next) {
     const article = req.values.article
     Article.destroy({
@@ -169,6 +169,13 @@ function removeArticle(req, res, next) {
         initValues(res)
         next()
     });
+
+    // Comment.destroy({
+    //     where: {
+    //         articleId: article.id
+    //     }
+    // })
+
 }
 
 module.exports = {
