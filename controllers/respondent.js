@@ -25,6 +25,16 @@ function jsonArticle(req, res) {
         res.send('not found')
     }
 }
+ 
+function responseSuccess(req, res) {
+    let resstr = 'success', opcode = 200
+    if (res.values)
+        if (res.values.success === false) {
+            resstr = 'fail'
+        }
+    res.statusCode = opcode
+    res.send(resstr)
+}
 
 const authController = require('./service.js');
 
@@ -34,5 +44,6 @@ module.exports = {
     getTopArticles,
     redirectToArticle,
     jsonArticle,
-    ...authController
+    ...authController,
+    responseSuccess
 };

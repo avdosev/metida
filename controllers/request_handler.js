@@ -52,6 +52,17 @@ function getArticleId(req, res, next) {
     next()
 }
 
+function getArticleIdWithAuthor(req, res, next) {
+    const id = req.params.id
+    const authorId = req.user.id
+
+    initValues(req);
+
+    req.values.article = { id, authorId };
+
+    next()
+}
+
 
 // Comments
 
@@ -108,6 +119,7 @@ module.exports = {
     pushArticle,
     getTopArticle,
     getArticleId,
+    getArticleIdWithAuthor,
     getComments,
     pushComment,
     getFile
