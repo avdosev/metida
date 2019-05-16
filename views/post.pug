@@ -3,7 +3,7 @@ head
   meta(charset='UTF-8')
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
-  title Статья #{name}
+  title #{name}
 
   link(rel="stylesheet", href="../public/css/style.css")
   link(rel="stylesheet", href="../public/css/layout_body.css")
@@ -11,8 +11,8 @@ head
   link(rel="stylesheet", href="../public/css/post.css")
   link(rel="stylesheet", href="../public/css/comment.css")
   
-  script(type='text/javascript', src='../public/js/comment.js')
   script(type='text/javascript', src='../public/js/highlighter.js')
+  script(type='text/javascript', src='../public/js/comment.js')
 
 body
     include modules/header 
@@ -22,17 +22,17 @@ body
         article.post_text(id=id)
           h1 #{name}
           !=text
-          .comments_lenta 
-            h3 Комментарии:
-          .new_comment
-            if authorised 
-                h3 Оставить комментарий
-                form(action="/post/" + id + "/pushComment", method="post" novalidate)
-                    textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
-                    .button
-                      input(type="button", id="veiw", value = "Предпросмотр")
-                      input(type="submit", id="enter", value = "Отправить")
-                    p <span class="commentError" aria-live="polite"></span>
-            else
-                p Зарегистрируйся, если хочешь оставить коммент
+        .comments_lenta.lenta
+          h3 Комментарии:
+        .new_comment
+          if authorised 
+            h3 Оставить комментарий
+            form(action="/post/" + id + "/pushComment", method="post" novalidate)
+              textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
+              <span class="commentError" aria-live="polite"></span>
+              .button
+                input(type="submit", id="enter", value = "Отправить")
+                input(type="button", id="veiw", value = "Предпросмотр")
+          else
+            p Зарегистрируйся, если хочешь оставить коммент
             

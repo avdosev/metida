@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     float: left;
+    flex-direction: column;
+    align-items: center;
     width: 45%;
 }
 
@@ -40,12 +42,6 @@
     flex-direction: column;
     align-items: center;
     /* max-width: 40vw; */
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-    float: left;
 }
 
 .content code {
