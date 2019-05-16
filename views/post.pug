@@ -4,16 +4,15 @@ head
   meta(name='viewport', content='width=device-width, initial-scale=1.0')
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
   title #{name}
-  style
-    include ../public/css/style.css
-    include ../public/css/layout_body.css
-    include ../public/css/content.css
-    include ../public/css/post.css
-    include ../public/css/comment.css
-  script
-    include ../public/js/highlighter.js
-    include ../public/js/comment.js
-    
+
+  link(rel="stylesheet", href="../public/css/style.css")
+  link(rel="stylesheet", href="../public/css/layout_body.css")
+  link(rel="stylesheet", href="../public/css/content.css")
+  link(rel="stylesheet", href="../public/css/post.css")
+  link(rel="stylesheet", href="../public/css/comment.css")
+  
+  script(type='text/javascript', src='../public/js/highlighter.js')
+  script(type='text/javascript', src='../public/js/comment.js')
 
 body
     include modules/header 
