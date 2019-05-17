@@ -36,7 +36,7 @@ function start() {
         widget.className = 'error';
     }
 
-    email.addEventListener('input', () => {
+    email.addEventListener('change', () => {
         if (email.validity.valid) {
                 hideError(emailError)
             }
@@ -47,7 +47,7 @@ function start() {
         false
     );
 
-    password.addEventListener('input', () => {
+    password.addEventListener('change', () => {
         if(password.validity.valid) {
             hideError(passwordError)
 
@@ -64,7 +64,7 @@ function start() {
     })
 
 
-    login.addEventListener('input', () => {
+    login.addEventListener('change', () => {
         if(login.validity.valid) {
             hideError(loginError)
         }
@@ -73,7 +73,7 @@ function start() {
         }
     })
 
-    repassword.addEventListener('input', () => {
+    repassword.addEventListener('change', () => {
         if(repassword.validity.valid) {
             hideError(repasswordError)
 

@@ -20,10 +20,8 @@ body
     .layout_body
       content.content
         article.post_text(id=id)
-          form(action="/post/" + id +"/delete", method="post")
-            input(type="submit", id="enter", value = "Удалить статью")
-          form(action="/post/" + id +"/update", method="post")
-            input(type="submit", id="enter", value = "Редактировать статью")
+          a(href="/post/" + id +"/delete") Удалить статью
+          a(href="/post/" + id +"/update") Редактировать статью
 
           h1 #{name}
           !=text
