@@ -15,12 +15,7 @@ const {
     removeArticle
 } = require('../controllers/article.js');
 
-const {
-    pushCommentToSQL,
-    getCommentsFromSQL
-} = require('../controllers/comments.js');
-
-const Handler = require('../controllers/request_handler.js')
+const Handler = require('../controllers/request_handler')
 const Respondent = require('../controllers/respondent.js')
 
 //  проверка логирования
@@ -56,10 +51,8 @@ const initAuthControllers = (app, passport) => {
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, getCommentsFromSQL, Respondent.getComments);
-    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, 
-        Debug.logRequestValues, pushCommentToSQL, Respondent.freshCurrentPage
-    );
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Respondent.getComments);
+    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Respondent.freshCurrentPage);
     
     // -- FILE API --
 
