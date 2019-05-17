@@ -24,6 +24,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 Команды терминала:
 
     npm i
+    npm i --only=dev
     npm start
 
 Команды MySQL Command Line:

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
     getMoreArticles.addEventListener("click", event => {      
         fetch("/getMoreArticles").then(res => {
-            console.log(res)
+            
         })
     })
 

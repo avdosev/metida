@@ -1,5 +1,5 @@
-const commentsInit = require('../models/comments');
-const models = require('../models');
+const commentsInit = require('../database/models/comments');
+const models = require('../database/models');
 const Comment = commentsInit(models.sequelize, models.Sequelize); 
 
 function removeAllCommentsByArticle(articleId, authorId) {
@@ -15,6 +15,8 @@ function removeComment(сommentId) {
     // здесь будет куча ассинхронно-рекурсивных запросов к бд
     // либо хитрый sql запрос
     // но пока здесь будет лежать этот коммент
+    // DELETE FROM <db.table> WHERE id=commentID //ладно я хз //сверху такой же вроде
+    // очень хитро
 }
 
 function getAllCommentsByArticle(articleId) {

@@ -40,7 +40,7 @@ function start() {
         false
     );
 
-    password.addEventListener('change', () => {
+    password.addEventListener('input', () => {
         if(password.validity.valid) {
             hideError(passwordError)
 
@@ -66,7 +66,7 @@ function start() {
         }
     })
 
-    repassword.addEventListener('change', () => {
+    repassword.addEventListener('input', () => {
         if(repassword.validity.valid) {
             hideError(repasswordError)
 
