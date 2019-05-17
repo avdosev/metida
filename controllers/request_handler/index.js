@@ -15,7 +15,7 @@ function pushArticle(req, res, next) {
     const authorId = req.user.id;
 
     initValues(req)
-    
+
     req.values.article = { 
         header, 
         content, 
@@ -32,7 +32,7 @@ function getTopArticle(req, res, next) {
     const type = req.body.type ? req.body.type : 'date';
     const minDate = req.body.minDate ? new Date(req.body.minDate) : new Date(1999, 11, 11);
 
-    initValues(req);
+    initValues(req)
 
     req.values.begin = begin;
     req.values.end = end;
@@ -45,7 +45,7 @@ function getTopArticle(req, res, next) {
 function getArticleId(req, res, next) {
     const id = req.params.id
 
-    initValues(req);
+    initValues(req)
 
     req.values.article = { id };
 
@@ -56,7 +56,7 @@ function getArticleIdWithAuthor(req, res, next) {
     const id = req.params.id
     const authorId = req.user.id
 
-    initValues(req);
+    initValues(req)
 
     req.values.article = { id, authorId };
 
@@ -65,43 +65,7 @@ function getArticleIdWithAuthor(req, res, next) {
 
 
 // Comments
-
-function getComments(req, res, next) {
-    const articleId = req.params.id;
-
-    initValues(req)
-
-    req.values.comment = {
-        articleId
-    };
-
-    next()
-}
-
-function pushComment(req, res, next) {
-    const articleId = req.params.id;
-    const author = req.user.username; // TODO fix
-    const text = req.body.comment;
-    
-    let answeringId
-    if (req.body.answeringId)
-        answeringId = req.body.answeringId
-    else if (req.query.answeringId)
-        answeringId = req.query.answeringId
-    else 
-        answeringId = null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
-
-    initValues(req)
-
-    req.values.comment = { 
-        articleId, 
-        author, 
-        text, 
-        answeringId 
-    }
-
-    next()
-}
+const Comments = require('./comments');
 
 // Other
 
@@ -120,7 +84,6 @@ module.exports = {
     getTopArticle,
     getArticleId,
     getArticleIdWithAuthor,
-    getComments,
-    pushComment,
-    getFile
+    getFile,
+    ...Comments
 }
