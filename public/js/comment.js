@@ -1,4 +1,4 @@
-comment1 = { 
+const comment1 = { 
     commentError: "Коммент уж слишком маленький. Прям как ...",
     commentEventError: "Коммент не удовлетворяет требованиям"
 }
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const post = document.querySelector('.post_text');
     const id = post.id;
     const commentError = document.querySelector('.commentError');
+    const comment = document.querySelector('#comment') //я не могу с жить с ошибкой
 
     fetch(`/post/${id}/comments`)
         .then(value => {

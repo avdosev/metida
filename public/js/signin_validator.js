@@ -8,24 +8,8 @@ const validators = { ////неприемлимо
 }
 
 document.addEventListener('DOMContentLoaded', start);
-// function asyncScript(src, callback) {
-//     const script = document.createElement('script')
-//     script.src = src;
-//     script.async = true;
-//     script.onload = callback;
-//     document.head.appendChild(script)
-// }
-
-function include(url) {
-    var script = document.createElement('script');
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-}
 
 function start() {
-    //asyncScript("./replicas/replicas")
-    include("./replicas")
-
     var email = document.getElementById('email');
     var emailError = document.querySelector('.emailError');
     var passwordError = document.querySelector('.passwordError');

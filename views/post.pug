@@ -13,15 +13,15 @@ head
   
   script(type='text/javascript', src='/public/js/highlighter.js')
   script(type='text/javascript', src='/public/js/comment.js')
-
+  script(type='text/javascript', src='/public/js/post.js')
 body
     include modules/header 
 
     .layout_body
       content.content
         article.post_text(id=id)
-          a(href="/post/" + id +"/delete") Удалить статью
-          a(href="/post/" + id +"/update") Редактировать статью
+          button(class="deleteAricleLink" ) Удалить статью
+          button(class="updateAricleLink") Редактировать статью
 
           h1 #{name}
           !=text

@@ -6,16 +6,9 @@ const validators = { ////поправить
     strLoginError: 'Логин должен быть больше 3 символов'
 }
 
-function include(url) {
-    var script = document.createElement('script');
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-}
-
 document.addEventListener('DOMContentLoaded', start);
 
 function start() {
-    //include("./replicas")
     var emailError = document.querySelector('.emailError');
     var loginError = document.querySelector('.loginError');
     var passwordError = document.querySelector('.passwordError');
