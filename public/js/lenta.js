@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const getMoreArticles = document.querySelector(".getMoreArticles")
+   
+    getMoreArticles.addEventListener("click", event => {      
+        fetch("/getMoreArticles").then(res => {
+            console.log(res)
+        })
+    })
+
+
+
     fetch('./top').then(value => {
         console.log(value);
         return value.json()

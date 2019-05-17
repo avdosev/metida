@@ -45,8 +45,8 @@ const initAuthControllers = (app, passport) => {
     // -- ARTICLES API -- 
     
     app.get('/post/:id/non_parsed', Handler.getArticleId, getArticleFromSQL, Respondent.jsonArticle);
-    // app.post('/post/:id/update', Handler.getArticle) // TODO
-    app.post('/post/:id/delete', loggedCheker, Handler.getArticleIdWithAuthor, removeArticle, Respondent.responseSuccess)
+    // app.post('/post/:id/update', тут тоже чекаем Handler.getArticle) // TODO
+    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */Handler.getArticleIdWithAuthor, removeArticle, Respondent.responseSuccess)
     app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
