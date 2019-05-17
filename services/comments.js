@@ -3,7 +3,7 @@ const models = require('../database/models');
 const Comment = commentsInit(models.sequelize, models.Sequelize); 
 
 function removeAllCommentsByArticle(articleId, authorId) {
-    return Article.destroy({
+    return Article.destroy({ //артикл не объявлен
         where: {
           id: articleId,
           authorId: authorId
