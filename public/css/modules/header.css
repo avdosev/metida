@@ -86,6 +86,8 @@ nav {
 
     .header {
         height: 3rem;
+        display: flex;
+        justify-content: space-between;
     }
     img.logoImg {
         height: 2.4rem;
@@ -106,6 +108,14 @@ nav {
         display: none;
     }
 
+    #signIn{
+        display: none;
+    }
+
+    #register{
+        display: none;
+    }
+
     nav a {
         text-decoration: none;
         outline: none;
@@ -115,7 +125,7 @@ nav {
     nav {
         display: table;
         margin: auto auto;
-        padding: 7px 0px 0px 0px;
+        padding: 7px 7px 0px 0px;
       }
 
     nav ul {
@@ -125,7 +135,7 @@ nav {
     }
 
     .topmenu > li {
-        width: 55%;
+        width: 45%;
         float: right;
         position: relative;
     }
@@ -137,10 +147,10 @@ nav {
     .submenu {
         background: var(--main-back-color);
         position: absolute;
-        left: 0;
+        left: -185%;
         top: 100%;
         z-index: 5;
-        width: 100px;
+        width: 120px;
         opacity: 0;
         transform: scaleY(0);
         transform-origin: 0 0;
@@ -155,7 +165,7 @@ nav {
         font-size: 13px;
         border-bottom: 1px solid rgba(255,255,255,.1);
     }
-      
+
     .topmenu > li:hover .submenu {
         opacity: 1;
         transform: scaleY(1);
