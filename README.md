@@ -42,7 +42,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 ## Metida API
 
 Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, ниже можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы.
-#### get
+#### GET
 1. `/post/:id/non_parsed` - не сформированная статья в json
 1. `/post/:id/comments` - json массив, внутри которого все комментарии в отсортированном по дате порядке
 1. `/public/:filefolder/:filename` - файл, лежаший на сервере `css/js/img/json` , предназначеный для общего пользования
@@ -50,7 +50,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 other : получаете сгенерированный html
 
-#### post 
+#### POST 
 1. `/createArticle` - создается запись к бд на вход статья. Для отправки требуется регистрация юзера
 1. `/post/:id/pushComment` - вкидывание коммента, если answeringId не задан или равен null, то считается, что это ответ на статью, в противном случае на комментарий
 1. `/register` - аналогично следующему
