@@ -46,6 +46,7 @@
   },
   "_moduleAliases": {
     "@models": "./models",
-    "@requestHandler": "./controllers/request_handler"
+    "@requestHandler": "./controllers/request_handler",
+    "@random": "./service/random"
   }
 }
