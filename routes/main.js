@@ -35,14 +35,14 @@ const initAuthControllers = (app, passport) => {
 
     // -- ARTICLES API -- 
     
-    app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonValuesWith(['article']));
+    app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonValue('article'));
     app.post('/post/:id/update', Handler.updateArticle, Response.jsonValuesWith(['success']))
     app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
-    app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonTopArticles)
+    app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonValue('TopArticles'))
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.jsonValuesWith(["comments"]));
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.jsonValue("comments"));
     app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Response.jsonValuesWith(['success']));
     
     // -- FILE API --

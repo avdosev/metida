@@ -9,19 +9,6 @@ function redirectToArticle(req, res, next) {
     res.redirect(url)
 }
 
-function jsonArticle(req, res) {
-    if (res.values.article)
-        res.json(res.values.article)
-    else {
-        res.statusCode = 404;
-        res.send('not found')
-    }
-}
-
-function jsonTopArticles(req, res) {
-    res.json(res.values.TopArticles)
-}
-
 function jsonValuesWith(arr) {
     return function(req, res) {
         const obj = new Object;
@@ -35,6 +22,19 @@ function jsonValuesWith(arr) {
     }
 }
 
+function jsonValue(key) {
+    return function (req, res, next) {
+        if (res.values[key])
+            res.json(res.values[key])
+        else {
+            res.statusCode = 404;
+            res.json({
+                message: 'not found'
+            })
+        }
+    }
+}
+
 const renderPage = require('./page');
 
 module.exports = {
@@ -42,5 +42,5 @@ module.exports = {
     jsonArticle,
     renderPage,
     jsonValuesWith,
-    jsonTopArticles
+    jsonValue
 };
