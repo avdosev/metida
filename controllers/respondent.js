@@ -39,7 +39,6 @@ const renderPage = require('./page');
 
 module.exports = {
     redirectToArticle,
-    jsonArticle,
     renderPage,
     jsonValuesWith,
     jsonValue
