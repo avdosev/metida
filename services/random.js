@@ -1,6 +1,6 @@
 
 function stringGenerator(len) {
-    const chrs = 'abdehkmnpswxzABDEFGHKMNPQRSTWXZ123456789';
+    const chrs = 'ab deh kmnp swxzA BD EF GHK MNPQR STWX Z123 4567 89';
     var str = '';
     for (var i = 0; i < len; i++) {
         var pos = Math.floor(Math.random() * chrs.length);
