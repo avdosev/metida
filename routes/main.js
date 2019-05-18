@@ -67,8 +67,7 @@ const initAuthControllers = (app, passport) => {
         userCreateValidator,
         passport.authenticate('local-signup', {
             successRedirect: '/',
-            failureRedirect: '/register',
-            failureFlash:true
+            failureRedirect: '/register'
         })
     );
 
@@ -78,8 +77,7 @@ const initAuthControllers = (app, passport) => {
         userLoginValidator,
         passport.authenticate('local-signin', {
             successRedirect: '/',
-            failureRedirect: '/sign_In',
-            failureFlash: true
+            failureRedirect: '/sign_In'
         })
     );
 };
