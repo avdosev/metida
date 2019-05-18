@@ -38,7 +38,7 @@ const initAuthControllers = (app, passport) => {
     app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonArticle);
     // app.post('/post/:id/update', тут тоже чекаем Handler.getArticle) // TODO
     app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.responseSuccess)
-    app.get('/top', urlencodedParser, Handler.getTopArticles, Response.getTopArticles)
+    app.post('/top', urlencodedParser, Debug.logRequest, Handler.getTopArticles, Response.getTopArticles)
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     

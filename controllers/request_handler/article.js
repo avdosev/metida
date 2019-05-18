@@ -19,10 +19,12 @@ function updateArticle(req, res, next) {
         disclaimer
     ).catch(error => {
         console.error(error)
+        initValues(res)
         res.values.success = false
         next()
     })
     .then((value) => {
+        initValues(res)
         res.values.success = true
         res.values.article = value.dataValues;
         next()
@@ -41,11 +43,13 @@ function pushArticle(req, res, next) {
         disclaimer, 
         authorId 
     ).then((value) => {
+        initValues(res)
         res.values.SuccessPushArticle = true
         res.values.article = value.dataValues;
         next()
     }).catch(error => {
         console.error(error)
+        initValues(res)
         res.values.SuccessPushArticle = false
         next()
     })
@@ -57,6 +61,7 @@ function getTopArticles(req, res, next) {
     const type = req.body.type ? req.body.type : 'date';
     const minDate = req.body.minDate ? new Date(req.body.minDate) : new Date(1999, 11, 11);
     
+    initValues(res)            
 
     articleApi.getTopArticles(
         begin, end, type, 
@@ -64,7 +69,6 @@ function getTopArticles(req, res, next) {
             minDate
         }
     ).then(value => {
-        initValues(res)            
         res.values.TopArticles = value;
         next()
     }).catch(error => {

@@ -1,4 +1,4 @@
-var articlesCount = 2 //число статей, которые будут на странице до нажатия кнопки
+const articlesCount = 2 //число статей, которые будут на странице до нажатия кнопки
 //пока при нажатии подаются оставшиеся статьи
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
@@ -10,29 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
-/*
-Если подается true, или аргументы пустуют, то мы обходим весь джсон
-Если подается false, то нужно подать еще и число обхода
-*/
+
 function getArticle(articlesCount=0) {
-    fetch('./top').then(value => {
+    console.log(currentCountOfArticles+articlesCount)
+    fetch('./top', {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "begin": currentCountOfArticles,
+            "end": currentCountOfArticles+articlesCount
+        })
+    }).then(value => {
         console.log(value);
         return value.json()
     }).then((json => {
         console.log(json)
         const insertElem = document.querySelector('.lenta')
-        if (currentCountOfArticles >= json.length ){
-            console.error("Загружены все записи")
-            return
-        }
-        for (let i=currentCountOfArticles; i<articlesCount+currentCountOfArticles; i++) { 
+
+        for (let i = 0; i < json.length; i++) { 
             if (json[i] == undefined) {
                 console.error("Все")
                 break
             }
             insertPostPreview(json[i], insertElem);
         }
-        currentCountOfArticles+=articlesCount;  
+        currentCountOfArticles+=json.length;  
     })).catch(error => {
         console.error(error);
     })
