@@ -1,13 +1,11 @@
-var articlesCount = 1 //число статей, которые будут на странице до нажатия кнопки
+var articlesCount = 2 //число статей, которые будут на странице до нажатия кнопки
 //пока при нажатии подаются оставшиеся статьи
-
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
     getArticle(articlesCount)
-    getMoreArticles.addEventListener("click", event => {      
+    getMoreArticles.addEventListener("click", event => {   
         getArticle(articlesCount)
     })
-        
 })
 
 
