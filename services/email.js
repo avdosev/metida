@@ -11,7 +11,7 @@ module.exports = (email, subject, message) => {
         html: message
     };
     nodemail.createTransport({
-        service: 'gmail',
+        service: 'smtp.gmail.com',
         secure: true,
         port: 135, 
         auth: {

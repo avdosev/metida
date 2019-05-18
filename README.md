@@ -83,9 +83,23 @@ other : получаете сгенерированный html
 
     Error: Unknown column 'puk' in 'field list'
 
-, то тогда, либо добавь новый столбец в локальную БД с соблюдением типов, либо очисти ее
+#### Варианты решения проблемы на локалке:
     
-    drop table usersDB2.pukTable;  
+1. Добавь новый столбец в локальную БД с соблюдением типов:
+
+        ALTER TABLE \<db>.\<table> ADD COLUMN \<puk> \<type> (\<size>)
+1. Урони таблицу
+
+        drop table \<usersDB2>.\<pukTable>;  
+
+1. Для этого были придуманы миграции
+
+        npx sequelize db:migrate
+
+#### Что же делать на Heroku?
+1. Только миграции:
+            
+        Команда для миграции бд на хероку
 
 ### Nodemailer errors
 #### Ошибка портов
