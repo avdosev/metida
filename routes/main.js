@@ -51,9 +51,9 @@ const initAuthControllers = (app, passport) => {
 
     // -- EMAIL API --
 
-    //app.post
-    app.get("/emailMessage", Response.renderPage.emailMessage)
-    app.get("/emailConfirmed", Response.renderPage.emailConfirmed)
+    app.post("/emailConfirmed/:email", /**/  /*изменить в бд подтвержение емейла на тру*/ )
+    app.get("/emailMessage", Response.renderPage.emailMessage) // нужно только для того, чтобы проверить как будет выглядить сообщение(и запросить с этой странице его текст)
+    app.get("/emailConfirmed", Response.renderPage.emailConfirmed) //для того, чтобы пользователь увидел успешное сообщение
     
     // -- (L)USERS API --
     

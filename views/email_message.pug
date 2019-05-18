@@ -7,7 +7,7 @@ body
             const confirmEmail = document.querySelector(".confirmEmail");
             confirmEmail.addEventListener("click", () => {   
                 url = "https://metida.herokuapp.com/emailConfirmed"
-                options = { method:"post"}
+                options = { method:"post", }
                 fetch(url, options).then(value => {
                     console.log(value)
                 }).catch(error => {
@@ -17,5 +17,7 @@ body
         })
 
 
-    <p> Поздравляем с регистрацией на Metida.tech, для окончания регистрации подтвердите </p> 
-    <button class="confirmEmail"> Согласен </button>, если это были не вы игнорируете сообщение
+    <p> Поздравляем с регистрацией на Metida.tech, для окончания регистрации нажмите на кнопку </p> 
+    //-<button class="confirmEmail"> Согласен </button>, если это были не вы, игнорируйте сообщение
+    url = "https://metida.herokuapp.com/emailConfirmed" + #{email}
+    a(href=url)

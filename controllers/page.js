@@ -35,14 +35,14 @@ const index = (req, res ) => {
     });
 };
 
-const errorPage = (req, res ) => {
-    res.render('error_page');
-};
-
 const authorProfile = (req, res ) => {
     console.log(req.values)
     res.render('profile', { authorised: req.isAuthenticated() });
 }
+
+const errorPage = (req, res ) => {
+    res.render('error_page');
+};
 
 const emailMessage = (req, res ) => {
     res.render('email_message');
