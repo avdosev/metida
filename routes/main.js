@@ -6,17 +6,8 @@ const {
 
 const bodyParser = require('body-parser');
 
-// загрузка/выгрузка стате
-const {
-    pushArticleToSQL,
-    getArticleFromSQL,
-    getTopArticles,
-    updateArticle, 
-    removeArticle
-} = require('../controllers/article.js');
-
 const Handler = require('../controllers/request_handler')
-const Respondent = require('../controllers/respondent.js')
+const Response = require('../controllers/respondent')
 
 //  проверка логирования
 const { isLoggedIn, loggedCheker } = require('../controllers/logged.js');
@@ -33,26 +24,26 @@ const initAuthControllers = (app, passport) => {
 
     // -- PAGES --
 
-    app.get('/', urlencodedParser, Respondent.index);
-    app.get('/register', Respondent.register);
-    app.get('/sign_In', Respondent.signin);
-    app.get('/home', isLoggedIn, Respondent.home);
-    app.get('/createArticle', isLoggedIn, Respondent.createArticle);
-    app.get('/logout', Respondent.logout);
-    app.get('/post/:id/', Handler.getArticleId, getArticleFromSQL, Respondent.showArticle);
-    app.get('/author/:login', Respondent.authorProfile )
+    app.get('/', urlencodedParser, Response.index);
+    app.get('/register', Response.register);
+    app.get('/sign_In', Response.signin);
+    app.get('/home', isLoggedIn, Response.home);
+    app.get('/createArticle', isLoggedIn, Response.createArticle);
+    app.get('/logout', Response.logout);
+    app.get('/post/:id/', Handler.getArticle, Response.showArticle);
+    app.get('/author/:login', Response.authorProfile )
 
     // -- ARTICLES API -- 
     
-    app.get('/post/:id/non_parsed', Handler.getArticleId, getArticleFromSQL, Respondent.jsonArticle);
+    app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonArticle);
     // app.post('/post/:id/update', тут тоже чекаем Handler.getArticle) // TODO
-    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */Handler.getArticleIdWithAuthor, removeArticle, Respondent.responseSuccess)
-    app.get('/top', urlencodedParser, Handler.getTopArticle, getTopArticles, Respondent.getTopArticles)
+    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.responseSuccess)
+    app.get('/top', urlencodedParser, Handler.getTopArticles, Response.getTopArticles)
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Respondent.getComments);
-    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Respondent.freshCurrentPage);
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.getComments);
+    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Response.freshCurrentPage);
     
     // -- FILE API --
 
@@ -67,8 +58,7 @@ const initAuthControllers = (app, passport) => {
         articleValidator,
         /* отправить на модерацию */
         Handler.pushArticle,
-        pushArticleToSQL,
-        Respondent.redirectToArticle
+        Response.redirectToArticle
     );
     
     app.post(
