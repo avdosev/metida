@@ -18,6 +18,10 @@ function jsonArticle(req, res) {
     }
 }
 
+function jsonTopArticles(req, res) {
+    res.json(res.values.TopArticles)
+}
+
 function jsonValuesWith(arr) {
     return function(req, res) {
         const obj = new Object;
@@ -37,5 +41,6 @@ module.exports = {
     redirectToArticle,
     jsonArticle,
     renderPage,
-    jsonValuesWith
+    jsonValuesWith,
+    jsonTopArticles
 };
