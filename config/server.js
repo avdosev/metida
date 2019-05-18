@@ -6,8 +6,8 @@ const imgDir = mainDir + '/public/img';
 const secretKey = 'keyboard cat'
 const production= ((process.env.NODE_ENV === "production") ? true : false)
 
-const supportEmail = "technakal@gmail.com"//для рассылки
-const password = "nakaltech2019" //в открытом доступе, ужасно
+const supportEmail = "kamille.larson66@ethereal.email"//для рассылки
+const password = "j19hpbF6ae27GTNJWp" //в открытом доступе, ужасно
 
 module.exports = {
     port,

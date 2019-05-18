@@ -48,6 +48,12 @@ const initAuthControllers = (app, passport) => {
     // -- FILE API --
 
     app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
+
+    // -- EMAIL API --
+
+    //app.post
+    app.get("/emailMessage", Response.renderPage.emailMessage)
+    app.get("/emailConfirmed", Response.renderPage.emailConfirmed)
     
     // -- (L)USERS API --
     

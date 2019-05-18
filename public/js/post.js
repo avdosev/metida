@@ -7,10 +7,6 @@ function getArticleId(url) {
     return newUrl
 }
 
-function redirectToIndex() {
-    window.location.replace('/'); 
-}
-
 function start() {
     var deleteArticleLink = document.querySelector('.deleteAricleLink');
     var updateArticleLink = document.querySelector('.updateAricleLink');
@@ -18,7 +14,7 @@ function start() {
         method: 'POST'
     }
     
-    deleteArticleLink.addEventListener("click", event => {
+    deleteArticleLink.addEventListener("click", () => {
         var id = getArticleId(window.location.href)
         var url = "/post/" + id + "/delete"
         
@@ -28,7 +24,7 @@ function start() {
         })
     })
 
-    updateArticleLink .addEventListener("click", event => {
+    updateArticleLink .addEventListener("click", () => {
         var id = getArticleId(window.location.href)
         var url = "/post/" + id + "/update"
         fetch(url, options).then(res => {

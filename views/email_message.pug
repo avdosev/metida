@@ -1,0 +1,21 @@
+doctype html
+head
+    meta(charset='UTF-8')
+body
+    script.
+        document.addEventListener('DOMContentLoaded', () => {
+            const confirmEmail = document.querySelector(".confirmEmail");
+            confirmEmail.addEventListener("click", () => {   
+                url = "https://metida.herokuapp.com/emailConfirmed"
+                options = { method:"post"}
+                fetch(url, options).then(value => {
+                    console.log(value)
+                }).catch(error => {
+                    console.error(error);
+                })
+            })
+        })
+
+
+    <p> Поздравляем с регистрацией на Metida.tech, для окончания регистрации подтвердите </p> 
+    <button class="confirmEmail"> Согласен </button>, если это были не вы игнорируете сообщение

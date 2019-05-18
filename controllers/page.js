@@ -44,6 +44,14 @@ const authorProfile = (req, res ) => {
     res.render('profile', { authorised: req.isAuthenticated() });
 }
 
+const emailMessage = (req, res ) => {
+    res.render('email_message');
+}
+
+const emailConfirmed = (req, res ) => {
+    res.render('email_confirmed');
+}
+
 
 module.exports = {
     register,
@@ -54,5 +62,7 @@ module.exports = {
     index,
     article,
     logout,
-    authorProfile
+    authorProfile,
+    emailMessage,
+    emailConfirmed  
 };

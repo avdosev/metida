@@ -3,11 +3,12 @@ const articlesCount = 2 //число статей, которые будут н�
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
     getArticle(articlesCount)
-    getMoreArticles.addEventListener("click", event => {   
+    getMoreArticles.addEventListener("click", () => {   
         getArticle(articlesCount)
     })
 })
 
+function sendEmail()
 
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
