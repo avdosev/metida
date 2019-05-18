@@ -12,22 +12,19 @@ function updateArticle(req, res, next) {
     const content = req.body.art;
     const disclaimer = req.body.disclaimer;
     
+    initValues(res)
+    
     articleApi.updateArticle(
         id,
         content,
         header,
         disclaimer
-    ).catch(error => {
-        console.error(error)
-        initValues(res)
-        res.values.success = false
-        next()
-    })
-    .then((value) => {
-        initValues(res)
+    ).then((value) => {
+        res.values.article = value.dataValues
         res.values.success = true
-        res.values.article = value.dataValues;
-        next()
+    }).catch(error => {
+        console.error(error)
+        res.values.success = true
     })
 }
 
@@ -37,20 +34,20 @@ function pushArticle(req, res, next) {
     const disclaimer = req.body.disclaimer;
     const authorId = req.user.id;
     
+    initValues(res)
+    
     articleApi.pushArticle( 
         header, 
         content, 
         disclaimer, 
         authorId 
     ).then((value) => {
-        initValues(res)
-        res.values.SuccessPushArticle = true
+        res.values.success = true
         res.values.article = value.dataValues;
         next()
     }).catch(error => {
         console.error(error)
-        initValues(res)
-        res.values.SuccessPushArticle = false
+        res.values.success = false
         next()
     })
 }
@@ -74,6 +71,7 @@ function getTopArticles(req, res, next) {
     }).catch(error => {
         console.error(error);
         res.values.TopArticles = [];
+        next()
     })
 }
 
@@ -93,7 +91,6 @@ function removeArticle(req, res, next) {
 
     articleApi.removeArticle(id, authorId)
     .then((value) => {
-        console.log(value);
         initValues(res)
         next()
     });
