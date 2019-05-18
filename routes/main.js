@@ -24,26 +24,26 @@ const initAuthControllers = (app, passport) => {
 
     // -- PAGES --
 
-    app.get('/', urlencodedParser, Response.index);
-    app.get('/register', Response.register);
-    app.get('/sign_In', Response.signin);
-    app.get('/home', isLoggedIn, Response.home);
-    app.get('/createArticle', isLoggedIn, Response.createArticle);
-    app.get('/logout', Response.logout);
-    app.get('/post/:id/', Handler.getArticle, Response.showArticle);
-    app.get('/author/:login', Response.authorProfile )
+    app.get('/', urlencodedParser, Response.renderPage.index);
+    app.get('/register', Response.renderPage.register);
+    app.get('/sign_In', Response.renderPage.signin);
+    app.get('/home', isLoggedIn, Response.renderPage.home);
+    app.get('/createArticle', isLoggedIn, Response.renderPage.createArticle);
+    app.get('/logout', Response.renderPage.logout);
+    app.get('/post/:id/', Handler.getArticle, Response.renderPage.article);
+    app.get('/author/:login', Response.renderPage.authorProfile )
 
     // -- ARTICLES API -- 
     
-    app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonArticle);
-    // app.post('/post/:id/update', тут тоже чекаем Handler.getArticle) // TODO
-    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.responseSuccess)
-    app.post('/top', urlencodedParser, Debug.logRequest, Handler.getTopArticles, Response.getTopArticles)
+    app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonValuesWith(['article']));
+    app.post('/post/:id/update', Handler.updateArticle, Response.jsonValuesWith(['success']))
+    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
+    app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonValuesWith(["TopArticles"]))
 
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
-    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.getComments);
-    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Response.freshCurrentPage);
+    app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.jsonValuesWith(["comments"]));
+    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Response.jsonValuesWith(['success']));
     
     // -- FILE API --
 

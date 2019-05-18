@@ -1,11 +1,3 @@
-function getComments(req, res, next) {
-    res.json(res.values.comments);
-}
-
-function getTopArticles(req, res, next) {
-    res.json(res.values.TopArticles);
-}
-
 function redirectToArticle(req, res, next) {
     // по идее этого здесь быть не должно но тогда сервак станет еще более модульным что не совсем хорошо так что пусть будет здесь
     if (!res.values.SuccessPushArticle) {
@@ -25,25 +17,25 @@ function jsonArticle(req, res) {
         res.send('not found')
     }
 }
- 
-function responseSuccess(req, res) {
-    let resstr = 'success', opcode = 200
-    if (res.values)
-        if (res.values.success === false) {
-            resstr = 'fail'
+
+function jsonValuesWith(arr) {
+    return function(req, res) {
+        const obj = new Object;
+        for (let i = 0; i < arr.length; i++) {
+            const key = arr[i]
+            if (res.values.hasOwnProperty(key)) {
+                obj[key] = res.values[key]
+            }
         }
-    res.statusCode = opcode
-    res.send(resstr)
+        res.json(obj)
+    }
 }
 
-const authController = require('./service.js');
+const renderPage = require('./page');
 
 module.exports = {
-    getComments,
-    //pushComment,
-    getTopArticles,
     redirectToArticle,
     jsonArticle,
-    ...authController,
-    responseSuccess
+    renderPage,
+    jsonValuesWith
 };

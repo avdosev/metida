@@ -17,9 +17,10 @@ function getFile(req, res, next) {
             res.statusCode = 404;
             res.end('Resourse not found!');
         } else {
-            res.set({
-                'Cache-Control': 'public, max-age=2160000'
-            });
+            if (req.params.filefolder == 'img')
+                res.set({
+                    'Cache-Control': 'public, max-age=2160000'
+                });
             res.end(data);
         }
     });
