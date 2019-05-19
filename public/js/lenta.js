@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmEmail.addEventListener("click", () => {
         //именно в этот момент, я считаю, мы должны считать емейл юзера и сформировать сообщение для почты
         //тут же меняем ошибку на ui, если сообщение отправлено, и если нет, тоже меняем
+        fetch("/emailMessage")
     })
 
 

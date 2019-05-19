@@ -29,13 +29,17 @@ function start() {
         widget.className = 'error';
     }
 
+    function checkValidation(widget, errorSpan, strError) {
+        if (widget.validity.valid) {
+            hideError(errorSpan)
+        }
+        else {
+            showError(errorSpan, strError)
+        }
+    }
+
     email.addEventListener('change', () => {
-        if (email.validity.valid) {
-                hideError(emailError)
-            }
-            else {
-                showError(emailError, validators.strEmailError)
-            }
+        checkValidation(email, emailError, validators.strEmailError)
         },
         false
     );
@@ -58,12 +62,7 @@ function start() {
 
 
     login.addEventListener('change', () => {
-        if(login.validity.valid) {
-            hideError(loginError)
-        }
-        else {
-            showError(loginError, validators.strLoginError )
-        }
+        checkValidation(login, loginError, validators.strLoginError)
     })
 
     repassword.addEventListener('input', () => {
