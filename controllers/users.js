@@ -57,7 +57,7 @@ const loadPasportStrategies = (passport, user) => {
                             password: userPassword // зашифрованный
                         };
 
-                        User.create(data).then((newUser, created) => {
+                        User.create(data).then((newUser) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }

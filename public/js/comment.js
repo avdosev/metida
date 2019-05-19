@@ -79,6 +79,9 @@ function insertComment(objComment, insertedElem) {
             <a href = "/author/${Author}" class = "author_login">${Author}</a>
             <time class = "created_commit">${DateStr}</time>
         </div>
+        <button class = "updateComment">Редактировать</button>
+        <button class = "removeComment">Удалить</button>
+
         <div class = "comment_text"><p>${Text}</p></div>
         <div class = "control_block">
             <button class = "reply comment_control" data-type="create" style = "display: inline" onclick="createClick(${Id})"></button>

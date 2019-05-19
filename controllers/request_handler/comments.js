@@ -37,7 +37,7 @@ function pushComment(req, res, next) {
     commentApi.pushComment(articleId, author, text, answeringId)
     .then(value => {
         initValues(res)
-        res.values.SuccessPushComment = true; //из-за этого у меня крашилось
+        res.values.SuccessPushComment = true; 
         next()
     }).catch(error => {
         initValues(res)

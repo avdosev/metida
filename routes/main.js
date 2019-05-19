@@ -48,6 +48,12 @@ const initAuthControllers = (app, passport) => {
     // -- FILE API --
 
     app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
+
+    // -- EMAIL API -- // TO DO
+
+    app.post("/emailConfirmed/:email", /*сделать get запрос на /emailMessage*/ /*отправить полученный хтмл в сообщении*/  /*изменить в бд подтвержение емейла на тру*/ ) //это кнопочка из сообщения
+    app.get("/emailMessage", Response.renderPage.emailMessage) // нужно только для того, чтобы проверить как будет выглядить сообщение(и запросить с этой странице его текст)
+    app.get("/emailConfirmed/:email", Response.renderPage.emailConfirmed) //для того, чтобы пользователь увидел успешное сообщение
     
     // -- (L)USERS API --
     
@@ -63,7 +69,7 @@ const initAuthControllers = (app, passport) => {
     
     app.post(
         '/register',
-        urlencodedParser,
+        urlencodedParser, Debug.logRequest,
         userCreateValidator,
         passport.authenticate('local-signup', {
             successRedirect: '/',
@@ -72,8 +78,8 @@ const initAuthControllers = (app, passport) => {
     );
 
     app.post(
-        '/sign_In',
-        urlencodedParser,
+        '/sign_In', 
+        urlencodedParser, Debug.logRequest,
         userLoginValidator,
         passport.authenticate('local-signin', {
             successRedirect: '/',
