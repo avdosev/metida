@@ -35,13 +35,21 @@ const index = (req, res ) => {
     });
 };
 
+const authorProfile = (req, res ) => {
+    console.log(req.values)
+    res.render('profile', { authorised: req.isAuthenticated() });
+}
+
 const errorPage = (req, res ) => {
     res.render('error_page');
 };
 
-const authorProfile = (req, res ) => {
-    console.log(req.values)
-    res.render('profile', { authorised: req.isAuthenticated() });
+const emailMessage = (req, res ) => {
+    res.render('email_message');
+}
+
+const emailConfirmed = (req, res ) => {
+    res.render('email_confirmed');
 }
 
 
@@ -54,5 +62,7 @@ module.exports = {
     index,
     article,
     logout,
-    authorProfile
+    authorProfile,
+    emailMessage,
+    emailConfirmed  
 };

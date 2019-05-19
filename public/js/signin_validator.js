@@ -1,3 +1,5 @@
+import { futimes } from "fs";
+
 //import { validators }  from './replicas/replicas';
 const validators = { ////неприемлимо
     strEmailError:  'Я же просил ввести емейл. Не зли меня',
@@ -15,42 +17,55 @@ function start() {
     var passwordError = document.querySelector('.passwordError');
     var password = document.querySelector('#password')
 
-    function showError(widget, str) {
-        widget.innerHTML = str;
-        widget.className = 'error active';
+    function showError(spanError, str) {
+        spanError.innerHTML = str;
+        spanError.className = 'error active';
     }
 
-    function hideError(widget) {
-        widget.innerHTML = '';
-        widget.className = 'error';
+    function hideError(spanError) {
+        spanError.innerHTML = '';
+        spanError.className = 'error';
+    }
+
+    function checkValidation(widget, errorSpan, strError) {
+        if (widget.validity.valid) {
+            hideError(errorSpan)
+        }
+        else {
+            showError(errorSpan, strError)
+        }
     }
     
     email.addEventListener('change', () => {
-            if (email.validity.valid) {
-                hideError(emailError)
-            }
-            else {
-                showError(emailError, validators.strEmailError )
-            }
+            checkValidation(email, emailError, validators.strEmailError)
         },
         false
     );
 
     password.addEventListener('change', () => {
-        if(password.validity.valid) {
-            hideError(passwordError)
-        }
-        else {
-            showError(passwordError, validators.strPasswordError)    
-        }
-
-        
+        checkValidation(password, passwordError, validators.strPasswordError)
     })
 
     document.addEventListener('submit', event => {
             if (!email.validity.valid && !password.validity.valid) {
                 showError(emailError, validators.strEventEmailError)
                 event.preventDefault();
+            }
+            else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
+                const options = { method: "post", 
+                    body: { 
+                        "email": email.value,
+                        "password": password.value
+                    } 
+                }
+                fetch("/sign_In", options).then( value => {
+                    console.log("Ответ вернулся к сане " +value) //ничего не возвращется
+                }).catch(err, value => {
+                    console.log("Ошибка вернулась к сане " +err)
+                    console.log(value)
+
+                })
+
             }
         },
         false

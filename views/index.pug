@@ -11,8 +11,13 @@ head
 
 
 include modules/header 
-.string_search
-  input#search__string(type="text")
+  .string_search
+    input#search__string(type="text")
+
+  <span class="emailIsntConfirmed" aria-live="polite">
+    button(class="confirmEmail") Подтвердить
+  </span>
+
 .layout_body
   content.content
     .lenta

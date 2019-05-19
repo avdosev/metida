@@ -2,12 +2,23 @@ const articlesCount = 2 //число статей, которые будут н�
 //пока при нажатии подаются оставшиеся статьи
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
+    const confirmEmail = document.querySelector(".confirmEmail")
+
     getArticle(articlesCount)
-    getMoreArticles.addEventListener("click", event => {   
+
+    getMoreArticles.addEventListener("click", () => {   
         getArticle(articlesCount)
     })
-})
 
+    confirmEmail.addEventListener("click", () => {
+        //именно в этот момент, я считаю, мы должны считать емейл юзера и сформировать сообщение для почты
+        //тут же меняем ошибку на ui, если сообщение отправлено, и если нет, тоже меняем
+        fetch("/emailMessage")
+    })
+
+
+
+})
 
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
@@ -53,3 +64,4 @@ function insertPostPreview(objPost, insertedElem) {
     `
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
 }
+
