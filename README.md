@@ -77,6 +77,10 @@ other : получаете сгенерированный html
 
 ## FAQ
 
+Я хочу забить таблицу рандомными значениями
+
+    npx sequelize-cli db:seed:all
+
 ### MySQL error
 
 Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
@@ -87,19 +91,17 @@ other : получаете сгенерированный html
     
 1. Добавь новый столбец в локальную БД с соблюдением типов:
 
-        ALTER TABLE \<db>.\<table> ADD COLUMN \<puk> \<type> (\<size>)
+        ALTER TABLE <db>.<table> ADD COLUMN <puk> <type> (<size>)
 1. Урони таблицу
 
-        drop table \<usersDB2>.\<pukTable>;  
+        drop table <usersDB2>.<pukTable>;  
 
 1. Для этого были придуманы миграции
 
         npx sequelize db:migrate
 
 #### Что же делать на Heroku?
-1. Только миграции:
-            
-        Команда для миграции бд на хероку
+1. Только миграции, см heroku
 
 ### Nodemailer errors
 #### Ошибка портов
@@ -115,7 +117,21 @@ other : получаете сгенерированный html
     responseCode: 534,
     command: 'AUTH PLAIN' }
 
-Залогиниться мб
+Не решено
+
+### Heroku 
+#### App problem    
+    »   Error: Missing required flag:
+    »     -a, --app APP  app to run command against
+    »   See more help with --help
+
+Указать `-a metida`
+
+#### Heroku migrations
+
+    Команда для миграции
+
+
 
 ## Структура проекта
 
