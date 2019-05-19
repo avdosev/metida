@@ -7,34 +7,28 @@ header.header
   .logo  
     a(href='/')
       img(src="/public/img/logo.png" alt='Metida' class="logoImg" ismap)   
-  form.regSection 
-  
-    if authorised 
-      a#createArticle(href='/createArticle') Написать
-      a#home(href='/home') Профиль
-      a#logout(href='/logout') Выйти
-      nav
-          ul.topmenu
-            li
-              img.icon(src='/public/img/mobile_menu.png')
-              ul.submenu
-                li
-                 a(href='/createArticle') Написать
-                li
-                 a(href='/home') Профиль
-                li
-                  a(href='/logout') Выйти
-    else
-      a#signIn(href='/sign_In') Войти
-      a#register(href='/register') Регистрация
-      nav
-          ul.topmenu
-            li
-              img.icon(src='/public/img/mobile_menu.png')
-              ul.submenu
-                li
-                 a(href='/sign_In') Войти
-                li
-                 a(href='/register') Регистрация
+  .regSection 
+    //- .string_search
+      input#search__string(type="text")
+    nav
+      ul.topmenu
+        li
+          img.icon(src='/public/img/mobile_menu.png')
+          ul.submenu
+            if authorised 
+              li
+                a#createArticle(href='/createArticle') Написать
+              li
+                a#home(href='/home') Профиль
+              li
+                a#logout(href='/logout') Выйти
+            else
+              li
+                a#signIn(href='/sign_In') Войти
+              li
+                a#register(href='/register') Регистрация
+    //- span.emailIsntConfirmed(aria-live="polite")
+      button(class="confirmEmail") Подтвердить
+
 hr
 
