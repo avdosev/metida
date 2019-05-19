@@ -29,35 +29,32 @@ function start() {
         widget.className = 'error';
     }
 
-    function checkValidation(widget, errorSpan, strError) {
+    function checkValidation(widget, errorSpan, strError, checkPassword=false) {
         if (widget.validity.valid) {
             hideError(errorSpan)
+            if(checkPassword) 
+                passwordEqualRepassword()
         }
         else {
             showError(errorSpan, strError)
         }
     }
 
-    email.addEventListener('change', () => {
-        checkValidation(email, emailError, validators.strEmailError)
-        },
-        false
-    );
-
-    password.addEventListener('input', () => {
-        if(password.validity.valid) {
-            hideError(passwordError)
-
-            if (password.value == repassword.value) {
-                hideError(repasswordError)
-            }
-            else {
-                showError(repasswordError, validators.strRepasswordError)
-            }
+    function passwordEqualRepassword() {
+        if (password.value == repassword.value) {
+            hideError(repasswordError)
         }
         else {
-            showError(passwordError, validators.strPasswordError)
+            showError(repasswordError, validators.strRepasswordError)
         }
+    }
+
+    email.addEventListener('input', () => {
+        checkValidation(email, emailError, validators.strEmailError)
+    });
+
+    password.addEventListener('input', () => {
+        checkValidation(password, passwordError, validators.strPasswordError, true)
     })
 
 
@@ -66,26 +63,11 @@ function start() {
     })
 
     repassword.addEventListener('input', () => {
-        if(repassword.validity.valid) {
-            hideError(repasswordError)
-
-            if (password.value == repassword.value) {
-                hideError(repasswordError)
-            }
-            else {
-                showError(repasswordError, validators.strRepasswordError)
-            }
-        }
-        else {
-            showError(repasswordError, validators.strPasswordError)
-
-        }
+        checkValidation(repassword, repasswordError, validators.strRepasswordError, true)
     })
 
 
     document.addEventListener('submit', event => {
-            console.log('ЖМЯК'); //тут будет проеб, т.к. это проверяет только по хтмл паттернам
-            //если пароли не равны, нас все равно пустят
             if (!email.validity.valid || !password.validity.valid || !repassword.validity.valid || !login.validity.valid || password.value != repassword.value) {
                     event.preventDefault();                
             }
