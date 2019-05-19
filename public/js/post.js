@@ -24,7 +24,7 @@ function start() {
         })
     })
 
-    updateArticleLink .addEventListener("click", () => {
+    updateArticleLink.addEventListener("click", () => {
         var id = getArticleId(window.location.href)
         var url = "/post/" + id + "/update"
         fetch(url, options).then(res => {
