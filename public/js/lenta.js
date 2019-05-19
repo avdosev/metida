@@ -65,7 +65,3 @@ function insertPostPreview(objPost, insertedElem) {
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
 }
 
-
-function confirmEmail() {
-
-}
