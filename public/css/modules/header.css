@@ -74,11 +74,35 @@ img.logoImg {
 #createArticle .btn_text {
     display: inline;
 }
-nav {
+
+.icon {
     display: none;
 }
 
+nav ul {
+    list-style: none;
+}
+
+.submenu {
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
 @media screen and (max-width: 650px) {
+
+    .regSection #signIn, #logout {
+        background-color: var(--main-back-color);
+        color: var(--smoke-color);
+    }
+
+    .icon {
+        display: inline;
+    }
 
     .regSection {
         margin-left: 10%;
@@ -89,31 +113,14 @@ nav {
         display: flex;
         justify-content: space-between;
     }
+
     img.logoImg {
         height: 2.4rem;
         min-width: 10rem;
     }
+
     .regSection a {
         padding: 0.1rem 0.3rem;
-    }
-    #createArticle{
-        display: none;
-    }
-
-    #home {
-        display: none;
-    }
-
-    #logout {
-        display: none;
-    }
-
-    #signIn{
-        display: none;
-    }
-
-    #register{
-        display: none;
     }
 
     nav a {
@@ -126,10 +133,9 @@ nav {
         display: table;
         margin: auto auto;
         padding: 7px 7px 0px 0px;
-      }
+    }
 
     nav ul {
-        list-style: none;
         margin: 0;
         padding: 0; 
     }
@@ -145,6 +151,7 @@ nav {
     }
       
     .submenu {
+        flex-direction: column;
         background: var(--main-back-color);
         position: absolute;
         left: -185%;
