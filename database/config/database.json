@@ -4,20 +4,23 @@
         "password": "123456",
         "database": "usersDB2",
         "host": "127.0.0.1",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "logging": false
     },
     "test": {
         "username": "metidaSQL",
         "password": "123456",
         "database": "usersDB2",
         "host": "127.0.0.1",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "logging": true
     },
     "production": {
         "username": "be81182ff73cbf",
         "password": "8061ee7e",
         "database": "heroku_67dc7b817fb9731",
         "host": "us-cdbr-iron-east-02.cleardb.net",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "logging": false
     }
 }
