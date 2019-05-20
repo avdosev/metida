@@ -49,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+function refreshPage() {
+    window.location.reload();
+}
+
+function returnToArticle() { //в общем, вызвать это дерьмо, когда он начинает переводить на джсон
+    var url  = window.location.href.replace(new RegExp("/pushComment.*"), "")
+    document.location.href = url;
+}
+
+
 function insertsComments(objCommentArray, insertedElem) {
     for (let i = 0; i < objCommentArray.length; i++) {
         const objComment = objCommentArray[i];
