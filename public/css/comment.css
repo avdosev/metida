@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-.new_comment form {
+.new_comment .comment {
     display: flex;
     flex-direction: column;
 }
 
-.new_comment form * {
+.new_comment .comment * {
     margin-block-end: 10px
 }
 
-.new_comment form textarea {
+.new_comment .comment textarea {
     min-width: 800px;
     min-height: 170px
 }
