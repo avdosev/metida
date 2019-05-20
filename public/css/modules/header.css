@@ -173,7 +173,7 @@ ul {
         border-bottom: 1px solid rgba(255,255,255,.1);
     }
 
-    .topmenu > li:hover .submenu {
+    #submenu__active{
         opacity: 1;
         transform: scaleY(1);
     }
