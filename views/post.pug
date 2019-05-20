@@ -32,12 +32,11 @@ body
         .new_comment
           if authorised 
             h3 Оставить комментарий
-            form(action="/post/" + id + "/pushComment", method="post" novalidate)
-              textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
-              <span class="commentError" aria-live="polite"></span>
-              .button
-                input(type="submit", id="enter", value = "Отправить")
-                input(type="button", id="veiw", value = "Предпросмотр")
+            textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
+            <span class="commentError" aria-live="polite"></span>
+            .button
+              button(id="enter", value = "Отправить") Отправить
+              input(type="button", id="veiw", value = "Предпросмотр")
           else
             p Зарегистрируйся, если хочешь оставить коммент
             

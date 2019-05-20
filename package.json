@@ -41,6 +41,7 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "lorem-ipsum": "^2.0.2",
     "eslint": "^5.16.0",
     "prettier": "1.17.0"
   },
