@@ -47,6 +47,7 @@ const loadPasportStrategies = (passport, user) => {
                 }
 
                 User.findOne({ where: { email: email } }).then(user => {
+                    console.log(user)
                     if (user) {
                         throw new Error('Что-то пошло не так');
                     } else {

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmEmail.addEventListener("click", () => {
         //именно в этот момент, я считаю, мы должны считать емейл юзера и сформировать сообщение для почты
         //тут же меняем ошибку на ui, если сообщение отправлено, и если нет, тоже меняем
-        fetch("/emailMessage")
+        //fetch("/emailMessage")
     })
 
 
@@ -58,6 +58,7 @@ function insertPostPreview(objPost, insertedElem) {
     const htmlPost = `
     <div class = "post">
         <a href = "${url}"><h3>${objPost.header}</h3></a>
+
         <p>${objPost.disclaimer}</p>
     </div>
     `

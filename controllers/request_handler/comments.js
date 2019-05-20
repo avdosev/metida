@@ -24,7 +24,11 @@ function pushComment(req, res, next) {
     const articleId = req.params.id;
     const author = req.user.username; // TODO fix
     const text = req.body.comment;
-    
+
+    if(text == undefined) {
+        console.error("Текст коммента до сюда не дошел. req.body.comment == undefined")
+        return
+    }
     let answeringId
     if (req.body.answeringId)
         answeringId = req.body.answeringId
