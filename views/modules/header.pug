@@ -1,6 +1,9 @@
 style
   include ../../public/css/modules/header.css
-
+script
+  include ../../public/js/burger.js
+//- script(src="../../public/js/ckeditor/burger.js")
+  //- include ../../public/js/burger.js
 //link(rel="stylesheet", href="../../public/css/modules/header.css")
 
 header.header
@@ -13,8 +16,8 @@ header.header
     nav
       ul.topmenu
         li
-          img.icon(src='/public/img/mobile_menu.png')
-          ul.submenu
+          img#burger.icon(src='/public/img/mobile_menu.png')
+          ul#submenu.submenu
             if authorised 
               li
                 a#createArticle(href='/createArticle') Написать
