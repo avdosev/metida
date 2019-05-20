@@ -41,7 +41,7 @@ const loadPasportStrategies = (passport, user) => {
                 
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
-                    throw new Error('Что-то пошло не так', {
+                    throw new Error('Валидация не пройдена', {
                         errors: errors.array()
                     });
                 }
@@ -62,7 +62,7 @@ const loadPasportStrategies = (passport, user) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }
-                            // MAILER
+                            // MAILER //я оформил это отдельной страницей
                             const text = "<p> Поздравляем с регистрацие на Метида, для окончания регистрации подтвердите </p> <a href=\"metida.tech\"> Согласен </a>, если это были не вы игнорируете сообщение"
                             mailer(data.email, "Confirm this email", text )
 
@@ -89,7 +89,7 @@ const loadPasportStrategies = (passport, user) => {
 
             (req, email, password, next) => { //некст нас не кинет на следующий обработчик
                 const User = user;
-
+                console.log(req.body)
                 const isValidPassword = (userpass, password) => {
                     return bCrypt.compareSync(password, userpass);
                 };
@@ -106,7 +106,7 @@ const loadPasportStrategies = (passport, user) => {
                         }
 
                         const userinfo = user.get();
-                        return  next(null, userinfo);
+                        return next(null, userinfo);
                     })
                     .catch(err => {
                         console.log('Ошибка :', err); //у нас произошла ошибка выше по коду и мы начали

@@ -3,17 +3,23 @@ const validators = { ////неприемлимо
     strPasswordError: 'Пароль должен быть больше 5 символов',
     strEventEmailError: 'Вводи почту правильно',
     strRepasswordError: 'Пароли не совпадают.',
-    strLoginError: 'Логин должен быть больше 3 символов'
+    strLoginError: 'Логин должен быть больше 3 символов',
+    emailRegExp: new RegExp('.+@.+'),
+    passwordRegExp: new RegExp('.{5,}')
 }
+
+
 
 document.addEventListener('DOMContentLoaded', start);
 
 function start() {
-    var email = document.querySelector('#email');
-    var emailError = document.querySelector('.emailError');
-    var passwordError = document.querySelector('.passwordError');
-    var password = document.querySelector('#password')
+    const email = document.querySelector('#email');
+    const emailError = document.querySelector('.emailError');
+    const passwordError = document.querySelector('.passwordError');
+    const password = document.querySelector('#password')
+    const sendBtn = document.querySelector("#submit")
     
+
     function showError(spanError, str) {
         spanError.innerHTML = str;
         spanError.className = 'error active';
@@ -41,26 +47,31 @@ function start() {
         checkValidation(password, passwordError, validators.strPasswordError)
     })
 
-    document.addEventListener('submit', event => {
-            if (!email.validity.valid && !password.validity.valid) {
+    sendBtn.addEventListener('click', (event) => {
+            console.log(password.validity.valid)
+            if (!password.value.match(validators.passwordRegExp) && !email.value.match(validators.emailRegExp) )  { //хм очень странно
                 showError(emailError, validators.strEventEmailError)
-                event.preventDefault();
-            }
+            } //есть баг, если емейл прошел, И пароль пустой, то мы не проверяем пароль, что странно
             else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
-                const options = { method: "post", 
-                    body: { 
+                console.log("все ок")
+                const options = {
+                    method:"post",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
                         "email": email.value,
                         "password": password.value
-                    } 
+                    })
                 }
                 fetch("/sign_In", options).then( value => {
-                    console.log("Ответ вернулся к сане " +value) //ничего не возвращется
-                }).catch(err, value => {
-                    console.log("Ошибка вернулась к сане " +err)
                     console.log(value)
+                    document.location.href = "/"
+                }).catch((err, value) => {
+                    console.log(err)
+                    console.error(value)
 
                 })
-
             }
         },
         false
