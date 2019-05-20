@@ -1,6 +1,7 @@
 const comment1 = { 
     commentError: "Коммент уж слишком маленький. Прям как ...",
-    commentEventError: "Коммент не удовлетворяет требованиям"
+    commentEventError: "Коммент не удовлетворяет требованиям",
+    commentRegExp: new RegExp("^.{6,}")
 }
 
 
@@ -25,24 +26,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     sendCommentBtn.addEventListener("click", () => {
-
-        const options={
-            method:"post",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "comment": comment.value,
+        if ( !comment.value.match(comment1.commentRegExp)  )  {
+            commentError.innerHTML = comment1.commentEventError;
+            commentError.className = 'commentError error active';
+             //не пускаем его дальше
+        }
+        else {
+            const options = {
+                method:"post",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "comment": comment.value,
+                })
+            }
+            fetch(`/post/${id}/pushComment`, options).then( () => {
+                refreshPage()
             })
         }
-        fetch(`/post/${id}/pushComment`, options).then( () => {
-            refreshPage()
-        })
     })
 
     comment.addEventListener('input', () => {
-            const value = comment.value
-            if (value.match(/^.{6,}/)) { 
+            // не понимаю почему не работает способ из sign_In //наверно, потому что тут не форма
+            if (comment.value.match(comment1.commentRegExp)) { 
                 commentError.innerHTML = '';
                 commentError.className = 'commentError error';
             } else {
@@ -50,19 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentError.className = 'commentError error active';
             }
         },
-        false
+        false //объясни потом, что значит этот бул
     );
 
-    document.addEventListener('submit', event => { //
-            console.log('ЖМЯК', event);
-            if (!comment.validity.valid) {
-                commentError.innerHTML = comment1.commentEventError;
-                commentError.className = 'error active';
-                event.preventDefault() //не пускаем его дальше
-            }
-        },
-        false
-    );
 
 });
 
@@ -101,7 +98,6 @@ function insertComment(objComment, insertedElem) {
     const Id = objComment.id;
     const date = new Date(objComment.createdAt);
     const DateStr = DateToStr(date);
-    console.log("Коммент обдж" + objComment)
     // впринципе можно менять
     const htmlPost = `
     <div class = "comment" id = "comment_${Id}" data-id = "${Id}">

@@ -36,14 +36,34 @@ function confirmEmailByEmail(email) {
         }
     }
 }
-//открытие для сани ебать
-//вся инфа о юзере у нас лежит в req.user
+
+function getEmail(userId) {
+     User.findOne({
+        where: {
+           id: userId
+        }
+    }).then(user => {
+        return user.email
+    })
+}
+
+function getLogin(userId) {
+    User.findOne({
+        where: {
+           id: userId
+        }
+    }).then(user => {
+        return user.login
+    })
+}
 
 
 module.exports = {
     confirmEmailByEmail,
     confirmEmailById,
-    isConfirmedEmail
+    isConfirmedEmail,
+    getEmail, 
+    getLogin
 }
 
 

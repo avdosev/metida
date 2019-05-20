@@ -69,7 +69,8 @@ function start() {
 
     document.addEventListener('submit', event => {
             if (!email.validity.valid || !password.validity.valid || !repassword.validity.valid || !login.validity.valid || password.value != repassword.value) {
-                    event.preventDefault();                
+                showError(emailError, validators.strEventEmailError) /// тут надо сделать получше, но мне лень прока   
+                event.preventDefault();                
             }
             //если все валидно, то отправляет форму
         },
