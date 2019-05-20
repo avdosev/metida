@@ -1,6 +1,3 @@
-import { futimes } from "fs";
-
-//import { validators }  from './replicas/replicas';
 const validators = { ////неприемлимо
     strEmailError:  'Я же просил ввести емейл. Не зли меня',
     strPasswordError: 'Пароль должен быть больше 5 символов',
@@ -12,11 +9,11 @@ const validators = { ////неприемлимо
 document.addEventListener('DOMContentLoaded', start);
 
 function start() {
-    var email = document.getElementById('email');
+    var email = document.querySelector('#email');
     var emailError = document.querySelector('.emailError');
     var passwordError = document.querySelector('.passwordError');
     var password = document.querySelector('#password')
-
+    
     function showError(spanError, str) {
         spanError.innerHTML = str;
         spanError.className = 'error active';
@@ -36,13 +33,11 @@ function start() {
         }
     }
     
-    email.addEventListener('change', () => {
-            checkValidation(email, emailError, validators.strEmailError)
-        },
-        false
-    );
+    email.addEventListener('input', () => {
+        checkValidation(email, emailError, validators.strEmailError)
+    });
 
-    password.addEventListener('change', () => {
+    password.addEventListener('input', () => {
         checkValidation(password, passwordError, validators.strPasswordError)
     })
 

@@ -1,4 +1,4 @@
-const articlesCount = 2 //число статей, которые будут на странице до нажатия кнопки
+const articlesCount = 20 //число статей, которые будут на странице до нажатия кнопки
 //пока при нажатии подаются оставшиеся статьи
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmEmail.addEventListener("click", () => {
         //именно в этот момент, я считаю, мы должны считать емейл юзера и сформировать сообщение для почты
         //тут же меняем ошибку на ui, если сообщение отправлено, и если нет, тоже меняем
-        fetch("/emailMessage")
+        //fetch("/emailMessage")
     })
 
 
@@ -58,6 +58,7 @@ function insertPostPreview(objPost, insertedElem) {
     const htmlPost = `
     <div class = "post">
         <a href = "${url}"><h3>${objPost.header}</h3></a>
+
         <p>${objPost.disclaimer}</p>
     </div>
     `

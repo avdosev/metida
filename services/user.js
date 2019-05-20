@@ -1,4 +1,4 @@
-const usersInit = require('../database/models/users');
+const usersInit = require('../database/models/user');
 const models = require('../database/models');
 const User = usersInit(models.sequelize, models.Sequelize); 
 
@@ -36,6 +36,9 @@ function confirmEmailByEmail(email) {
         }
     }
 }
+//открытие для сани ебать
+//вся инфа о юзере у нас лежит в req.user
+
 
 module.exports = {
     confirmEmailByEmail,

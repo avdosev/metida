@@ -8,7 +8,7 @@ const tables = [
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    for (var i in tables)  {
+    for (var i in tables) {
         return queryInterface.changeColumn(tables[i], 'createdAt', {
             type: Sequelize.DATE,
             allowNull: false,
@@ -19,7 +19,7 @@ module.exports = {
                 allowNull: false,
                 defalultValue: Sequelize.literal('CURRENT_TIMESTAMP')
             })
-        }).then( () => continue)
+        })
     }   
   },
 
