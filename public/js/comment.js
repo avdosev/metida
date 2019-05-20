@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = post.id;
     const commentError = document.querySelector('.commentError');
     const comment = document.querySelector('#comment') //я не могу с жить с ошибкой
+    const sendCommentBtn = document.querySelector("#enter")
 
     fetch(`/post/${id}/comments`)
         .then(value => {
@@ -22,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error(error);
         });
+
+    sendCommentBtn.addEventListener("click", (event) => {
+        //console.log(comment.value)
+        const options={
+            method:"post",
+            body: {
+                text: comment.value
+                // answeringId: 
+            }
+        }
+        fetch("/post/:id/pushComment", options).then( () => {
+
+        })
+    })
 
     comment.addEventListener('input', () => {
             const value = comment.value
@@ -54,8 +69,7 @@ function refreshPage() {
 }
 
 function returnToArticle() { //в общем, вызвать это дерьмо, когда он начинает переводить на джсон
-    var url  = window.location.href.replace(new RegExp("/pushComment.*"), "")
-    document.location.href = url;
+    document.location.href = window.location.href.replace(new RegExp("/pushComment.*"), "")
 }
 
 
