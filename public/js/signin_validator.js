@@ -33,11 +33,11 @@ function start() {
         }
     }
     
-    email.addEventListener('change', () => {
+    email.addEventListener('input', () => {
         checkValidation(email, emailError, validators.strEmailError)
     });
 
-    password.addEventListener('change', () => {
+    password.addEventListener('input', () => {
         checkValidation(password, passwordError, validators.strPasswordError)
     })
 
