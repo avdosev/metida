@@ -13,12 +13,12 @@ head
 body
   include modules/header 
   .inputForm 
-    form.reg(action="/sign_In", method="post" novalidate)
+    div.reg
       p Email
       input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+')
       <span class="emailError" aria-live="polite"></span>
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
       <span class="passwordError" aria-live="polite"></span>
-      input#submit(type="submit" value="Enter")
+      button#submit Ок
 
