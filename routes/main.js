@@ -39,7 +39,7 @@ const initAuthControllers = (app, passport) => {
     app.post('/post/:id/update', Handler.updateArticle, Response.jsonValuesWith(['success']))
     app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
     app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonValue('TopArticles'))
-
+    app.post('/createArticle', isLoggedIn, urlencodedParser, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
     app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.jsonValue("comments"));
@@ -56,17 +56,7 @@ const initAuthControllers = (app, passport) => {
     app.get("/emailConfirmed/:email", Response.renderPage.emailConfirmed) //для того, чтобы пользователь увидел успешное сообщение
     
     // -- (L)USERS API --
-    
-    app.post(
-        '/createArticle',
-        isLoggedIn,
-        urlencodedParser,
-        articleValidator,
-        /* отправить на модерацию */
-        Handler.pushArticle,
-        Response.redirectToArticle
-    );
-    
+   
     app.post(
         '/register',
         urlencodedParser, Debug.logRequest,
