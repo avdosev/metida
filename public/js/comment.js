@@ -3,12 +3,13 @@ const comment1 = {
     commentEventError: "Коммент не удовлетворяет требованиям"
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const post = document.querySelector('.post_text');
     const id = post.id;
     const commentError = document.querySelector('.commentError');
     const comment = document.querySelector('#comment') //я не могу с жить с ошибкой
-
+    const sendCommentBtn = document.querySelector("#enter")
     fetch(`/post/${id}/comments`)
         .then(value => {
             console.log(value);
@@ -23,6 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         });
 
+    sendCommentBtn.addEventListener("click", () => {
+
+        const options={
+            method:"post",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "comment": comment.value,
+            })
+        }
+        fetch(`/post/${id}/pushComment`, options).then( () => {
+            refreshPage()
+        })
+    })
+
     comment.addEventListener('input', () => {
             const value = comment.value
             if (value.match(/^.{6,}/)) { 
@@ -36,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         false
     );
 
-    document.addEventListener('submit', event => {
+    document.addEventListener('submit', event => { //
             console.log('ЖМЯК', event);
             if (!comment.validity.valid) {
                 commentError.innerHTML = comment1.commentEventError;
@@ -48,6 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
 });
+
+function refreshPage() {
+    window.location.reload();
+}
+
+function returnToArticle() { //в общем, вызвать это дерьмо, когда он начинает переводить на джсон
+    document.location.href = window.location.href.replace(new RegExp("/pushComment.*"), "")
+}
+
+function getAnsweringId() {
+    
+}
+
 
 function insertsComments(objCommentArray, insertedElem) {
     for (let i = 0; i < objCommentArray.length; i++) {
@@ -71,7 +101,7 @@ function insertComment(objComment, insertedElem) {
     const Id = objComment.id;
     const date = new Date(objComment.createdAt);
     const DateStr = DateToStr(date);
-
+    console.log("Коммент обдж" + objComment)
     // впринципе можно менять
     const htmlPost = `
     <div class = "comment" id = "comment_${Id}" data-id = "${Id}">

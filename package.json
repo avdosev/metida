@@ -1,6 +1,6 @@
 {
   "name": "metida",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Small blog-platform",
   "main": "app.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/avdosev/metida"
   },
-  "author": "",
+  "author": "K. company",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/avdosev/metida/issues"
@@ -41,6 +41,7 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "lorem-ipsum": "^2.0.2",
     "eslint": "^5.16.0",
     "prettier": "1.17.0"
   },
