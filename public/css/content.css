@@ -11,6 +11,9 @@
     border-top: 2px solid grey;
     margin-bottom: 20px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
 }
 
 .post a {
