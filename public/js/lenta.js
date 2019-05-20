@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
 function getArticle(articlesCount=0) {
-    console.log(currentCountOfArticles+articlesCount)
     fetch('./top', {
         method: 'post',
         headers: {
@@ -34,10 +33,9 @@ function getArticle(articlesCount=0) {
             "end": currentCountOfArticles+articlesCount
         })
     }).then(value => {
-        console.log(value);
         return value.json()
     }).then((json => {
-        console.log(json)
+        console.log(json);
         const insertElem = document.querySelector('.lenta')
 
         for (let i = 0; i < json.length; i++) { 
@@ -58,7 +56,6 @@ function insertPostPreview(objPost, insertedElem) {
     const htmlPost = `
     <div class = "post">
         <a href = "${url}"><h3>${objPost.header}</h3></a>
-
         <p>${objPost.disclaimer}</p>
     </div>
     `

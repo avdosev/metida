@@ -36,8 +36,7 @@ function confirmEmailByEmail(email) {
         }
     }
 }
-//открытие для сани ебать
-//вся инфа о юзере у нас лежит в req.user
+
 
 
 module.exports = {

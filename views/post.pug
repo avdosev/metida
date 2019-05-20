@@ -33,7 +33,7 @@ body
           if authorised 
             h3 Оставить комментарий
             div.comment
-              textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{10,}')
+              textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{6,}')
               <span class="commentError" aria-live="polite"></span>
               .button
                 button(id="enter", value = "Отправить") Отправить
