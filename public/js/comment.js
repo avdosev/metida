@@ -1,6 +1,7 @@
 const comment1 = { 
     commentError: "Коммент уж слишком маленький. Прям как ...",
-    commentEventError: "Коммент не удовлетворяет требованиям"
+    commentEventError: "Коммент не удовлетворяет требованиям",
+    commentRegExp: new RegExp("^.{6,}")
 }
 
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     sendCommentBtn.addEventListener("click", () => {
-        if ( !comment.value.match(new RegExp("^.{6,}"))  )  {
+        if ( !comment.value.match(comment1.commentRegExp)  )  {
             commentError.innerHTML = comment1.commentEventError;
             commentError.className = 'commentError error active';
              //не пускаем его дальше
@@ -47,10 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     comment.addEventListener('input', () => {
-            const value = comment.value // не понимаю почему не работает способ из sign_In //наверно, потому что тут не форма
-            console.log(!comment.value.match(new RegExp("^.{6,}")) )
-
-            if (value.match(/^.{6,}/)) { 
+            // не понимаю почему не работает способ из sign_In //наверно, потому что тут не форма
+            if (comment.value.match(comment1.commentRegExp)) { 
                 commentError.innerHTML = '';
                 commentError.className = 'commentError error';
             } else {
@@ -58,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentError.className = 'commentError error active';
             }
         },
-        false
+        false //объясни потом, что значит этот бул
     );
 
 
