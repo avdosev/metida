@@ -41,11 +41,11 @@ function pushComment(req, res, next) {
     commentApi.pushComment(articleId, author, text, answeringId)
     .then(value => {
         initValues(res)
-        res.values.SuccessPushComment = true; 
+        res.values.success = true; 
         next()
     }).catch(error => {
         initValues(res)
-        res.values.SuccessPushComment = false;
+        res.values.success = false;
         console.error(error);
         next()
     })
