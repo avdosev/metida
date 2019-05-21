@@ -20,16 +20,16 @@ header.header
           ul#submenu.submenu
             if authorised 
               li
-                a#createArticle(href='/createArticle') Написать
+                a.BlackButton#createArticle(href='/createArticle') Написать
               li
-                a#home(href='/home') Профиль
+                a.BlackButton#home(href='/home') Профиль
               li
-                a#logout(href='/logout') Выйти
+                a.GreyButton#logout(href='/logout') Выйти
             else
               li
-                a#signIn(href='/sign_In') Войти
+                a.GreyButton#signIn(href='/sign_In') Войти
               li
-                a#register(href='/register') Регистрация
+                a.BlackButton#register(href='/register') Регистрация
     //- span.emailIsntConfirmed(aria-live="polite")
       button(class="confirmEmail") Подтвердить
 
