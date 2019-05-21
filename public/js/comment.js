@@ -125,12 +125,14 @@ function createClick(id) {
     control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
     
     const reply_block = `
-    <div class = "new_comment reply_comment">
-    <form class = "reply_comment" action="${window.location.href}/pushComment?answeringId=${id}" method="post" novalidate>
-        <textarea class = "comment" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
-        <input type="submit"></input>
+    <div class = "comment reply_comment">
+        <textarea class = "comment_area" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
+        <div class = "button">
+            <button class = "EnterButton">
+                Отправить
+            </button>
+        </div>
         <span class="commentError" aria-live="polite"></span>
-    </form>
     </div>
     `
     control_block.insertAdjacentHTML('afterend', reply_block)

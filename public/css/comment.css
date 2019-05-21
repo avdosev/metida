@@ -4,18 +4,17 @@
     --comments-left-border-color: #d4d4d4;
 }
 
-.new_comment .comment {
+.new_comment_block {
+    width: 100%
+}
+
+.new_comment_block .comment {
     display: flex;
     flex-direction: column;
 }
 
-.new_comment .comment * {
+.new_comment_block .comment * {
     margin-block-end: 10px
-}
-
-.new_comment .comment textarea {
-    min-width: 800px;
-    min-height: 170px
 }
 
 .comment_childer {
@@ -41,10 +40,12 @@
     width: 100%
 }
 
-#comment{
+.comment_area {
     resize: none;
     border: 4px;
     border-style: ridge;
+    width: 100%;
+    min-height: 170px
 }
 
 .button {
@@ -64,7 +65,7 @@
     transition: 0.5s;
 }
 
-#enter{
+.EnterButton {
     height: 30px;
     width: 150px;
     margin-right: 10px;
@@ -81,7 +82,7 @@
     transition: 0.5s;
 }
 
-#enter:hover{
+.EnterButton:hover{
     background-color: rgba(70, 131, 180, 0.75);
     transition: 0.5s;
 }
@@ -90,7 +91,7 @@
     background-color: rgba(70, 131, 180, 0.5);
 }
 
-#enter:active{
+.EnterButton:active{
     background-color: rgba(70, 131, 180, 0.5);
 }
 
@@ -117,7 +118,7 @@
 }
 
 @media screen and (max-width: 650px) {
-    .new_comment form textarea {
+    .new_comment_block form textarea {
         min-width: 300px;
     }
 }
