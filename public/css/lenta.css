@@ -1,0 +1,26 @@
+.post {
+    border-top: 2px solid grey;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.post a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    word-break: break-all;
+    line-height: 30px;
+}
+
+.post a:hover {
+    color: steelblue;
+}
+
+.post p {
+    font-size: 18px;
+    line-height: 30px;
+    word-break: break-all;
+}
