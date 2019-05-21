@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
+:root {
+    --comments-left-border-color: #d4d4d4;
+}
+
 .new_comment .comment {
     display: flex;
     flex-direction: column;
@@ -15,7 +19,8 @@
 }
 
 .comment_childer {
-    margin-left: 20%;
+    padding-left: 25px;
+    border-left: solid 1px var(--comments-left-border-color);
 }
 
 .comment_control[data-type=create]::after {
@@ -32,7 +37,8 @@
 
 .comment{
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+    width: 100%
 }
 
 #comment{
