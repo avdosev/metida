@@ -4,16 +4,21 @@ const User = usersInit(models.sequelize, models.Sequelize);
 
 
 function isConfirmedEmail(userId) {
-    User.findOne({
-        where: {
-            id: userId
-        }
+    return new Promis((resolve, reject) => {
+        User.findOne({
+            attributes: [
+                'activatedEmail'
+            ],
+            where: {
+                id: userId
+            }
+        }).then((value) =>{
+            console.log(value)
+            resolve(value)
+        }).catch(err => {
+            reject(err)
+        })
     })
-    console.log(User.activatedEmail)
-    if (User.activatedEmail)
-        return true
-    else 
-        return false
 }
 
 
@@ -37,33 +42,37 @@ function confirmEmailByEmail(email) {
     }
 }
 
-function getEmail(userId) {
-     User.findOne({
+function getUserById(userId) {
+    return User.findOne({
         where: {
            id: userId
         }
-    }).then(user => {
-        return user.email
     })
 }
 
-function getLogin(userId) {
-    User.findOne({
+function getUserByEmail(email) {
+    return User.findOne({
         where: {
-           id: userId
+           email
         }
-    }).then(user => {
-        return user.login
     })
 }
 
+function createUser(email, username, password) {
+    return User.create({
+        email,
+        username,
+        password
+    })
+}
 
 module.exports = {
+    isConfirmedEmail,
     confirmEmailByEmail,
     confirmEmailById,
-    isConfirmedEmail,
-    getEmail, 
-    getLogin
+    createUser,
+    getUserById,
+    getUserByEmail
 }
 
 
