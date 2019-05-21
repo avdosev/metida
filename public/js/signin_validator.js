@@ -1,4 +1,4 @@
-const validators = { ////неприемлимо
+const validators = { // все еще не понимаю как вынести это все
     strEmailError:  'Я же просил ввести емейл. Не зли меня',
     strPasswordError: 'Пароль должен быть больше 5 символов',
     strEventEmailError: 'Вводи почту правильно',
@@ -7,7 +7,6 @@ const validators = { ////неприемлимо
     emailRegExp: new RegExp('.+@.+'),
     passwordRegExp: new RegExp('.{5,}')
 }
-
 
 
 document.addEventListener('DOMContentLoaded', start);
@@ -40,6 +39,7 @@ function start() {
     }
     
     email.addEventListener('input', () => {
+        console.log(validators)
         checkValidation(email, emailError, validators.strEmailError)
     });
 
@@ -67,11 +67,11 @@ function start() {
                     })
                 }
                 fetch("/sign_In", options).then( value => {
-                    console.log(value)
+                    //console.log(value)
                     document.location.href = "/"
                 }).catch((err, value) => {
                     console.log(err)
-                    console.error(value)
+                    //console.error(value)
 
                 })
             }
