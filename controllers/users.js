@@ -39,7 +39,7 @@ const loadPasportStrategies = (passport, user) => {
             },
             (req, email, password, done) => {
                 
-                const errors = validationResult(req);
+                const errors = validationResult(req); //вроде это никогда не сработает
                 if (!errors.isEmpty()) {
                     throw new Error('Валидация не пройдена', {
                         errors: errors.array()
@@ -49,14 +49,14 @@ const loadPasportStrategies = (passport, user) => {
                 UserApi.getUserByEmail(email).then(user => {
                     console.log(user)
                     if (user) {
-                        throw new Error('Что-то пошло не так');
+                        throw new Error('Емейл уже занят');
                     } else {
                         const userPassword = generateHash(password); // зашифрованный
                         const username = req.body.login
 
                         UserApi.createUser(email, username, userPassword).then((newUser) => {
                             if (!newUser) {
-                                throw new Error('Что-то пошло не так');
+                                throw new Error('Юзер не создан');
                             }
                             // MAILER //я оформил это отдельной страницей
                             const text = "<p> Поздравляем с регистрацие на Метида, для окончания регистрации подтвердите </p> <a href=\"metida.tech\"> Согласен </a>, если это были не вы игнорируете сообщение"
@@ -84,7 +84,7 @@ const loadPasportStrategies = (passport, user) => {
             },
 
             (req, email, password, next) => { //некст нас не кинет на следующий обработчик
-                const User = user;
+                //const User = user;
                 console.log(req.body)
                 const isValidPassword = (userpass, password) => {
                     return bCrypt.compareSync(password, userpass);
