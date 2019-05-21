@@ -29,14 +29,14 @@ body
           !=text
         .comments_lenta.lenta
           h3 Комментарии:
-        .new_comment
+        .new_comment_block
           if authorised 
             h3 Оставить комментарий
             div.comment
-              textarea#comment(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{6,}')
+              textarea.comment_area(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{6,}')
               <span class="commentError" aria-live="polite"></span>
               .button
-                button(id="enter", value = "Отправить") Отправить
+                button.EnterButton(value = "Отправить") Отправить
                 input(type="button", id="veiw", value = "Предпросмотр")
           else
             p Зарегистрируйся, если хочешь оставить коммент
