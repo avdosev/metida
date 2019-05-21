@@ -56,12 +56,12 @@ img.logoImg {
     transition: all 0.218s ease 0s;
 }
 
-.GreyButton {
+.BlackButton {
     background-color: var(--main-back-color);
     color: var(--smoke-color);
 }
 
-.BlackButton {
+.GreyButton {
     background-color: var(--ccc-color);
     color: black;
 }
@@ -94,13 +94,6 @@ ul {
 }
 
 @media screen and (max-width: 650px) {
-
-    .BlackButton, .GreyButton {
-        display: block;
-        background-color: var(--main-back-color);
-        color: var(--smoke-color);
-    }
-
     .BlackButton:hover, .GreyButton:hover {
         color: var(--steel-color); 
     }
@@ -126,8 +119,10 @@ ul {
 
     .regSection .GreyButton,
     .regSection .BlackButton {
-        margin-right: 0px;
         display: block;
+        background-color: var(--main-back-color);
+        color: var(--smoke-color);
+        margin-right: 0px;
         text-decoration: none;
         outline: none;
         color: white;

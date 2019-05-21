@@ -24,3 +24,8 @@ img {
     float: right;
     font-family: 'Cabin', sans-serif;
 }
+
+button {
+    border-style: none;
+    padding: 0.3em 1em
+}
