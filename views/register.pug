@@ -15,7 +15,7 @@ body
   include modules/header 
 
   .inputForm
-    form.reg(action="/register", method="post", name="register" novalidate)
+    div.reg(name="register")
       p Email
       input#email(type='email', name='email', placeholder='Type email', required='required', pattern='.+@.+')
       <span class="emailError" aria-live="polite"></span>
@@ -29,6 +29,6 @@ body
       p Retype password
       input#repassword(type="password" name='repassword', placeholder="Retype password" required )
       <span class="repasswordError" aria-live="polite"></span>
-      input#submit(type="submit"  value="Registration")
+      button#submit(type="submit"  value="Registration") Зарегистрироваться
 
 
