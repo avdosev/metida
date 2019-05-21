@@ -9,7 +9,6 @@ head
   link(rel="stylesheet", href="/public/css/input.css")
   script(type='text/javascript', src='/public/js/signin_validator.js')
 
-
 body
   include modules/header 
   .inputForm 
@@ -20,5 +19,5 @@ body
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
       <span class="passwordError" aria-live="polite"></span>
-      button#submit Ок
+      button#submit Войти
 
