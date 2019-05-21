@@ -43,7 +43,7 @@ img.logoImg {
     align-items: center;
 }
 
-.regSection a {
+.regSection .GreyButton, .BlackButton {
     margin-right: 0.5rem;
     display: inline-block;
     font-family: arial, sans-serif;
@@ -56,17 +56,17 @@ img.logoImg {
     transition: all 0.218s ease 0s;
 }
 
-.regSection #register, #home, #createArticle  {
+.GreyButton {
     background-color: var(--main-back-color);
     color: var(--smoke-color);
 }
 
-.regSection #signIn, #logout {
+.BlackButton {
     background-color: var(--ccc-color);
     color: black;
 }
 
-.regSection #register:hover, #signIn:hover, #logout:hover, #home:hover, #createArticle:hover {
+.BlackButton:hover, .GreyButton:hover {
     background-color: var(--steel-color);
     color: var(--smoke-color);
 }/* tipical button hover  */
@@ -95,9 +95,14 @@ ul {
 
 @media screen and (max-width: 650px) {
 
-    .regSection #signIn, #logout {
+    .BlackButton, .GreyButton {
+        display: block;
         background-color: var(--main-back-color);
         color: var(--smoke-color);
+    }
+
+    .BlackButton:hover, .GreyButton:hover {
+        color: var(--steel-color); 
     }
 
     .icon {
@@ -119,14 +124,18 @@ ul {
         min-width: 10rem;
     }
 
-    .regSection a {
-        padding: 0.1rem 0.3rem;
-    }
-
-    nav a {
+    .regSection .GreyButton,
+    .regSection .BlackButton {
+        margin-right: 0px;
+        display: block;
         text-decoration: none;
         outline: none;
-        display: block;
+        color: white;
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        padding: 12px 15px;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
     }
       
     nav {
@@ -145,10 +154,6 @@ ul {
         float: right;
         position: relative;
     }
-
-    .topmenu li a:hover {
-        color: var(--steel-color); 
-    }
       
     .submenu {
         flex-direction: column;
@@ -162,15 +167,6 @@ ul {
         transform: scaleY(0);
         transform-origin: 0 0;
         transition: .5s ease-in-out;
-    }
-
-    .submenu a {
-        color: white;
-        text-align: left;
-        font-family: 'Lato', sans-serif;
-        padding: 12px 15px;
-        font-size: 13px;
-        border-bottom: 1px solid rgba(255,255,255,.1);
     }
 
     #submenu__active{
