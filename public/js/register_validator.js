@@ -57,7 +57,6 @@ function start() {
         checkValidation(password, passwordError, validators.strPasswordError, true)
     })
 
-
     login.addEventListener('change', () => {
         checkValidation(login, loginError, validators.strLoginError)
     })

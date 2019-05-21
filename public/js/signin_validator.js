@@ -48,10 +48,12 @@ function start() {
     })
 
     sendBtn.addEventListener('click', (event) => {
-            console.log(password.validity.valid)
-            if (!password.value.match(validators.passwordRegExp) && !email.value.match(validators.emailRegExp) )  { //хм очень странно
+            if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
                 showError(emailError, validators.strEventEmailError)
-            } //есть баг, если емейл прошел, И пароль пустой, то мы не проверяем пароль, что странно
+            }
+            else if(!password.value.match(validators.passwordRegExp) ) {
+                showError(passwordError, validators.strPasswordError)
+            }
             else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
                 console.log("все ок")
                 const options = {
