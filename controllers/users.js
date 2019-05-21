@@ -1,6 +1,15 @@
 const bCrypt = require('bcrypt-nodejs');
 const { validationResult } = require('express-validator/check');
 const mailer = require("../services/email")
+const UserApi = require("../services/user")
+
+function generateHash (password) {
+    return bCrypt.hashSync(
+        password,
+        bCrypt.genSaltSync(10),
+        null
+    );
+};
 
 const loadPasportStrategies = (passport, user) => {
     const User = user;
@@ -12,13 +21,11 @@ const loadPasportStrategies = (passport, user) => {
 
     // для логаута (камингаута)
     passport.deserializeUser((id, done) => {
-        User.findOne({ where: { id: id } }).then(user => {
-            //находим юзера
-            if (user) {
-                done(null, user.get()); //нашли
-            } else {
-                done(user.errors, null); //не нашли
-            }
+        //находим юзера
+        UserApi.getUserById(id).then(user => {
+            done(null, user.get()); //нашли
+        }).catch(err => {
+            done('not found', null); //не нашли
         });
     });
 
@@ -31,13 +38,6 @@ const loadPasportStrategies = (passport, user) => {
                 passReqToCallback: true
             },
             (req, email, password, done) => {
-                const generateHash = password => {
-                    return bCrypt.hashSync(
-                        password,
-                        bCrypt.genSaltSync(10),
-                        null
-                    );
-                };
                 
                 const errors = validationResult(req);
                 if (!errors.isEmpty()) {
@@ -46,32 +46,28 @@ const loadPasportStrategies = (passport, user) => {
                     });
                 }
 
-                User.findOne({ where: { email: email } }).then(user => {
+                UserApi.getUserByEmail(email).then(user => {
                     console.log(user)
                     if (user) {
                         throw new Error('Что-то пошло не так');
                     } else {
-                        const userPassword = generateHash(password);
-                        const data = {
-                            email: email,
-                            username: req.body.login,
-                            password: userPassword // зашифрованный
-                        };
+                        const userPassword = generateHash(password); // зашифрованный
+                        const username = req.body.login
 
-                        User.create(data).then((newUser) => {
+                        UserApi.createUser(email, username, userPassword).then((newUser) => {
                             if (!newUser) {
                                 throw new Error('Что-то пошло не так');
                             }
                             // MAILER //я оформил это отдельной страницей
                             const text = "<p> Поздравляем с регистрацие на Метида, для окончания регистрации подтвердите </p> <a href=\"metida.tech\"> Согласен </a>, если это были не вы игнорируете сообщение"
-                            mailer(data.email, "Confirm this email", text )
+                            mailer(email, "Confirm this email", text)
 
-                            if (newUser) {
-                                return done(null, newUser); //все ок
-                            }
+                            done(null, newUser); //все ок
+                        }).catch(err => {
+                            done(err, null) // не все ок
                         });
                     }
-                });
+                })
             }
         )
     );
@@ -95,7 +91,7 @@ const loadPasportStrategies = (passport, user) => {
                 };
 
 
-                User.findOne({ where: { email: email } })
+                UserApi.getUserByEmail(email)
                     .then( (user) => {
                         if (!user) {
                             throw new Error('Email does not exist');  
