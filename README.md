@@ -41,6 +41,8 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ## Metida API
 
+Основная [WIKI](https://github.com/avdosev/metida/wiki/Server-API) по API)
+
 Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, ниже можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы.
 #### GET
 1. `/post/:id/non_parsed` - не сформированная статья в json
