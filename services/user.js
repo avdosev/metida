@@ -4,7 +4,7 @@ const User = usersInit(models.sequelize, models.Sequelize);
 
 
 function isConfirmedEmail(userId) {
-    return new Promis((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         User.findOne({
             attributes: [
                 'activatedEmail'
