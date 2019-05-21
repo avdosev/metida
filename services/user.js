@@ -25,21 +25,21 @@ function isConfirmedEmail(userId) {
 function confirmEmailById(userId) {
     return User.update({
         activatedEmail: true
-    }), {
+    }, {
         where:{
             id: userId
         }
-    }
+    })
 }
 
 function confirmEmailByEmail(email) {
     return User.update({
         activatedEmail: true
-    }), {
+    }, {
         where:{
             email: email
         }
-    }
+    })
 }
 
 function getUserById(userId) {
