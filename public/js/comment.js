@@ -25,25 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error(error);
         });
 
-    sendCommentBtn.addEventListener("click", () => {
+    sendCommentBtn.addEventListener("click", (event) => {
         if ( !comment.value.match(comment1.commentRegExp)  )  {
             commentError.innerHTML = comment1.commentEventError;
             commentError.className = 'commentError error active';
              //не пускаем его дальше
         }
         else {
-            const options = {
-                method:"post",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "comment": comment.value,
-                })
-            }
-            fetch(`/post/${id}/pushComment`, options).then( () => {
-                refreshPage()
-            })
+            
         }
     })
 
@@ -73,6 +62,25 @@ function returnToArticle() { //в общем, вызвать это дерьмо
 
 function getAnsweringId() {
     
+}
+
+function responseComment(commentText, answeringId = null) {
+    const options = {
+        method:"post",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "comment": commentText,
+            answeringId
+        })
+    }
+    fetch(`/post/${id}/pushComment`, options)
+    .then(() => {
+        refreshPage()
+    }).catch(err => {
+        // TODO: обработка ошибки
+    }) 
 }
 
 
@@ -105,8 +113,8 @@ function insertComment(objComment, insertedElem) {
             <a href = "/author/${Author}" class = "author_login">${Author}</a>
             <time class = "created_commit">${DateStr}</time>
         </div>
-        <button class = "updateComment">Редактировать</button>
-        <button class = "removeComment">Удалить</button>
+        <button class = "updateComment GreyButton">Редактировать</button>
+        <button class = "removeComment GreyButton">Удалить</button>
 
         <div class = "comment_text"><p>${Text}</p></div>
         <div class = "control_block">

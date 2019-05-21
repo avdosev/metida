@@ -48,7 +48,7 @@
     min-height: 170px
 }
 
-.button {
+.button_block {
     display: flex;
     justify-content: space-between;
     font-family: 'Lato', sans-serif;

@@ -35,7 +35,7 @@ body
             div.comment
               textarea.comment_area(name="comment", placeholder  = "Комментарий...",  required='required', pattern='.{6,}')
               <span class="commentError" aria-live="polite"></span>
-              .button
+              .button_block
                 button.EnterButton(value = "Отправить") Отправить
                 input(type="button", id="veiw", value = "Предпросмотр")
           else
