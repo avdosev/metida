@@ -14,7 +14,7 @@ body
   .inputForm 
     div.reg
       p Email
-      input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+')
+      input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+\\..+')
       <span class="emailError" aria-live="polite"></span>
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')

@@ -116,7 +116,7 @@ function insertComment(objComment, insertedElem) {
         <button class = "updateComment GreyButton">Редактировать</button>
         <button class = "removeComment GreyButton">Удалить</button>
 
-        <div class = "comment_text"><p>${Text}</p></div>
+        <div class = "comment_text">${Text}</div>
         <div class = "control_block">
             <button class = "reply comment_control" data-type="create" style = "display: inline" onclick="createClick(${Id})"></button>
             <button class = "reply comment_control" data-type="cancel" style = "display: none" onclick="cancelClick(${Id})"></button>
@@ -168,7 +168,7 @@ function DateToStr(date) {
         // сегодня
         str = 'сегодня ';
     } else {
-        month = [
+        const month = [
             'Января',
             'Февраля',
             'Марта',

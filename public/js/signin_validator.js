@@ -4,7 +4,7 @@ const validators = { // все еще не понимаю как вынести 
     strEventEmailError: 'Вводи почту правильно',
     strRepasswordError: 'Пароли не совпадают.',
     strLoginError: 'Логин должен быть больше 3 символов',
-    emailRegExp: new RegExp('.+@.+'),
+    emailRegExp: new RegExp('.+@.+\\..+'),
     passwordRegExp: new RegExp('.{5,}')
 }
 
