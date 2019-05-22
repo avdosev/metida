@@ -38,16 +38,14 @@ const loadPasportStrategies = (passport, user) => {
                 passReqToCallback: true
             },
             (req, email, password, done) => {
-                
+                const res = req.res;
                 const errors = validationResult(req); //вроде это никогда не сработает
                 if (!errors.isEmpty()) {
-                    throw new Error('Валидация не пройдена', {
-                        errors: errors.array()
-                    });
+                    res.statusCode = 406;
+                    res.send('Валидация не пройдена')
                 }
 
                 UserApi.getUserByEmail(email).then(user => {
-                    console.log(user)
                     if (user) {
                         throw new Error('Емейл уже занят');
                     } else {
@@ -64,9 +62,14 @@ const loadPasportStrategies = (passport, user) => {
 
                             done(null, newUser); //все ок
                         }).catch(err => {
-                            done(err, null) // не все ок
+                            // не все ок
+                            res.statusCode = 406;
+                            res.send(err.message)
                         });
                     }
+                }).catch((err) => {
+                    res.statusCode = 406;
+                    res.send(err.message)
                 })
             }
         )

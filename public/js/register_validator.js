@@ -95,13 +95,16 @@ function start() {
                     "password": password.value
                 })
             }
-            fetch("/register", options).then(value => {
-                console.log(value)
-                document.location.href = "/"
+            fetch("/register", options).then(response => {
+                if (response.ok) {
+                    document.location.href = "/"
+                } else {
+                    return response.text()
+                }
+            }).then((err_text) => {
+                console.log(err_text)
             }).catch(err => {
                 console.error(err)
-                //console.log(value)
-
             })
         }
     },
