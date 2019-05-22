@@ -60,17 +60,17 @@ const initAuthControllers = (app, passport) => {
    
     app.post(
         '/register',
-        urlencodedParser, Debug.logRequest,
+        urlencodedParser,
         userCreateValidator,
         passport.authenticate('local-signup', {
             successRedirect: '/',
             failureRedirect: '/register'
-        })
+        }),
     );
 
     app.post(
         '/sign_In', 
-        urlencodedParser, Debug.logRequest,
+        urlencodedParser,
         userLoginValidator,
         passport.authenticate('local-signin', {
             successRedirect: '/',
