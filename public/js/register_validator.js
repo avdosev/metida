@@ -71,23 +71,18 @@ function start() {
         checkValidation(repassword, repasswordError, validators.strRepasswordError, true)
     })
 
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', () => {       
         if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
             showError(emailError, validators.strEventEmailError)
-        }
-        else if(!login.value.match(validators.loginRegExp) ) {
+        } else if(!login.value.match(validators.loginRegExp) ) {
             showError(loginError, validators.strLoginError)
-        }
-        else if(!password.value.match(validators.passwordRegExp) ) {
+        } else if(!password.value.match(validators.passwordRegExp) ) {
             showError(passwordError, validators.strPasswordError)
-        }
-        else if(!repassword.value.match(validators.passwordRegExp) ) { //вторая регулярка не нужна
+        } else if(!repassword.value.match(validators.passwordRegExp) ) { //вторая регулярка не нужна
             showError(repasswordError, validators.strRepasswordError)
-        }
-        else if( !passwordEqualRepassword() ) {
+        } else if( !passwordEqualRepassword() ) {
             showError(passwordError, validators.strPasswordError)
-        }
-        else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
+        } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
             console.log("запрос")
             const options = {
                 method:"post",
@@ -100,10 +95,10 @@ function start() {
                     "password": password.value
                 })
             }
-            fetch("/register", options).then( value => {
-                //console.log(value)
+            fetch("/register", options).then(value => {
+                console.log(value)
                 document.location.href = "/"
-            }).catch((err, value) => {
+            }).catch(err => {
                 console.error(err)
                 //console.log(value)
 
