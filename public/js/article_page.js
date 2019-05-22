@@ -4,11 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById("previews");
     const textarea = document.querySelector('#article')
     const header = document.querySelector('#header')
+    const disclaimer = document.querySelector('#disclaimer')
     
     checkbox.addEventListener("click", showArtIfCheckboxCheked)
     textarea.addEventListener('change', showArtIfCheckboxCheked)
     header.addEventListener('change', showArtIfCheckboxCheked)
-    
+
+    header.addEventListener("input", () => {
+        
+    })
+
     function showArtIfCheckboxCheked() {
         let headerStr = '', textStr = '';
         

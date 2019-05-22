@@ -3,11 +3,16 @@
 
 body {
     background: #f7f7f7;
+    word-wrap: break-word;
     margin: 0;
 }
 
 a {
     text-decoration: none;
+}
+
+pre {
+    word-wrap: break-word;
 }
 
 img {

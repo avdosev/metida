@@ -17,7 +17,7 @@ body
   .inputForm
     div.reg(name="register")
       p Email
-      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='.+@.+')
+      input#email(type='email', name='email', placeholder='Type email', required='required', pattern='.+@.+\\..+')
       <span class="emailError" aria-live="polite"></span>
       .message #{message}
       p Login
