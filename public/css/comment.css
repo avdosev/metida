@@ -121,4 +121,8 @@
     .new_comment_block form textarea {
         min-width: 300px;
     }
+
+    .comment_childer {
+        padding-left: 15px; 
+    }
 }
