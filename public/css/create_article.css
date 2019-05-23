@@ -100,5 +100,13 @@
 }
 
 @media screen and (max-width: 650px) {
-    
+    .pushArticle {
+        width: 100%
+    }
+    .pushArticle #header,
+    .pushArticle #disclaimer,
+    .pushArticle #article {
+        width: 90%
+    }
+
 }
