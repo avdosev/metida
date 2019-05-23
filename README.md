@@ -1,6 +1,6 @@
 # Процент готовности проекта
 
-## 29.9%
+## 55.9%
 
 ### CI
 
@@ -41,9 +41,23 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ## Metida API
 
-Основная [WIKI](https://github.com/avdosev/metida/wiki/Server-API) по API
+Основная [WIKI](https://github.com/avdosev/metida/wiki/Server-API) по API метиды)
 
 Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, [тут](https://github.com/avdosev/metida/wiki/Server-API) можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы. Удачного знакомства с апи.
+
+## Npm команды
+
+    npm test 
+
+Позволяет пройтись по всем джс файлам, и вывести все предупреждения линтера
+    
+    npm run lintFixWarnings
+
+Попытается автоматически исправить ошибки, выведенные командной выше
+
+    npm run prettier
+
+Исправить код стайл. Осторожно! Опасная команда. Пока для код стайла используется prettier
 
 ## Код стайл
 
@@ -73,7 +87,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ### MySQL error
 
-Если обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
+Обновились поля в БД и у тебя интерпретатор выдает что-то вроде:
 
     Error: Unknown column 'puk' in 'field list'
 
@@ -89,6 +103,8 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 1. Для этого были придуманы миграции
 
         npx sequelize db:migrate
+
+    > Миграцию необходимо для этого написать, очевидно
 
 #### Что же делать на Heroku?
 1. Только миграции, см heroku
@@ -121,6 +137,21 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
     Команда для миграции
 
+
+## Наша команда 
+
+### Фулстек разработчики
+<a href="https://github.com/avdosev"><img src="https://avatars0.githubusercontent.com/u/39769345?s=460&v=4" alt="avdosev" width="50" height="50"> </a>
+<a href="https://github.com/Sapfir0"> <img src="https://avatars0.githubusercontent.com/u/37454791?s=460&v=4" alt="Sapfir0" width="50" height="50"> </a>
+
+### Верстка и дизайн
+<a href="https://github.com/Kolyamba-mamba"><img src="https://avatars0.githubusercontent.com/u/36818700?s=460&v=4" alt="Kolyamba-mamba" width="50" height="50"> </a>
+
+### QA
+<a href="https://github.com/tankistqazwsx"><img src="https://avatars0.githubusercontent.com/u/10173245?s=460&v=4" alt="tankistqazwsx" width="50" height="50"> </a>
+
+### Благодарности
+<a href="https://github.com/FallenHopes"><img src="https://avatars0.githubusercontent.com/u/48473470?s=460&v=4" alt="FallenHopes" width="50" height="50"> </a>
 
 
 ## Структура проекта
