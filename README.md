@@ -43,6 +43,8 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 Основная [WIKI](https://github.com/avdosev/metida/wiki/Server-API) по API метиды)
 
+Наш сервер имеет уникальное многофункциональное, удобное и не продуманное апи, [тут](https://github.com/avdosev/metida/wiki/Server-API) можно чекнуть, что ретюрнят основные методы и что нужно для их нормальной работы. Удачного знакомства с апи.
+
 ## Npm команды
 
     npm test 
@@ -75,6 +77,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 * ~~задавать вопросы админу~~
 * чекнуть вкладку проджектс на гитхабе и увидить что нужно и над чем идет работа 
+* чекнуть [wiki](https://github.com/avdosev/metida/wiki/) со всем необходимым
 
 ## FAQ
 
