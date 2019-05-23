@@ -53,7 +53,7 @@ const loadPasportStrategies = (passport, user) => {
             },
             (req, email, password, done) => {
                 const res = req.res;
-                const errors = validationResult(req); //вроде это никогда не сработает
+                const errors = validationResult(req); 
                 if (!errors.isEmpty()) {
                     res.statusCode = 406;
                     res.send(validators.register.validationFailed)
@@ -101,8 +101,8 @@ const loadPasportStrategies = (passport, user) => {
             },
 
             (req, email, password, next) => { //некст нас не кинет на следующий обработчик
-                //const User = user;
-                console.log(req.body)
+                const res = req.res;
+
                 const isValidPassword = (userpass, password) => {
                     return bCrypt.compareSync(password, userpass);
                 };
@@ -122,7 +122,9 @@ const loadPasportStrategies = (passport, user) => {
                         return next(null, userinfo);
                     })
                     .catch(err => {
-                        console.log('Ошибка :', err); //у нас произошла ошибка выше по коду и мы начали
+                        res.statusCode = 406;
+                        res.send(err.message)
+                        //console.error('Ошибка :', err); //у нас произошла ошибка выше по коду и мы начали
                     });
             }
         )
