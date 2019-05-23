@@ -16,12 +16,14 @@ function start() {
     const loginError = document.querySelector('.loginError');
     const passwordError = document.querySelector('.passwordError');
     const repasswordError = document.querySelector('.repasswordError');
+    const serverError = document.querySelector(".serverError")
 
     const email = document.getElementById('email');
     const login = document.getElementById("login")
     const password = document.querySelector('#password')
     const repassword = document.getElementById("repassword")
     const submitBtn = document.querySelector("#submit")
+
 
     function showError(widget, str) {
         widget.innerHTML = str;
@@ -56,20 +58,29 @@ function start() {
     }
 
     email.addEventListener('input', () => {
+        hideError(serverError)
         checkValidation(email, emailError, validators.strEmailError)
     });
 
     password.addEventListener('input', () => {
+        hideError(serverError)
         checkValidation(password, passwordError, validators.strPasswordError, true)
     })
 
-    login.addEventListener('change', () => {
+    login.addEventListener('input', () => {
+        hideError(serverError)
         checkValidation(login, loginError, validators.strLoginError)
     })
 
     repassword.addEventListener('input', () => {
+        hideError(serverError)
         checkValidation(repassword, repasswordError, validators.strRepasswordError, true)
     })
+
+    function errorHandler(err) {
+        showError(serverError, err)
+    }
+
 
     submitBtn.addEventListener('click', () => {       
         if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
@@ -102,7 +113,8 @@ function start() {
                     return response.text()
                 }
             }).then((err_text) => {
-                console.log(err_text)
+                errorHandler(err_text)
+                console.error(err_text)
             }).catch(err => {
                 console.error(err)
             })
