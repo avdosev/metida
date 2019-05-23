@@ -17,18 +17,18 @@ body
 
 
   .layout_body
-    form.pushArticle(action="/createArticle", method="post")
-      <h3>Заголовок:</h3>
-      <input type="text" id="header" name="header" placeholder="Заголовок должен передавать основной смысл публикации." value="" minlength="5" />
-      <h3>Дисклеймер:</h3>
-      <textarea class="disclaimer" id="disclaimer" placeholder="Здесь приводится краткое описание статьи." name="disclaimer" cols="30", rows="7" minlength="10"></textarea>
-
-      label
-        input(type="checkbox" id="previews")
-        | Предпросмотр
-      <textarea class="create_area" id="article" placeholder="Текст вашей статьи..." name="art" cols="30", rows="7" minlength="10"></textarea>
-      input#submit(type="submit" class="Btn" value="Отправить")
     content.content
+      form.pushArticle(action="/createArticle", method="post")
+        <h3>Заголовок:</h3>
+        <input type="text" id="header" name="header" placeholder="Заголовок должен передавать основной смысл публикации." value="" minlength="5" />
+        <h3>Дисклеймер:</h3>
+        <textarea class="disclaimer" id="disclaimer" placeholder="Здесь приводится краткое описание статьи." name="disclaimer" cols="30", rows="7" minlength="10"></textarea>
+
+        label
+          input(type="checkbox" id="previews")
+          | Предпросмотр
+        <textarea class="create_area" id="article" placeholder="Текст вашей статьи..." name="art" cols="30", rows="7" minlength="10"></textarea>
+        input#submit(type="submit" class="Btn" value="Отправить")
       article.post_text
     //- #editor 
     //- script 
