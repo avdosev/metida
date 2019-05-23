@@ -15,6 +15,8 @@ function start() {
     const email = document.querySelector('#email');
     const emailError = document.querySelector('.emailError');
     const passwordError = document.querySelector('.passwordError');
+    const serverError = document.querySelector(".serverError")
+
     const password = document.querySelector('#password')
     const sendBtn = document.querySelector("#submit")
     
@@ -39,13 +41,19 @@ function start() {
     }
     
     email.addEventListener('input', () => {
-        console.log(validators)
+        hideError(serverError)
         checkValidation(email, emailError, validators.strEmailError)
     });
 
     password.addEventListener('input', () => {
+        hideError(serverError)
         checkValidation(password, passwordError, validators.strPasswordError)
     })
+
+    function errorHandler(err) {
+        showError(serverError, err)
+    }
+
 
     sendBtn.addEventListener('click', (event) => {
             if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
@@ -55,7 +63,7 @@ function start() {
                 showError(passwordError, validators.strPasswordError)
             }
             else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
-                console.log("все ок")
+                console.log("запрос")
                 const options = {
                     method:"post",
                     headers: {
@@ -66,13 +74,18 @@ function start() {
                         "password": password.value
                     })
                 }
-                fetch("/sign_In", options).then( value => {
-                    //console.log(value)
-                    document.location.href = "/"
-                }).catch((err, value) => {
-                    console.log(err)
-                    //console.error(value)
-
+                fetch("/sign_In", options).then(response => {
+                    if (response.ok) {
+                        document.location.href = "/"
+                    }
+                    else {
+                        return response.text()
+                    }
+                }).then((err_text) => {
+                    errorHandler(err_text)
+                    console.error(err_text)
+                }).catch((err) => {
+                    console.error(err)
                 })
             }
         },
