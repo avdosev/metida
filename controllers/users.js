@@ -3,16 +3,30 @@ const { validationResult } = require('express-validator/check');
 const mailer = require("../services/email")
 const UserApi = require("../services/user")
 
+const validators = {
+    register: {
+        validationFailed: 'Валидация не пройдена',
+        existedEmail: 'Емейл уже занят',
+        userNotCreated: 'Юзер не создан',
+    },
+    signIn: {
+        emailNotExisted: 'Такого емейла не существует',
+        incorrectPassword: 'Неправильный пароль.'
+
+    }
+}
+
+
 function generateHash (password) {
     return bCrypt.hashSync(
         password,
         bCrypt.genSaltSync(10),
         null
     );
-};
+}
 
 const loadPasportStrategies = (passport, user) => {
-    const User = user;
+    //const User = user;
     const LocalStrategy = require('passport-local').Strategy;
 
     passport.serializeUser((user, done) => {
@@ -42,19 +56,19 @@ const loadPasportStrategies = (passport, user) => {
                 const errors = validationResult(req); //вроде это никогда не сработает
                 if (!errors.isEmpty()) {
                     res.statusCode = 406;
-                    res.send('Валидация не пройдена')
+                    res.send(validators.register.validationFailed)
                 }
 
                 UserApi.getUserByEmail(email).then(user => {
                     if (user) {
-                        throw new Error('Емейл уже занят');
+                        throw new Error(validators.register.existedEmail);
                     } else {
                         const userPassword = generateHash(password); // зашифрованный
                         const username = req.body.login
 
                         UserApi.createUser(email, username, userPassword).then((newUser) => {
                             if (!newUser) {
-                                throw new Error('Юзер не создан');
+                                throw new Error(validators.register.userNotCreated);
                             }
                             // MAILER //я оформил это отдельной страницей
                             const text = "<p> Поздравляем с регистрацие на Метида, для окончания регистрации подтвердите </p> <a href=\"metida.tech\"> Согласен </a>, если это были не вы игнорируете сообщение"
@@ -97,11 +111,11 @@ const loadPasportStrategies = (passport, user) => {
                 UserApi.getUserByEmail(email)
                     .then( (user) => {
                         if (!user) {
-                            throw new Error('Email does not exist');  
+                            throw new Error(validators.signIn.emailNotExisted);  
                         }
 
                         if (!isValidPassword(user.password, password)) {
-                            throw new Error('Incorrect password.');
+                            throw new Error(validators.signIn.incorrectPassword);
                         }
 
                         const userinfo = user.get();
