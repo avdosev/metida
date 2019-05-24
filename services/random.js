@@ -10,7 +10,7 @@ function stringGenerator(len) {
 }
 
 function randInt(min, max) {
-    return Math.random() * (max - min) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
 

@@ -1,5 +1,5 @@
 const commentApi = require('../../services/comments');
-
+const markdown = require('../../services/markdown')
 
 function initValues(req) {
     if (!req.values) {
@@ -38,8 +38,12 @@ function pushComment(req, res, next) {
         answeringId = null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
     
     
-    commentApi.pushComment(articleId, author, text, answeringId)
-    .then(value => {
+    commentApi.pushComment(
+        articleId, 
+        author, 
+        markdown.MarkdownToHtml(text), 
+        answeringId
+    ).then(value => {
         initValues(res)
         res.values.success = true; 
         next()

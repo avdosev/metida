@@ -5,6 +5,7 @@ function initValues(req) {
 }
 
 const articleApi = require('../../services/article')
+const markdown = require('../../services/markdown')
 
 function updateArticle(req, res, next) {
     const id = req.params.id
@@ -16,9 +17,9 @@ function updateArticle(req, res, next) {
     
     articleApi.updateArticle(
         id,
-        content,
         header,
-        disclaimer
+        markdown.MarkdownToHtml(content), 
+        markdown.MarkdownToHtml(disclaimer)
     ).then((value) => {
         res.values.article = value.dataValues
         res.values.success = true
@@ -38,8 +39,8 @@ function pushArticle(req, res, next) {
     
     articleApi.pushArticle( 
         header, 
-        content, 
-        disclaimer, 
+        markdown.MarkdownToHtml(content), 
+        markdown.MarkdownToHtml(disclaimer), 
         authorId 
     ).then((value) => {
         res.values.success = true
