@@ -88,7 +88,7 @@ nav ul {
     flex-direction: row;
 }
 
-ul {
+header ul {
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
 }
@@ -139,7 +139,7 @@ ul {
         padding: 7px 7px 0px 0px;
     }
 
-    nav ul {
+    header nav ul {
         margin: 0;
         padding: 0; 
     }
