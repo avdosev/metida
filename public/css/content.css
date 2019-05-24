@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .content .lenta {
@@ -19,19 +20,30 @@
     align-items: center;
 }
 
-.content code {
+.content pre {
     background-color: #2e2f30;
     color: white;
-    padding-left: 10px;
-    margin-left: 100px;
-    width: 500px;
+    padding: 10px;
+    width: 50%;
     border-radius: 3px;
-
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.content pre code {
+    background-color: #2e2f30;
+    overflow-x: auto;
+    white-space: unset;
+    display: block;
 }
 
 @media screen and (max-width: 650px) {
     .content {
         width: 94%
+    }
+    .content pre {
+        width: 95%
+    }
+    .content .post_text {
+        align-items: flex-start;
     }
 }
