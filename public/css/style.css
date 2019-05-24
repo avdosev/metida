@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin');
 
 body {
-    background: #f7f7f7;
+    background: var(--main-metida-color);
     word-wrap: break-word;
     margin: 0;
 }

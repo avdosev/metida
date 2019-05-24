@@ -37,7 +37,7 @@ input:valid {
 }
 
 input:hover{
-    border: 1px solid blue;
+    border: 1px solid var(--main-hover-color);
 }
 
 p {
@@ -62,7 +62,7 @@ p {
 
 #submit:valid:hover{
     color: white;
-    background-color: steelblue;
+    background-color: var(--unique-color);
     transition: 0.7s;
     border-radius: 20px;
 }
@@ -78,7 +78,7 @@ input[type='button'] {
 }
 input[type='button']:active {
     border: 1px solid grey;
-    background-color: whitesmoke;
+    background-color: var(--smoke-color);
 }
 
 .error {
