@@ -110,11 +110,8 @@ function start() {
                 if (response.ok) {
                     document.location.href = "/"
                 } else {
-                    return response.text()
+                    errorHandler(response.text().then(errorHandler))
                 }
-            }).then((err_text) => {
-                errorHandler(err_text)
-                console.error(err_text)
             }).catch(err => {
                 console.error(err)
             })
