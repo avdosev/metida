@@ -70,11 +70,6 @@ img.logoImg {
     color: black;
 }
 
-.BlackButton:hover, .GreyButton:hover {
-    background-color: var(--unique-color);
-    color: var(--smoke-color);
-}/* tipical button hover  */
-
 #createArticle .btn_text {
     display: inline;
 }
@@ -97,10 +92,15 @@ header ul {
     padding: 0px 0px 0px 0px;
 }
 
+.BlackButton:active, .GreyButton:active {
+    background-color: var(--unique-color);
+    color: var(--smoke-color);
+}
+
 @media screen and (max-width: 650px) {
-    .BlackButton:hover, .GreyButton:hover {
+    /* .BlackButton:hover, .GreyButton:hover {
         color: var(--unique-color); 
-    }
+    } */
 
     .icon {
         display: inline;
@@ -171,5 +171,13 @@ header ul {
     #submenu__active{
         opacity: 1;
         transform: scaleY(1);
+    }
+}
+
+
+@media (hover:hover){
+    .BlackButton:hover, .GreyButton:hover {
+        background-color: var(--buttom-active);
+        color: var(--smoke-color);
     }
 }
