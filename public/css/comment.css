@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-:root {
-    --comments-left-border-color: #d4d4d4;
-}
-
 .new_comment_block {
     width: 100%
 }
@@ -61,7 +57,7 @@
     border: 1px;
     border-style: solid;
     border-color:black;
-    background-color: #f7f7f7;
+    background-color: var(--main-metida-color);
     transition: 0.5s;
 }
 
@@ -71,28 +67,28 @@
     margin-right: 10px;
     border: 3px;
     border-style: double;
-    background-color: steelblue;
-    color: #f7f7f7;
+    background-color: var(--unique-color);
+    color: var(--main-metida-color);
     transition: 0.5s;
 }
 
 #veiw:hover{
-    background-color: rgba(70, 131, 180, 0.75);
-    color: #f7f7f7;
+    background-color: var(--buttom-hover);
+    color: var(--main-metida-color);
     transition: 0.5s;
 }
 
 .EnterButton:hover{
-    background-color: rgba(70, 131, 180, 0.75);
+    background-color: var(--buttom-hover);
     transition: 0.5s;
 }
 
 #veiw:active{
-    background-color: rgba(70, 131, 180, 0.5);
+    background-color: var(--buttom-active);
 }
 
 .EnterButton:active{
-    background-color: rgba(70, 131, 180, 0.5);
+    background-color: var(--buttom-active);
 }
 
 .reply {
@@ -106,7 +102,7 @@
     font-size: 12px;
     text-decoration: none;
     color: white;
-    background-color: steelblue;
+    background-color: var(--unique-color);
     padding: 4px;
     outline: none;
     border: 0;
