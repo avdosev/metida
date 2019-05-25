@@ -19,8 +19,8 @@
     line-height: 30px;
 }
 
-.post a:hover {
-    color: steelblue;
+.post a:active {
+    color: var(--buttom-active);
 }
 
 .post p {
@@ -32,5 +32,11 @@
 @media screen and (max-width: 650px) {
     .lenta {
         width: 100%;
+    }
+}
+
+@media (hover:hover){
+    .post a:hover {
+        color: var(--unique-color);
     }
 }

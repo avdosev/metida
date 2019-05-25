@@ -74,17 +74,6 @@
     transition: 0.5s;
 }
 
-#veiw:hover{
-    background-color: var(--buttom-hover);
-    color: var(--main-metida-color);
-    transition: 0.5s;
-}
-
-.EnterButton:hover{
-    background-color: var(--buttom-hover);
-    transition: 0.5s;
-}
-
 #veiw:active{
     background-color: var(--buttom-active);
 }
@@ -110,11 +99,6 @@
     border: 0;
 }
 
-.reply:hover {
-    background-color: black;
-    transition: 0.5s;
-}
-
 @media screen and (max-width: 650px) {
     .new_comment_block form textarea {
         min-width: 300px;
@@ -122,5 +106,23 @@
 
     .comment_childer {
         padding-left: 15px; 
+    }
+}
+
+@media (hover:hover){
+    #veiw:hover{
+        background-color: var(--buttom-hover);
+        color: var(--main-metida-color);
+        transition: 0.5s;
+    }
+
+    .reply:hover {
+        background-color: black;
+        transition: 0.5s;
+    }
+
+    .EnterButton:hover{
+        background-color: var(--buttom-hover);
+        transition: 0.5s;
     }
 }
