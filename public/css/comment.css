@@ -19,10 +19,12 @@
 }
 
 .comment_control[data-type=create]::after {
+    /* width: 100px; */
     content: "ответить";
 }
 
 .comment_control[data-type=cancel]::after {
+    /* width: 100px; */
     content: "отмена";
 }
 
