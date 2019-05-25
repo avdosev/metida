@@ -177,7 +177,7 @@ header ul {
 
 @media (hover:hover){
     .BlackButton:hover, .GreyButton:hover {
-        background-color: var(--buttom-active);
+        background-color: var(--unique-color);
         color: var(--smoke-color);
     }
 }
