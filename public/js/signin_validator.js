@@ -1,9 +1,9 @@
 const validators = { // все еще не понимаю как вынести это все
-    strEmailError:  'Я же просил ввести емейл. Не зли меня',
-    strPasswordError: 'Пароль должен быть больше 5 символов',
-    strEventEmailError: 'Вводи почту правильно',
-    strRepasswordError: 'Пароли не совпадают.',
-    strLoginError: 'Логин должен быть больше 3 символов',
+    strEmailError: 'Проверьте правильность введенного e-mail', 
+    strPasswordError: 'Пароль должен содержать более 5 символов', 
+    strEventEmailError: 'Вводи почту правильно', 
+    strRepasswordError: 'Введенные пароли не совпадают', 
+    strLoginError: 'Логин должен состоять более чем из 3 символов',
     emailRegExp: new RegExp('.+@.+\\..+'),
     passwordRegExp: new RegExp('.{5,}')
 }

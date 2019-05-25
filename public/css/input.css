@@ -61,8 +61,8 @@ p {
 }
 
 #submit:valid:hover{
-    color: white;
-    background-color: var(--unique-color);
+    color: black;
+    background-color: rgb(219, 219, 219);
     transition: 0.7s;
     border-radius: 20px;
 }
