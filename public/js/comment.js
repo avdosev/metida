@@ -5,12 +5,28 @@ const comment1 = {
 }
 
 
+let post;
+let id;
+
+
+function showError(spanError, str) {
+    spanError.innerHTML = str;
+    spanError.className = 'error active';
+}
+
+function hideError(spanError) {
+    spanError.innerHTML = '';
+    spanError.className = 'error';
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    const post = document.querySelector('.post_text');
-    const id = post.id;
+    post = document.querySelector('.post_text');
+    id = post.id;
     const commentError = document.querySelector('.commentError');
-    const comment = document.querySelector('#comment') //я не могу с жить с ошибкой
-    const sendCommentBtn = document.querySelector("#enter")
+    const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
+    const sendCommentBtn = document.querySelector(".EnterButton")
+    
     fetch(`/post/${id}/comments`)
         .then(value => {
             console.log(value);
@@ -32,18 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
              //не пускаем его дальше
         }
         else {
-            
+            responseComment(comment.value) 
         }
     })
 
     comment.addEventListener('input', () => {
-            // не понимаю почему не работает способ из sign_In //наверно, потому что тут не форма
             if (comment.value.match(comment1.commentRegExp)) { 
-                commentError.innerHTML = '';
-                commentError.className = 'commentError error';
+                hideError(commentError)
             } else {
-                commentError.innerHTML = comment1.commentError;
-                commentError.className = 'commentError error active';
+                showError(commentError, comment1.commentError)
             }
         },
         false //объясни потом, что значит этот бул
@@ -75,11 +88,13 @@ function responseComment(commentText, answeringId = null) {
             answeringId
         })
     }
-    fetch(`/post/${id}/pushComment`, options)
-    .then(() => {
+    fetch(`/post/${id}/pushComment`, 
+        options
+    ).then(() => {
         refreshPage()
     }).catch(err => {
         // TODO: обработка ошибки
+        console.error(err)
     }) 
 }
 
@@ -100,7 +115,6 @@ function insertsComments(objCommentArray, insertedElem) {
 }
 
 function insertComment(objComment, insertedElem) {
-    //const AuthorUrl = ``
     const Author = objComment.author;
     const Text = objComment.text;
     const Id = objComment.id;
@@ -134,9 +148,9 @@ function createClick(id) {
     
     const reply_block = `
     <div class = "comment reply_comment">
-        <textarea class = "comment_area" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
+        <textarea class = "comment_area" id="comment_area_${id}" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
         <div class = "button">
-            <button class = "EnterButton">
+            <button class = "EnterButton" onclick="responseComment(document.querySelector('#comment_area_${id}').value, ${id})">
                 Отправить
             </button>
         </div>
