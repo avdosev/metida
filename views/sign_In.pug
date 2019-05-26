@@ -7,6 +7,10 @@ head
   
   link(rel="stylesheet", href="/public/css/style.css")
   link(rel="stylesheet", href="/public/css/input.css")
+  link(rel="stylesheet", href="/public/css/media.css")
+  link(rel="stylesheet", href="/public/css/colors.css")
+  link(rel="stylesheet", href="/public/css/placeholder.css")
+  
   script(type='text/javascript', src='/public/js/signin_validator.js')
 
 body
@@ -19,7 +23,7 @@ body
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
       <span class="passwordError" aria-live="polite"></span>
-      button#submit Войти
+      button#submit(class="welcome") Войти
       <span class="serverError" aria-live="polite"></span>
 
 

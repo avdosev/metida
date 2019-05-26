@@ -28,15 +28,3 @@
     line-height: 30px;
     word-break: break-word;
 }
-
-@media screen and (max-width: 650px) {
-    .lenta {
-        width: 100%;
-    }
-}
-
-@media (hover:hover){
-    .post a:hover {
-        color: var(--unique-color);
-    }
-}
