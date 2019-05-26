@@ -42,6 +42,7 @@ p {
 }
 
 #submit {
+    outline: none;
     margin-top: 1.5rem;
     border: 1px solid black;
     background: rgba(255, 255, 255, 0.1);
@@ -87,24 +88,3 @@ input[type='button']:active {
     padding: 0.3em;
 }
 
-@media (hover:hover){
-    input:hover{
-        border: 1px solid var(--main-hover-color);
-    }
-
-    #submit:valid:hover{
-        color: black;
-        background-color: rgb(219, 219, 219);
-        transition: 0.7s;
-        border-radius: 20px;
-    }  
-}
-
-@media(any-pointer: coarse){
-    #submit:valid:active{
-        color: black;
-        background-color: rgb(219, 219, 219);
-        transition: 0.3s;
-        border-radius: 20px;
-    } 
-}

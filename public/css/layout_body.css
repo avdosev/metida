@@ -7,9 +7,3 @@
     font-size: 18px;
     font-family: 'Cabin', sans-serif;
 }
-
-@media screen and (max-width: 650px) {
-    .layout_body {
-        padding: 15px 5px 5px 5px;
-    }
-}

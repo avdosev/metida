@@ -7,6 +7,9 @@ head
 
   link(rel="stylesheet", href="/public/css/style.css")
   link(rel="stylesheet", href="/public/css/input.css")
+  link(rel="stylesheet", href="/public/css/media.css")
+  link(rel="stylesheet", href="/public/css/colors.css")
+  link(rel="stylesheet", href="/public/css/placeholder.css")
 
   script(type='text/javascript', src='/public/js/register_validator.js')
 
@@ -29,7 +32,7 @@ body
       p Retype password
       input#repassword(type="password" name='repassword', placeholder="Retype password" required )
       <span class="repasswordError" aria-live="polite"></span>
-      button#submit(type="submit"  value="Registration") Зарегистрироваться
+      button#submit(type="submit" class="welcome") Зарегистрироваться
       <span class="serverError" aria-live="polite"></span>
 
 

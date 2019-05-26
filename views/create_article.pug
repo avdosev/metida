@@ -8,6 +8,9 @@ head
   link(rel="stylesheet", href="/public/css/layout_body.css")
   link(rel="stylesheet", href="/public/css/create_article.css")
   link(rel="stylesheet", href="/public/css/style.css")
+  link(rel="stylesheet", href="/public/css/media.css")
+  link(rel="stylesheet", href="/public/css/colors.css")
+  link(rel="stylesheet", href="/public/css/placeholder.css")
 
   script(src="/public/js/article_page.js")
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
@@ -28,7 +31,7 @@ body
           input(type="checkbox" id="previews")
           | Предпросмотр
         <textarea class="create_area" id="article" placeholder="Текст вашей статьи..." name="art" cols="30", rows="7" minlength="10"></textarea>
-        input#submit(type="submit" class="Btn" value="Отправить")
+        button#submit(type="submit" class="Btn") Отправить
       article.post_text
     //- #editor 
     //- script 

@@ -39,11 +39,15 @@
 }
 
 .comment_area {
+    outline: none;
     resize: none;
-    border: 4px;
-    border-style: ridge;
+    border: 1px solid var(--main-bord-color);
     width: 100%;
     min-height: 170px
+}
+
+.comment_area:focus{
+    border-color: var(--unique-color);
 }
 
 .button_block {
@@ -53,6 +57,7 @@
 }
 
 #veiw{
+    outline: none;
     height: 30px;
     width: 150px;
     margin-left: 10px;
@@ -64,6 +69,7 @@
 }
 
 .EnterButton {
+    outline: none;
     height: 30px;
     width: 150px;
     margin-right: 10px;
@@ -97,32 +103,4 @@
     padding: 4px;
     outline: none;
     border: 0;
-}
-
-@media screen and (max-width: 650px) {
-    .new_comment_block form textarea {
-        min-width: 300px;
-    }
-
-    .comment_childer {
-        padding-left: 15px; 
-    }
-}
-
-@media (hover:hover){
-    #veiw:hover{
-        background-color: var(--buttom-hover);
-        color: var(--main-metida-color);
-        transition: 0.5s;
-    }
-
-    .reply:hover {
-        background-color: black;
-        transition: 0.5s;
-    }
-
-    .EnterButton:hover{
-        background-color: var(--buttom-hover);
-        transition: 0.5s;
-    }
 }

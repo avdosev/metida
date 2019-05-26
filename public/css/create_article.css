@@ -15,7 +15,7 @@
     padding: 20px 20px 0;
     border: 1px solid var(--main-bord-color);
     min-height: 500px !important;
-    width: 90%;
+    width: 35vw;
     resize: vertical;
 }
 
@@ -24,6 +24,7 @@
 }
 
 .Btn{
+    outline: none;
     height: 30px;
     width: 150px;
     margin-right: 10px;
@@ -32,10 +33,6 @@
     background-color: var(--unique-color);
     color: var(--main-metida-color);
     transition: 0.5s;
-}
-
-.Btn:active{
-    background-color: var(--buttom-active);
 }
 
 /* переделать минимальные и максимальные занчаения, тк при изменении размеров экрана происходит троллинг */
@@ -69,24 +66,6 @@
     border-color: var(--unique-color);
 }
 
-@media screen and (max-width: 650px) {
-    .pushArticle {
-        width: 100%
-    }
-    .pushArticle #header,
-    .pushArticle #disclaimer,
-    .pushArticle #article {
-        width: 90%
-    }
-}
-
-@media (hover:hover){
-    .create_area:hover, .disclaimer:hover, #header:hover{
-        border-color: var(--main-hover-color);
-    }
-    
-    .Btn:hover{
-        background-color: var(--buttom-hover);
-        transition: 0.5s;
-    }
+.Btn:active{
+    background-color: var(--buttom-active);
 }
