@@ -41,7 +41,7 @@ p {
     font-size: 1rem;
 }
 
-#submit {
+.welcome {
     outline: none;
     margin-top: 1.5rem;
     border: 1px solid black;
@@ -57,7 +57,7 @@ p {
     transition: 0.3s;
 } */
 
-#submit:valid:active{
+.welcome:valid:active{
     background-color: white;
 }
 
