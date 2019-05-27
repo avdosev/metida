@@ -23,13 +23,13 @@ body
 
     .layout_body
       content.content
+        button(class="deleteAricleLink" ) Удалить статью
+        button(class="updateAricleLink") Редактировать статью
         article.post_text(id=id)
-          button(class="deleteAricleLink" ) Удалить статью
-          button(class="updateAricleLink") Редактировать статью
-          button(class="likeBtn" ) Иконка лукаса
-          button(class="dislikeBtn") Иконка дизлукаса
+
 
           h1 #{name}
+          !=disclaimer
           !=text
         .comments_lenta.lenta
           h3 Комментарии:
