@@ -1,14 +1,23 @@
 .post {
-    border-top: 2px solid grey;
+    border-bottom: 1px solid grey;
     margin-bottom: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+    padding-bottom: 30px;
 }
 
 .lenta {
     max-width: 100%;
+}
+
+h3 {
+    margin-bottom: 0;
+}
+
+.head {
+    width: 100%;
 }
 
 .post a {
@@ -27,4 +36,5 @@
     font-size: 18px;
     line-height: 30px;
     word-break: break-word;
+    margin-top: 0;
 }
