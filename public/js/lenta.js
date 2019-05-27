@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //fetch("/emailMessage")
     })
 
-
-
+    fetch()
 })
 
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
@@ -57,7 +56,7 @@ function insertPostPreview(objPost, insertedElem) {
     <div class = "post">
         <a href = "${url}"><h3>${objPost.header}</h3></a>
         <p>${objPost.disclaimer}</p> 
-        <button class="welcome">Читать дальше</button>
+        <a href="${url}" id="toArticle">Читать дальше</a>
     </div>
     `
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
