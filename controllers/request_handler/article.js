@@ -80,6 +80,7 @@ function getArticle(req, res, next) {
     const id = req.params.id
 
     articleApi.getArticle(id).then(article => {
+        console.log(article)
         initValues(res)
         res.values.article = article;
         next();

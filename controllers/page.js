@@ -18,6 +18,7 @@ const article = (req, res ) => {
     res.render('post', {
         authorised: req.isAuthenticated(),
         name: res.values.article.header,
+        disclaimer: res.values.article.disclaimer,
         text: res.values.article.content,
         id:   res.values.article.id
     });
