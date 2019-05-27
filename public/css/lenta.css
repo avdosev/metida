@@ -20,6 +20,19 @@ h3 {
     width: 100%;
 }
 
+#toArticle {
+    margin-top: 15px;
+    font-size: 12px;
+    border: 0.5px solid grey;
+    padding: 2px;
+}
+#toArticle:hover {
+   
+    color: black;
+    background-color: rgb(219, 219, 219);
+    transition: 0.7s;
+}
+
 .post a {
     font-size: 20px;
     text-decoration: none;
