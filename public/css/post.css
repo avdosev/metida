@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 
-h1 { 
+h1, h2, h3, h4, h5, h6, p { 
     font-family: 'Montserrat', sans-serif;
 }
 
 p {
     font-size: 16px; 
     color: #333;
-    font-family: 'Montserrat', sans-serif; 
     line-height: 24px;
 }
 
