@@ -5,6 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: 45%;
+    min-width: 570px;
 }
 
 .content .post_text {
@@ -35,4 +36,10 @@
     white-space: unset;
     display: block;
     line-height: 25px;
+}
+
+@media screen and (max-width: 650px) {
+    .content {
+        min-width: 100px;
+    }
 }
