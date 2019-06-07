@@ -1,14 +1,8 @@
 const models = require('./models');
 
-console.log(models)
-
-const articlesInit = models.articles
-const commentsInit = models.comments
-const usersInit = models.user
-
-const Article = articlesInit(models.sequelize, models.Sequelize);
-const Comment = commentsInit(models.sequelize, models.Sequelize); 
-const User = usersInit(models.sequelize, models.Sequelize); 
+const Article = models.articles
+const Comment = models.comments
+const User = models.user
 
 module.exports = {
     Article,
