@@ -1,6 +1,4 @@
-const usersInit = require('../database/models/user');
-const models = require('../database/models');
-const User = usersInit(models.sequelize, models.Sequelize); 
+const { User } = require('../database/tables');; 
 
 
 function isConfirmedEmail(userId) {

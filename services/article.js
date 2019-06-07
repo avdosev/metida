@@ -1,6 +1,5 @@
-const articlesInit = require('../database/models/articles');
-const models = require('../database/models');
-const Article = articlesInit(models.sequelize, models.Sequelize); // здесь точно косяк тк я не понимаю как работать с бд
+const { Article } = require('../database/tables');
+
 const { Op } = require('sequelize')
 
 function getArticle(ArticleId) {

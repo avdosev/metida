@@ -1,6 +1,4 @@
-const commentsInit = require('../database/models/comments');
-const models = require('../database/models');
-const Comment = commentsInit(models.sequelize, models.Sequelize); 
+const { Comment } = require('../database/tables'); 
 
 function removeAllCommentsByArticle(articleId, authorId) {
     return Article.destroy({ //артикл не объявлен
