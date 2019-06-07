@@ -1,6 +1,6 @@
 const models = require('./models');
 
-const Article = models.articles
+const Article = models.article
 const Comment = models.comments
 const User = models.user
 
