@@ -89,14 +89,14 @@
 }
 
 .reply {
-    display: block;
+    /* display: block; */
     /* position: absolute; */
-    line-height: 2;
+    /* line-height: 2; */
     font-weight: bold;
-    margin-left: 68%;
-    margin-top: 0;
+    /* margin-left: 68%;
+    margin-top: 0; */
     text-align: center;
-    font-size: 12px;
+    /* font-size: 12px; */
     text-decoration: none;
     color: white;
     background-color: var(--unique-color);
