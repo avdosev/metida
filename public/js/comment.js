@@ -127,14 +127,13 @@ function insertComment(objComment, insertedElem) {
             <a href = "/author/${Author}" class = "author_login">${Author}</a>
             <time class = "created_commit">${DateStr}</time>
         </div>
-        <button class = "updateComment GreyButton">Редактировать</button>
-        <button class = "removeComment GreyButton">Удалить</button>
-
-        <div class = "comment_text">${Text}</div>
         <div class = "control_block">
             <button class = "reply comment_control" data-type="create" style = "display: inline" onclick="createClick(${Id})"></button>
             <button class = "reply comment_control" data-type="cancel" style = "display: none" onclick="cancelClick(${Id})"></button>
+            <button class = "updateComment GreyButton">Редактировать</button>
+            <button class = "removeComment GreyButton">Удалить</button>
         </div> 
+        <div class = "comment_text">${Text}</div>
         <div class = "comment_childer" id = "child_comment_${Id}"></div>
     </div>`;
     insertedElem.insertAdjacentHTML('beforeend', htmlPost);
@@ -143,6 +142,7 @@ function insertComment(objComment, insertedElem) {
 // можно по другому но пока так
 function createClick(id) {
     const control_block = document.querySelector(`#comment_${id} .control_block`)
+    const insert_after_block = document.querySelector(`#comment_${id} .comment_text`)
     control_block.querySelector('button[data-type=create]').style.cssText = 'display: none';
     control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
     
@@ -157,7 +157,7 @@ function createClick(id) {
         <span class="commentError" aria-live="polite"></span>
     </div>
     `
-    control_block.insertAdjacentHTML('afterend', reply_block)
+    insert_after_block.insertAdjacentHTML('afterend', reply_block)
 }
 
 function cancelClick(id) {
@@ -200,7 +200,7 @@ function DateToStr(date) {
             month[date.getMonth() - 1]
         } ${date.getFullYear()}`;
     }
-
-    str += ' в ' + date.toLocaleTimeString();
+    const time = date.toLocaleTimeString();
+    str += ' в ' + time.slice(0, time.lastIndexOf(':'));
     return str;
 }
