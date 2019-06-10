@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { mainDir } = require('../config/server');
+const { mainDir } = require('../config');
 
 function getFile(req, res, next) {
     const filename = req.values.FileName; // нужно правильно парсить

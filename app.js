@@ -10,8 +10,8 @@ const models = require('./database/models');
 
 const { initAuthControllers } = require('./routes/main.js');
 const { loadPasportStrategies } = require('./controllers/users');
-const { port, imgDir } = require('./config/server.js');
-const config = require("./config/server")
+const config = require("./config")
+const { port, imgDir } = config;
 // For Passport
 app.use(
     session({ secret: config.secretKey, resave: true, saveUninitialized: true })
@@ -28,7 +28,7 @@ app.use(favicon(path.join(imgDir, 'logo.ico')));
 
 //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 
-const authRoute = initAuthControllers(app, passport);
+initAuthControllers(app, passport);
 loadPasportStrategies(passport, models.user);
 
 models.sequelize
