@@ -1,6 +1,6 @@
 'use strict';
 const nodemail = require('nodemailer');
-const config = require("../config/server")
+const config = require("../config")
 
 module.exports = (email, subject, message) => {
     
@@ -10,13 +10,12 @@ module.exports = (email, subject, message) => {
         subject: subject, //заголовок
         html: message
     };
+    
     nodemail.createTransport({ //посмотрим, сработает ли на проде
-        service: 'smtp.ethereal.email',
-        secure: true,
-        port: 587, 
+        service: 'Gmail',
         auth: {
-            user: config.supportEmail,
-            pass: config.password
+            user: config.mail.support_email,
+            pass: config.mail.password
         }
     }).sendMail(info).then((err, logs) => {
         if (err) {
