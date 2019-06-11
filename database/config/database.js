@@ -1,3 +1,6 @@
+require('dotenv').config();
+console.log(process.env)
+module.exports = 
 {
     "development": {
         "username": "metidaSQL",
@@ -16,10 +19,10 @@
         "logging": true
     },
     "production": {
-        "username": "be81182ff73cbf",
-        "password": "8061ee7e",
-        "database": "heroku_67dc7b817fb9731",
-        "host": "us-cdbr-iron-east-02.cleardb.net",
+        "username": process.env.USERNAME,
+        "password": process.env.PASSWORD,
+        "database": process.env.DATABASE,
+        "host": process.env.HOST,
         "dialect": "mysql",
         "logging": false
     }
