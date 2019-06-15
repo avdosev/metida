@@ -17,8 +17,8 @@ function updateArticle(req, res, next) {
     
     articleApi.updateArticle(
         id,
-        header,
         markdown.MarkdownToHtml(content), 
+        header,
         markdown.MarkdownToHtml(disclaimer)
     ).then((value) => {
         res.values.article = value.dataValues
