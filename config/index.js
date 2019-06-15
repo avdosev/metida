@@ -15,8 +15,6 @@ const secretKey = process.env.SECRET_KEY
 const mail = require('./mail')
 const messages = require('./messages')
 
-console.log(mail, messages)
-
 module.exports = {
     port,
     url,
