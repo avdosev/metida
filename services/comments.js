@@ -1,10 +1,9 @@
-const { Comment } = require('../database/tables'); 
+const { comments: Comment } = require('../database/models'); 
 
 function removeAllCommentsByArticle(articleId, authorId) {
-    return Article.destroy({ //артикл не объявлен
+    return Comment.destroy({ //артикл не объявлен
         where: {
-          id: articleId,
-          authorId: authorId
+            articleId
         }
     })
 }

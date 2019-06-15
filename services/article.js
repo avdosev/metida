@@ -1,4 +1,4 @@
-const { Article } = require('../database/tables');
+const { articles: Article } = require('../database/models');
 
 const { Op } = require('sequelize')
 
