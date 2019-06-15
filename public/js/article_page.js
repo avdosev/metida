@@ -12,7 +12,11 @@ const validators = { // все еще не понимаю как вынести 
     conentRegExp: new RegExp('.{10,}')
 }
 
-
+const md = markdownit({
+    html: false,
+    linkify: true,
+    typographer: true
+})
 
 document.addEventListener('DOMContentLoaded', () => {
     const checkbox = document.getElementById("previews");
@@ -84,19 +88,23 @@ document.addEventListener('DOMContentLoaded', () => {
 );
 
     function showArtIfCheckboxCheked() {
-        let headerStr = '', textStr = '';
+        let headerStr = '', textStr = '', disclaimerStr = '';
         
         if (checkbox.checked) {
             headerStr = document.getElementById('header').value
             textStr = document.getElementById('article').value
+            disclaimerStr = document.getElementById('disclaimer').value
+
+            textStr = md.render(textStr)
+            disclaimerStr = md.render(disclaimerStr)
         }
         
-        showArticle(headerStr, textStr)
+        showArticle(headerStr, textStr, disclaimerStr)
     }
 });
 
 
-function showArticle(title, text) {
+function showArticle(title, text, disclaimer) {
     const post_text = document.getElementsByClassName('post_text')[0]
-    post_text.innerHTML = `<h1>${title}</h1>${text}`;
+    post_text.innerHTML = `<h1>${title}</h1>${disclaimer}${text}`;
 }
