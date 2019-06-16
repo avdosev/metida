@@ -3,7 +3,7 @@ console.log(process.env)
 module.exports = 
 {
     "development": {
-        "username": process.env.USERNAME,
+        "username": process.env.LOGININMETIDA,
         "password": process.env.PASSWORD,
         "database": process.env.DATABASE,
         "host": process.env.HOST,
