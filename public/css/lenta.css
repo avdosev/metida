@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 30px;
+    line-height: 30px;
 }
 
 .lenta {
@@ -20,25 +21,26 @@ h3 {
     width: 100%;
 }
 
-#toArticle {
+.BtnToArticle {
     margin-top: 15px;
     font-size: 12px;
     border: 0.5px solid grey;
     padding: 2px;
+    color: black;
 }
-#toArticle:hover {
-   
+
+.BtnToArticle:hover {
     color: black;
     background-color: rgb(219, 219, 219);
     transition: 0.7s;
 }
 
-.post a {
+.title {
     font-size: 20px;
-    text-decoration: none;
+}
+
+.title a {
     color: black;
-    word-break: break-word;
-    line-height: 30px;
 }
 
 .post a:active {
