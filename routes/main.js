@@ -77,6 +77,13 @@ const initAuthControllers = (app, passport) => {
             failureRedirect: '/sign_In'
         })
     );
+
+    //-- ERROR PAGE --
+    app.use(function(err, req, res, next) {
+        console.error(err.stack);
+        res.status(500);
+        next()
+    }, Response.renderPage.errorPage);
 };
 
 module.exports = {

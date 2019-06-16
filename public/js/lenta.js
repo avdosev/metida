@@ -54,9 +54,13 @@ function insertPostPreview(objPost, insertedElem) {
     const url = `/post/${objPost.id}`
     const htmlPost = `
     <div class = "post">
-        <a href = "${url}"><h3>${objPost.header}</h3></a>
-        <p>${objPost.disclaimer}</p> 
-        <a href="${url}" id="toArticle">Читать дальше</a>
+        <div class="title">
+            <a href = "${url}"><h3>${objPost.header}</h3></a>
+        </div>
+        <div class="disclaimer">
+            <p>${objPost.disclaimer}</p>
+        </div> 
+        <a href="${url}" class="BtnToArticle">Читать дальше</a>
     </div>
     `
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
