@@ -9,4 +9,6 @@
   --main-hover-color: blue;
   --buttom-hover: rgba(99, 45, 80, 0.75);
   --buttom-active:rgba(99, 45, 80, 0.5);
+  /* --url-color: rgb(36, 110, 136) */
+  --url-color: rgb(97, 42, 175)
 }

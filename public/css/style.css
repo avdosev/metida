@@ -9,7 +9,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--unique-color);
+    color: var(--url-color);
 }
 
 pre {
