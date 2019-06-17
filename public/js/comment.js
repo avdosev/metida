@@ -142,7 +142,8 @@ function insertComment(objComment, insertedElem) {
 // можно по другому но пока так
 function createClick(id) {
     const control_block = document.querySelector(`#comment_${id} .control_block`)
-    const insert_after_block = document.querySelector(`#comment_${id} .comment_text`)
+    const insert_block = document.querySelector(`#child_comment_${id}`)
+
     control_block.querySelector('button[data-type=create]').style.cssText = 'display: none';
     control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
     
@@ -157,7 +158,7 @@ function createClick(id) {
         <span class="commentError" aria-live="polite"></span>
     </div>
     `
-    insert_after_block.insertAdjacentHTML('afterend', reply_block)
+    insert_block.insertAdjacentHTML('beforebegin', reply_block)
 }
 
 function cancelClick(id) {
