@@ -1,3 +1,6 @@
+const express = require('express')
+const config = require('../config')
+
 const {
     userCreateValidator,
     userLoginValidator,
@@ -48,7 +51,7 @@ const initAuthControllers = (app, passport) => {
     
     // -- FILE API --
 
-    app.get('/public/:filefolder/:filename', Handler.getFile, getFile);
+    app.use('/public',  express.static(config.mainDir + '/public' ));
 
     // -- EMAIL API -- // TO DO
 
