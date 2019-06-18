@@ -1,4 +1,5 @@
 import { headers as validators } from "./errorString.js"
+import { showError, hideError, errorHandler, checkValidationWithRegExp } from "./helpers.js"
 
 const md = markdownit({
     html: false,
@@ -22,35 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentError = document.querySelector(".contentError")
 
 
-    function showError(spanError, str) {
-        spanError.innerHTML = str;
-        spanError.className = 'error active';
-    }
-
-    function hideError(spanError) {
-        spanError.innerHTML = '';
-        spanError.className = 'error';
-    }
-
-    function checkValidation(spanError, widget, regExp, strError) {
-        if (!widget.value.match(regExp) )  { 
-            showError(spanError, strError)
-        }
-        else {
-            hideError(spanError)
-        }
-    }
 
     header.addEventListener("input", () => {
-        checkValidation(headerError, header, validators.headerRegExp, validators.strHeaderError)
+        checkValidationWithRegEx(headerError, header, validators.headerRegExp, validators.strHeaderError)
     })
 
     disclaimer.addEventListener("input", () => {
-        checkValidation(disclaimerError, disclaimer, validators.disclaimerRegExp, validators.strDisclaimerError)
+        checkValidationWithRegEx(disclaimerError, disclaimer, validators.disclaimerRegExp, validators.strDisclaimerError)
     })
 
     content.addEventListener("input", () => {
-        checkValidation(contentError, content, validators.contentRegExp, validators.strContentError)
+        checkValidationWithRegEx(contentError, content, validators.contentRegExp, validators.strContentError)
     })
 
 
