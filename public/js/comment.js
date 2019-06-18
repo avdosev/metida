@@ -1,19 +1,8 @@
 import { comment } from "./errorString.js"
+import { showError, hideError, errorHandler, checkValidation } from "./helpers.js"
 
 let post;
 let id;
-
-
-function showError(spanError, str) {
-    spanError.innerHTML = str;
-    spanError.className = 'error active';
-}
-
-function hideError(spanError) {
-    spanError.innerHTML = '';
-    spanError.className = 'error';
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
     post = document.querySelector('.post_text');
@@ -40,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if ( !comment.value.match(comment.commentRegExp)  )  {
             commentError.innerHTML = comment.commentEventError;
             commentError.className = 'commentError error active';
-             //не пускаем его дальше
         }
         else {
             responseComment(comment.value) 
