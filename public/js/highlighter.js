@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', start);
-//window.onload = start;
 
 function start() {
     const elems = document.querySelectorAll('code');

@@ -1,16 +1,4 @@
-const validators = { // все еще не понимаю как вынести это все
-    strHeaderError: 'Заголовок должен быть длиннее', 
-    strDisclaimerError: 'Дисклеймер должен быть длиннее', 
-    strContentError: 'Контент должен быть длиннее', 
-
-    strEventHeaderError: 'Тебе не стыдно?', 
-    strDisclaimerEventError: 'Почему ты такой немногословный?',
-    strContentEventError: 'Все совсем плохо? Напиши мне на почту, побеседуем',
-
-    headerRegExp: new RegExp('.{10,}'), //это должно конечно же повторяться в хтмл файле для css изменений
-    disclaimerRegExp: new RegExp('.{10,}'),
-    conentRegExp: new RegExp('.{10,}')
-}
+import { headers as validators } from "./errorString.js"
 
 const md = markdownit({
     html: false,
