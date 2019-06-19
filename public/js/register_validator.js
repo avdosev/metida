@@ -1,13 +1,4 @@
-const validators = { ////поправить
-    strEmailError: 'Проверьте правильность введенного e-mail', 
-    strPasswordError: 'Пароль должен содержать более 5 символов', 
-    strEventEmailError: 'Вводи почту правильно', 
-    strRepasswordError: 'Введенные пароли не совпадают', 
-    strLoginError: 'Логин должен состоять более чем из 3 символов',
-    emailRegExp: new RegExp('.+@.+\\..+'),
-    passwordRegExp: new RegExp('.{5,}'),
-    loginRegExp: new RegExp('.{3,}')
-}
+const validators = {}
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -23,28 +14,6 @@ function start() {
     const password = document.querySelector('#password')
     const repassword = document.getElementById("repassword")
     const submitBtn = document.querySelector("#submit")
-
-
-    function showError(widget, str) {
-        widget.innerHTML = str;
-        widget.className = 'error active';
-    }
-
-    function hideError(widget) {
-        widget.innerHTML = '';
-        widget.className = 'error';
-    }
-
-    function checkValidation(widget, errorSpan, strError, checkPassword=false) {
-        if (widget.validity.valid) {
-            hideError(errorSpan)
-            if(checkPassword) 
-                passwordEqualRepassword()
-        }
-        else {
-            showError(errorSpan, strError)
-        }
-    }
 
     function passwordEqualRepassword() {
         if (password.value == repassword.value) {
@@ -118,6 +87,5 @@ function start() {
         }
     },
     false
-);
-
+    );
 }
