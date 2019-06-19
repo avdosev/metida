@@ -1,8 +1,8 @@
-import { users as validators } from "../errorString.js"
-import { showError, hideError, errorHandler, getJsonOptions, queryToServer } from "../helpers.js"
+import { users as validators } from "./errorString.js"
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', start);
 
+function start() {
     const emailError = document.querySelector('.emailError');
     const loginError = document.querySelector('.loginError');
     const passwordError = document.querySelector('.passwordError');
@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const repassword = document.getElementById("repassword")
     const submitBtn = document.querySelector("#submit")
 
+
+    function showError(widget, str) {
+        widget.innerHTML = str;
+        widget.className = 'error active';
+    }
+
+    function hideError(widget) {
+        widget.innerHTML = '';
+        widget.className = 'error';
+    }
 
     function checkValidation(widget, errorSpan, strError, checkPassword=false) {
         if (widget.validity.valid) {
@@ -58,6 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
         checkValidation(repassword, repasswordError, validators.strRepasswordError, true)
     })
 
+    function errorHandler(err) {
+        showError(serverError, err)
+    }
 
 
     submitBtn.addEventListener('click', () => {       
@@ -72,13 +85,30 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if( !passwordEqualRepassword() ) {
             showError(passwordError, validators.strPasswordError)
         } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
-            const options = getJsonOptions(email.value, password.value, login.value)
-            queryToServer(options, serverError, "/register");
-
+            console.log("запрос")
+            const options = {
+                method:"post",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "email": email.value,
+                    "login": login.value,
+                    "password": password.value
+                })
+            }
+            fetch("/register", options).then(response => {
+                if (response.ok) {
+                    document.location.href = "/"
+                } else {
+                    errorHandler(response.text().then(errorHandler))
+                }
+            }).catch(err => {
+                console.error(err)
+            })
         }
     },
     false
 );
 
-})
-
+}

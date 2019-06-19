@@ -20,7 +20,7 @@ const users = {
     strLoginError: 'Логин должен состоять более чем из 3 символов',
 
     strEventEmailError: 'Вводи почту правильно', 
-
+    
     emailRegExp: new RegExp('.+@.+\\..+'),
     passwordRegExp: new RegExp('.{5,}'),
     loginRegExp: new RegExp('.{3,}')
