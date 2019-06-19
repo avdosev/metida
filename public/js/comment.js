@@ -1,4 +1,9 @@
-import { comment } from "./errorString.js"
+const comment1 = { 
+    commentError: "Коммент уж слишком маленький. Прям как ...",
+    commentEventError: "Коммент не удовлетворяет требованиям",
+    commentRegExp: new RegExp("^.{6,}")
+}
+
 
 let post;
 let id;
@@ -37,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     sendCommentBtn.addEventListener("click", (event) => {
-        if ( !comment.value.match(comment.commentRegExp)  )  {
-            commentError.innerHTML = comment.commentEventError;
+        if ( !comment.value.match(comment1.commentRegExp)  )  {
+            commentError.innerHTML = comment1.commentEventError;
             commentError.className = 'commentError error active';
              //не пускаем его дальше
         }
@@ -48,13 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     comment.addEventListener('input', () => {
-            if (comment.value.match(comment.commentRegExp)) { 
+            if (comment.value.match(comment1.commentRegExp)) { 
                 hideError(commentError)
             } else {
-                showError(commentError, comment.commentError)
+                showError(commentError, comment1.commentError)
             }
         },
-        false 
+        false //объясни потом, что значит этот бул
     );
 
 

@@ -1,4 +1,13 @@
-import { users as validators } from "./errorString.js"
+const validators = { ////поправить
+    strEmailError: 'Проверьте правильность введенного e-mail', 
+    strPasswordError: 'Пароль должен содержать более 5 символов', 
+    strEventEmailError: 'Вводи почту правильно', 
+    strRepasswordError: 'Введенные пароли не совпадают', 
+    strLoginError: 'Логин должен состоять более чем из 3 символов',
+    emailRegExp: new RegExp('.+@.+\\..+'),
+    passwordRegExp: new RegExp('.{5,}'),
+    loginRegExp: new RegExp('.{3,}')
+}
 
 document.addEventListener('DOMContentLoaded', start);
 
