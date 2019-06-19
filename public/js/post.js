@@ -1,6 +1,5 @@
-import { highLighter } from "highlighter";
-import { getData } from "helper";
-
+import { highLighter } from "/public/js/modules/highlighter.js";
+import { getData } from "/public/js/modules/helper.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -38,7 +37,7 @@ function start() {
     })
 
     // тупа хайлайт кода
-    (async function highlighting() {
+    async function highlighting() {
         const elems = document.querySelectorAll('code');
         if (!elems) {
             return;
@@ -49,6 +48,7 @@ function start() {
             elems[i].innerHTML = highLighter(elems[i].innerText, lexTable);
         }
         
-    })();
+    }
+    highlighting();
     
 }
