@@ -1,13 +1,4 @@
-const validators = { // все еще не понимаю как вынести это все
-    strEmailError: 'Проверьте правильность введенного e-mail', 
-    strPasswordError: 'Пароль должен содержать более 5 символов', 
-    strEventEmailError: 'Вводи почту правильно', 
-    strRepasswordError: 'Введенные пароли не совпадают', 
-    strLoginError: 'Логин должен состоять более чем из 3 символов',
-    emailRegExp: new RegExp('.+@.+\\..+'),
-    passwordRegExp: new RegExp('.{5,}')
-}
-
+const validators = {}
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -79,7 +70,7 @@ function start() {
                         document.location.href = "/"
                     }
                     else {
-                        errorHandler(response.text().then(errorHandler))
+                        response.text().then(errorHandler)
                     }
                 }).catch((err) => {
                     console.error(err)

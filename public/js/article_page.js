@@ -4,7 +4,9 @@ const md = markdownit({
     typographer: true
 })
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', start)
+
+function start() {
     const checkbox = document.getElementById("previews");
     const header = document.querySelector('#header')
     const disclaimer = document.querySelector('#disclaimer')
@@ -12,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.querySelector('#submit')
     
     checkbox.addEventListener("click", showArtIfCheckboxCheked)
-    content.addEventListener('change', showArtIfCheckboxCheked)
+
     header.addEventListener('change', showArtIfCheckboxCheked)
+    disclaimer.addEventListener('change', showArtIfCheckboxCheked)
+    content.addEventListener('change', showArtIfCheckboxCheked)
 
     const headerError = document.querySelector(".headerError")
     const disclaimerError = document.querySelector(".disclaimerError")
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         showArticle(headerStr, textStr, disclaimerStr)
     }
-});
+}
 
 
 function showArticle(title, text, disclaimer) {
