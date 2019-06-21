@@ -19,7 +19,7 @@ hr {
     align-content: space-between;
     font-family: 'Cabin', sans-serif;
     font-size: 26px;
-    margin-left: 1vh;
+    margin-left: 0.5rem; /* Так тоже не оч но мне пох */
     height: 4rem;  /* на большом монике все портится */
 }
 
