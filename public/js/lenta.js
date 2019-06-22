@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //fetch("/emailMessage")
     })
 
-    fetch()
 })
 
 var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
