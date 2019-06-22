@@ -1,5 +1,5 @@
-import { highLighter } from "/public/js/modules/highlighter.js";
-import { getData } from "/public/js/modules/helper.js";
+import { highLighter } from "./modules/highlighter.js";
+import { getData } from "./modules/helper.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
