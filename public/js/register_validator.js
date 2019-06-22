@@ -1,57 +1,58 @@
-const validators = {}
+import { showError, hideError, checkValidation,  } from "/public/js/modules/input_error.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
-function start() {
-    const emailError = document.querySelector('.emailError');
-    const loginError = document.querySelector('.loginError');
-    const passwordError = document.querySelector('.passwordError');
-    const repasswordError = document.querySelector('.repasswordError');
-    const serverError = document.querySelector(".serverError")
-
-    const email = document.getElementById('email');
-    const login = document.getElementById("login")
-    const password = document.querySelector('#password')
-    const repassword = document.getElementById("repassword")
+async function start() {
+    // запрос на джсончик
+    const validators = await 
+        fetch('/public/json/input_errors.json').then(response => {
+            if (response.ok)
+                return response.json()
+            else 
+                console.log('с джсоном какая то проблема', response)
+        })
+      
+    const serverError = document.querySelector("#serverError")
     const submitBtn = document.querySelector("#submit")
 
+    email.addEventListener('input', () => {
+        hideError(serverError)
+        checkValidation(email, emailError, validators.email.Error)
+    });
+
+    login.addEventListener('input', () => {
+        hideError(serverError)
+        checkValidation(login, loginError, validators.login.Error)
+    })
+    
+    password.addEventListener('input', () => {
+        hideError(serverError)
+        checkValidation(password, passwordError, validators.password.Error, passwordEqualRepassword)
+    })
+
+    repassword.addEventListener('input', () => {
+        hideError(serverError)
+        checkValidation(repassword, repasswordError, validators.password.repeat, passwordEqualRepassword)
+    })
+    
+    // helpers
+    function errorHandler(err) {
+        showError(serverError, err)
+    }
+    
     function passwordEqualRepassword() {
         if (password.value == repassword.value) {
             hideError(repasswordError)
             return true
         }
         else {
-            showError(repasswordError, validators.strRepasswordError)
+            showError(repasswordError, validators.password.repeat)
             return false
         }
     }
-
-    email.addEventListener('input', () => {
-        hideError(serverError)
-        checkValidation(email, emailError, validators.strEmailError)
-    });
-
-    password.addEventListener('input', () => {
-        hideError(serverError)
-        checkValidation(password, passwordError, validators.strPasswordError, true)
-    })
-
-    login.addEventListener('input', () => {
-        hideError(serverError)
-        checkValidation(login, loginError, validators.strLoginError)
-    })
-
-    repassword.addEventListener('input', () => {
-        hideError(serverError)
-        checkValidation(repassword, repasswordError, validators.strRepasswordError, true)
-    })
-
-    function errorHandler(err) {
-        showError(serverError, err)
-    }
-
-
-    submitBtn.addEventListener('click', () => {       
+    
+    submitBtn.addEventListener('click', async () => {
+        // Ниже адок       
         if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
             showError(emailError, validators.strEventEmailError)
         } else if(!login.value.match(validators.loginRegExp) ) {
@@ -75,15 +76,16 @@ function start() {
                     "password": password.value
                 })
             }
-            fetch("/register", options).then(response => {
+            try {
+                let response = await fetch("/register", options)
                 if (response.ok) {
                     document.location.href = "/"
                 } else {
-                    errorHandler(response.text().then(errorHandler))
+                    errorHandler( await response.text() )
                 }
-            }).catch(err => {
+            } catch(err) {
                 console.error(err)
-            })
+            }
         }
     },
     false

@@ -21,8 +21,7 @@ export function checkValidation(widget, span, str, hideFnc = null) {
 export function checkValidationWithRegExp(widget, span, regexp, str) {
     if (!widget.value.match(regexp) )  { 
         showError(spanError, str)
-    }
-    else {
+    } else {
         hideError(span)
     }
 }
