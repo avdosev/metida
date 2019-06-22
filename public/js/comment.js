@@ -1,6 +1,9 @@
 import { DateToStr } from "/public/js/modules/dateRU.js";
 import { showError, hideError } from "/public/js/modules/input_error.js"
 
+let post;	
+let id;	
+
 document.addEventListener('DOMContentLoaded', async () => {
 
     post = document.querySelector('.post_text');
