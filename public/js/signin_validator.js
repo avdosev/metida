@@ -30,10 +30,10 @@ async function start() {
 
 
     sendBtn.addEventListener('click', (event) => {
-        if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
-            showError(emailError, validators.strEventEmailError)
-        } else if(!password.value.match(validators.passwordRegExp) ) {
-            showError(passwordError, validators.strPasswordError)
+        if ( !email.value.match(validators.email.regexp ) )  { //пусть будет так
+            showError(emailError, validators.email.EventError[0])
+        } else if(!password.value.match(password.regexp ) ) {
+            showError(passwordError, validators.password.Error)
         } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
             console.log("запрос")
             const options = {

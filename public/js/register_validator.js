@@ -53,18 +53,17 @@ async function start() {
     
     submitBtn.addEventListener('click', async () => {
         // Ниже адок       
-        if ( !email.value.match(validators.emailRegExp) )  { //пусть будет так
-            showError(emailError, validators.strEventEmailError)
-        } else if(!login.value.match(validators.loginRegExp) ) {
-            showError(loginError, validators.strLoginError)
-        } else if(!password.value.match(validators.passwordRegExp) ) {
-            showError(passwordError, validators.strPasswordError)
-        } else if(!repassword.value.match(validators.passwordRegExp) ) { //вторая регулярка не нужна
-            showError(repasswordError, validators.strRepasswordError)
+        if ( !email.value.match(validators.email.regexp) )  { //пусть будет так
+            showError(emailError, validators.email.EventError[0]) 
+        } else if(!login.value.match(validators.login.regexp )  ) {
+            showError(loginError, validators.login.Error  )
+        } else if(!password.value.match(validators.password.regexp ) ) {
+            showError(passwordError, validators.password.Error )
+        } else if(!repassword.value.match(validators.password.regexp) ) { //вторая регулярка не нужна
+            showError(repasswordError, validators.password.repeat)
         } else if( !passwordEqualRepassword() ) {
-            showError(passwordError, validators.strPasswordError)
+            showError(passwordError, validators.password.Error)
         } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
-            console.log("запрос")
             const options = {
                 method:"post",
                 headers: {
