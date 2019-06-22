@@ -12,7 +12,7 @@ head
   link(rel="stylesheet", href="/public/css/placeholder.css")
   link(rel="stylesheet", href="/public/css/errors.css") 
   
-  script(type='text/javascript', src='/public/js/signin_validator.js')
+  script(type='module', src='/public/js/signin_validator.js')
 
 body
   include modules/header 
@@ -20,11 +20,11 @@ body
     div.reg
       p Email
       input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+\\..+')
-      <span class="emailError" aria-live="polite"></span>
+      <span id="emailError" aria-live="polite"></span>
       p Password
       input#password(type='password', name='password', placeholder='Type password', required='required', pattern='.{5,}')
-      <span class="passwordError" aria-live="polite"></span>
+      <span id="passwordError" aria-live="polite"></span>
       button#submit(class="welcome") Войти
-      <span class="serverError" aria-live="polite"></span>
+      <span id="serverError" aria-live="polite"></span>
 
 
