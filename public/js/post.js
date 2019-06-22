@@ -1,3 +1,5 @@
+import { highLighter } from "/public/js/modules/highlighter.js";
+import { getData } from "/public/js/modules/helper.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -34,4 +36,19 @@ function start() {
         })
     })
 
+    // тупа хайлайт кода
+    async function highlighting() {
+        const elems = document.querySelectorAll('code');
+        if (!elems) {
+            return;
+        }
+        
+        const lexTable = await getData('/public/json/lexem_table.json')
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].innerHTML = highLighter(elems[i].innerText, lexTable);
+        }
+        
+    }
+    highlighting();
+    
 }
