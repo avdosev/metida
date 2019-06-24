@@ -1,14 +1,6 @@
 # Процент готовности проекта
 
-## 55.9%
-
-### CI
-
->когда некит добавит для своего репа поддержку, надо изменить ссылку ниже
-
-[![Build Status](https://travis-ci.com/Sapfir0/metida.svg?branch=master)](https://travis-ci.com/Sapfir0/metida)
-
-We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) service.
+## 60.9%
 
 ## Развертка
 
