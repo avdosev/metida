@@ -1,4 +1,4 @@
-import { showError, hideError, checkValidation,  } from "/public/js/modules/input_error.js";
+import { showError, hideError, checkValidation,  } from "./modules/input_error.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -48,7 +48,7 @@ async function start() {
             }
             fetch("/sign_In", options).then(response => {
                 if (response.ok) {
-                    document.location.href = "/"
+                    document.location.href = document.referrer || "/"
                 } else {
                     response.text().then(errorHandler)
                 }
