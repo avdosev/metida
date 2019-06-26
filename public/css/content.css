@@ -31,6 +31,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #2e2f30;
     color: white;
     padding: 10px;
+    width: 100%;
     max-width: 100%;
     border-radius: 3px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
