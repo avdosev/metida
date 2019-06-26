@@ -15,9 +15,6 @@ const Response = require('../controllers/respondent')
 //  проверка логирования
 const { isLoggedIn, loggedCheker } = require('../controllers/logged.js');
 
-// подгрузка публик файлов
-const { getFile } = require('../controllers/get.js');
-
 const Debug = require('../controllers/debug');
 
 const initAuthControllers = (app, passport) => {
@@ -82,11 +79,16 @@ const initAuthControllers = (app, passport) => {
     );
 
     //-- ERROR PAGE --
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res, next) => {
         console.error(err.stack);
         res.status(500);
         next()
     }, Response.renderPage.errorPage);
+
+    //-- NOT FOUND PAGE --
+    app.use((req, res) => {
+
+    })
 };
 
 module.exports = {
