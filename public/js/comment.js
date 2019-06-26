@@ -1,5 +1,5 @@
-import { DateToStr } from "/public/js/modules/dateRU.js";
-import { showError, hideError } from "/public/js/modules/input_error.js"
+import { DateToStr } from "./modules/dateRU.js";
+import { showError, hideError } from "./modules/input_error.js"
 
 let post;	
 let id;	
