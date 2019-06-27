@@ -1,4 +1,4 @@
-const { user: User } = require('../database/models');; 
+const { user: User } = require('../database/models')
 
 
 function isConfirmedEmail(userId) {

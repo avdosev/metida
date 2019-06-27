@@ -1,4 +1,4 @@
-import { showError, hideError, checkValidation,  } from "./modules/input_error.js";
+import { showError, hideError, checkValidation } from "./modules/input_error.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -16,12 +16,12 @@ async function start() {
     
     email.addEventListener('input', () => {
         hideError(serverError)
-        checkValidation(email, emailError, validators.email.Error)
+        checkValidation(email, emailError, validators.email.error_str)
     });
 
     password.addEventListener('input', () => {
         hideError(serverError)
-        checkValidation(password, passwordError, validators.password.Error)
+        checkValidation(password, passwordError, validators.password.error_str)
     })
 
     function errorHandler(err) {
@@ -33,7 +33,7 @@ async function start() {
         if ( !email.value.match(validators.email.regexp ) )  { //пусть будет так
             showError(emailError, validators.email.EventError[0])
         } else if(!password.value.match(password.regexp ) ) {
-            showError(passwordError, validators.password.Error)
+            showError(passwordError, validators.password.error_str)
         } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
             console.log("запрос")
             const options = {
