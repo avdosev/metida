@@ -1,0 +1,14 @@
+:root {
+  --main-metida-color: #f7f7f7;
+  --main-back-color: #333;
+  --ccc-color: #ccc;
+  --unique-color: rgb(99, 45, 80);
+  --main-bord-color: #d9d9d9;
+  --smoke-color: whitesmoke;
+  --comments-left-border-color: #d4d4d4;
+  --main-hover-color: blue;
+  --buttom-hover: rgba(99, 45, 80, 0.75);
+  --buttom-active:rgba(99, 45, 80, 0.5);
+  /* --url-color: rgb(36, 110, 136) */
+  --url-color: rgb(97, 42, 175)
+}
