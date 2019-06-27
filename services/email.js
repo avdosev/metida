@@ -21,6 +21,7 @@ module.exports = (email, subject, message) => {
         if (err) {
             console.log(err);
         }
+        //console.log(`Message was sent on ${logs.accepted[0]}`)
         console.log(logs)
     }).catch(err => {
         console.error(err)

@@ -17,17 +17,17 @@ async function start() {
 
     email.addEventListener('input', () => {
         hideError(serverError)
-        checkValidation(email, emailError, validators.email.Error)
+        checkValidation(email, emailError, validators.email.error_str)
     });
 
     login.addEventListener('input', () => {
         hideError(serverError)
-        checkValidation(login, loginError, validators.login.Error)
+        checkValidation(login, loginError, validators.login.error_str)
     })
     
     password.addEventListener('input', () => {
         hideError(serverError)
-        checkValidation(password, passwordError, validators.password.Error, passwordEqualRepassword)
+        checkValidation(password, passwordError, validators.password.error_str, passwordEqualRepassword)
     })
 
     repassword.addEventListener('input', () => {
@@ -56,13 +56,13 @@ async function start() {
         if ( !email.value.match(validators.email.regexp) )  { //пусть будет так
             showError(emailError, validators.email.EventError[0]) 
         } else if(!login.value.match(validators.login.regexp )  ) {
-            showError(loginError, validators.login.Error  )
+            showError(loginError, validators.login.error_str  )
         } else if(!password.value.match(validators.password.regexp ) ) {
-            showError(passwordError, validators.password.Error )
+            showError(passwordError, validators.password.error_str )
         } else if(!repassword.value.match(validators.password.regexp) ) { //вторая регулярка не нужна
             showError(repasswordError, validators.password.repeat)
         } else if( !passwordEqualRepassword() ) {
-            showError(passwordError, validators.password.Error)
+            showError(passwordError, validators.password.error_str)
         } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
             const options = {
                 method:"post",
