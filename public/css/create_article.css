@@ -68,3 +68,22 @@
 .Btn:active{
     background-color: var(--buttom-active);
 }
+
+@media screen and (max-width: 650px) {
+    .pushArticle {
+        width: 100%
+    }
+    .pushArticle #header,
+    .pushArticle #disclaimer,
+    .pushArticle #article {
+        width: 90%
+    }
+}
+
+@media (hover:hover) {
+
+    .create_area:hover, .disclaimer:hover, #header:hover {
+        border-color: var(--main-hover-color);
+    }
+    
+}
