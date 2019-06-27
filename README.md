@@ -1,14 +1,6 @@
 # Процент готовности проекта
 
-## 55.9%
-
-### CI
-
->когда некит добавит для своего репа поддержку, надо изменить ссылку ниже
-
-[![Build Status](https://travis-ci.com/Sapfir0/metida.svg?branch=master)](https://travis-ci.com/Sapfir0/metida)
-
-We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) service.
+## 60.9%
 
 ## Развертка
 
@@ -47,7 +39,7 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 ## Npm команды
 
-    npm test 
+    npm run inspect:lint
 
 Позволяет пройтись по всем джс файлам, и вывести все предупреждения линтера
     
@@ -55,9 +47,17 @@ We use travis CI, someday we can use [our](https://github.com/Sapfir0/pyCI) serv
 
 Попытается автоматически исправить ошибки, выведенные командной выше
 
-    npm run prettier
+    npm run inspect:mocha
 
-Исправить код стайл. Осторожно! Опасная команда. Пока для код стайла используется prettier
+Наши тесты
+
+    npm run inspect:allConcurency
+
+Все тесты вместе выполнить в многопотоке 
+
+    npm run inspect:all
+
+Все тесты выполнить вместе 
 
 ## Код стайл
 
