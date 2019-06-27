@@ -1,8 +1,8 @@
 import { DateToStr } from "./modules/dateRU.js";
 import { showError, hideError } from "./modules/input_error.js"
 
-let post;
-let id;
+let post;	
+let id;	
 
 document.addEventListener('DOMContentLoaded', async () => {
 
