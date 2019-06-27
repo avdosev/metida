@@ -19,7 +19,6 @@ app.use(
 app.use(passport.initialize()); //возможно, нужно чистить сессии
 app.use(passport.session()); // persistent login sessions
 
-//For Handlebars
 app.set('views', './views');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -45,3 +44,6 @@ app.listen(port, err => {
     if (!err) console.log('Server started on ' + port + ' port');
     else console.log('Server not started');
 });
+
+
+module.exports = app
