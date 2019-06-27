@@ -84,7 +84,7 @@ async function signinUser(req, email, password, next) { //некст нас не
     } catch(err) {
         res.statusCode = 406;
         res.send(err.message)
-    };
+    }
 }
 
 const loadPasportStrategies = (passport, user) => {

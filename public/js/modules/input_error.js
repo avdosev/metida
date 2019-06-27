@@ -18,11 +18,13 @@ export function checkValidation(widget, span, str, hideFnc = null) {
     }
 }
 
-export function checkValidationWithRegExp(widget, span, regexp, str) {
+export function checkValidationWithRegExp(widget, span, { regexp, error_str: str }, hideFnc = null) {
     if (!widget.value.match(regexp) )  { 
-        showError(spanError, str)
+        showError(span, str)
     } else {
         hideError(span)
+        if(hideFnc) 
+            hideFnc()
     }
 }
 

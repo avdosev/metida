@@ -1,5 +1,5 @@
 import { DateToStr } from "./modules/dateRU.js";
-import { showError, hideError } from "./modules/input_error.js"
+import { showError, hideError, checkValidationWithRegExp } from "./modules/input_error.js"
 
 let post;	
 let id;	
@@ -43,11 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
 
     comment.addEventListener('input', () => {
-            if (comment.value.match(validators.comment.regexp)) { 
-                hideError(commentError)
-            } else {
-                showError(commentError, validators.comment.Error)
-            }
+            checkValidationWithRegExp(comment, commentError, validators.comment)
         },
         false //объясни потом, что значит этот бул
     );
