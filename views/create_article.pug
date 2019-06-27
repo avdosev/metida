@@ -13,8 +13,9 @@ head
   link(rel="stylesheet", href="/public/css/placeholder.css")
   link(rel="stylesheet", href="/public/css/errors.css") 
 
+  //-- TODO: need preload markdownit parser
   script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
-  script(src="/public/js/article_page.js")
+  script(type="module", src="/public/js/article_page.js")
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 body
   include modules/header 

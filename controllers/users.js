@@ -1,4 +1,4 @@
-const bCrypt = require('bcrypt-nodejs');
+const bCrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check');
 const mailer = require("../services/email")
 const UserApi = require("../services/user")
@@ -84,7 +84,7 @@ async function signinUser(req, email, password, next) { //некст нас не
     } catch(err) {
         res.statusCode = 406;
         res.send(err.message)
-    };
+    }
 }
 
 const loadPasportStrategies = (passport, user) => {

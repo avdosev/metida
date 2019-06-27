@@ -1,3 +1,7 @@
+import { showError, checkValidationWithRegExp as checkValidation } from "./modules/input_error.js";
+
+// он находится в глобальной области видимости если это можно исправить с помощью модульной системы будет не плохо
+// но пока так
 const md = markdownit({
     html: false,
     linkify: true,
@@ -6,8 +10,18 @@ const md = markdownit({
 
 document.addEventListener('DOMContentLoaded', start)
 
-function start() {
-    const checkbox = document.getElementById("previews");
+async function start() {
+    // запрос на джсончик
+    const validators = await 
+        fetch('/public/json/input_errors.json').then(response => {
+            if (response.ok)
+                return response.json()
+            else 
+                console.log('с джсоном какая то проблема', response)
+        })
+
+
+    const checkbox = document.querySelector("#previews");
     const header = document.querySelector('#header')
     const disclaimer = document.querySelector('#disclaimer')
     const content = document.querySelector('#article')
@@ -23,56 +37,30 @@ function start() {
     const disclaimerError = document.querySelector(".disclaimerError")
     const contentError = document.querySelector(".contentError")
 
-
-    function showError(spanError, str) {
-        spanError.innerHTML = str;
-        spanError.className = 'error active';
-    }
-
-    function hideError(spanError) {
-        spanError.innerHTML = '';
-        spanError.className = 'error';
-    }
-
-    function checkValidation(spanError, widget, regExp, strError) {
-        if (!widget.value.match(regExp) )  { 
-            showError(spanError, strError)
-        }
-        else {
-            hideError(spanError)
-        }
-    }
-
     header.addEventListener("input", () => {
-        checkValidation(headerError, header, validators.headerRegExp, validators.strHeaderError)
+        checkValidation(header, headerError, validators.header)
     })
 
     disclaimer.addEventListener("input", () => {
-        checkValidation(disclaimerError, disclaimer, validators.disclaimerRegExp, validators.strDisclaimerError)
+        checkValidation(disclaimer, disclaimerError, validators.disclaimer)
     })
 
     content.addEventListener("input", () => {
-        checkValidation(contentError, content, validators.contentRegExp, validators.strContentError)
+        checkValidation(content, contentError, validators.content)
     })
 
-
     submitBtn.addEventListener('click', (event) => {
-        if ( !header.value.match(validators.headerRegExp) )  {
-            showError(headerError, validators.strEventHeaderError)
-            event.preventDefault();
+        if ( !header.value.match(validators.header.regexp) )  {
+            showError(headerError, validators.header.EventError[0])
+        } else if(!disclaimer.value.match(validators.disclaimer.regexp) ) {
+            showError(disclaimerError, validators.disclaimer.EventError[0])
+        } else if(!content.value.match(validators.content.regexp) ) {
+            showError(contentError, validators.content.EventError[0])
+        } else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
+            return;
         }
-        else if(!disclaimer.value.match(validators.disclaimerRegExp) ) {
-            showError(disclaimerError, validators.strDisclaimerEventError)
-            event.preventDefault();
-        }
-        else if(!content.value.match(validators.contentRegExp) ) {
-            showError(contentError, validators.strContentEventError)
-            event.preventDefault();
-        }
-        else { // валидация на фронте пройдена, делаем запрос к серверу и смотрим на его ответ
 
-
-        }
+        event.preventDefault();
     },
     false
 );
