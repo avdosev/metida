@@ -49,4 +49,14 @@ h1, h2, h3, h4, h5, h6 {
     .content {
         min-width: 100px;
     }
+
+    .content {
+        width: 94%
+    }
+    .content pre {
+        width: 95%
+    }
+    .content .post_text {
+        align-items: flex-start;
+    }
 }

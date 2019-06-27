@@ -58,6 +58,15 @@ p {
     background-color: white;
 }
 
+@media(any-pointer: coarse){
+    .welcome:valid:active{
+        color: black;
+        background-color: rgb(219, 219, 219);
+        transition: 0.4s;
+        border-radius: 20px;
+    } 
+}
+
 /* цвета можно будет подправить */
 input[type='button'] {
     border: 1px solid black;
@@ -67,6 +76,23 @@ input[type='button']:active {
     border: 1px solid grey;
     background-color: var(--smoke-color);
 }
+
+@media (hover:hover) {
+
+    input:hover{
+        border: 1px solid var(--main-hover-color);
+    }
+
+    .welcome:hover{
+        color: black;
+        background-color: rgb(219, 219, 219);
+        transition: 0.7s;
+        border-radius: 20px;
+    }
+
+}
+
+/* errors */
 
 .error {
     width  : 95%;

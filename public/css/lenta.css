@@ -13,6 +13,10 @@
     max-width: 100%;
 }
 
+.lenta {
+    width: 100%;
+}
+
 h3 {
     margin-bottom: 0;
 }
@@ -52,4 +56,8 @@ h3 {
     line-height: 30px;
     word-break: break-word;
     margin-top: 0;
+}
+
+.post a:hover {
+    color: var(--unique-color);
 }
