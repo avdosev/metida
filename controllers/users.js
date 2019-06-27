@@ -1,4 +1,4 @@
-const bCrypt = require('bcrypt-nodejs');
+const bCrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check');
 const mailer = require("../services/email")
 const UserApi = require("../services/user")
