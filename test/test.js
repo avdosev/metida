@@ -1,10 +1,6 @@
-
-const assert = require("assert");
-const mocha = require("mocha");     
 const chai = require("chai");   
 const chaiHttp = require("chai-http");
 
-const app = require("../app")
 const expect = chai.expect;
 const should = chai.should(); //использую это постоянно
 const faker = require("faker")
@@ -14,6 +10,7 @@ chai.use(chaiHttp);
 const Tests = {
     randomUser: {
         email: faker.internet.email(),
+        login: faker.internet.userName(),
         password: faker.internet.password()
     },
     GETmethods: {
@@ -28,6 +25,11 @@ const Tests = {
         sign_In: "/sign_In",
         createArticle: "/createArticle"
     },
+    correctArticle: {
+        title: "sssssssssssssss",
+        content: "ssssssssssssssssssssss",
+        disclaimer: "sssssssssssssssssssssss"
+    }
 
 }
 
