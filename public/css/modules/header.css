@@ -81,3 +81,81 @@ header ul {
     background-color: var(--unique-color);
     color: var(--smoke-color);
 }
+
+@media screen and (max-width: 650px) {
+    .icon {
+        display: inline;
+    }
+
+    .regSection {
+        margin-left: 10%;
+    }
+
+    .header {
+        height: 3rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    img.logoImg {
+        height: 2.4rem;
+        min-width: 10rem;
+    }
+
+    .regSection .GreyButton,
+    .regSection .BlackButton {
+        display: block;
+        background-color: var(--main-back-color);
+        color: var(--smoke-color);
+        margin-right: 0px;
+        text-decoration: none;
+        outline: none;
+        color: white;
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        padding: 12px 15px;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+      
+    nav {
+        display: table;
+        margin: auto auto;
+        padding: 7px 7px 0px 0px;
+    }
+
+    header nav ul {
+        margin: 0;
+        padding: 0; 
+    }
+
+    .topmenu > li {
+        width: 45%;
+        float: right;
+        position: relative;
+    }
+      
+    .submenu {
+        flex-direction: column;
+        background: var(--main-back-color);
+        position: absolute;
+        left: -185%;
+        top: 100%;
+        z-index: 5;
+        width: 120px;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: 0 0;
+        transition: .5s ease-in-out;
+    }
+
+    #submenu__active{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+} 
+
+.BlackButton:hover, .GreyButton:hover {
+    background-color: var(--unique-color);
+    color: var(--smoke-color);
+}
