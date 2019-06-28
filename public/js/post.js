@@ -9,7 +9,7 @@ function getArticleId(url) {
 }
 
 function start() {
-    const codeElems = document.querySelector('code');
+    const codeElems = document.querySelectorAll('code');
     highlightArrayOfCodeElems(codeElems);
     
     let deleteArticleLink = document.querySelector('.deleteAricleLink');
