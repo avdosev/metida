@@ -1,3 +1,5 @@
+import { getData } from "./helper.js";
+
 export function highLighter(codeText, lexTable) {
     let text = '';
     while (codeText.length != 0) {
@@ -20,6 +22,19 @@ export function highLighter(codeText, lexTable) {
         }
     }
     return text;
+}
+
+// тупа хайлайт кода
+export async function highlightArrayOfCodeElems(elems, lexTableUrl = '/public/json/lexem_table.json') {
+    if (!elems) {
+        return;
+    }
+    
+    const lexTable = await getData(lexTableUrl)
+    for (let i = 0; i < elems.length; i++) {
+        elems[i].innerHTML = highLighter(elems[i].innerText, lexTable);
+    }
+    
 }
 
 
