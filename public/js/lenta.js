@@ -10,15 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         getArticle(articlesCount)
     })
 
-    confirmEmail.addEventListener("click", () => {
-        //именно в этот момент, я считаю, мы должны считать емейл юзера и сформировать сообщение для почты
-        //тут же меняем ошибку на ui, если сообщение отправлено, и если нет, тоже меняем
-        //fetch("/emailMessage")
-    })
-
 })
 
-var currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
+let currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
 function getArticle(articlesCount=0) {
     fetch('./top', {
