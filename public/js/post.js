@@ -1,21 +1,26 @@
+import { highlightArrayOfCodeElems } from "./modules/highlighter.js";
+
 document.addEventListener('DOMContentLoaded', start);
 
 function getArticleId(url) {
-    var reg = new RegExp('^.+/post/')
-    var newUrl = url.replace(reg, "");
+    let reg = new RegExp('^.+/post/')
+    let newUrl = url.replace(reg, "");
     return newUrl
 }
 
 function start() {
-    var deleteArticleLink = document.querySelector('.deleteAricleLink');
-    var updateArticleLink = document.querySelector('.updateAricleLink');
-    var options = {
+    const codeElems = document.querySelectorAll('code');
+    highlightArrayOfCodeElems(codeElems);
+    
+    let deleteArticleLink = document.querySelector('.deleteAricleLink');
+    let updateArticleLink = document.querySelector('.updateAricleLink');
+    let options = {
         method: 'POST'
     }
     
     deleteArticleLink.addEventListener("click", () => {
-        var id = getArticleId(window.location.href)
-        var url = "/post/" + id + "/delete"
+        let id = getArticleId(window.location.href)
+        let url = "/post/" + id + "/delete"
         
         fetch(url, options).then(res => {
             console.log(res)
@@ -24,13 +29,14 @@ function start() {
     })
 
     updateArticleLink.addEventListener("click", () => {
-        var id = getArticleId(window.location.href)
-        var url = "/post/" + id + "/update"
+        let id = getArticleId(window.location.href)
+        let url = "/post/" + id + "/update"
         fetch(url, options).then(res => {
             console.log(res)
             ///режим редактирования
             //нужно перейти в редактор подобный createArticle, только в полях уже будет заготовки статьи
         })
     })
+
 
 }
