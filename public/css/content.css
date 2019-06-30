@@ -30,8 +30,8 @@ h1, h2, h3, h4, h5, h6 {
 .content pre {
     background-color: #2e2f30;
     color: white;
-    padding: 10px;
-    width: 100%;
+    padding: 1.5%;
+    width: 97%;
     max-width: 100%;
     border-radius: 3px;
     box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
@@ -45,6 +45,34 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 25px;
 }
 
+.content .pre_table {
+    background-color: inherit;
+    color: var(--main-back-color);
+    box-shadow: none;
+}
+
+.scroll_inner_pre {
+    overflow-x: auto;
+}
+
+.content table {
+    width: 100%;
+    border: 1px solid #d5dddf;
+    border-collapse: collapse;
+}
+
+.content table td,
+.content table th {
+    padding: 6px 12px 9px;
+    border: 1px solid #d5dddf;
+    line-height: 1.5;
+}
+
+table thead {
+    background: #eaecea;
+    /* display: block; */
+}
+
 @media screen and (max-width: 650px) {
     .content {
         min-width: 100px;
@@ -53,9 +81,7 @@ h1, h2, h3, h4, h5, h6 {
     .content {
         width: 94%
     }
-    .content pre {
-        width: 95%
-    }
+
     .content .post_text {
         align-items: flex-start;
     }
