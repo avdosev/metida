@@ -3,22 +3,22 @@
     "short_name": "Metida",
     "icons": [
         {
-            "src": "../../img/logo128.png",
-            "sizes": "128x128",
-            "type": "image/png"
-        },
-        {
-            "src": "../../img/logo64.png",
+            "src": "/public/img/app_icon/logo64.png",
             "sizes": "64x64",
             "type": "image/png"
         },
         {
-            "src": "../../img/logo256.png",
+            "src": "/public/img/app_icon/logo128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/img/app_icon/logo256.png",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "../../img/logo512.png",
+            "src": "/public/img/app_icon/logo512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
