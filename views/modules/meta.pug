@@ -6,3 +6,16 @@ meta(name="theme-color", content="#393939")
 <meta name="apple-mobile-web-app-status-bar-style" content="#f7f7f7">
 <!-- json manifest -->
 <link rel="manifest" href="public/json/manifest.json">
+
+script.
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+            try {
+                const reg = await navigator.serviceWorker.register('/public/js/service_worker.js')
+                console.log('Service worker registered.\n', reg);
+            } catch (err) {
+                console.log('лежи + соси, воркер не зарегался');
+                console.log(err.message);
+            }
+        });
+    }
