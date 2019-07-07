@@ -32,6 +32,9 @@ const initAuthControllers = (app, passport) => {
     app.get('/logout', Response.renderPage.logout);
     app.get('/post/:id/', Handler.getArticle, Response.renderPage.article);
     app.get('/author/:login', Response.renderPage.authorProfile )
+    app.get('/offline', (req, res) => {
+        res.render('offline')
+    })
 
     // -- ARTICLES API -- 
     

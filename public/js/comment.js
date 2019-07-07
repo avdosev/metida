@@ -31,18 +31,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.log('с джсоном какая то проблема', response)
     })
 
-    sendCommentBtn.addEventListener("click", (event) => {
+    if (sendCommentBtn) sendCommentBtn.addEventListener("click", (event) => {
         if ( !comment.value.match(validators.comment.regexp)  )  {
             commentError.innerHTML = validators.comment.EventError[0];
             commentError.className = 'commentError error active';
              //не пускаем его дальше
-        }
-        else {
+        } else {
             responseComment(comment.value) 
         }
     })
 
-    comment.addEventListener('input', () => {
+    if (comment) comment.addEventListener('input', () => {
             checkValidationWithRegExp(comment, commentError, validators.comment)
         },
         false //объясни потом, что значит этот бул
