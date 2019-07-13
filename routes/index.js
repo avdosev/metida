@@ -15,6 +15,9 @@ const Response = require('../controllers/respondent')
 //  проверка логирования
 const { isLoggedIn, loggedCheker } = require('../controllers/logged.js');
 
+const Pages = require('./pages')()
+const ApiRouter = require('./api')()
+
 const Debug = require('../controllers/debug');
 
 const initAuthControllers = (app, passport) => {
@@ -24,17 +27,11 @@ const initAuthControllers = (app, passport) => {
 
     // -- PAGES --
 
-    app.get('/', urlencodedParser, Response.renderPage.index);
-    app.get('/register', Response.renderPage.register);
-    app.get('/sign_In', Response.renderPage.signin);
-    app.get('/home', isLoggedIn, Response.renderPage.home);
-    app.get('/createArticle', isLoggedIn, Response.renderPage.createArticle);
-    app.get('/logout', Response.renderPage.logout);
-    app.get('/post/:id/', Handler.getArticle, Response.renderPage.article);
-    app.get('/author/:login', Response.renderPage.authorProfile )
-    app.get('/offline', (req, res) => {
-        res.render('offline')
-    })
+    app.get('/*', Pages)
+
+    // -- API --
+
+    app.use('/api', ApiRouter)
 
     // -- ARTICLES API -- 
     
@@ -83,7 +80,7 @@ const initAuthControllers = (app, passport) => {
 
     //-- ERROR PAGE --
     app.use((err, req, res, next) => {
-        console.error(err.stack);
+        console.log(err);
         res.status(500);
         next()
     }, Response.renderPage.errorPage);
