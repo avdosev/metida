@@ -1,8 +1,26 @@
-FROM risingstack/alpine:3.3-v4.2.6-1.1.3
+FROM ubuntu:18.04
+MAINTAINER Alex Yurev <github.com/Sapfir0>
 
-COPY package.json package.json
-RUN npm install
 
-# Add your source files
-COPY . .
-CMD ["npm", "start"]
+ENV PACKAGES="\
+    npm \
+    mysql-server \
+    mysql-client \
+    "
+
+RUN apt-get update \
+ && apt-get install --upgrade ${PACKAGES} -qy
+
+
+COPY . /metida
+
+RUN cd metida \
+ && npm install
+
+WORKDIR /metida
+EXPOSE 7080
+ENTRYPOINT ["npm"]
+CMD ["start"]
+
+
+
