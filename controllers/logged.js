@@ -8,7 +8,9 @@ function loggedCheker(req, res, next) {
     if (req.isAuthenticated()) return next()
     
     res.statusCode = 401
-    res.send('you are not logged')
+    res.json({
+        message: 'you are not logged'
+    })
 }
 
 module.exports = {
