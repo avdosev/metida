@@ -13,16 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
     const sendCommentBtn = document.querySelector(".EnterButton")
     
-    fetch(`/post/${id}/comments`).then(value => {
-        console.log(value);
-        return value.json();
-    }).then(json => {
-        console.log(json);
-        const insertElem = document.querySelector('.comments_lenta');
-        insertsComments(json, insertElem);
-    }).catch(error => {
-        console.error(error);
-    });
+    refreshComments()
 
     const validators = await fetch('/public/json/input_errors.json').then(response => {
         if (response.ok)
@@ -48,10 +39,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
 });
 
-function refreshComments() {
-    // TODO правильная подгрузка коммментов
-    // загружаем заново комменты и тех что нет инсертим
-    window.location.reload();
+async function loadComments() {
+    const option = {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    const request = await fetch(`/api/post/${id}/comments`, option)
+    const data = await request.json()
+    return data;
+}
+
+
+/**
+ * загружаем заново комменты и тех что нет инсертим
+ */
+async function refreshComments() {
+    let comments = await loadComments()
+    comments = comments.filter((comment) => {
+        const hasComment = document.getElementById(`comment_${comment.id}`)
+        return !hasComment
+    })
+    insertsComments(comments, document.querySelector('.comments_lenta'));
 }
 
 function responseComment(commentText, answeringId = null) {
@@ -79,13 +90,12 @@ function responseComment(commentText, answeringId = null) {
 function insertsComments(objCommentArray, insertedElem) {
     for (let i = 0; i < objCommentArray.length; i++) {
         const objComment = objCommentArray[i];
-
+        
         if (objComment.answeringId === null) {
             insertComment(objComment, insertedElem);
         } else {
-            const childCommentElem = document.querySelector(
-                `#child_comment_${objComment.answeringId}`
-            );
+            const IdChildElem = `#child_comment_${objComment.answeringId}`
+            const childCommentElem = document.querySelector( IdChildElem );
             insertComment(objComment, childCommentElem);
         }
     }
