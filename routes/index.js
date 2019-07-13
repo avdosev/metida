@@ -31,7 +31,7 @@ const initAuthControllers = (app, passport) => {
 
     // -- API --
 
-    app.get('/api', ApiRouter)
+    app.use('/api', ApiRouter)
 
     // -- ARTICLES API -- 
     
