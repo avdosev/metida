@@ -7,7 +7,7 @@ const favicon = require('serve-favicon');
 const models = require('./database/models');
 
 
-const { initAuthControllers } = require('./routes/main.js');
+const { initAuthControllers } = require('./routes');
 const { loadPasportStrategies } = require('./controllers/users');
 const config = require("./config")
 const { port, imgDir } = config;
@@ -30,6 +30,7 @@ initAuthControllers(app, passport);
 loadPasportStrategies(passport, models.user);
 
 async function start() {
+    console.log('Connect to Database...')
     try {
         await models.sequelize.sync()
         console.log('Nice! Database looks fine');
