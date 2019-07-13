@@ -29,6 +29,10 @@ const initAuthControllers = (app, passport) => {
 
     app.get('/*', Pages)
 
+    // -- API --
+
+    app.get('/api', ApiRouter)
+
     // -- ARTICLES API -- 
     
     app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonValue('article'));
