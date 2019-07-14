@@ -200,10 +200,20 @@
 
 ## Docker
 
-Это контейнер ![](https://im0-tub-ru.yandex.net/i?id=9c8143a2c07d5d1b78dbad9b2567a6ae-l&n=13)
+Это контейнер ![](https://newarea.ru/wp-content/uploads/2017/10/Whale-Logo332_5.png)
 
-Создание контейнера
+Создать контейнер c тегами))
 
-    docker build .
-    docker images
-    docker run  
+    docker build -t sapfir0/metida .
+
+> Я бы привязал репозиторий к автобилду, но сосамба
+
+Запустить контейнер
+
+    docker run sapfir0/metida
+
+> можно добавить флаги -it для взаимодействия с образом(но я уже указал workdir, так что сосамба)
+
+Команы пуши/пулла интуитивно понятны
+
+
