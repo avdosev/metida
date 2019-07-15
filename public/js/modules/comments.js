@@ -1,63 +1,21 @@
-import { DateToStr } from "./modules/dateRU.js";
-import { showError, hideError, checkValidationWithRegExp } from "./modules/input_error.js"
+import { DateToStr } from "./dateRU.js";
+// возможно потом понадобиться но я не уверен
+import { showError, hideError, checkValidationWithRegExp } from "./input_error.js"
 
-let post;	
-let id;	
-
-document.addEventListener('DOMContentLoaded', async () => {
-
-    post = document.querySelector('.post_text');
-    id = post.id;
-
-    const commentError = document.querySelector('.commentError');
-    const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
-    const sendCommentBtn = document.querySelector(".EnterButton")
-    
-    refreshComments()
-
-    const validators = await fetch('/public/json/input_errors.json').then(response => {
-        if (response.ok)
-            return response.json()
-        else 
-            console.log('с джсоном какая то проблема', response)
-    })
-
-    if (sendCommentBtn) sendCommentBtn.addEventListener("click", (event) => {
-        if ( !comment.value.match(validators.comment.regexp)  )  {
-            commentError.innerHTML = validators.comment.EventError[0];
-            commentError.className = 'commentError error active';
-             //не пускаем его дальше
-        } else {
-            responseComment(comment.value) 
-        }
-    })
-
-    if (comment) comment.addEventListener('input', () => {
-            checkValidationWithRegExp(comment, commentError, validators.comment)
-        },
-        false //объясни потом, что значит этот бул
-    );
-});
-
-async function loadComments() {
-    const option = {
-        method: "get",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    
-    const request = await fetch(`/api/post/${id}/comments`, option)
-    const data = await request.json()
-    return data;
+/**
+ * из данных в хтмл/url получаем айдишник статьи
+ */
+export function getArticleId() {
+    const post = document.querySelector('.post_text');
+    const id = post.id;
+    return id;
 }
-
 
 /**
  * загружаем заново комменты и тех что нет инсертим
  */
-async function refreshComments() {
-    let comments = await loadComments()
+export async function refreshComments(post_id) {
+    let comments = await loadComments(post_id)
     comments = comments.filter((comment) => {
         const hasComment = document.getElementById(`comment_${comment.id}`)
         return !hasComment
@@ -65,7 +23,26 @@ async function refreshComments() {
     insertsComments(comments, document.querySelector('.comments_lenta'));
 }
 
-function responseComment(commentText, answeringId = null) {
+/**
+ * загрузка комментов
+ */
+export async function loadComments(post_id) {
+    const option = {
+        method: "get",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    const request = await fetch(`/api/post/${post_id}/comments`, option)
+    const data = await request.json()
+    return data;
+}
+
+/**
+ * отправка комментария
+ */
+export function responseComment(post_id, commentText, answeringId = null) {
     const options = {
         method:"post",
         headers: {
@@ -76,18 +53,22 @@ function responseComment(commentText, answeringId = null) {
             answeringId
         })
     }
-    fetch(`/post/${id}/pushComment`, 
+    fetch(`/api/post/${post_id}/comments`, 
         options
     ).then(() => {
-        refreshComments()
+        refreshComments(post_id)
     }).catch(err => {
         // TODO: обработка ошибки
         console.error(err)
     }) 
 }
 
-
-function insertsComments(objCommentArray, insertedElem) {
+/**
+ * вставка комментов
+ * @param {Array <Object>} objCommentArray 
+ * @param {*} insertedElem туда куда будет вставляться если ответныйайдишник нулл 
+ */
+export function insertsComments(objCommentArray, insertedElem) {
     for (let i = 0; i < objCommentArray.length; i++) {
         const objComment = objCommentArray[i];
         
@@ -101,7 +82,12 @@ function insertsComments(objCommentArray, insertedElem) {
     }
 }
 
-function insertComment(objComment, insertedElem) {
+/**
+ * Вставка комментария в хтмл
+ * @param {*} objComment 
+ * @param {*} insertedElem 
+ */
+export function insertComment(objComment, insertedElem) {
     const Author = objComment.author;
     const Text = objComment.text;
     const Id = objComment.id;
@@ -129,9 +115,19 @@ function insertComment(objComment, insertedElem) {
     document.querySelector(`#createBtn_${Id}`).addEventListener('click', () => {createClick(Id)})
     document.querySelector(`#cancelBtn_${Id}`).addEventListener('click', () => {cancelClick(Id)})
 }
- 
+
 // можно по другому но пока так
-function createClick(id) {
+export function createClick(id) {
+    // фича - убираем другие ответы
+    const replyes = document.querySelectorAll('.reply_comment')
+    for (const replyBlock in replyes) {
+        if (replyes.hasOwnProperty(replyBlock)) {
+            const element = replyes[replyBlock];
+            const data_id = element.attributes['data-id'].value
+            cancelClick(data_id)
+        }
+    }
+
     const control_block = document.querySelector(`#comment_${id} .control_block`)
     const insert_block = document.querySelector(`#child_comment_${id}`)
 
@@ -139,7 +135,7 @@ function createClick(id) {
     control_block.querySelector('button[data-type=cancel]').style.cssText = 'display: inline';
     
     const reply_block = `
-    <div class = "comment reply_comment" id="reply_comment_${id}">
+    <div class = "comment reply_comment" id="reply_comment_${id}" data-id="${id}"}>
         <textarea class = "comment_area" id="comment_area_${id}" name="comment" cols="30" rows="10" required='required' pattern='.{10,}'></textarea>
         <div class = "button">
             <button class = "EnterButton">
@@ -151,11 +147,15 @@ function createClick(id) {
     `
     insert_block.insertAdjacentHTML('beforebegin', reply_block)
 
-    document.querySelector(`#reply_comment_${id} .EnterButton`).addEventListener('click', () => { responseComment(document.querySelector(`#comment_area_${id}`).value, id) })
+    document.querySelector(`#reply_comment_${id} .EnterButton`).addEventListener('click', () => { 
+        const post_id = getArticleId();
+        responseComment(post_id, document.querySelector(`#comment_area_${id}`).value, id)
+        cancelClick(id) 
+    })
 }
 
-function cancelClick(id) {
-    const reply_block = document.querySelector('.reply_comment')
+export function cancelClick(id) {
+    const reply_block = document.querySelector(`#reply_comment_${id}`)
     if (reply_block) reply_block.parentNode.removeChild(reply_block);
 
     document.querySelector(`#comment_${id} button[data-type=create]`).style.cssText = 'display: inline';
