@@ -1,42 +1,53 @@
 import { highlightArrayOfCodeElems } from "./modules/highlighter.js";
 
+import { showError, hideError, checkValidationWithRegExp } from "./modules/input_error.js"
+import { refreshComments, responseComment, getArticleId } from './modules/comments.js';
+
 document.addEventListener('DOMContentLoaded', start);
 
-function getArticleId(url) {
-    let reg = new RegExp('^.+/post/')
-    let newUrl = url.replace(reg, "");
-    return newUrl
-}
-
-function start() {
+async function start() {
     const codeElems = document.querySelectorAll('code');
     highlightArrayOfCodeElems(codeElems);
     
-    let deleteArticleLink = document.querySelector('.deleteAricleLink');
-    let updateArticleLink = document.querySelector('.updateAricleLink');
-    let options = {
-        method: 'POST'
-    }
+    const deleteArticleLink = document.querySelector('.deleteAricleLink');
+    const updateArticleLink = document.querySelector('.updateAricleLink');
+
     
     deleteArticleLink.addEventListener("click", () => {
-        let id = getArticleId(window.location.href)
-        let url = "/post/" + id + "/delete"
-        
-        fetch(url, options).then(res => {
-            console.log(res)
-            window.location.replace('/')
-        })
+        // запрос к апи метиды
     })
 
     updateArticleLink.addEventListener("click", () => {
-        let id = getArticleId(window.location.href)
-        let url = "/post/" + id + "/update"
-        fetch(url, options).then(res => {
-            console.log(res)
-            ///режим редактирования
-            //нужно перейти в редактор подобный createArticle, только в полях уже будет заготовки статьи
-        })
+        // режим редактирования
+        // нужно перейти в редактор подобный createArticle, только в полях уже будет заготовки статьи
     })
 
+    const commentError = document.querySelector('.commentError');
+    const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
+    const sendCommentBtn = document.querySelector(".EnterButton")
+    
+    refreshComments(getArticleId())
 
-}
+    const validators = await fetch('/public/json/input_errors.json').then(response => {
+        if (response.ok)
+            return response.json()
+        else 
+            console.log('с джсоном какая то проблема', response)
+    })
+
+    if (sendCommentBtn) sendCommentBtn.addEventListener("click", (event) => {
+        if ( !comment.value.match(validators.comment.regexp)  )  {
+            commentError.innerHTML = validators.comment.EventError[0];
+            commentError.className = 'commentError error active';
+             //не пускаем его дальше
+        } else {
+            responseComment(getArticleId(), comment.value) 
+        }
+    })
+
+    if (comment) comment.addEventListener('input', () => {
+            checkValidationWithRegExp(comment, commentError, validators.comment)
+        },
+        false // объясни потом, что значит этот бул // хз че он значит
+    );
+};
