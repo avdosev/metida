@@ -4,31 +4,31 @@ link(rel="stylesheet", href="/public/css/modules/colors.css")
 script(src="/public/js/burger.js")
 
 header.header
-  .logo  
-    a(href='/')
-      img(src="/public/img/logo.png" alt='Metida' class="logoImg" ismap)   
-  .regSection 
-    //- .string_search
-      input#search__string(type="text")
-    nav
-      ul.topmenu
-        li
-          img#burger.icon(src='/public/img/mobile_menu.png')
-          ul#submenu.submenu
-            if authorised 
-              li
-                a.BlackButton#createArticle(href='/createArticle') Написать
-              li
-                a.BlackButton#home(href='/home') Профиль
-              li
-                a.GreyButton#logout(href='/logout') Выйти
-            else
-              li
-                a.GreyButton#signIn(href='/sign_In') Войти
-              li
-                a.BlackButton#register(href='/register') Регистрация
-    //- span.emailIsntConfirmed(aria-live="polite")
-      button(class="confirmEmail") Подтвердить
-
-hr
+  .header_inner.flex.space_between_inner
+    .logo  
+      a(href='/')
+        img(src="/public/img/logo.png" alt='Metida' class="logoImg" ismap)   
+    .regSection 
+      //- .string_search
+        input#search__string(type="text")
+      nav
+        ul.topmenu
+          li
+            img#burger.icon(src='/public/img/mobile_menu.png')
+            ul#submenu.submenu
+              if authorised 
+                li
+                  a.BlackButton#createArticle(href='/createArticle') Написать
+                li
+                  a.BlackButton#home(href='/home') Профиль
+                li
+                  a.GreyButton#logout(href='/logout') Выйти
+              else
+                li
+                  a.GreyButton#signIn(href='/sign_In') Войти
+                li
+                  a.BlackButton#register(href='/register') Регистрация
+      //- span.emailIsntConfirmed(aria-live="polite")
+        button(class="confirmEmail") Подтвердить
+  hr
 
