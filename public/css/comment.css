@@ -110,6 +110,12 @@
     border: 0;
 }
 
+.comment_text img {
+    max-height: 500px;
+    width: 500px;
+    max-width: 100%;
+}
+
 @media screen and (max-width: 650px) {
     .new_comment_block form textarea {
         min-width: 300px;
