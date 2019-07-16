@@ -27,7 +27,6 @@ function getArticle(articlesCount=0) {
     }).then(value => {
         return value.json()
     }).then((json => {
-        console.log(json);
         const insertElem = document.querySelector('.lenta')
 
         for (let i = 0; i < json.length; i++) { 

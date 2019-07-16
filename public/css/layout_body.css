@@ -17,3 +17,49 @@ body {
     color: #333;
     line-height: 1.5rem;
 }
+
+.flex {
+    display: flex;
+}
+
+.space_around_inner {
+    justify-content: space-around;
+}
+
+.space_between_inner {
+    justify-content: space-between;
+}
+
+.center_inner {
+    align-items: center;
+    justify-content: center;
+}
+
+.column_inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.onfullwidth {
+    width: 100%;
+}
+
+.no_horizontal_border {
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+.no_vertical_margin {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.with_top_margin {
+    margin-top: 1rem;
+}
+
+.with_bottom_margin {
+    margin-bottom: 1rem;
+}

@@ -3,6 +3,7 @@ a {
 }
 
 hr {
+    margin: 0.5rem 0px;
     border: 0;
     height: 1px;
     background: var(--main-back-color);
@@ -13,17 +14,17 @@ hr {
 }
 
 .header {
-    display: flex;
-    align-content: space-between;
     font-family: 'Cabin', sans-serif;
     font-size: 26px;
-    margin-left: 0.5rem; /* Так тоже не оч но мне пох */
+}
+
+.header_inner {
     height: 4rem;  /* на большом монике все портится */
 }
 
 img.logoImg {
     height: 3rem; /* ы */
-    padding: 7px 0px 0px 9px;
+    padding: 7px 0px 0px 17px;
 }
 
 .regSection {
@@ -91,10 +92,8 @@ header ul {
         margin-left: 10%;
     }
 
-    .header {
+    .header_inner {
         height: 3rem;
-        display: flex;
-        justify-content: space-between;
     }
 
     img.logoImg {

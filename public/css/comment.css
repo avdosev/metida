@@ -30,11 +30,18 @@
     margin-block-end: 5px
 }
 
-.comment{
+.comment {
     position: relative;
     margin-bottom: 20px;
     width: 100%
 }
+
+.comment_text img {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+
 
 .comment_area {
     outline: none;
@@ -101,6 +108,12 @@
     padding: 4px;
     outline: none;
     border: 0;
+}
+
+.comment_text img {
+    max-height: 500px;
+    width: 500px;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 650px) {
