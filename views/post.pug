@@ -5,14 +5,10 @@ head
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
   title #{name}
   include modules/meta
-  link(rel="stylesheet", href="/public/css/style.css")
-  link(rel="stylesheet", href="/public/css/layout_body.css")
-  link(rel="stylesheet", href="/public/css/content.css")
+  link(rel="stylesheet", href="/public/css/main.css")
   link(rel="stylesheet", href="/public/css/post.css")
-  link(rel="stylesheet", href="/public/css/comment.css")
-  link(rel="stylesheet", href="/public/css/lenta.css")
-  link(rel="stylesheet", href="/public/css/modules/colors.css")
-  link(rel="stylesheet", href="/public/css/placeholder.css")
+  link(rel="stylesheet", href="/public/css/modules/comments.css")
+  link(rel="stylesheet", href="/public/css/modules/input.css")
   
   script(type='module', src='/public/js/post.js')
 body
@@ -27,7 +23,7 @@ body
           h1 #{name}
           !=disclaimer
           !=text
-        .comments_lenta.lenta
+        .comments_lenta.onfullwidth
           h3 Комментарии:
         .new_comment_block
           if authorised 
