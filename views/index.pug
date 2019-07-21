@@ -5,23 +5,21 @@ head
   meta(http-equiv='X-UA-Compatible', content='ie=edge')
   include modules/meta
   title Metida
-  link(rel="stylesheet", href="/public/css/style.css")
-  link(rel="stylesheet", href="/public/css/layout_body.css")
-  link(rel="stylesheet", href="/public/css/content.css")
+  link(rel="stylesheet", href="/public/css/main.css")
   link(rel="stylesheet", href="/public/css/lenta.css")
   link(rel="stylesheet", href="/public/css/modules/colors.css")
   
   script(type='text/javascript', src='/public/js/lenta.js')
 
+body
+  include modules/header 
 
-include modules/header 
+  .layout_body
+    content.content
+      h1 Умная лента
+      hr.head
+      .lenta
 
-.layout_body
-  content.content
-    h1 Умная лента
-    hr.head
-    .lenta
-
-    button(class="getMoreArticles") Показать больше
+      button(class="getMoreArticles") Показать больше
         
         

@@ -5,34 +5,31 @@ head
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title Профиль 
     include modules/meta
-    link(rel="stylesheet", href="/public/css/style.css")
-    link(rel="stylesheet", href="/public/css/layout_body.css")
+    link(rel="stylesheet", href="/public/css/main.css")
     link(rel="stylesheet", href="/public/css/profile.css")
-    link(rel="stylesheet", href="/public/css/modules/colors.css")
-    link(rel="stylesheet", href="/public/css/placeholder.css")
     
 body
-include modules/header 
-.layout_body
-  h1 Профиль
+  include modules/header 
+  .layout_body
+    h1 Профиль
 
-  h3 Заработанные ачивки
-  h4 *красивые картинки, мотивирующие юзера пользоваться сайтом*
+    h3 Заработанные ачивки
+    h4 *красивые картинки, мотивирующие юзера пользоваться сайтом*
 
-  h5 Поменять данные в бд
-    .inputForm
-      form.reg(action="/update", method="post", name="update")
-        p Email
-        input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
-        p Login
-        input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
-        p Old password
-        input#password(type='password', name='password', placeholder='Type old password', required='required', pattern='.{5,}')
-        p New password
-        input#password(type='password', name='password', placeholder='Type new password', required='required', pattern='.{5,}')
-        p Retype new password
-        input#repassword(type="password" name='repassword', placeholder="Retype new password" required )
-        input#submit(type="submit" value="OK")
+    h5 Поменять данные в бд
+      .inputForm
+        form.reg(action="/update", method="post", name="update")
+          p Email
+          input#email(type='email', name='email', placeholder='Type email', required='required', pattern='^\\w+@\\w+\\.\\w+$')
+          p Login
+          input#login(type='login', name='login', placeholder='Type login', required='required', pattern='^\\w+$')
+          p Old password
+          input#password(type='password', name='password', placeholder='Type old password', required='required', pattern='.{5,}')
+          p New password
+          input#password(type='password', name='password', placeholder='Type new password', required='required', pattern='.{5,}')
+          p Retype new password
+          input#repassword(type="password" name='repassword', placeholder="Retype new password" required )
+          input#submit(type="submit" value="OK")
 
 
   

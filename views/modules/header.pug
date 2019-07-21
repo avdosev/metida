@@ -1,7 +1,7 @@
 link(rel="stylesheet", href="/public/css/modules/header.css")
 link(rel="stylesheet", href="/public/css/modules/colors.css")
 
-script(src="/public/js/burger.js")
+script(src="/public/js/burger.js" defer)
 
 header.header
   .header_inner.flex.space_between_inner
@@ -9,8 +9,6 @@ header.header
       a(href='/')
         img(src="/public/img/logo.png" alt='Metida' class="logoImg" ismap)   
     .regSection 
-      //- .string_search
-        input#search__string(type="text")
       nav
         ul.topmenu
           li
@@ -28,7 +26,5 @@ header.header
                   a.GreyButton#signIn(href='/sign_In') Войти
                 li
                   a.BlackButton#register(href='/register') Регистрация
-      //- span.emailIsntConfirmed(aria-live="polite")
-        button(class="confirmEmail") Подтвердить
   hr
 

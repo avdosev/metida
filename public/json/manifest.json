@@ -23,10 +23,10 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/offline",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#f7f7f7",
     "theme_color": "#393939",
-    "description": "Маленький сайт для чтения статей.",
+    "description": "Маленький сайт для чтения и публикации статей.",
     "lang": "ru"
 }
