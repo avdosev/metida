@@ -52,9 +52,9 @@ function insertPostPreview(objPost, insertedElem) {
         <div class="disclaimer">
             <p>${objPost.disclaimer}</p>
         </div> 
-        <a href="${url}" class="BtnToArticle">Читать дальше</a>
         <div class="after_post">
-            <a href="${url+"#comments"}"><img class="after_post_icon" src="/public/img/ui_icon/comment.svg"></a>
+            <a href="${url}" class="BtnToArticle">Читать дальше</a>
+            <a href="${url+"#comments"}" class="BtnToArticleComments"><img class="after_post_icon" src="/public/img/ui_icon/comment.svg"></a>
         </div>
     </div>
     `
