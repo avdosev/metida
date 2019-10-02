@@ -72,6 +72,8 @@ pre {
 
 img {
     max-width: 100%;
+    max-height: 600px;
+
     height: auto;
     border: 10px black;
     border-radius: 15px; /* хз может убрать */
