@@ -1,4 +1,4 @@
-const { comments: Comment } = require('../database/models'); 
+const { comments: Comment, user: User } = require('../database/models');
 
 function removeAllCommentsByArticle(articleId, authorId) {
     return Comment.destroy({ //артикл не объявлен
@@ -17,17 +17,22 @@ function removeComment(сommentId) {
 }
 
 function getAllCommentsByArticle(articleId) {
-    return Comment.findAll({ 
+    return Comment.findAll({
         where: {
             articleId
-        }
+        },
+        include: [{
+            // inner join
+            model: User,
+            as: 'user'
+        }]
     })
 }
 
 function pushComment(articleId, author, text, answeringId) {
     return Comment.create({
         articleId, 
-        author, 
+        commentAuthorId: author,
         text,
         answeringId
     })

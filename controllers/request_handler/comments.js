@@ -14,7 +14,8 @@ function getComments(req, res, next) {
     .then(comments => {
         res.values.comments = comments;
         next()
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err)
         res.values.comments = []
         next()
     });
@@ -22,7 +23,7 @@ function getComments(req, res, next) {
 
 function pushComment(req, res, next) {
     const articleId = req.params.id;
-    const author = req.user.username; // TODO fix
+    const author = req.user.id;
     const text = req.body.comment;
 
     if(text == undefined) {

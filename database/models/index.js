@@ -28,6 +28,20 @@ Object.keys(db).forEach(function(modelName) {
     }
 });
 
+// Relations
+// db.article.hasMany(db.comments, {as: 'articleId'});
+//
+// db.article.hasMany(db.user, {as: 'authorId'});
+
+db.user.hasMany(db.comments, {
+    foreignKey: {
+        name: 'commentAuthorId',
+        allowNull: false
+    }
+});
+db.comments.belongsTo(db.user, {foreignKey: 'commentAuthorId'})
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

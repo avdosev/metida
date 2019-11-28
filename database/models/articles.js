@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         content: { type: Sequelize.TEXT, allowNull: false },
         likes: { type: Sequelize.INTEGER, defaultValue: 0 },
         dislikes: { type: Sequelize.INTEGER, defaultValue: 0 },
-        authorId: { type: Sequelize.INTEGER, allowNull: false } 
+        // authorId: { type: Sequelize.INTEGER, allowNull: false }
     });
 
     return Article;

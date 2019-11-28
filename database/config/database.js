@@ -7,7 +7,7 @@ module.exports =
         "database": process.env.DATABASE,
         "host": process.env.HOST,
         "dialect": "mysql",
-        "logging": false
+        "logging": true
     },
     "test": {
         "username": "metidaSQL",
