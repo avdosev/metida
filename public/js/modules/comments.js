@@ -88,7 +88,7 @@ export function insertsComments(objCommentArray, insertedElem) {
  * @param {*} insertedElem 
  */
 export function insertComment(objComment, insertedElem) {
-    const Author = objComment.author;
+    const Author = objComment.user.username;
     const Text = objComment.text;
     const Id = objComment.id;
     const date = new Date(objComment.createdAt);
