@@ -31,7 +31,9 @@ module.exports = () => {
     
     router.get ('/post/:id/comments', Handler.getComments, Response.jsonValue("comments"));
     router.post('/post/:id/comments', loggedCheker, Handler.pushComment, Response.jsonValuesWith(['success']));
-    router.put ('/post/:id/comments')
+    router.put ('/post/:id/comments');
+
+    router.get('/author/:login', Handler.getUserInfo, Response.jsonValue('userInfo') );
     
 
     return router

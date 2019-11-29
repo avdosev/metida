@@ -15,10 +15,10 @@ module.exports = () => {
     router.get('/createArticle', isLoggedIn, Response.renderPage.createArticle);
     router.get('/logout', Response.renderPage.logout);
     router.get('/post/:id/', Handler.getArticle, Response.renderPage.article);
-    router.get('/author/:login', Response.renderPage.authorProfile )
+    router.get('/author/:login', Handler.getUserInfo, Response.renderPage.authorProfile );
     router.get('/offline', (req, res) => {
         res.render('offline')
-    })
+    });
 
     return router
-}
+};

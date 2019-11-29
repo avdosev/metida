@@ -37,9 +37,8 @@ const index = (req, res ) => {
 };
 
 const authorProfile = (req, res ) => {
-    console.log(req.values)
-    res.render('profile', { authorised: req.isAuthenticated() });
-}
+    res.render('profile', { authorised: req.isAuthenticated(), userInfo: res.values.userInfo });
+};
 
 const errorPage = (req, res ) => {
     res.render('error_page');
