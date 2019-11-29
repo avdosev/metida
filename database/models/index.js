@@ -31,7 +31,13 @@ Object.keys(db).forEach(function(modelName) {
 // Relations
 // db.article.hasMany(db.comments, {as: 'articleId'});
 //
-// db.article.hasMany(db.user, {as: 'authorId'});
+db.user.hasMany(db.article, {
+    foreignKey: {
+        name: 'authorId',
+        allowNull: false
+    }
+});
+db.article.belongsTo(db.user, {foreignKey: 'authorId'})
 
 db.user.hasMany(db.comments, {
     foreignKey: {

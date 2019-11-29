@@ -1,4 +1,4 @@
-const { user: User } = require('../database/models')
+const { user: User, article: Article, comments: Comment } = require('../database/models')
 
 
 function isConfirmedEmail(userId) {
@@ -64,13 +64,27 @@ function createUser(email, username, password) {
     })
 }
 
+function getAllPublicInfo(whereUser) {
+    return User.findOne({
+        where: whereUser,
+        include: [{
+            // inner join
+            model: Article,
+            as: 'articles',
+            attributes: [
+                'id', 'header', 'disclaimer'
+            ]
+        }]
+    })
+}
+
 module.exports = {
     isConfirmedEmail,
     confirmEmailByEmail,
     confirmEmailById,
     createUser,
     getUserById,
-    getUserByEmail
+    getUserByEmail,
+    getAllPublicInfo
 }
-
 
