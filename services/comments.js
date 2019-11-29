@@ -24,7 +24,10 @@ function getAllCommentsByArticle(articleId) {
         include: [{
             // inner join
             model: User,
-            as: 'user'
+            as: 'user',
+            attributes: [
+                'username', 'about', 'lastname', 'firstname', 'avatar'
+            ]
         }]
     })
 }
