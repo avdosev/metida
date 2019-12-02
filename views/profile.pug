@@ -15,7 +15,6 @@ body
     .layout_body
         content.content
             h1 Профиль какого-то даунича
-            hr.head
             .profile(username=`${userInfo.username}`).flex.space_between_inner.flex-wrap
                 .left
                     img.avatar(src=`${userInfo.avatar != null ? userInfo.avatar : "/public/img/default/avatar_small.png"}`)
