@@ -7,16 +7,19 @@ head
     include modules/meta
     link(rel="stylesheet", href="/public/css/main.css")
     link(rel="stylesheet", href="/public/css/profile.css")
+    link(rel="stylesheet", href="/public/css/lenta.css")
 
+    script(type='module', src='/public/js/profile.js')
 body
     include modules/header
     .layout_body
         content.content
             h1 Профиль какого-то даунича
-            .profile
+            .profile(username=`${userInfo.username}`)
 
             .lenta
                 if userInfo.articles.length == 0
                     h2 Я ничего не постил
                 else
                     h2 Посты
+                hr.head
