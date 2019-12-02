@@ -74,7 +74,10 @@ function getAllPublicInfo(whereUser) {
             attributes: [
                 'id', 'header', 'disclaimer'
             ]
-        }]
+        }],
+        attributes: [
+            'id', 'avatar', 'about', 'username', 'firstname', 'lastname'
+        ]
     })
 }
 

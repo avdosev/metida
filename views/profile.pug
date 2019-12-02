@@ -3,13 +3,20 @@ head
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
-    title Профиль
+    title Профиль #{userInfo.username}
     include modules/meta
     link(rel="stylesheet", href="/public/css/main.css")
     link(rel="stylesheet", href="/public/css/profile.css")
 
 body
-include modules/header 
-.layout_body
-  h1 Профиль какого-то даунича #{login}
+    include modules/header
+    .layout_body
+        content.content
+            h1 Профиль какого-то даунича
+            .profile
 
+            .lenta
+                if userInfo.articles.length == 0
+                    h2 Я ничего не постил
+                else
+                    h2 Посты

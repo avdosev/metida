@@ -1,4 +1,4 @@
-const articlesCount = 10 //число статей, которые будут на странице до нажатия кнопки
+const articlesCount = 10; //число статей, которые будут на странице до нажатия кнопки
 //пока при нажатии подаются оставшиеся статьи
 document.addEventListener('DOMContentLoaded', () => {
     const getMoreArticles = document.querySelector(".getMoreArticles")
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         getArticle(articlesCount)
     })
 
-})
+});
 
 let currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
@@ -31,7 +31,7 @@ function getArticle(articlesCount=0) {
 
         for (let i = 0; i < json.length; i++) { 
             if (json[i] == undefined) {
-                console.error("Все")
+                console.error("Все");
                 break
             }
             insertPostPreview(json[i], insertElem);
@@ -43,7 +43,7 @@ function getArticle(articlesCount=0) {
 }
 
 function insertPostPreview(objPost, insertedElem) {
-    const url = `/post/${objPost.id}`
+    const url = `/post/${objPost.id}`;
     const htmlPost = `
     <div class = "post">
         <div class="title">
@@ -57,7 +57,7 @@ function insertPostPreview(objPost, insertedElem) {
             <a href="${url+"#comments"}" class="BtnToArticleComments"><img class="after_post_icon" src="/public/img/ui_icon/comment.svg"></a>
         </div>
     </div>
-    `
+    `;
     insertedElem.insertAdjacentHTML("beforeend", htmlPost);
 }
 
