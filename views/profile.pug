@@ -15,11 +15,20 @@ body
     .layout_body
         content.content
             h1 Профиль какого-то даунича
-            .profile(username=`${userInfo.username}`)
+            hr.head
+            .profile(username=`${userInfo.username}`).flex.space_between_inner.flex-wrap
+                .left
+                    img.avatar(src=`${userInfo.avatar != null ? userInfo.avatar : "/public/img/default/avatar_small.png"}`)
+                .right
+                    h3.user
+                        | #{userInfo.username}
+                    p.about
+                        | Обомне:
+                        | #{userInfo.about != null ? userInfo.about : "Ты ничего не узнаешь"}
 
             .lenta
                 if userInfo.articles.length == 0
                     h2 Я ничего не постил
                 else
                     h2 Посты
-                hr.head
+                    hr.head

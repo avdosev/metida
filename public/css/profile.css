@@ -1,0 +1,10 @@
+img.avatar {
+    height: auto;
+    width: 230px;
+}
+
+@media screen and (max-width: 650px) {
+    img.avatar {
+        width: 90%;
+    }
+}
