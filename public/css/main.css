@@ -11,6 +11,10 @@
     display: flex;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 .space_around_inner {
     justify-content: space-around;
 }
