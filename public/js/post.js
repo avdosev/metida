@@ -13,9 +13,14 @@ async function start() {
     const updateArticleLink = document.querySelector('.updateAricleLink');
 
     
-    deleteArticleLink.addEventListener("click", () => {
-        // запрос к апи метиды
-    })
+    deleteArticleLink.addEventListener("click", async () => {
+        const res = await fetch(`/api/post/${getArticleId()}`, {
+            method: "delete"
+        });
+        const jsn = await res.json();
+        if (jsn["success"])
+            document.location.href = '/';
+    });
 
     updateArticleLink.addEventListener("click", () => {
         // режим редактирования
@@ -33,7 +38,7 @@ async function start() {
             return response.json()
         else 
             console.log('с джсоном какая то проблема', response)
-    })
+    });
 
     if (sendCommentBtn) sendCommentBtn.addEventListener("click", (event) => {
         if ( !comment.value.match(validators.comment.regexp)  )  {
@@ -43,7 +48,7 @@ async function start() {
         } else {
             responseComment(getArticleId(), comment.value) 
         }
-    })
+    });
 
     if (comment) comment.addEventListener('input', () => {
             checkValidationWithRegExp(comment, commentError, validators.comment)

@@ -77,7 +77,7 @@ function getTopArticles(req, res, next) {
 }
 
 function getArticle(req, res, next) {
-    const id = req.params.id
+    const id = req.params.id;
 
     articleApi.getArticle(id).then(article => {
         initValues(res)
@@ -87,12 +87,17 @@ function getArticle(req, res, next) {
 }
 
 function removeArticle(req, res, next) {
-    const id = req.params.id
-    const authorId = req.user.id
+    const id = req.params.id;
+    const authorId = req.user.id;
 
     articleApi.removeArticle(id, authorId)
     .then((value) => {
-        initValues(res)
+        initValues(res);
+        res.values.success = true;
+        next()
+    }).catch(error => {
+        console.error(error);
+        res.values.success = true;
         next()
     });
 }

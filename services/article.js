@@ -1,4 +1,5 @@
 const { article: Article, user: User } = require('../database/models');
+const Comment = require('./comments')
 
 const { Op } = require('sequelize')
 
@@ -31,13 +32,16 @@ function updateArticle(articleId, content, header, disclaimer) {
     })
 }
 
-function removeArticle(articleId, authorId) {
-    return Article.destroy({
+async function removeArticle(articleId, authorId) {
+    const destroy = await Article.destroy({
         where: {
-          id: articleId,
-          authorId: authorId
+            id: articleId,
+            authorId: authorId
         }
-    })
+    });
+    if (destroy)
+        Comment.removeAllCommentsByArticle(articleId)
+    return destroy;
 }
 
 function getTopArticles(begin, end, fncType, otherData) {
