@@ -20,7 +20,10 @@ async function start() {
 
     const googleAuth = document.getElementById("googleAuth")
     googleAuth.addEventListener("click", () => {
+        console.log(window.gapi.auth2)
         const auth2 = window.gapi.auth2.getAuthInstance()
+        console.log(auth2)
+
         auth2.signIn().then(googleUser => {
         
           // метод возвращает объект пользователя
