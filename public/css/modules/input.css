@@ -48,6 +48,14 @@ input:valid {
     font-family: 'Montserrat', sans-serif;
 }
 
+.auth {
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+}
 /* Тут хочу сделать разные цвета кнопки для верных и неверных значений, проблема в том, что я хз как передать на кнопку результат */
 /* #submit:invalid:hover{
     background-color: rgba(255, 0, 0, 0.514);

@@ -19,6 +19,7 @@ module.exports = () => {
     router.get('/offline', (req, res) => {
         res.render('offline')
     });
+    router.get('/google06214f17a13757ad.html', Response.renderPage.googleSuccess)
 
     return router
 };
