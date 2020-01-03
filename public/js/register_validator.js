@@ -16,7 +16,6 @@ async function start() {
         }).then(_onInit, _onError)
 
     })
-    
 
     const googleAuth = document.getElementById("googleAuth")
     googleAuth.addEventListener("click", () => {
