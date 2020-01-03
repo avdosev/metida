@@ -52,9 +52,16 @@ const emailConfirmed = (req, res ) => {
     res.render('email_confirmed');
 }
 
+const cfg = require("../config/index")
+
+const googleSuccess = (req, res) => {
+    res.sendFile(cfg.mainDir + '/views/google06214f17a13757ad.html');
+}
+
 
 module.exports = {
     register,
+    googleSuccess,
     signin,
     home,
     createArticle,
