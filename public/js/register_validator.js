@@ -9,7 +9,6 @@ async function start() {
     init()
     googleAuth.addEventListener("click", googleBtnClick)
 
-    
     // запрос на джсончик
     const validators = await 
         fetch('/public/json/input_errors.json').then(response => {
