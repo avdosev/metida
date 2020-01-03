@@ -29,7 +29,7 @@
 
 #### Развертка на Heroku
 
-Разворачивается автоматически при пуше в мастер
+    git push heroku develop:master
 
 ## Metida API
 

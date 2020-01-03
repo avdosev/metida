@@ -8,12 +8,10 @@ function init() {
     const _onError = err => {
         console.log('error', err)
     }
-
     window.gapi.load('auth2', () => {
         window.gapi.auth2.init({ 
             client_id: "297808610716-d3tfkjmtcub79kbn9vio640u23hcpenv.apps.googleusercontent.com"
         }).then(_onInit, _onError)
-    
     })
 }
 
@@ -22,7 +20,11 @@ function init() {
 
 function googleBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance()
-    if(auth2.isAuthorized()) {
+
+    //updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    let isAutorized = window.gapi.auth2.getAuthInstance().isSignedIn.get()
+    console.log(isAutorized)
+    if(!isAutorized) {
         auth2.signIn().then(googleUser => {
     
             const profile = googleUser.getBasicProfile()
@@ -40,15 +42,13 @@ function googleBtnClick() {
           })
     }
     else {
-        signOut = () => {
-            const auth2 = window.gapi.auth2.getAuthInstance()
-            auth2.signOut().then( () => {
-                console.log('User signed out.')
-            }).then( () => {
-                window.location.replace("/")
-            })
+        const auth2 = window.gapi.auth2.getAuthInstance()
+        auth2.signOut().then( () => {
+            console.log('User signed out.')
+        }).then( () => {
+            window.location.replace("/")
 
-        }
+        })
     }
 
 
