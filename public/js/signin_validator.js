@@ -1,8 +1,13 @@
 import { showError, hideError, checkValidation } from "./modules/input_error.js";
+import {init, googleBtnClick } from "./google_auth.js"
 
 document.addEventListener('DOMContentLoaded', start);
 
 async function start() {
+    const googleAuth = document.getElementById("googleAuth")
+    init()
+    googleAuth.addEventListener("click", googleBtnClick)
+
     // запрос на джсончик
     const validators = await 
         fetch('/public/json/input_errors.json').then(response => {
