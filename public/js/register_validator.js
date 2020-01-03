@@ -19,35 +19,45 @@ async function start() {
 
     const googleAuth = document.getElementById("googleAuth")
     googleAuth.addEventListener("click", () => {
-        console.log(window.gapi.auth2)
         const auth2 = window.gapi.auth2.getAuthInstance()
-        console.log(auth2)
-
-        auth2.signIn().then(googleUser => {
+        if(auth2.isAuthorized()) {
+            auth2.signIn().then(googleUser => {
         
-          // метод возвращает объект пользователя
-          // где есть все необходимые нам поля
-          const profile = googleUser.getBasicProfile()
-          console.log('ID: ' + profile.getId()) // не посылайте подобную информацию напрямую, на ваш сервер!
-          console.log('Full Name: ' + profile.getName())
-          console.log('Given Name: ' + profile.getGivenName())
-          console.log('Family Name: ' + profile.getFamilyName())
-          console.log('Image URL: ' + profile.getImageUrl())
-          console.log('Email: ' + profile.getEmail())
-    
-          // токен
-          const id_token = googleUser.getAuthResponse().id_token
-          console.log('ID Token: ' + id_token)
+                const profile = googleUser.getBasicProfile()
+                console.log('ID: ' + profile.getId()) // не посылай подобную информацию напрямую, на ваш сервер!
+                console.log('Full Name: ' + profile.getName())
+                console.log('Given Name: ' + profile.getGivenName())
+                console.log('Family Name: ' + profile.getFamilyName())
+                console.log('Image URL: ' + profile.getImageUrl())
+                console.log('Email: ' + profile.getEmail())
+          
+                const id_token = googleUser.getAuthResponse().id_token
+                console.log('ID Token: ' + id_token)
+              }).then( () => {
+                  window.location.replace("/")
+              })
+        }
+        else {
+            signOut = () => {
+                const auth2 = window.gapi.auth2.getAuthInstance()
+                auth2.signOut().then( () => {
+                    console.log('User signed out.')
+                }).then( () => {
+                    window.location.replace("/")
+                })
+
+            }
+        }
+
+
         })
-      })
 
     
-    //   signOut = () => {
-    //     const auth2 = window.gapi.auth2.getAuthInstance()
-    //     auth2.signOut().then(function() {
-    //       console.log('User signed out.')
-    //     })
-    //   }
+
+        
+
+    
+
 
 
     // запрос на джсончик
