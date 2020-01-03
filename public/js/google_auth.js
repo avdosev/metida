@@ -38,7 +38,7 @@ function googleBtnClick() {
             const id_token = googleUser.getAuthResponse().id_token
             console.log('ID Token: ' + id_token)
           }).then( () => {
-              window.location.replace("/")
+              //window.location.replace("/")
           })
     }
     else {
@@ -46,7 +46,7 @@ function googleBtnClick() {
         auth2.signOut().then( () => {
             console.log('User signed out.')
         }).then( () => {
-            window.location.replace("/")
+            //window.location.replace("/")
 
         })
     }
