@@ -87,7 +87,7 @@ async function signinUser(req, email, password, next) { //некст нас не
     }
 }
 
-const loadPasportStrategies = (passport, user) => {
+const loadPassportStrategies = (passport) => {
     //const User = user;
     const LocalStrategy = require('passport-local').Strategy;
 
@@ -134,5 +134,5 @@ const loadPasportStrategies = (passport, user) => {
 };
 
 module.exports = {
-    loadPasportStrategies
+    loadPassportStrategies
 };

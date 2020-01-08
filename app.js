@@ -10,8 +10,8 @@ const models = require('./database/models');
 
 
 const { initAuthControllers } = require('./routes');
-const { loadPasportStrategies } = require('./controllers/users');
-const config = require("./config")
+const{ loadPassportStrategies } = require('./controllers/users');
+const config = require("./config");
 const { port, imgDir } = config;
 // For Passport
 app.use(
@@ -29,7 +29,7 @@ app.use(favicon(path.join(imgDir, 'logo.ico')));
 //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 
 initAuthControllers(app, passport);
-loadPasportStrategies(passport, models.user);
+loadPassportStrategies(passport);
 
 async function start() {
     console.log('Connect to Database...')
@@ -53,4 +53,4 @@ async function start() {
 
 start().catch(console.error);
 
-module.exports = app
+module.exports = app;
