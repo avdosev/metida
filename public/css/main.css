@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&subset=cyrillic');
-@import url('https://fonts.googleapis.com/css?family=Cabin&subset=cyrillic');
-@import url('https://fonts.googleapis.com/css?family=Montserrat&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Lato|Cabin|Montserrat&subset=cyrillic');
 
 @import url('./modules/colors.css');
 @import url('./modules/header.css');
