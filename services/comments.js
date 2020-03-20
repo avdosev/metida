@@ -1,4 +1,5 @@
-const { comments: Comment, user: User } = require('../database/models');
+import db from '../database/models/index.js';
+const { user: User, comments: Comment } = db;
 
 function removeAllCommentsByArticle(articleId, authorId) {
     return Comment.destroy({ //артикл не объявлен
@@ -41,7 +42,7 @@ function pushComment(articleId, author, text, answeringId) {
     })
 }
 
-module.exports = {
+export {
     getAllCommentsByArticle,
     removeAllCommentsByArticle,
     pushComment

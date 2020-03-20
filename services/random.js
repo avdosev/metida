@@ -14,7 +14,7 @@ function randInt(min, max) {
 }
 
 
-module.exports = {
+export {
     stringGenerator,
     randInt
 }

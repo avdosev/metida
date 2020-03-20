@@ -1,17 +1,10 @@
 // Articles
 
-const Article = require('./article');
-
+export * from './article.js';
 // Comments
 
-const Comments = require('./comments');
+export * from './comments.js';
 
 // Users
 
-const Users = require('./user');
-
-module.exports = {
-    ...Comments,
-    ...Article,
-    ...Users,
-};
+export * from './user.js';

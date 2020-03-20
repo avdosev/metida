@@ -4,7 +4,7 @@ function initValues(req) {
     }
 }
 
-const userApi = require('../../services/user')
+import * as userApi from '../../services/user.js';
 
 
 function getUserInfo(req, res, next) {
@@ -18,6 +18,6 @@ function getUserInfo(req, res, next) {
         })
 }
 
-module.exports = {
+export {
     getUserInfo
 };

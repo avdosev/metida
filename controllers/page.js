@@ -53,7 +53,7 @@ const emailConfirmed = (req, res ) => {
 }
 
 
-module.exports = {
+export {
     register,
     signin,
     home,

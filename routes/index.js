@@ -1,24 +1,27 @@
-const express = require('express')
-const config = require('../config')
+import express from 'express'
+import config from '../config/index.js';
 
-const {
+import {
     userCreateValidator,
     userLoginValidator,
     articleValidator
-} = require('../services/validator');
+} from '../services/validator.js';
 
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
 
-const Handler = require('../controllers/request_handler')
-const Response = require('../controllers/respondent')
+import * as Handler from '../controllers/request_handler/index.js';
+import * as Response from '../controllers/respondent.js';
 
 //  проверка логирования
-const { isLoggedIn, loggedCheker } = require('../controllers/logged.js');
+import { isLoggedIn, loggedCheker } from '../controllers/logged.js';
 
-const Pages = require('./pages')()
-const ApiRouter = require('./api')()
+import PagesRouterCreator from './pages.js';
+import ApiRouterCreator from './api.js';
 
-const Debug = require('../controllers/debug');
+const Pages = PagesRouterCreator();
+const ApiRouter = ApiRouterCreator();
 
 const initAuthControllers = (app, passport) => {
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,11 +30,11 @@ const initAuthControllers = (app, passport) => {
 
     // -- PAGES --
 
-    app.get('/*', Pages)
+    app.get('/*', Pages);
 
     // -- API --
 
-    app.use('/api', ApiRouter)
+    app.use('/api', ApiRouter);
 
     // -- ARTICLES API -- 
     
@@ -91,6 +94,4 @@ const initAuthControllers = (app, passport) => {
     })
 };
 
-module.exports = {
-    initAuthControllers
-};
+export default initAuthControllers;

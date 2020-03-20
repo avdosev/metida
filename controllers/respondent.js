@@ -35,9 +35,8 @@ function jsonValue(key) {
     }
 }
 
-const renderPage = require('./page');
-
-module.exports = {
+import * as renderPage from './page.js';
+export {
     redirectToArticle,
     renderPage,
     jsonValuesWith,
