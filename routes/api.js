@@ -1,21 +1,21 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
 
-const Handler = require('../controllers/request_handler')
-const Response = require('../controllers/respondent')
+import * as Handler from '../controllers/request_handler/index.js';
+import * as Response from '../controllers/respondent.js';
 
-const {
+import {
     userCreateValidator,
     userLoginValidator,
     articleValidator
-} = require('../services/validator');
+} from '../services/validator.js';
 
 //  проверка логирования
-const { loggedCheker } = require('../controllers/logged.js');
+import { loggedCheker } from '../controllers/logged.js';
 
 // тут будет нормальное REST API
 
-module.exports = () => {
+export default () => {
+    const router = express.Router();
 
     // -- ARTICLES API -- 
     

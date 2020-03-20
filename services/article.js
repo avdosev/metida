@@ -1,7 +1,9 @@
-const { article: Article, user: User } = require('../database/models');
-const Comment = require('./comments')
+import db from '../database/models/index.js';
+const { user: User, article: Article } = db;
+import * as Comment from './comments.js';
 
-const { Op } = require('sequelize')
+import sequelize from 'sequelize';
+const Op = sequelize.Op;
 
 function getArticle(ArticleId) {
     return Article.findOne({ 
@@ -68,7 +70,7 @@ function getTopArticles(begin, end, fncType, otherData) {
     }
 }
 
-module.exports = {
+export {
     getArticle,
     pushArticle,
     updateArticle,

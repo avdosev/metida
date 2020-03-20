@@ -1,6 +1,7 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 require('dotenv').config();
-module.exports = 
-{
+export default {
     "development": {
         "username": process.env.LOGININMETIDA,
         "password": process.env.PASSWORD,
@@ -25,4 +26,4 @@ module.exports =
         "dialect": "mysql",
         "logging": false
     }
-}
+};

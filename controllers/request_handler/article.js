@@ -4,10 +4,10 @@ function initValues(req) {
     }
 }
 
-const articleApi = require('../../services/article')
-const markdown = require('../../services/markdown')
+import * as articleApi from '../../services/article.js';
+import * as markdown from '../../services/markdown.js';
 
-function updateArticle(req, res, next) {
+export function updateArticle(req, res, next) {
     const id = req.params.id
     const header = req.body.header;
     const content = req.body.art;
@@ -21,15 +21,15 @@ function updateArticle(req, res, next) {
         header,
         markdown.MarkdownToHtml(disclaimer)
     ).then((value) => {
-        res.values.article = value.dataValues
-        res.values.success = true
+        res.values.article = value.dataValues;
+        res.values.success = true;
     }).catch(error => {
-        console.error(error)
-        res.values.success = true
+        console.error(error);
+        res.values.success = true;
     })
 }
 
-function pushArticle(req, res, next) {
+export function pushArticle(req, res, next) {
     const header = req.body.header;
     const content = req.body.art;
     const disclaimer = req.body.disclaimer;
@@ -53,7 +53,7 @@ function pushArticle(req, res, next) {
     })
 }
 
-function getTopArticles(req, res, next) {
+export function getTopArticles(req, res, next) {
     const begin = req.body.begin ? req.body.begin : 0;
     const end = req.body.end ? req.body.end : 10;
     const type = req.body.type ? req.body.type : 'date';
@@ -76,7 +76,7 @@ function getTopArticles(req, res, next) {
     })
 }
 
-function getArticle(req, res, next) {
+export function getArticle(req, res, next) {
     const id = req.params.id;
 
     articleApi.getArticle(id).then(article => {
@@ -86,7 +86,7 @@ function getArticle(req, res, next) {
     });
 }
 
-function removeArticle(req, res, next) {
+export function removeArticle(req, res, next) {
     const id = req.params.id;
     const authorId = req.user.id;
 
@@ -102,10 +102,3 @@ function removeArticle(req, res, next) {
     });
 }
 
-module.exports = {
-    getArticle,
-    pushArticle,
-    getTopArticles,
-    updateArticle,
-    removeArticle
-};

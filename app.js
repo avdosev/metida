@@ -1,40 +1,47 @@
-console.log('Workspace initialization...')
+import * as path from 'path';
 
-const path = require('path');
-const express = require('express');
+import express from 'express';
 const app = express();
-const passport = require('passport');
-const session = require('express-session');
-const favicon = require('serve-favicon');
-const models = require('./database/models');
+import passport from 'passport';
+import session from 'express-session';
+import favicon from 'serve-favicon';
+
+import models from './database/models/index.js';
 
 
-const { initAuthControllers } = require('./routes');
-const{ loadPassportStrategies } = require('./controllers/users');
-const config = require("./config");
-const { port, imgDir } = config;
-// For Passport
-app.use(
-    session({ secret: config.secretKey, resave: true, saveUninitialized: true })
-); // session secret
-app.use(passport.initialize()); //возможно, нужно чистить сессии
-app.use(passport.session()); // persistent login sessions
-
-app.set('views', './views');
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(favicon(path.join(imgDir, 'logo.ico')));
-
-//app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
-
-initAuthControllers(app, passport);
-loadPassportStrategies(passport);
+import initAuthControllers from './routes/index.js';
+import loadPassportStrategies from './controllers/users.js';
+import config from "./config/index.js";
+const { port, imgDir, mainDir } = config;
 
 async function start() {
-    console.log('Connect to Database...')
+    console.log('Workspace initialization...');
+
+    // For Passport
+    app.use(
+        session({
+            secret: config.secretKey,
+            resave: true,
+            saveUninitialized: true
+        })
+    ); // session secret
+    app.use(passport.initialize()); //возможно, нужно чистить сессии
+    app.use(passport.session()); // persistent login sessions
+
+    app.set('views', './views');
+    app.set('views', path.join(mainDir, 'views'));
+    app.set('view engine', 'pug');
+
+    app.use(favicon(path.join(imgDir, 'logo.ico')));
+
+    //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
+
+    initAuthControllers(app, passport);
+    loadPassportStrategies(passport);
+
+    console.log('Connect to Database...');
     try {
-        await models.sequelize.sync()
+        await models.sequelize.sync();
         console.log('Nice! Database looks fine');
     } catch (err) {
         console.log(`
@@ -52,5 +59,3 @@ async function start() {
 }
 
 start().catch(console.error);
-
-module.exports = app;

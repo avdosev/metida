@@ -1,5 +1,5 @@
-const { user: User, article: Article, comments: Comment } = require('../database/models')
-
+import db from '../database/models/index.js';
+const { user: User, article: Article, comments: Comment } = db;
 
 function isConfirmedEmail(userId) {
     return new Promise((resolve, reject) => {
@@ -81,7 +81,7 @@ function getAllPublicInfo(whereUser) {
     })
 }
 
-module.exports = {
+export {
     isConfirmedEmail,
     confirmEmailByEmail,
     confirmEmailById,

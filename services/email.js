@@ -1,8 +1,7 @@
-'use strict';
-const nodemail = require('nodemailer');
-const config = require("../config")
+import * as nodemail from 'nodemailer';
+import config from "../config/index.js";
 
-module.exports = (email, subject, message) => {
+export default (email, subject, message) => {
     
     let info = {
         from: '"Metida company 👻"',

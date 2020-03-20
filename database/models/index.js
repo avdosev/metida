@@ -1,28 +1,36 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var Sequelize = require('sequelize');
-var env = process.env.NODE_ENV || 'development';
-var config = require(path.join(__dirname, '..', 'config', 'database.js'))[env];
-var sequelize = new Sequelize(
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const Sequelize = require('sequelize');
+const env = process.env.NODE_ENV || 'development';
+import databaseConfig from '../config/database.js';
+const config = databaseConfig[env];
+const sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
     config
 );
-var db = {};
+const db = {};
 
 fs.readdirSync(__dirname)
-    .filter(function(file) {
-        return file.indexOf('.') !== 0 && file !== 'index.js';
-    })
-    .forEach(function(file) {
-        var model = sequelize.import(path.join(__dirname, file));
+    .filter(file=> file.indexOf('.') !== 0 && file !== 'index.js')
+    .forEach(file => {
+        const model = sequelize.import(path.join(__dirname, file));
         db[model.name] = model;
     });
 
-Object.keys(db).forEach(function(modelName) {
+Object.keys(db).forEach(modelName => {
     if ('associate' in db[modelName]) {
         db[modelName].associate(db);
     }
@@ -51,4 +59,4 @@ db.comments.belongsTo(db.user, {foreignKey: 'commentAuthorId'})
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db;

@@ -1,9 +1,9 @@
-const commentApi = require('../../services/comments');
-const markdown = require('../../services/markdown')
+import * as commentApi from '../../services/comments.js';
+import * as markdown from '../../services/markdown.js';
 
 function initValues(req) {
     if (!req.values) {
-        req.values = new Object;
+        req.values = {};
     }
 }
 
@@ -56,7 +56,7 @@ function pushComment(req, res, next) {
     })
 }
 
-module.exports = {
+export {
     getComments,
     pushComment
 };

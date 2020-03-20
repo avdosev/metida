@@ -1,13 +1,13 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
 
-const Handler = require('../controllers/request_handler')
-const Response = require('../controllers/respondent')
+import * as Handler from '../controllers/request_handler/index.js';
+import * as Response from '../controllers/respondent.js';
 
 
-const { isLoggedIn } = require('../controllers/logged.js');
+import { isLoggedIn } from '../controllers/logged.js';
 
-module.exports = () => {
+export default function() {
+    const router = express.Router();
     router.get('/', Response.renderPage.index);
     router.get('/register', Response.renderPage.register);
     router.get('/sign_In', Response.renderPage.signin);

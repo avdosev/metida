@@ -1,6 +1,8 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 const { body } = require('express-validator/check');
 
-const emailVaidator = body('email')
+const emailValidator = body('email')
     .isEmail()
     .normalizeEmail();
 
@@ -30,12 +32,10 @@ const titleValidator = body('header')
 
 const articleTextValidator = body('art')
     .not()
-    .isEmpty()
+    .isEmpty();
 
-const validators = {
-    userCreateValidator: [emailVaidator, loginValidator, passwordValidator],
-    userLoginValidator: [emailVaidator, passwordValidator],
-    articleValidator: [titleValidator, articleTextValidator]
-};
+export const
+    userCreateValidator = [emailValidator, loginValidator, passwordValidator],
+    userLoginValidator = [emailValidator, passwordValidator],
+    articleValidator = [titleValidator, articleTextValidator];
 
-module.exports = validators;

@@ -1,8 +1,11 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 const bCrypt = require('bcryptjs');
 const { validationResult } = require('express-validator/check');
-const mailer = require("../services/email")
-const UserApi = require("../services/user")
-const config = require('../config')
+import mailer from "../services/email.js";
+import * as UserApi from "../services/user.js";
+import config from '../config/index.js';
 
 const validators = {
     register: {
@@ -15,7 +18,7 @@ const validators = {
         incorrectPassword: 'Неправильный пароль.'
 
     }
-}
+};
 
 function generateHash (password) {
     return bCrypt.hashSync(
@@ -48,8 +51,8 @@ async function registrationUser(req, email, password, done) {
             throw new Error(validators.register.userNotCreated);
         }
 
-        const text = config.messages.activation
-        mailer(email, "Confirm this email", text)
+        const text = config.messages.activation;
+        mailer(email, "Confirm this email", text);
 
         done(null, newUser); //все ок
         
@@ -133,6 +136,4 @@ const loadPassportStrategies = (passport) => {
 
 };
 
-module.exports = {
-    loadPassportStrategies
-};
+export default loadPassportStrategies;
