@@ -1,9 +1,7 @@
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 const production= process.env.NODE_ENV === "production";
 if (!production) {
@@ -19,8 +17,9 @@ const mainDir = path.join(__dirname, '..');
 const imgDir = mainDir + '/public/img';
 const secretKey = process.env.SECRET_KEY
 
-const mail = require('./mail');
-const messages = require('./messages');
+const readJson = (filename) => JSON.parse(fs.readFileSync(`${__dirname}/${filename}`).toString());
+const mail = readJson('mail.json');
+const messages = readJson('messages.json');
 
 export default {
     port,
