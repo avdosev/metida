@@ -1,7 +1,6 @@
 import * as path from 'path';
 
 import express from 'express';
-const app = express();
 import passport from 'passport';
 import session from 'express-session';
 import favicon from 'serve-favicon';
@@ -11,9 +10,10 @@ import models from './database/models/index.js';
 
 import initAuthControllers from './routes/index.js';
 import loadPassportStrategies from './controllers/users.js';
-import config from "./config/index.js";
+import config from './config/index.js';
 const { port, imgDir, mainDir } = config;
 
+const app = express();
 async function start() {
     console.log('Workspace initialization...');
 
@@ -51,7 +51,7 @@ async function start() {
     }
 
     try {
-        await app.listen(port)
+        await app.listen(port);
         console.log('Server started on ' + port + ' port');
     } catch (err) {
         console.log(`Server not started with error: ${err}`);

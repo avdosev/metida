@@ -1,6 +1,6 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
+
 export default {
     "development": {
         "username": process.env.LOGININMETIDA,
