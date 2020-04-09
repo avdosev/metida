@@ -52,7 +52,11 @@ async function registrationUser(req, email, password, done) {
         }
 
         const text = config.messages.activation;
-        mailer(email, "Confirm this email", text);
+        try {
+            mailer(email, "Confirm this email", text);
+        } catch(err) {
+            console.log(err);
+        }
 
         done(null, newUser); //все ок
         
