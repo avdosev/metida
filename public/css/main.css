@@ -98,8 +98,7 @@ h1, h2, h3, h4, h5, h6 {
     float: left;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    min-width: 570px;
+    padding: 5px;
     max-width: 780px; /* очень спорно но пускай пока будет так */
 }
 
@@ -163,14 +162,6 @@ table thead {
 }
 
 @media screen and (max-width: 650px) {
-    .content {
-        min-width: 100px;
-    }
-
-    .content {
-        width: 94%
-    }
-
     .content .post_text {
         align-items: flex-start;
     }
