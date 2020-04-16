@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 
 
 import config from '../config.js';
-
+console.log(config)
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
     config.database,
