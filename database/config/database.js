@@ -1,6 +1,7 @@
-import config from '../config/index.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const configs = {
+export default {
     "development": {
         "username": process.env.LOGININMETIDA,
         "password": process.env.PASSWORD,
@@ -26,5 +27,3 @@ const configs = {
         "logging": false
     }
 };
-
-export default configs[config.serverType];
