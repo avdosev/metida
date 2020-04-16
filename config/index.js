@@ -3,8 +3,9 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
-if (!process.env.NODE_ENV) {
-    dotenv.load();
+const production= process.env.NODE_ENV === "production";
+if (!production) {
+    dotenv.load()
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,9 +15,7 @@ const port = process.env.PORT;
 const url = `localhost:${port}`;
 const mainDir = path.join(__dirname, '..');
 const imgDir = mainDir + '/public/img';
-const secretKey = process.env.SECRET_KEY;
-const serverType = process.env.NODE_ENV || process.env.SERVER_TYPE || 'production';
-const production = serverType === "production";
+const secretKey = process.env.SECRET_KEY
 
 const readJson = (filename) => JSON.parse(fs.readFileSync(`${__dirname}/${filename}`).toString());
 const mail = readJson('mail.json');
@@ -30,6 +29,5 @@ export default {
     secretKey,
     production,
     mail,
-    messages,
-    serverType
+    messages
 };
