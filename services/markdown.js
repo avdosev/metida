@@ -1,15 +1,14 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+import markdown from 'markdown-it';
 
-const md = require('markdown-it')({
+const md = markdown({
     html: false,
     linkify: true,
     typographer: true
 });
 
 // меняем правила игры
-md.renderer.rules.table_open = () => { return '<pre class="pre_table"><div class="scroll_inner_pre"><table>'}
-md.renderer.rules.table_close = () => { return '</table></div></pre>'}
+md.renderer.rules.table_open = () => { return '<pre class="pre_table"><div class="scroll_inner_pre"><table>'};
+md.renderer.rules.table_close = () => { return '</table></div></pre>'};
 
 export function MarkdownToHtml(str) {
     return md.render(str);
