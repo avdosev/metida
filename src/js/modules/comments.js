@@ -1,6 +1,6 @@
 import { DateToStr } from "./dateRU.js";
 // возможно потом понадобиться но я не уверен
-import { showError, hideError, checkValidationWithRegExp } from "./input_error.js"
+import { showError, hideError, checkValidationWithRegExp } from "../../components/Pages/input_error.js"
 
 /**
  * из данных в хтмл/url получаем айдишник статьи

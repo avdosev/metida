@@ -1,4 +1,4 @@
-import { showError, hideError, checkValidation } from "./modules/input_error.js";
+import { showError, hideError, checkValidation } from "../components/Pages/input_error.js";
 
 document.addEventListener('DOMContentLoaded', start);
 
