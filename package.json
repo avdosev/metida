@@ -4,16 +4,6 @@
   "description": "Small blog-platform",
   "main": "app.js",
   "type": "module",
-  "scripts": {
-    "test": "npm run inspect:allConcurency",
-    "start": "node app.js",
-    "lintFixWarnings": "eslint \"./**/*.js\" --fix",
-    "inspect:lint": "eslint \"./**/*.js\" ",
-    "inspect:mocha": "./node_modules/mocha/bin/mocha ",
-    "inspect:vulnerabilities": "npm audit",
-    "inspect:all": " npm run inspect:vulnerabilities && npm run inspect:lint && npm run inspect:mocha ",
-    "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avdosev/metida"
@@ -26,8 +16,22 @@
   "bugs": {
     "url": "https://github.com/avdosev/metida/issues"
   },
-  "homepage": "https://github.com/avdosev/metida#readme",
+  "scripts": {
+    "test": "npm run inspect:allConcurency",
+    "serve": "react-scripts start",
+    "build": "tsc && react-scripts build",
+    "start": "node app.js",
+    "lintFixWarnings": "eslint \"./**/*.js\" --fix",
+    "inspect:lint": "eslint \"./**/*.js\" ",
+    "inspect:mocha": "./node_modules/mocha/bin/mocha ",
+    "inspect:vulnerabilities": "npm audit",
+    "inspect:all": " npm run inspect:vulnerabilities && npm run inspect:lint && npm run inspect:mocha ",
+    "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "
+  },
   "dependencies": {
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",
@@ -41,14 +45,32 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
     "sequelize": "^5.7.4",
     "sequelize-cli": "^5.4.0",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "typescript": "^3.8.3",
+    "webpack": "=4.42.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
     "concurrently": "^4.1.1",
     "lorem-ipsum": "^2.0.2",
-    "eslint": "^5.16.0",
+    "eslint": "^6.6.0",
     "prettier": "1.17.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
