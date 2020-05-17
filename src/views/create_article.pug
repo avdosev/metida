@@ -18,8 +18,8 @@ head
   script(type="module", src="/public/js/article_page.js")
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 body
-  include modules/header 
-  .layout_body
+  include modules/header
+    .layout_body
     content.content
       form.pushArticle(action="/createArticle", method="post")
         <h3>Заголовок:</h3>
