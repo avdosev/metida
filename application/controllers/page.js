@@ -40,10 +40,6 @@ const authorProfile = (req, res ) => {
     res.render('profile', { authorised: req.isAuthenticated(), userInfo: res.values.userInfo });
 };
 
-const errorPage = (req, res ) => {
-    res.render('error_page');
-};
-
 const emailMessage = (req, res ) => {
     res.render('email_message');
 }
@@ -58,7 +54,6 @@ export {
     signin,
     home,
     createArticle,
-    errorPage,
     index,
     article,
     logout,
