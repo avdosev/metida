@@ -11,9 +11,9 @@ if (!production) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 const url = `localhost:${port}`;
-const mainDir = path.join(__dirname, '..');
+const mainDir = path.join(__dirname, '..', '..');
 const imgDir = mainDir + '/public/img';
 const secretKey = process.env.SECRET_KEY
 

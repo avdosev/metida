@@ -3,8 +3,8 @@ import "../../../main.css"
 import "../../../input.css"
 import {showError, hideError, checkValidation} from "../../input_error";
 import {get, post} from "../../../Router"
-import {Validators} from "./IValidators";
-import FormError from "./FormError";
+import {Validators} from "../IValidators";
+import FormError from "../FormError";
 
 interface IProps {
 
@@ -15,9 +15,9 @@ interface Field {
     valid: boolean
 }
 
+
 interface IState {
-    email: Field,
-    password: Field,
+    [name: string]: any, //TODO Field type
     validators?: Validators
 }
 
@@ -35,14 +35,9 @@ export default class Sign_In extends React.Component<IProps, IState> {
         this.setState({validators: validators})
     }
 
-    inputPassword = (event: any) => {
-        const valid = this.validateField("password", event.target.value)
-        this.setState({password: {value: event.target.value, valid: valid}})
-    }
-
-    inputEmail = (event: any) => {
-        const valid = this.validateField("email", this.state.email.value)
-        this.setState({email: {value: event.target.value, valid: valid}})
+    handleUserInput = (event: any) => {
+        const valid = this.validateField(event.target.name, event.target.value)
+        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
@@ -50,16 +45,9 @@ export default class Sign_In extends React.Component<IProps, IState> {
         return !!fieldValid;
     }
 
+    errorHandler() {
 
-    errorHandler = (err: any) => {
     }
-
-    // handleUserInput = (e: any) => { // я бы сделал так, если бы не типы
-    //     const name = e.target.name;
-    //     const value = e.target.value;
-    //     this.setState({[name]: value});
-    // }
-
 
     submitBtnHandler = () => {
         const emailValid = this.state.email.valid
@@ -92,7 +80,7 @@ export default class Sign_In extends React.Component<IProps, IState> {
                     <p>Email </p>
                     <input id="email" type="email" name="email" placeholder="Type email" required
                            pattern='.+@.+\..+'
-                           onChange={this.inputEmail}
+                           onChange={this.handleUserInput}
                            value={this.state.email.value}
                     />
 
@@ -100,7 +88,7 @@ export default class Sign_In extends React.Component<IProps, IState> {
 
                     <p>Password </p>
                     <input id="password" type="password" name="password" placeholder="Type password" required
-                           onInput={this.inputPassword}
+                           onChange={this.handleUserInput}
                            value={this.state.password.value}
                            pattern='.{5,}'/>
                     <FormError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>

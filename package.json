@@ -2,7 +2,7 @@
   "name": "metida",
   "version": "0.2.0",
   "description": "Small blog-platform",
-  "main": "app.js",
+  "main": "application/app.js",
   "type": "module",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "test": "npm run inspect:allConcurency",
     "serve": "react-scripts start",
     "build": "tsc && react-scripts build",
-    "start": "node app.js",
+    "start": "nodemon application/app.js",
     "lintFixWarnings": "eslint \"./**/*.js\" --fix",
     "inspect:lint": "eslint \"./**/*.js\" ",
     "inspect:mocha": "./node_modules/mocha/bin/mocha ",
@@ -29,6 +29,7 @@
     "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "
   },
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",

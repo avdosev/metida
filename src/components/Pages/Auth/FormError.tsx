@@ -1,9 +1,9 @@
 import React from "react";
-import "../error.css"
+import "./error.css"
 
 interface IProps {
     valid: boolean
-    text: string
+    text?: string
 }
 
 export default function FormError(props: IProps) {

@@ -1,22 +1,22 @@
 import React from "react";
-// import "./create_article.css"
-// import "../"
-// //script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
-//
-//
-// import {showError, checkValidationWithRegExp as checkValidation} from "./modules/input_error.js";
-// import {Simulate} from "react-dom/test-utils";
-// import submit = Simulate.submit;
-//
-// // он находится в глобальной области видимости если это можно исправить с помощью модульной системы будет не плохо
-// // но пока так
+import "./create_article.css"
+
+//script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
+
+
+import {showError, checkValidationWithRegExp as checkValidation} from "../input_error";
+import {Simulate} from "react-dom/test-utils";
+import submit = Simulate.submit;
+
+// он находится в глобальной области видимости если это можно исправить с помощью модульной системы будет не плохо
+// но пока так
 // const md = markdownit({
 //     html: false,
 //     linkify: true,
 //     typographer: true
 // })
-//
-//
+
+
 // async function start() {
 //     const checkbox = document.querySelector("#previews");
 //     const header = document.querySelector('#header')
@@ -45,8 +45,6 @@ import React from "react";
 //     content.addEventListener("input", () => {
 //         checkValidation(content, contentError, validators.content)
 //     })
-//
-//
 // }
 //
 //

@@ -6,6 +6,7 @@ import {
 import Header from "./Header/Header";
 import Index from "./Pages/Index/Index"
 import Sign_In from "./Pages/Auth/Sign_In/Sign_In";
+import Register from "./Pages/Auth/Register/Register";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
                     <Sign_In />
                 </Route>
                 <Route path="/register">
-
+                    <Register />
                 </Route>
 
                 <Route path="/">
