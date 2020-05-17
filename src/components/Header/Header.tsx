@@ -1,11 +1,13 @@
 import React from "react";
 import "./header.css"
 import "../colors.css" //TODO какого черта импорт происходит и отсюда и из css
+import {
+    Link
+} from "react-router-dom";
 
 //{target: {id: string}}
 export default function Header() {
     function toggleSubmenu(event: any) {
-        console.log(typeof event)
         const burger = document.getElementsByClassName('submenu')[0]
 
         if (event.target.id === "burger")  {
@@ -19,8 +21,6 @@ export default function Header() {
         else  {
             burger.id = "submenu";
         }
-
-
     }
 
     return (
@@ -34,10 +34,11 @@ export default function Header() {
                 <div className="regSection">
                     <nav>
                         <ul className="topmenu">
-                            <li><img className="icon" id="burger" onClick={toggleSubmenu} src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'} />
+                            <li>
+                                <img className="icon" id="burger" onClick={toggleSubmenu} src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'} />
                                 <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
-                                    <li><a className="GreyButton" id="signIn" href="/sign_In">Войти</a></li>
-                                    <li><a className="BlackButton" id="register" href="/register">Регистрация</a></li>
+                                    <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
+                                    <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
                                 </ul>
                             </li>
                         </ul>

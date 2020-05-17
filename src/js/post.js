@@ -1,6 +1,6 @@
 import { highlightArrayOfCodeElems } from "./modules/highlighter.js";
 
-import { showError, hideError, checkValidationWithRegExp } from "./modules/input_error.js"
+import { showError, hideError, checkValidationWithRegExp } from "../components/Pages/input_error.js"
 import { refreshComments, responseComment, getArticleId } from './modules/comments.js';
 
 document.addEventListener('DOMContentLoaded', start);
