@@ -12,8 +12,8 @@ head
   script(type='module', src='/public/js/signin_validator.js')
 
 body
-  include modules/header 
-  .inputForm 
+  include modules/header
+    .inputForm
     div.reg
       p Email
       input#email(type='email', name='email', placeholder='Type email',  required='required', pattern='.+@.+\\..+')

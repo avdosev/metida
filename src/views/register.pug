@@ -12,9 +12,9 @@ head
   script(type='module', src='/public/js/register_validator.js')
 
 body
-  include modules/header 
+  include modules/header
 
-  .inputForm
+    .inputForm
     div.reg(name="register")
       p Email
       input#email(type='email', name='email', placeholder='Type email', required='required', pattern='.+@.+\\..+')

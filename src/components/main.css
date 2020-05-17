@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Cabin|Montserrat&subset=cyrillic');
 
-@import url('./modules/colors.css');
-@import url('./modules/header.css');
+@import url('colors.css');
+@import url('Header/header.css');
 
 /* flex inners */
 
