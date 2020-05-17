@@ -1,8 +1,8 @@
 import React from "react";
 import "../../../main.css"
-import "../../input.css"
-import {showError, hideError, checkValidation} from "../input_error.js";
-import {get, post} from "../../Router"
+import "../../../input.css"
+import {showError, hideError, checkValidation} from "../../input_error";
+import {get, post} from "../../../Router"
 import {Validators} from "./IValidators";
 import FormError from "./FormError";
 
@@ -36,8 +36,8 @@ export default class Sign_In extends React.Component<IProps, IState> {
     }
 
     inputPassword = (event: any) => {
-        const valid = this.validateField("password", this.state.password.value)
-        this.setState({password: {value: event.target.value, valid: valid}}, () => console.log(this.state.password))
+        const valid = this.validateField("password", event.target.value)
+        this.setState({password: {value: event.target.value, valid: valid}})
     }
 
     inputEmail = (event: any) => {
@@ -100,7 +100,7 @@ export default class Sign_In extends React.Component<IProps, IState> {
 
                     <p>Password </p>
                     <input id="password" type="password" name="password" placeholder="Type password" required
-                           onChange={this.inputPassword}
+                           onInput={this.inputPassword}
                            value={this.state.password.value}
                            pattern='.{5,}'/>
                     <FormError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>
