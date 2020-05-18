@@ -12,18 +12,11 @@ import Register from "./Pages/Auth/Register/Register";
 function App() {
     return (
         <Router>
-            <Header />
+            <Header/>
             <Switch>
-                <Route path="/sign_In">
-                    <Sign_In />
-                </Route>
-                <Route path="/register">
-                    <Register />
-                </Route>
-
-                <Route path="/">
-                    <Index />
-                </Route>
+                <Route path="/sign_In" component={Sign_In}/>
+                <Route path="/register" component={Register} />
+                <Route path="/" component={Index} />
             </Switch>
         </Router>
     );
