@@ -5,6 +5,7 @@ import {showError, hideError, checkValidation} from "../../input_error";
 import {get, post} from "../../../Router"
 import {Validators} from "../IValidators";
 import FormError from "../FormError";
+import {register} from "../../../../serviceWorker";
 
 interface IProps {
 
@@ -19,8 +20,6 @@ interface IState {
     [name: string]: any,
     validators?: Validators
 }
-
-
 
 
 export default class Register extends React.Component<IProps, IState> {
@@ -51,10 +50,11 @@ export default class Register extends React.Component<IProps, IState> {
         if (event.target.name == "repassword") { //TODO средней понятности и красоты код, сравнить внутри колбека не получится, т.к. компонент не обновится
             valid = valid && event.target.value === this.state.password.value
         }
-
+        else if (event.target.name == "password") {
+            console.log(this.state)
+            this.setState({repassword: {value: this.state.repassword.value, valid: event.target.value === this.state.repassword.value}})
+        }
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
-
-
     }
 
     handleUserInput = (event: any) => {
@@ -66,14 +66,10 @@ export default class Register extends React.Component<IProps, IState> {
 
 
     submitBtnHandler = () => {
-        const emailValid = this.state.email.valid
-        const passwordValid = this.state.password.valid
+        const allValid = this.state.email.valid && this.state.password.valid && this.state.login.valid && this.state.repassword.valid
 
-        if (!emailValid) {
 
-        } else if (!passwordValid) {
-
-        } else {
+        if (allValid ){
             console.log("запрос")
 
             const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
