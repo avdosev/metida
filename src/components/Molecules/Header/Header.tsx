@@ -4,6 +4,7 @@ import "../../colors.css" //TODO какого черта импорт проис
 import {
     Link
 } from "react-router-dom";
+import Burger from "../Burger/Burger";
 
 //{target: {id: string}}
 export default function Header() {
@@ -32,17 +33,7 @@ export default function Header() {
                     </Link>
                 </div>
                 <div className="regSection">
-                    <nav>
-                        <ul className="topmenu">
-                            <li>
-                                <img className="icon" id="burger" alt="burger menu button" onClick={toggleSubmenu} src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'} />
-                                <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
-                                    <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
-                                    <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
+                    <Burger authorised={false} />
                 </div>
             </div>
             <hr/>
