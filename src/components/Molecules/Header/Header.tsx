@@ -8,22 +8,6 @@ import Burger from "../Burger/Burger";
 
 //{target: {id: string}}
 export default function Header() {
-    function toggleSubmenu(event: any) {
-        const burger = document.getElementsByClassName('submenu')[0]
-
-        if (event.target.id === "burger")  {
-            if (burger.id === "submenu")  {
-                burger.id = "submenu__active";
-            }
-            else {
-                burger.id = "submenu";
-            }
-        }
-        else  {
-            burger.id = "submenu";
-        }
-    }
-
     return (
         <header className="header">
             <div className="header_inner flex space_between_inner">
