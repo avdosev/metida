@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../Molecules/Header/Header";
 
 
 export default function SimpleTemplate(props: { header: React.ReactNode; content: React.ReactNode; footer: React.ReactNode; }) {

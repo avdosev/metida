@@ -1,4 +1,4 @@
-import { insertPostPreview } from "./modules/articles.js"
+import { insertPostPreview } from "../../../js/modules/articles.js"
 
 const username = document.querySelector('.profile').attributes.username.value;
 

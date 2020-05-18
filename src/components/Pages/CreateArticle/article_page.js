@@ -1,12 +1,10 @@
-import { showError, checkValidationWithRegExp as checkValidation } from "../components/Pages/input_error.js";
-
-// он находится в глобальной области видимости если это можно исправить с помощью модульной системы будет не плохо
-// но пока так
-const md = markdownit({
-    html: false,
+import { showError, checkValidationWithRegExp as checkValidation } from "../input_error.js";
+const md = require('markdown-it')({
+    html: true,
     linkify: true,
     typographer: true
-})
+});
+
 
 document.addEventListener('DOMContentLoaded', start)
 

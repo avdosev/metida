@@ -1,5 +1,5 @@
 import React from "react";
-import "./error.css"
+import "../../Pages/Auth/error.css"
 
 interface IProps {
     valid: boolean

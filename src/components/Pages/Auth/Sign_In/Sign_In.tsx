@@ -1,10 +1,9 @@
 import React from "react";
 import "../../../main.css"
 import "../../../input.css"
-import {showError, hideError, checkValidation} from "../../input_error";
-import {get, post} from "../../../Router"
+import {post} from "../../../Router"
 import {Validators} from "../IValidators";
-import FormError from "../FormError";
+import FormError from "../../../Atoms/FormError/FormError";
 
 interface IProps {
 

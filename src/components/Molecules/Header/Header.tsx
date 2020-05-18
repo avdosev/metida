@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css"
-import "../colors.css" //TODO какого черта импорт происходит и отсюда и из css
+import "../../colors.css" //TODO какого черта импорт происходит и отсюда и из css
 import {
     Link
 } from "react-router-dom";
@@ -35,7 +35,7 @@ export default function Header() {
                     <nav>
                         <ul className="topmenu">
                             <li>
-                                <img className="icon" id="burger" onClick={toggleSubmenu} src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'} />
+                                <img className="icon" id="burger" alt="burger menu button" onClick={toggleSubmenu} src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'} />
                                 <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
                                     <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
                                     <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
