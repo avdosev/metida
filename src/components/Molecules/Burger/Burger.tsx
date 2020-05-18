@@ -2,40 +2,39 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./Burger.css"
 
-function BurgerImage() {
-    return <summary className="not_details_marker">
-        <img className="icon" id="burger" src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'}
-             alt="burger menu button"/>
-    </summary>
+function BurgerImage(props: {toggleMethod: (event: any) => void}) {
+    return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
+             src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'}/>)
 }
 
 export default function Burger(props: { authorised: boolean }) {
+    function toggleSubmenu(event: any) {
+        const burger = document.getElementsByClassName('submenu')[0]
 
+        if (event.target.id === "burger") {
+            if (burger.id === "submenu") {
+                burger.id = "submenu__active";
+            } else {
+                burger.id = "submenu";
+            }
+        } else {
+            burger.id = "submenu";
+        }
+    }
 
-    const authorised = <details className="menu">
-        <BurgerImage/>
-        <div className="dropdown-menu">
-            <li><b className="dropdown_item">not signed </b></li>
-            <hr/>
-            <li><a className="dropdown_item" href="/git/undefined">Your profile</a></li>
-            <hr/>
+    const authorised = <nav></nav>
+
+    const notAuthorised = <nav>
+        <ul className="topmenu">
             <li>
-                <li>
-                    <form action="/api/logout" method="post">
-                        <button className="dropdown_item" type="submit">Выйти</button>
-                    </form>
-                </li>
+                <BurgerImage toggleMethod={toggleSubmenu} />
+                <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
+                    <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
+                    <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
+                </ul>
             </li>
-        </div>
-    </details>
-    const notAuthorised = <details className="menu">
-        <BurgerImage/>
-        <div className="dropdown-menu">
-            <li><Link className="dropdown_item GreyButton" to="/sign_In">Войти</Link></li>
-            <hr/>
-            <li><Link className="dropdown_item BlackButton" to="/register">Регистрация</Link></li>
-        </div>
-    </details>
+        </ul>
+    </nav>
 
 
     return (props.authorised ? authorised : notAuthorised)
