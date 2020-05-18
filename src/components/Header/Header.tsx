@@ -27,9 +27,9 @@ export default function Header() {
         <header className="header">
             <div className="header_inner flex space_between_inner">
                 <div className="logo">
-                    <a href="/">
+                    <Link to="/">
                         <img className="logoImg" src={process.env.PUBLIC_URL + '/img/logo_svg.svg'} alt="Metida"/>
-                    </a>
+                    </Link>
                 </div>
                 <div className="regSection">
                     <nav>
