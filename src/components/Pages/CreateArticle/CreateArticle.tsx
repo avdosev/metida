@@ -3,57 +3,7 @@ import "./create_article.css"
 
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
 
-//
-// import {showError, checkValidationWithRegExp as checkValidation} from "../input_error";
-// import {Simulate} from "react-dom/test-utils";
-// import submit = Simulate.submit;
-//
-// // он находится в глобальной области видимости если это можно исправить с помощью модульной системы будет не плохо
-// // но пока так
-// // const md = markdownit({
-// //     html: false,
-// //     linkify: true,
-// //     typographer: true
-// // })
-//
-//
-// // async function start() {
-// //     const checkbox = document.querySelector("#previews");
-// //     const header = document.querySelector('#header')
-// //     const disclaimer = document.querySelector('#disclaimer')
-// //     const content = document.querySelector('#article')
-// //     const submitBtn = document.querySelector('#submit')
-// //
-// //     checkbox.addEventListener("click", showArtIfCheckboxCheked)
-// //
-// //     header.addEventListener('change', showArtIfCheckboxCheked)
-// //     disclaimer.addEventListener('change', showArtIfCheckboxCheked)
-// //     content.addEventListener('change', showArtIfCheckboxCheked)
-// //
-// //     const headerError = document.querySelector(".headerError")
-// //     const disclaimerError = document.querySelector(".disclaimerError")
-// //     const contentError = document.querySelector(".contentError")
-// //
-// //     header.addEventListener("input", () => {
-// //         checkValidation(header, headerError, validators.header)
-// //     })
-// //
-// //     disclaimer.addEventListener("input", () => {
-// //         checkValidation(disclaimer, disclaimerError, validators.disclaimer)
-// //     })
-// //
-// //     content.addEventListener("input", () => {
-// //         checkValidation(content, contentError, validators.content)
-// //     })
-// // }
-// //
-// //
-// // function showArticle(title, text, disclaimer) {
-// //     const post_text = document.getElementsByClassName('post_text')[0]
-// //     post_text.innerHTML = `<h1>${title}</h1>${disclaimer}${text}`;
-// // }
-// //
-// //
+
 // interface IProps {
 //
 // }

@@ -1,25 +1,10 @@
 import React from "react";
 import "../../../main.css"
 import "../../../input.css"
-import {showError, hideError, checkValidation} from "../../input_error";
-import {get, post} from "../../../Router"
+import {post} from "../../../Router"
 import {Validators} from "../IValidators";
-import FormError from "../FormError";
-import {register} from "../../../../serviceWorker";
-
-interface IProps {
-
-}
-
-interface Field {
-    value: string,
-    valid: boolean
-}
-
-interface IState {
-    [name: string]: any,
-    validators?: Validators
-}
+import FormError from "../../../Atoms/FormError/FormError";
+import {IProps, IState} from "./IRegister";
 
 
 export default class Register extends React.Component<IProps, IState> {
@@ -64,7 +49,7 @@ export default class Register extends React.Component<IProps, IState> {
     errorHandler = () => {}
 
 
-    submitBtnHandler = () => {
+    submitBtnHandler = async () => {
         const allValid = this.state.email.valid && this.state.password.valid && this.state.login.valid && this.state.repassword.valid
 
 
@@ -78,7 +63,7 @@ export default class Register extends React.Component<IProps, IState> {
                     response.text().then(this.errorHandler)
                 }
             }
-            post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
+            await post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
 
         }
 

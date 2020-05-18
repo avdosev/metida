@@ -20,12 +20,6 @@ interface IState {
 
 export default class Post extends React.Component<IProps, IState>{
     deleteArticle = async () => {
-        // const res = await fetch(`/api/post/${getArticleId()}`, {
-        //     method: "delete"
-        // });
-        // const jsn = await res.json();
-        // if (jsn["success"])
-        //     document.location.href = '/';
     }
 
     updateArticle = async () => {

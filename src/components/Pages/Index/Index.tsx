@@ -20,7 +20,7 @@ export default class Index extends React.Component<IProps, IState>{
     currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
 
     getArticle = async (articlesCount=0) => {
-        const json = await post('/api/top', {
+        const json = await post('/top', {
             "begin": this.currentCountOfArticles,
             "end": this.currentCountOfArticles+articlesCount
         })

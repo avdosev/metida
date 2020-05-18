@@ -1,7 +1,7 @@
-import { highlightArrayOfCodeElems } from "./modules/highlighter.js";
+import { highlightArrayOfCodeElems } from "../../../js/modules/highlighter.js";
 
-import { showError, hideError, checkValidationWithRegExp } from "../components/Pages/input_error.js"
-import { refreshComments, responseComment, getArticleId } from './modules/comments.js';
+import { showError, hideError, checkValidationWithRegExp } from "../input_error.js"
+import { refreshComments, responseComment, getArticleId } from '../../../js/modules/comments.js';
 
 document.addEventListener('DOMContentLoaded', start);
 
@@ -53,6 +53,6 @@ async function start() {
     if (comment) comment.addEventListener('input', () => {
             checkValidationWithRegExp(comment, commentError, validators.comment)
         },
-        false // объясни потом, что значит этот бул // хз че он значит
+        false
     );
 };
