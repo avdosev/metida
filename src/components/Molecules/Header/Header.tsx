@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
 
-//{target: {id: string}}
 export default function Header() {
     return (
         <header className="header">

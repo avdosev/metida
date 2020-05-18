@@ -2,24 +2,8 @@ import React from "react";
 import "../../../main.css"
 import "../../../input.css"
 import {post} from "../../../Router"
-import {Validators} from "../IValidators";
 import FormError from "../../../Atoms/FormError/FormError";
-
-interface IProps {
-
-}
-
-interface Field {
-    value: string,
-    valid: boolean
-}
-
-
-interface IState {
-    [name: string]: any, //TODO Field type
-    validators?: Validators
-}
-
+import {IProps, IState} from "./ISign_In";
 
 
 export default class Sign_In extends React.Component<IProps, IState> {
@@ -49,12 +33,9 @@ export default class Sign_In extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = () => {
-        const emailValid = this.state.email.valid
-        const passwordValid = this.state.password.valid
+        const allValid = this.state.email.valid && this.state.password.valid
 
-        if (!emailValid) {
-
-        } else if (!passwordValid) {
+        if (!allValid) {
 
         } else {
             console.log("запрос")
