@@ -31,10 +31,10 @@ export default function Index() {
 
 
 function getArticle(articlesCount=0) {
-    fetch('./top', {
+    fetch('http://localhost:7080/top', {
         method: 'post',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
             "begin": currentCountOfArticles,

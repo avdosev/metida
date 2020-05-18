@@ -10,6 +10,7 @@ import {
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 import * as Handler from '../controllers/request_handler/index.js';
 import * as Response from '../controllers/respondent.js';
@@ -17,24 +18,21 @@ import * as Response from '../controllers/respondent.js';
 //  проверка логирования
 import { isLoggedIn, loggedCheker } from '../controllers/logged.js';
 
-import PagesRouterCreator from './pages.js';
 import ApiRouterCreator from './api.js';
 
-const Pages = PagesRouterCreator();
 const ApiRouter = ApiRouterCreator();
 
 const initAuthControllers = (app, passport) => {
+    app.use(cors());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-    // -- PAGES --
-
-    app.get('/*', Pages);
-
     // -- API --
 
     app.use('/api', ApiRouter);
+
+
 
     // -- ARTICLES API -- 
     
@@ -81,17 +79,7 @@ const initAuthControllers = (app, passport) => {
         })
     );
 
-    //-- ERROR PAGE --
-    app.use((err, req, res, next) => {
-        console.log(err);
-        res.status(500);
-        next()
-    }, Response.renderPage.errorPage);
 
-    //-- NOT FOUND PAGE --
-    app.use((req, res) => {
-
-    })
 };
 
 export default initAuthControllers;
