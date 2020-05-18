@@ -45,15 +45,14 @@ export default class Register extends React.Component<IProps, IState> {
     }
 
 
-    comparePasswords = (event: any) => {
+    comparePassword = (event: any) => {
         let valid = this.validateField(event.target.name, event.target.value)
-        if (event.target.name == "repassword") { //TODO средней понятности и красоты код, сравнить внутри колбека не получится, т.к. компонент не обновится
-            valid = valid && event.target.value === this.state.password.value
-        }
-        else if (event.target.name == "password") {
-            console.log(this.state)
-            this.setState({repassword: {value: this.state.repassword.value, valid: event.target.value === this.state.repassword.value}})
-        }
+        this.setState({repassword: {value: this.state.repassword.value, valid: event.target.value === this.state.repassword.value}})
+        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+    }
+
+    compareRepassword = (event: any) => {
+        let valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
@@ -109,14 +108,14 @@ export default class Register extends React.Component<IProps, IState> {
 
                     <p>Password </p>
                     <input id="password" type="password" name="password" placeholder="Type password" required
-                           onChange={this.comparePasswords}
+                           onChange={this.comparePassword}
                            value={this.state.password.value}
                            pattern='.{5,50}'/>
                     <FormError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>
 
                     <p>Repeat password </p>
                     <input id="repassword" type="password" name="repassword" placeholder="Type password" required
-                           onChange={this.comparePasswords}
+                           onChange={this.compareRepassword}
                            value={this.state.repassword.value}
                            pattern='.{5,50}'/>
                     <FormError valid={this.state.repassword.valid} text={this.state.validators ? this.state.validators.repassword.error_str : ''}/>
