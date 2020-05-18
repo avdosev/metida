@@ -1,34 +1,55 @@
 import React from "react";
 import FormError from "../../Atoms/FormError/FormError";
 import {Field, IIState} from "../../Pages/Auth/IAuth";
+import {Validators} from "../../Pages/Auth/IValidators";
 
 interface FieldDescription {
-    fieldName: string,
     regexp: string,
-    // field: Field
+    EventError: string,
+    error_str: string
 }
-//
-// interface IState {
-//
-// }
-//
-// interface IProps {
-//
-// }
+interface AbsFD {
+    [fieldName: string]: FieldDescription,
+    //[Symbol.iterator](): IterableIterator<FieldDescription>;
+}
 
-export default class Form extends React.Component<Array<FieldDescription>, IIState> {
-    constructor(props: Array<FieldDescription>) {
+interface IState {
+    validators?: Validators;
+    [fieldName: string]: any,
+}
+
+interface IProps {
+    fieldDescription: AbsFD
+}
+
+export default class Form extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props)
-        this.state = {email: {value: '', valid: false}, password: {value: '', valid: false}, validators: undefined}
+
+        let fieldNames = [] // омагад, почему у моих обхектов нет метода keys
+
+        for (const fieldName in props.fieldDescription) {
+            fieldNames.push(fieldName)
+        }
+
+        let fieldDescription = {}
+        for (const field of fieldNames) {
+            // @ts-ignore
+            fieldDescription[field] = {valid: false, value: ''}
+        }
+
+        this.state = {...fieldDescription}
+
     }
 
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+        console.log(this.state)
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = fieldValue.match(this.state.validators![fieldName].regexp)
+        const fieldValid = fieldValue.match(this.props.fieldDescription[fieldName].regexp)
         return !!fieldValid;
     }
 
@@ -40,22 +61,22 @@ export default class Form extends React.Component<Array<FieldDescription>, IISta
     render() {
         let fieldsSet: Array<JSX.Element> = []
 
-        for (const field of this.props) {
+        for (const field in this.props.fieldDescription) {
             const elem =
                 <>
-                    <p>{field.fieldName} </p>
-                    <input id={field.fieldName}
-                           type={field.fieldName}
-                           name={field.fieldName}
-                           placeholder={field.fieldName}
+                    <p>{field} </p>
+                    <input id={field}
+                           type={field}
+                           name={field}
+                           placeholder={field}
                            required
-                           pattern={field.regexp}
+                           pattern={this.props.fieldDescription[field].regexp}
                            onChange={this.handleUserInput}
-                           value={this.state[field.fieldName].value}
+                           value={this.state[field].value}
                     />
 
-                    <FormError valid={this.state[field.fieldName].valid}
-                               text={this.state.validators ? this.state.validators[field.fieldName].error_str : ''}/>
+                    <FormError valid={this.state[field].valid}
+                               text={this.props.fieldDescription[field].error_str}/>
                 </>
             fieldsSet.push(elem)
 
