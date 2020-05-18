@@ -1,18 +1,14 @@
 import {Validators} from "../IValidators";
-import {IIState, Field} from "../IAuth";
-
+import {Field, IIState} from "../IAuth";
 
 interface IProps {
 
 }
 
-
 interface IState extends IIState {
     validators?: Validators;
-    repassword: Field,
-    login: Field,
     email: Field,
-    password: Field,
+    password: Field
 }
 
 export type {IState, IProps}
