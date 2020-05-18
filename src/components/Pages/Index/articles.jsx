@@ -11,7 +11,9 @@ export function insertPostPreview(objPost, insertedElem) {
         </div> 
         <div class="after_post">
             <a href="${url}" class="BtnToArticle">Читать дальше</a>
-            <a href="${url+"#comments"}" class="BtnToArticleComments"><img class="after_post_icon" src="/public/img/ui_icon/comment.svg"></a>
+            <a href="${url+"#comments"}" class="BtnToArticleComments">
+                <img class="after_post_icon" src="/public/img/ui_icon/comment.svg">
+            </a>
         </div>
     </div>
     `;
