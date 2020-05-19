@@ -2,9 +2,8 @@ import React from "react";
 import "../../main.css"
 import "../../input.css"
 import {IProps, IState} from "./IRegisterForm";
-import Form from "../Form/Form";
-import FieldError from "../../Atoms/FieldError/FieldError";
 import {post} from "../../Router";
+import Field from "../../Atoms/Field/Field";
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -14,7 +13,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             login: {value: '', valid: false},
             email: {value: '', valid: false},
             password: {value: '', valid: false},
-            validators: undefined}
+            validators: {login: {error_str: '', regexp: '', EventError: ['']}, repassword: {error_str: '', regexp: '', EventError: ['']}, email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
     }
 
     async componentDidMount() {
@@ -69,44 +68,26 @@ export default class RegisterForm extends React.Component<IProps, IState> {
     }
 
     render() {
+        const fd = this.state
+        const v = this.state.validators
+
         return (
             <div className="inputForm">
-
                 <div className="reg">
-                    <p>Email </p>
-                    <input id="email" type="email" name="email" placeholder="Type email" required
-                           pattern='.+@.+\..+'
-                           onChange={this.handleUserInput}
-                           value={this.state.email.value}
-                    />
+                    <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
+                           validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
+                    <Field fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
+                           validateFunc={this.handleUserInput} value={fd.login.value} text={v!.login.error_str}/>
 
-                    <FieldError valid={this.state.email.valid} text={this.state.validators ? this.state.validators.email.error_str : ''}/>
+                    <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
+                           validateFunc={this.comparePassword} value={fd.password.value} text={v!.password.error_str}/>
+                    <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp} valid={fd.repassword.valid}
+                           validateFunc={this.compareRepassword} value={fd.repassword.value} text={v!.repassword.error_str}/>
 
-                    <p>Login</p>
-                    <input id="login" type="login" name="login" placeholder="Type login" required
-                           pattern='^\w{3,20}$'
-                           onChange={this.handleUserInput}
-                           value={this.state.login.value}
-                    />
-
-                    <FieldError valid={this.state.login.valid} text={this.state.validators ? this.state.validators.login.error_str : ''}/>
-
-                    <p>Password </p>
-                    <input id="password" type="password" name="password" placeholder="Type password" required
-                           onChange={this.comparePassword}
-                           value={this.state.password.value}
-                           pattern='.{5,50}'/>
-                    <FieldError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>
-
-                    <p>Repeat password </p>
-                    <input id="repassword" type="password" name="repassword" placeholder="Type password" required
-                           onChange={this.compareRepassword}
-                           value={this.state.repassword.value}
-                           pattern='.{5,50}'/>
-                    <FieldError valid={this.state.repassword.valid} text={this.state.validators ? this.state.validators.repassword.error_str : ''}/>
                     <button id="submit" onClick={this.submitBtnHandler} className="welcome">Войти</button>
                     <span id="serverError" aria-live="polite"/>
                 </div>
+
             </div>
 
         )

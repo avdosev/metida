@@ -6,7 +6,7 @@ interface Field {
 }
 
 interface IIState {
-    validators?: Validators;
+    validators: Validators;
     [name: string]: any;
 }
 
