@@ -8,6 +8,7 @@ import Index from "./Pages/Index/Index"
 import Sign_InForm from "./Organisms/Sign_InForm/Sign_InForm";
 import RegisterForm from "./Organisms/RegisterForm/RegisterForm";
 import Post from "./Pages/Post/Post";
+import * as ROUTES from '../config/routes';
 
 
 function App() {
@@ -16,10 +17,10 @@ function App() {
             <Header/>
             <Switch>
 
-                <Route path="/post/:id" component={Post}/>
-                <Route path="/sign_In" component={Sign_InForm}/>
-                <Route path="/register" component={RegisterForm} />
-                <Route path="/" component={Index} />
+                <Route path={ROUTES.POST} component={Post}/>
+                <Route path={ROUTES.SIGN_IN} component={Sign_InForm}/>
+                <Route path={ROUTES.REGISTER} component={RegisterForm} />
+                <Route path={ROUTES.LANDING} component={Index} />
             </Switch>
         </Router>
     );

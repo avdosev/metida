@@ -2,9 +2,9 @@ import React from "react";
 import "../../main.css"
 import "../../lenta.css"
 import "../../colors.css"
-import {Post} from "../../Atoms/Post.jsx"
+import {Post} from "../../Atoms/Post/Post.jsx"
 import {get, post} from "../../Router";
-import Lenta from "../../Molecules/Lenta";
+import Lenta from "../../Molecules/Feed/Lenta";
 
 
 interface IProps {
