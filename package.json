@@ -29,18 +29,12 @@
     "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "
   },
   "dependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5",
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^4.0.0",
     "body-parser": "^1.16.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
     "express-session": "^1.15.0",
     "express-validator": "^5.3.1",
-    "firebase": "^7.14.4",
     "markdown-it": "^8.4.2",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.1",
@@ -52,7 +46,6 @@
     "react-scripts": "^3.4.1",
     "sequelize": "^5.7.4",
     "sequelize-cli": "^5.4.0",
-    "serve-favicon": "^2.5.0",
     "typescript": "^3.9.2",
     "webpack": "=4.42.0"
   },
@@ -76,6 +69,10 @@
     "eslint": "^6.6.0",
     "lorem-ipsum": "^2.0.2",
     "mocha": "^6.1.4",
-    "prettier": "1.17.0"
+    "prettier": "1.17.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5"
   }
 }
