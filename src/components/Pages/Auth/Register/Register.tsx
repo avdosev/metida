@@ -3,8 +3,9 @@ import "../../../main.css"
 import "../../../input.css"
 import {post} from "../../../Router"
 import {Validators} from "../IValidators";
-import FormError from "../../../Atoms/FormError/FormError";
 import {IProps, IState} from "./IRegister";
+import Form from "../../../Molecules/Form/Form";
+import FieldError from "../../../Atoms/FieldError/FieldError";
 
 
 export default class Register extends React.Component<IProps, IState> {
@@ -72,6 +73,7 @@ export default class Register extends React.Component<IProps, IState> {
     render() {
         return (
             <div className="inputForm">
+
                 <div className="reg">
                     <p>Email </p>
                     <input id="email" type="email" name="email" placeholder="Type email" required
@@ -80,7 +82,7 @@ export default class Register extends React.Component<IProps, IState> {
                            value={this.state.email.value}
                     />
 
-                    <FormError valid={this.state.email.valid} text={this.state.validators ? this.state.validators.email.error_str : ''}/>
+                    <FieldError valid={this.state.email.valid} text={this.state.validators ? this.state.validators.email.error_str : ''}/>
 
                     <p>Login</p>
                     <input id="login" type="login" name="login" placeholder="Type login" required
@@ -89,21 +91,21 @@ export default class Register extends React.Component<IProps, IState> {
                            value={this.state.login.value}
                     />
 
-                    <FormError valid={this.state.login.valid} text={this.state.validators ? this.state.validators.login.error_str : ''}/>
+                    <FieldError valid={this.state.login.valid} text={this.state.validators ? this.state.validators.login.error_str : ''}/>
 
                     <p>Password </p>
                     <input id="password" type="password" name="password" placeholder="Type password" required
                            onChange={this.comparePassword}
                            value={this.state.password.value}
                            pattern='.{5,50}'/>
-                    <FormError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>
+                    <FieldError valid={this.state.password.valid} text={this.state.validators ? this.state.validators.password.error_str : ''}/>
 
                     <p>Repeat password </p>
                     <input id="repassword" type="password" name="repassword" placeholder="Type password" required
                            onChange={this.compareRepassword}
                            value={this.state.repassword.value}
                            pattern='.{5,50}'/>
-                    <FormError valid={this.state.repassword.valid} text={this.state.validators ? this.state.validators.repassword.error_str : ''}/>
+                    <FieldError valid={this.state.repassword.valid} text={this.state.validators ? this.state.validators.repassword.error_str : ''}/>
                     <button id="submit" onClick={this.submitBtnHandler} className="welcome">Войти</button>
                     <span id="serverError" aria-live="polite"/>
                 </div>
