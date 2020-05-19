@@ -2,10 +2,11 @@ import React from "react";
 import "../../../main.css"
 import "../../../input.css"
 import {post} from "../../../Router"
-import FormError from "../../../Atoms/FormError/FormError";
 import Form from "../../../Molecules/Form/Form"
 import {IIState} from "../IAuth";
 import {Validators} from "../IValidators";
+import FieldError from "../../../Atoms/FieldError/FieldError";
+
 
 
 interface FieldDescription {
@@ -37,7 +38,7 @@ export default class Sign_In extends React.Component<IProps, IState> {
                     "EventError": "Вводи почту правильно",
                     "regexp": ".+@.+\\..+"
                 },
-                
+
                 "password": {
                     "error_str": "Пароль должен содержать более 5 символов",
                     "EventError": "EventErrorPassword",

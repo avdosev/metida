@@ -1,5 +1,7 @@
 import React from "react";
-import FormError from "../FormError/FormError";
+import FieldError from "../FieldError/FieldError";
+import Input from "../Input/Input";
+
 
 interface IState {
 
@@ -14,26 +16,28 @@ interface IProps {
     fieldType?: string,
     fieldDescription?: string,
     placeholder?: string,
-    }
 
-export default class FieldInput extends React.Component<IProps, IState> {
-    updateValue = () => {
 
-    }
+
+    valid: boolean,
+    text: string
+}
+
+export default class Field extends React.Component<IProps, IState> {
+
 
     render() {
         return <>
-            <p>{this.props.fieldDescription ? this.props.fieldDescription : this.props.fieldName} </p>
-            <input id={this.props.fieldName}
-                   type={this.props.fieldType ? this.props.fieldType : this.props.fieldName}
-                   name={this.props.fieldName}
-                   placeholder={this.props.placeholder ? this.props.placeholder : this.props.fieldName}
-                   required
-                   pattern={this.props.regexp}
-                   onChange={this.props.validateFunc}
-                   value={this.props.value}
+            <Input
+                fieldName={this.props.fieldName}
+                validateFunc={this.props.validateFunc}
+                regexp={this.props.regexp}
+                fieldType={this.props.fieldType}
+                fieldDescription={this.props.fieldDescription}
+                placeholder={this.props.placeholder}
+                value={this.props.value}
             />
-
+            <FieldError valid={this.props.valid} text={this.props.text} />
         </>;
     }
 }

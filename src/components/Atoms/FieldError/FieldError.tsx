@@ -1,17 +1,13 @@
 import React from "react";
-import "../../Pages/Auth/error.css"
+import {IProps} from "./IFieldError";
+import "./error.css"
 
-interface IProps {
-    valid: boolean
-    text?: string
-}
 
-export default function FormError(props: IProps) {
+export default function FieldError(props: IProps) {
     let spanError: JSX.Element
     if (!props.valid) {
         spanError = <span className="error active" aria-live="polite"> {props.text} </span>
-    }
-    else {
+    } else {
         spanError = <span className="error" aria-live="polite"/>
     }
 
