@@ -3,10 +3,8 @@ import "../../input.css"
 import "../../main.css"
 import "./post.css"
 import "../../comments.css"
-// import { highlightArrayOfCodeElems } from "./modules/highlighter.js";
-//
-// import { showError, hideError, checkValidationWithRegExp } from "../components/Pages/input_error.js"
-// import { refreshComments, responseComment, getArticleId } from './modules/comments.js';
+import { highlightArrayOfCodeElems } from "./highlighter.js";
+import { refreshComments, responseComment, getArticleId } from './comments.js';
 
 
 interface IProps {
@@ -20,6 +18,12 @@ interface IState {
 
 export default class Post extends React.Component<IProps, IState>{
     deleteArticle = async () => {
+        const res = await fetch(`/api/post/${getArticleId()}`, {
+            method: "delete"
+        });
+        const jsn = await res.json();
+        if (jsn["success"])
+            document.location.href = '/';
     }
 
     updateArticle = async () => {
@@ -50,13 +54,18 @@ export default class Post extends React.Component<IProps, IState>{
 }
 
 //
+// import { highlightArrayOfCodeElems } from "../../../js/modules/highlighter.js";
+//
+// import { showError, hideError, checkValidationWithRegExp } from "../input_error.js"
+// import { refreshComments, responseComment, getArticleId } from '../../../js/modules/comments.js';
+//
+// document.addEventListener('DOMContentLoaded', start);
+//
 // async function start() {
 //     const codeElems = document.querySelectorAll('code');
 //     highlightArrayOfCodeElems(codeElems);
 //
-//     const deleteArticleLink = document.querySelector('.deleteAricleLink');
-//     const updateArticleLink = document.querySelector('.updateAricleLink');
-//
+
 //     const commentError = document.querySelector('.commentError');
 //     const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
 //     const sendCommentBtn = document.querySelector(".EnterButton")
@@ -83,6 +92,6 @@ export default class Post extends React.Component<IProps, IState>{
 //     if (comment) comment.addEventListener('input', () => {
 //             checkValidationWithRegExp(comment, commentError, validators.comment)
 //         },
-//         false // объясни потом, что значит этот бул // хз че он значит
+//         false
 //     );
-// };
+//};
