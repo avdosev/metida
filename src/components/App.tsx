@@ -5,8 +5,8 @@ import {
 } from "react-router-dom";
 import Header from "./Molecules/Header/Header";
 import Index from "./Pages/Index/Index"
-import Sign_In from "./Pages/Auth/Sign_In/Sign_In";
-import Register from "./Pages/Auth/Register/Register";
+import Sign_InForm from "./Organisms/Sign_InForm/Sign_InForm";
+import RegisterForm from "./Organisms/RegisterForm/RegisterForm";
 
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
         <Router>
             <Header/>
             <Switch>
-                <Route path="/sign_In" component={Sign_In}/>
-                <Route path="/register" component={Register} />
+                <Route path="/sign_In" component={Sign_InForm}/>
+                <Route path="/register" component={RegisterForm} />
                 <Route path="/" component={Index} />
             </Switch>
         </Router>

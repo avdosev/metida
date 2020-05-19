@@ -1,4 +1,4 @@
-import {Validators} from "../../Pages/Auth/IValidators";
+import {Validators} from "../IValidators";
 
 interface FieldDescription {
     regexp: string,

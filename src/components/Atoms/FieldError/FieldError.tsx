@@ -1,6 +1,11 @@
 import React from "react";
-import {IProps} from "./IFieldError";
+import {IFieldError} from "../IField";
 import "./error.css"
+
+
+interface IProps extends IFieldError {
+
+}
 
 
 export default function FieldError(props: IProps) {
