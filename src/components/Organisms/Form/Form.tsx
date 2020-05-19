@@ -1,8 +1,5 @@
 import React from "react";
-import {Validators} from "../../Pages/Auth/IValidators";
-import FieldInput from "../../Atoms/Field/Field";
 import {IProps, IState} from "./IForm";
-import FieldError from "../../Atoms/FieldError/FieldError"
 import Field from "../../Atoms/Field/Field";
 
 
@@ -23,7 +20,8 @@ export default class Form extends React.Component<IProps, IState> {
         }
 
         this.state = {...fieldDescription}
-
+        console.log(this.state)
+        console.log(this.props)
     }
 
     handleUserInput = (event: any) => {
@@ -40,21 +38,19 @@ export default class Form extends React.Component<IProps, IState> {
 
     }
 
-
     render() {
         let fieldsSet: Array<JSX.Element> = []
 
         for (const field in this.props.fieldDescription) {
             const elem =
                 <Field fieldName={field}
-                       regexp={this.state[field].regexp}
+                       regexp={this.props.fieldDescription[field].regexp}
                        validateFunc={this.handleUserInput}
                        value={this.state[field].value}
                        valid={this.state[field].valid}
                        text={this.props.fieldDescription[field].error_str} />
 
             fieldsSet.push(elem)
-
         }
 
 

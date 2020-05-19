@@ -1,18 +1,12 @@
 import React from "react";
+import {IField} from "../IField";
 
 interface IState {
 
 }
 
-interface IProps {
-    fieldName: string,
-    validateFunc: (event: any) => void,
-    regexp: string,
-    value: string,
+interface IProps extends IField {
 
-    fieldType?: string,
-    fieldDescription?: string,
-    placeholder?: string,
 }
 
 export default class Input extends React.Component<IProps, IState> {
