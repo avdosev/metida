@@ -73,7 +73,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
         return (
             <div className="inputForm">
-                <div className="reg">
+                <form className="reg">
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
@@ -84,9 +84,9 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp} valid={fd.repassword.valid}
                            validateFunc={this.compareRepassword} value={fd.repassword.value} text={v!.repassword.error_str}/>
 
-                    <button id="submit" onClick={this.submitBtnHandler} className="welcome">Войти</button>
+                    <button id="submit" type="submit" className="welcome">Войти</button>
                     <span id="serverError" aria-live="polite"/>
-                </div>
+                </form>
 
             </div>
 

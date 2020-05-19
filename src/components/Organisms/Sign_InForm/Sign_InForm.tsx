@@ -35,22 +35,22 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
 
     }
 
-    submitBtnHandler = async () => {
+    submitBtnHandler = async (event: any) => {
         const allValid = this.state.email.valid && this.state.password.valid
 
         if (!allValid) {
 
         } else {
             console.log("запрос")
-
-            const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
-                if (response.ok) {
-                    document.location.href = document.referrer || "/"
-                } else {
-                    response.text().then(this.errorHandler)
-                }
-            }
-            await post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
+            event.preventDefault()
+            // const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
+            //     if (response.ok) {
+            //         document.location.href = document.referrer || "/"
+            //     } else {
+            //         response.text().then(this.errorHandler)
+            //     }
+            // }
+            // await post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
 
         }
 
@@ -62,15 +62,15 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
 
         return (
             <div className="inputForm">
-                <div className="reg">
+                <form className="reg" onSubmit={this.submitBtnHandler}>
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
                            validateFunc={this.handleUserInput} value={fd.password.value} text={v!.password.error_str}/>
 
-                    <button id="submit" onClick={this.submitBtnHandler} className="welcome">Войти</button>
+                    <button id="submit" type="submit" className="welcome">Войти</button>
                     <span id="serverError" aria-live="polite"/>
-                </div>
+                </form>
             </div>
 
         )
