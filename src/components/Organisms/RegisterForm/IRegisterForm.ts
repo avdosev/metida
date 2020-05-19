@@ -8,7 +8,6 @@ interface IProps {
 
 
 interface IState extends IIState {
-    validators?: Validators;
     repassword: Field,
     login: Field,
     email: Field,
