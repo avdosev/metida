@@ -37,6 +37,7 @@ export default class Sign_In extends React.Component<IProps, IState> {
                     "EventError": "Вводи почту правильно",
                     "regexp": ".+@.+\\..+"
                 },
+                
                 "password": {
                     "error_str": "Пароль должен содержать более 5 символов",
                     "EventError": "EventErrorPassword",

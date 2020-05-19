@@ -2,19 +2,23 @@ import React from "react";
 import FormError from "../../Atoms/FormError/FormError";
 import {Field, IIState} from "../../Pages/Auth/IAuth";
 import {Validators} from "../../Pages/Auth/IValidators";
+import FieldInput from "../../Atoms/Field/Field";
 
 interface FieldDescription {
     regexp: string,
     EventError: string,
     error_str: string
 }
+
 interface AbsFD {
     [fieldName: string]: FieldDescription,
+
     //[Symbol.iterator](): IterableIterator<FieldDescription>;
 }
 
 interface IState {
     validators?: Validators;
+
     [fieldName: string]: any,
 }
 
@@ -45,7 +49,6 @@ export default class Form extends React.Component<IProps, IState> {
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
-        console.log(this.state)
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
@@ -62,22 +65,16 @@ export default class Form extends React.Component<IProps, IState> {
         let fieldsSet: Array<JSX.Element> = []
 
         for (const field in this.props.fieldDescription) {
-            const elem =
-                <>
-                    <p>{field} </p>
-                    <input id={field}
-                           type={field}
-                           name={field}
-                           placeholder={field}
-                           required
-                           pattern={this.props.fieldDescription[field].regexp}
-                           onChange={this.handleUserInput}
-                           value={this.state[field].value}
-                    />
-
-                    <FormError valid={this.state[field].valid}
-                               text={this.props.fieldDescription[field].error_str}/>
-                </>
+            const elem = <>
+                <FieldInput
+                    fieldName={field}
+                    regexp={this.state[field].regexp}
+                    validateFunc={this.handleUserInput}
+                    value={this.state[field].value}
+                />
+                <FormError valid={this.state[field].valid}
+                           text={this.props.fieldDescription[field].error_str}/>
+            </>
             fieldsSet.push(elem)
 
         }
