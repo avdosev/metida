@@ -4,7 +4,11 @@ import "../../lenta.css"
 import "../../colors.css"
 import {Post} from "../../Atoms/Post/Post.jsx"
 import {get, post} from "../../Router";
-import Lenta from "../../Molecules/Feed/Lenta";
+import Feed from "../../Molecules/Feed/Feed";
+import SimplePage from "../../Templates/SimplePage";
+import Header from "../../Molecules/Header/Header";
+import Sign_InForm from "../../Organisms/Sign_InForm/Sign_InForm";
+import Footer from "../../Organisms/Footer/Footer";
 
 
 interface IProps {
@@ -58,20 +62,21 @@ export default class Index extends React.Component<IProps, IState> {
 
 
     render() {
-        return (
+        return (<SimplePage header={<Header />} content={
             <div className="layout_body">
-                <div className="content.content">
-                    <h1>Умная лента</h1>
-                    <hr className="head"/>
-                    <Lenta>
-                        <div className="post">
-                            {this.state.lenta}
-                        </div>
-                    </Lenta>
-                    <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
-                </div>
+            <div className="content.content">
+                <h1>Умная лента</h1>
+                <hr className="head"/>
+                <Feed>
+                    <div className="post">
+                        {this.state.lenta}
+                    </div>
+                </Feed>
+                <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
             </div>
-        )
+        </div>
+        }
+                            footer={<Footer/>} />)
     }
 
 

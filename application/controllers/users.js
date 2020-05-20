@@ -1,7 +1,7 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
-import bCrypt from 'bcryptjs';
+import bCrypt from 'bcrypt';
 const { validationResult } = require('express-validator/check');
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";

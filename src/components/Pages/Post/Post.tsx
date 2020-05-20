@@ -5,10 +5,16 @@ import "./post.css"
 import "../../comments.css"
 import { highlightArrayOfCodeElems } from "./highlighter.js";
 import { refreshComments, responseComment, getArticleId } from './comments.js';
+import SimplePage from "../../Templates/SimplePage";
+import Header from "../../Molecules/Header/Header";
+import RegisterForm from "../../Organisms/RegisterForm/RegisterForm";
+import Footer from "../../Organisms/Footer/Footer";
 
 
 interface IProps {
-
+    name: string,
+    disclaimer: string,
+    text: string
 }
 
 interface IState {
@@ -33,23 +39,24 @@ export default class Post extends React.Component<IProps, IState>{
     }
 
     render() {
-        return (
-            <div className="layout_body">
-                <div className="content">
-                    <button className="deleteAricleLink">Удалить статью</button>
-                    <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
-                    <article className="post_text">
-                        <h1></h1>
-                    </article>
-                    <div className="comments_lenta onfullwidth" id="comments">
-                        <h3>Комментарии:</h3>
-                    </div>
-                    <div className="new_comment_block">
-                        <p>Зарегистрируйся, если хочешь оставить коммент</p>
-                    </div>
+        return (<SimplePage header={<Header />} content={ <div className="layout_body">
+            <div className="content">
+                <button className="deleteAricleLink">Удалить статью</button>
+                <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
+                <article className="post_text">
+                    <h1>{this.props.name}</h1>
+                    {this.props.disclaimer}
+                    {this.props.text}
+                </article>
+                <div className="comments_lenta onfullwidth" id="comments">
+                    <h3>Комментарии:</h3>
+                </div>
+                <div className="new_comment_block">
+                    <p>Зарегистрируйся, если хочешь оставить коммент</p>
                 </div>
             </div>
-        );
+        </div>} footer={<Footer/>} />)
+
     }
 }
 
