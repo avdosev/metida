@@ -4,7 +4,6 @@ import React from "react";
 
 export function Post(props) {
     const url = `/post/${props.json.id}`;
-    //console.log(props.json.disclaimer)
 
     const htmlPost =
         <div className="post">

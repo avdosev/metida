@@ -17,7 +17,7 @@ interface IProps {
 
 interface IState {
     json: object,
-    lenta: object
+    lenta: Array<JSX.Element>
 }
 
 
@@ -28,7 +28,7 @@ export default class Index extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
-        this.state = {json: {}, lenta: <></>}
+        this.state = {json: {}, lenta: []}
     }
 
     getArticle = async (articlesCount = 0) => {
@@ -44,10 +44,12 @@ export default class Index extends React.Component<IProps, IState> {
             }
         }
 
-        let lenta = []
+        let lenta = this.state.lenta
         for (const post of json) {
             lenta.push(<Post json={post}/>)
         }
+
+
         this.setState({lenta: lenta})
 
         this.currentCountOfArticles += json.length;
@@ -62,21 +64,21 @@ export default class Index extends React.Component<IProps, IState> {
 
 
     render() {
-        return (<SimplePage header={<Header />} content={
+        return (<SimplePage header={<Header/>} content={
             <div className="layout_body">
-            <div className="content.content">
-                <h1>Умная лента</h1>
-                <hr className="head"/>
-                <Feed>
-                    <div className="post">
-                        {this.state.lenta}
-                    </div>
-                </Feed>
-                <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
+                <div className="content.content">
+                    <h1>Умная лента</h1>
+                    <hr className="head"/>
+                    <Feed>
+                        <div className="post">
+                            {this.state.lenta}
+                        </div>
+                    </Feed>
+                    <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
+                </div>
             </div>
-        </div>
         }
-                            footer={<Footer/>} />)
+                            footer={<Footer/>}/>)
     }
 
 
