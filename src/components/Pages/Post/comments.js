@@ -6,9 +6,8 @@ import { showError, hideError, checkValidationWithRegExp } from "../input_error.
  * из данных в хтмл/url получаем айдишник статьи
  */
 export function getArticleId() {
-    const post = document.querySelector('.post_text');
-    const id = post.id;
-    return id;
+    const url = window.location.href.split("/")
+    return  url[url.length-1]
 }
 
 /**

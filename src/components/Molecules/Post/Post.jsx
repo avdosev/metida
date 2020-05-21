@@ -6,7 +6,7 @@ export function Post(props) {
     const url = `/post/${props.json.id}`;
 
     const htmlPost =
-        <div className="post">
+        <div key={props.json.id} className="post">
             <div className="title">
                 <Link to={url}>
                     <h3 dangerouslySetInnerHTML={{__html: props.json.header}} />

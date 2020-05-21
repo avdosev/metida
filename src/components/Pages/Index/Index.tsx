@@ -2,7 +2,7 @@ import React from "react";
 import "../../main.css"
 import "../../lenta.css"
 import "../../colors.css"
-import {Post} from "../../Atoms/Post/Post.jsx"
+import {Post} from "../../Molecules/Post/Post.jsx"
 import {get, post} from "../../Router";
 import Feed from "../../Molecules/Feed/Feed";
 import SimplePage from "../../Templates/SimplePage";
@@ -46,7 +46,7 @@ export default class Index extends React.Component<IProps, IState> {
 
         let lenta = this.state.lenta
         for (const post of json) {
-            lenta.push(<Post json={post}/>)
+            lenta.push(<Post key={post.id} json={post}/>)
         }
 
 
