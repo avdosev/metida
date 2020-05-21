@@ -9,20 +9,27 @@ import SimplePage from "../../Templates/SimplePage";
 import Header from "../../Molecules/Header/Header";
 import RegisterForm from "../../Organisms/RegisterForm/RegisterForm";
 import Footer from "../../Organisms/Footer/Footer";
+import {logger} from "sequelize/types/lib/utils/logger";
+import {get} from "../../Router";
 
 
 interface IProps {
+
+}
+
+interface IState {
     name: string,
     disclaimer: string,
     text: string
 }
 
-interface IState {
 
-}
+export default class PostPage extends React.Component<IProps, IState>{
+    constructor(props: IProps) {
+        super(props);
+        this.state = {name: '', text: '', disclaimer: ''}
 
-
-export default class Post extends React.Component<IProps, IState>{
+    }
     deleteArticle = async () => {
         const res = await fetch(`/api/post/${getArticleId()}`, {
             method: "delete"
@@ -38,15 +45,22 @@ export default class Post extends React.Component<IProps, IState>{
         throw new Error('not implemented');
     }
 
+    async componentDidMount() {
+        const article = await get(`/api/post/${getArticleId()}`)
+        console.log(article)
+        this.setState({...article})
+    }
+
     render() {
+        console.log(this.props)
         return (<SimplePage header={<Header />} content={ <div className="layout_body">
             <div className="content">
-                <button className="deleteAricleLink">Удалить статью</button>
+                <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
                 <article className="post_text">
-                    <h1>{this.props.name}</h1>
-                    {this.props.disclaimer}
-                    {this.props.text}
+                    <h1>{this.state.name}</h1>
+                    {this.state.disclaimer}
+                    {this.state.text}
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>

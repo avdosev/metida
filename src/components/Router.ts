@@ -2,16 +2,26 @@ import { serverUri } from "./config";
 
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
-    const options = {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ...data
-        })
+    let response;
+    if (method == "post") {
+        const options = {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...data
+            })
+        }
+        response = await fetch(serverUri + url, options);
+
     }
-    const response = await fetch(serverUri + url, options);
+    else {
+        response = await fetch(serverUri + url);
+
+    }
+
+
 
     if (!!callback) { // тут тип ты можешь сделать свой анализ запроса
         return callback(response)
