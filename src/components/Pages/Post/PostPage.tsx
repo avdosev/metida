@@ -18,16 +18,16 @@ interface IProps {
 }
 
 interface IState {
-    name: string,
+    header: string,
     disclaimer: string,
-    text: string
+    content: string
 }
 
 
 export default class PostPage extends React.Component<IProps, IState>{
     constructor(props: IProps) {
         super(props);
-        this.state = {name: '', text: '', disclaimer: ''}
+        this.state = {header: '', content: '', disclaimer: ''}
 
     }
     deleteArticle = async () => {
@@ -47,8 +47,8 @@ export default class PostPage extends React.Component<IProps, IState>{
 
     async componentDidMount() {
         const article = await get(`/api/post/${getArticleId()}`)
-        console.log(article)
-        this.setState({...article})
+        this.setState({name: article.name, ...article})
+        console.log(this.state)
     }
 
     render() {
@@ -58,9 +58,9 @@ export default class PostPage extends React.Component<IProps, IState>{
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
                 <article className="post_text">
-                    <h1>{this.state.name}</h1>
-                    {this.state.disclaimer}
-                    {this.state.text}
+                    <h1 dangerouslySetInnerHTML={{__html: this.state.header}} />
+                    <p dangerouslySetInnerHTML={{__html: this.state.disclaimer}} />
+                    <p dangerouslySetInnerHTML={{__html: this.state.content}} />
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
