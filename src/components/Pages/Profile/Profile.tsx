@@ -8,7 +8,37 @@ interface IProps {
     username: string
 }
 
+export function getUsername() {
+    const url = window.location.href.split("/")
+    return  url[url.length-1]
+}
+
 export default class Profile extends React.Component<IProps, IState> {
+    getArticles() {
+        fetch(`/api/author/${getUsername()}`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(value => {
+            console.log(value)
+            return value.json()
+        }).then((json => {
+            const insertElem = document.querySelector('.lenta')
+            const articles = json.articles;
+            for (let i = 0; i < articles.length; i++) {
+                if (articles[i] == undefined) {
+                    console.error("Все");
+                    break
+                }
+                //insertPostPreview(articles[i], insertElem);
+            }
+        })).catch(error => {
+            console.error(error);
+        })
+    }
+
+
     render() {
         return (
             <div className="layout_body">
