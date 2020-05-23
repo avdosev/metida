@@ -5,3 +5,5 @@ package-lock.json
 *.sql
 
 .env
+
+src/components/Pages/TemplateClass.tsx
