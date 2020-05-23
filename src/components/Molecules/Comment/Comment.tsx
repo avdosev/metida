@@ -31,6 +31,7 @@ export function Comment(props: IProps) {
                 <button className="updateComment GreyButton">Редактировать</button>
                 <button className="removeComment GreyButton">Удалить</button>
             </div>
+            <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text" />
 
         </div>;
 
