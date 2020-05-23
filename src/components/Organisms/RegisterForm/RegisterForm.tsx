@@ -3,7 +3,7 @@ import "../../main.css"
 import "../../input.css"
 import {IProps, IState} from "./IRegisterForm";
 import {post} from "../../Router";
-import Field from "../../Atoms/Field/Field";
+import Field from "../../Molecules/Field/Field";
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {

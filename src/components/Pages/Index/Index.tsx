@@ -4,7 +4,7 @@ import "../../lenta.css"
 import "../../colors.css"
 import {Post} from "../../Molecules/Post/Post.jsx"
 import {get, post} from "../../Router";
-import Feed from "../../Molecules/Feed/Feed";
+import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Sign_InForm from "../../Organisms/Sign_InForm/Sign_InForm";
@@ -29,6 +29,8 @@ export default class Index extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {json: {}, lenta: []}
+        document.title = "Metida";
+
     }
 
     getArticle = async (articlesCount = 0) => {

@@ -1,25 +1,14 @@
 import {DateToStr} from "../../Pages/Post/dateRU";
 import React from "react";
 import {Link} from "react-router-dom";
-
-/**
- * Вставка комментария в хтмл
- * @param {*} objComment
- * @param {*} insertedElem
- */
+import {IComments} from "../../IComment";
 
 interface IProps {
-    comments: {
-        user: { username: string },
-        text: string,
-        id: number,
-        createdAt: Date,
-    }
-
+    comment: IComments
 }
 
 export function Comment(props: IProps) {
-    const comment = props.comments
+    const comment = props.comment
     const date = new Date(comment.createdAt);
     const DateStr = DateToStr(date);
     // TODO отрефакторить, мне пока лень разбираться в логике выдачи стилей по классам
@@ -42,7 +31,6 @@ export function Comment(props: IProps) {
                 <button className="updateComment GreyButton">Редактировать</button>
                 <button className="removeComment GreyButton">Удалить</button>
             </div>
-            <div className="comment_text"><p dangerouslySetInnerHTML={{__html: comment.text}} />  </div>
 
         </div>;
 

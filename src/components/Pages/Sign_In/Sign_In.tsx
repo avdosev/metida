@@ -5,6 +5,8 @@ import Header from "../../Molecules/Header/Header";
 import Footer from "../../Organisms/Footer/Footer";
 
 export default function SignIn() {
+    document.title = "Sign in";
+
     return (<SimplePage header={<Header />} content={<Sign_InForm />} />)
 
 }

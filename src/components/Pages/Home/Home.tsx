@@ -1,6 +1,7 @@
 import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
+import Field from "../../Molecules/Field/Field";
 
 export default function Home() {
     return (<SimpleTemplate header={<Header />} content={
@@ -11,7 +12,6 @@ export default function Home() {
             <h5>Поменять данные в бд</h5>
             <div className="inputForm">
                 <form className="reg" action="/update" method="post" name="update">
-
                     <label>
                         <input id="email" type="email" name="email" placeholder="Type email" required
                                pattern="^\w+@\w+\.\w+$" />
