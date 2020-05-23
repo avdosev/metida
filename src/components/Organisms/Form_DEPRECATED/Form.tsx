@@ -1,6 +1,6 @@
 import React from "react";
 import {IProps, IState} from "./IForm";
-import Field from "../../Atoms/Field/Field";
+import Field from "../../Molecules/Field/Field";
 
 
 export default class Form extends React.Component<IProps, IState> {

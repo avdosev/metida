@@ -4,6 +4,8 @@ import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 
 export default function Register() {
+    document.title = "Register";
+
     return (<SimplePage header={<Header />} content={<RegisterForm />} />)
 
 }

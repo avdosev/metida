@@ -10,8 +10,9 @@ import Header from "../../Molecules/Header/Header";
 import RegisterForm from "../../Organisms/RegisterForm/RegisterForm";
 import Footer from "../../Organisms/Footer/Footer";
 import {get} from "../../Router";
-import CommentLenta from "../../Molecules/CommentLenta/CommentLenta";
-import {Comment} from "../../Atoms/Comment/Comment";
+import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
+import {Comment} from "../../Molecules/Comment/Comment";
+import {IComments} from "../../IComment";
 
 interface IProps {
 
@@ -21,7 +22,7 @@ interface IState {
     header: string,
     disclaimer: string,
     content: string,
-    comments: Array<JSX.Element>
+    comments: Array<IComments>
 }
 
 
@@ -51,37 +52,15 @@ export default class PostPage extends React.Component<IProps, IState> {
         const article = await get(`/api/post/${getArticleId()}`)
         this.setState({...article})
 
+        document.title = this.state.header;
         let comments = await loadComments(getArticleId())
-        let lenta = []
-        console.log(comments)
-        comments = comments.sort((a: any, b: any) => {
-            if (a.id < b.id) {
-                return -1;
-            }
-            if (a.id > b.id) {
-                return 1;
-            }
-            return 0
-        })
-        console.log(comments)
 
-        for (const comment of comments) {
-            if (comment.answeringId === null) {
-                lenta.push(<Comment key={comment.id} comments={comment}/>)
-            } else {
-                const IdChildElem = `#child_comment_${comment.answeringId}`
-                lenta.push(<div className="comment_childer" id={IdChildElem}><Comment key={comment.id}
-                                                                                      comments={comment}/></div>)
-            }
-        }
-
-        this.setState({comments: lenta})
+        this.setState({comments: comments})
     }
 
 
 
     render() {
-        console.log(this.props)
         return (<SimplePage header={<Header/>} content={<div className="layout_body">
             <div className="content">
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
@@ -93,9 +72,8 @@ export default class PostPage extends React.Component<IProps, IState> {
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
-                    <CommentLenta>
-                        {this.state.comments}
-                    </CommentLenta>
+                    <CommentLenta comments={this.state.comments}/>
+
                 </div>
                 <div className="new_comment_block">
                     <p>Зарегистрируйся, если хочешь оставить коммент</p>
@@ -105,39 +83,3 @@ export default class PostPage extends React.Component<IProps, IState> {
 
     }
 }
-
-// document.addEventListener('DOMContentLoaded', start);
-//
-// async function start() {
-//     const codeElems = document.querySelectorAll('code');
-//     highlightArrayOfCodeElems(codeElems);
-//
-//     const commentError = document.querySelector('.commentError');
-//     const comment = document.querySelector('.comment_area') //я не могу с жить с ошибкой
-//     const sendCommentBtn = document.querySelector(".EnterButton")
-//
-//     refreshComments(getArticleId())
-//
-//     const validators = await fetch('/public/json/input_errors.json').then(response => {
-//         if (response.ok)
-//             return response.json()
-//         else
-//             console.log('с джсоном какая то проблема', response)
-//     });
-//
-//     if (sendCommentBtn) sendCommentBtn.addEventListener("click", (event) => {
-//         if ( !comment.value.match(validators.comment.regexp)  )  {
-//             commentError.innerHTML = validators.comment.EventError[0];
-//             commentError.className = 'commentError error active';
-//             //не пускаем его дальше
-//         } else {
-//             responseComment(getArticleId(), comment.value)
-//         }
-//     });
-//
-//     if (comment) comment.addEventListener('input', () => {
-//             checkValidationWithRegExp(comment, commentError, validators.comment)
-//         },
-//         false
-//     );
-//};
