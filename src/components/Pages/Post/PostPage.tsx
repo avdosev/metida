@@ -5,7 +5,7 @@ import "./post.css"
 import "../../comments.css"
 import {highlightArrayOfCodeElems} from "./highlighter.js";
 import {getArticleId, loadComments} from './comments.js';
-import SimplePage from "../../Templates/SimplePage";
+import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import RegisterForm from "../../Organisms/RegisterForm/RegisterForm";
 import Footer from "../../Organisms/Footer/Footer";

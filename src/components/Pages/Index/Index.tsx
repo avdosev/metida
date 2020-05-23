@@ -5,7 +5,7 @@ import "../../colors.css"
 import {Post} from "../../Molecules/Post/Post.jsx"
 import {get, post} from "../../Router";
 import Feed from "../../Molecules/Feed/Feed";
-import SimplePage from "../../Templates/SimplePage";
+import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Sign_InForm from "../../Organisms/Sign_InForm/Sign_InForm";
 import Footer from "../../Organisms/Footer/Footer";

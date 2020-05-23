@@ -9,6 +9,7 @@ import SignIn from "./Pages/Sign_In/Sign_In";
 import Register from "./Pages/Register/Register";
 import PostPage from "./Pages/Post/PostPage";
 import Profile from "./Pages/Profile/Profile";
+import Home from "./Pages/Home/Home";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Router>
             <React.StrictMode>
                 <Switch>
+                    <Route path={ROUTES.HOME} component={Home} />
                     <Route path={ROUTES.PROFILE} component={Profile}/>
                     <Route path={ROUTES.POST} component={PostPage}/>
                     <Route path={ROUTES.SIGN_IN} component={SignIn}/>
