@@ -13,3 +13,5 @@ export default class TemplateClass extends React.Component<IProps, IState> {
         return undefined;
     }
 }
+
+//TODO убрать отсюда
