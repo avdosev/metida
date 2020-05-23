@@ -3,12 +3,15 @@ import {Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../../IComment";
 
 
-
 interface IProps {
     comments: Array<IComments>
 }
 
+
 export default function CommentLenta(props: IProps) {
+    console.log(props.comments)
+
+
     return (<div className="lenta">
         {props.comments.map(comment => (
             <>
