@@ -4,7 +4,7 @@ import config from "../config/index.js"
 //топовая проверка на допуск юзера до страницы(но другая)
 export function verifyToken (req, res, next)  {
     let token = req.headers["x-access-token"];
-
+    console.log(token)
     if (!token) {
         return res.status(403).send({
             message: "No token provided!"
@@ -18,7 +18,9 @@ export function verifyToken (req, res, next)  {
             });
         }
         req.userId = decoded.id;
-        next();
+        res.status(200).send({
+            message: "Success"
+        })
     });
 }
 
