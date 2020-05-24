@@ -57,11 +57,10 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                 if (response.ok) {
                     return response.json()
                 } else {
-                    return response.text().then(this.errorHandler)
+                    response.text().then(this.errorHandler)
                 }
             }
             const res = await post("/register", {email: this.state.email.value, password: this.state.password.value}, mycallback)
-
             localStorage.setItem("user", JSON.stringify(res))
             document.location.href = document.referrer || "/"
 

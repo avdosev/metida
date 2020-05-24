@@ -54,7 +54,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             const res = await post("/sign_In", {email: this.state.email.value, password: this.state.password.value}, mycallback)
             
             localStorage.setItem("user", JSON.stringify(res))
-            document.location.href = document.referrer || "/"
+            document.location.href = "/"
 
         }
 

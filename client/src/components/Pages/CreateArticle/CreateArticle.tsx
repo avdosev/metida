@@ -1,6 +1,4 @@
 import React from "react";
-import SimpleTemplate from "../../Templates/SimpleTemplate";
-import Header from "../../Molecules/Header/Header";
 //import "./create_article.css"
 
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
@@ -14,7 +12,7 @@ interface IState {
 
 }
 
-export default class CreateArticle extends React.Component<IProps, IState> {
+export default class CreateArticle  extends React.Component<IProps, IState>  {
     constructor(props: IProps) {
         super(props);
 
@@ -22,12 +20,12 @@ export default class CreateArticle extends React.Component<IProps, IState> {
 
     async componentDidMount() {
         const validators = await
-            fetch('/public/json/input_errors.json').then(response => {
-                if (response.ok)
-                    return response.json()
-                else
-                    console.log('с джсоном какая то проблема', response)
-            })
+        fetch('/public/json/input_errors.json').then(response => {
+            if (response.ok)
+                return response.json()
+            else
+                console.log('с джсоном какая то проблема', response)
+        })
 
     }
 
@@ -61,13 +59,12 @@ export default class CreateArticle extends React.Component<IProps, IState> {
     // }
 
     render() {
-        return (<SimpleTemplate header={<Header />} content={<>
+        return (<>
                 <script type="text/javascript"
                         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
                         async/>
                 <h3>Заголовок:</h3>
-                <input type="text" id="header" name="header"
-                       placeholder="Заголовок должен передавать основной смысл публикации."
+                <input type="text" id="header" name="header" placeholder="Заголовок должен передавать основной смысл публикации."
                        value="" minLength={5}/>
                 <span className="headerError" aria-live="polite"/>
                 <h3>Дисклеймер:</h3>
@@ -78,11 +75,9 @@ export default class CreateArticle extends React.Component<IProps, IState> {
 
                 <textarea className="create_area" id="article" placeholder="Текст вашей статьи..." name="art"/>
                 <span className="contentError" aria-live="polite"/>
-                <button id="submit" className="Btn"> Отправить</button>
+                <button id="submit" className="Btn"> Отправить </button>
+
             </>
-            }/>
-
-
         )
     }
 }
