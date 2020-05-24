@@ -1,4 +1,7 @@
-import * as nodemail from 'nodemailer';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
+const nodemail = require('nodemailer'); //только так, они не поддерживают модули
 import config from "../config/index.js";
 
 export default (email, subject, message) => {
@@ -9,7 +12,7 @@ export default (email, subject, message) => {
         subject: subject, //заголовок
         html: message
     };
-    
+
     nodemail.createTransport({ //посмотрим, сработает ли на проде
         service: 'Gmail',
         auth: {

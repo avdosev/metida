@@ -42,7 +42,7 @@ export default function Home() {
                     </label>
 
                     <label>
-                        <input id="password" type="password" name="password" placeholder="Type new password"
+                        <input id="newpassword" type="password" name="password" placeholder="Type new password"
                                pattern=".{5,}" />
                             New password
                     </label>
