@@ -4,6 +4,7 @@ import "../../input.css"
 import {IProps, IState} from  "./ISign_InForm"
 import Field from "../../Molecules/Field/Field";
 import {post} from "../../Router";
+import {findRenderedDOMComponentWithTag} from "react-dom/test-utils";
 
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
@@ -43,14 +44,17 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         } else {
             console.log("запрос")
             event.preventDefault()
-            // const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
-            //     if (response.ok) {
-            //         document.location.href = document.referrer || "/"
-            //     } else {
-            //         response.text().then(this.errorHandler)
-            //     }
-            // }
-            // await post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
+            const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    return response.text().then(this.errorHandler)
+                }
+            }
+            const res = await post("/sign_In", {email: this.state.email.value, password: this.state.password.value}, mycallback)
+            
+            localStorage.setItem("user", JSON.stringify(res))
+            document.location.href = document.referrer || "/"
 
         }
 

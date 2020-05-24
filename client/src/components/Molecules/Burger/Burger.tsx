@@ -2,9 +2,9 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "./Burger.css"
 
-function BurgerImage(props: {toggleMethod: (event: any) => void}) {
+function BurgerImage(props: { toggleMethod: (event: any) => void }) {
     return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
-             src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'}/>)
+                 src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'}/>)
 }
 
 export default function Burger(props: { authorised: boolean }) {
@@ -22,20 +22,36 @@ export default function Burger(props: { authorised: boolean }) {
         }
     }
 
-    const authorised = <nav></nav>
+    let buttons: JSX.Element
+    if (props.authorised) {
+        buttons =
+            <>
+                <li><Link className="BlackButton" id="createArticle" to="/createArticle">Написать</Link></li>
+                <li><Link className="BlackButton" id="home" to="/home">Профиль</Link></li>
+                <li><Link className="GreyButton" id="logout" to="/logout">Выйти</Link></li>
+            </>
+    // мне кажется, выйти не должна быть ссылкой, мы же не рендерим что-то
 
-    const notAuthorised = <nav>
+    } else {
+        buttons =
+            <>
+                <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
+                <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
+            </>
+    }
+
+
+    const burger = <nav>
         <ul className="topmenu">
             <li>
-                <BurgerImage toggleMethod={toggleSubmenu} />
+                <BurgerImage toggleMethod={toggleSubmenu}/>
                 <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
-                    <li><Link className="GreyButton" id="signIn" to="/sign_In">Войти</Link></li>
-                    <li><Link className="BlackButton" id="register" to="/register">Регистрация</Link></li>
+                    {buttons}
                 </ul>
             </li>
         </ul>
     </nav>
 
 
-    return (props.authorised ? authorised : notAuthorised)
+    return (burger)
 }

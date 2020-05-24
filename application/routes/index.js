@@ -7,19 +7,16 @@ import {
     articleValidator
 } from '../services/validator.js';
 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import * as Handler from '../controllers/request_handler/index.js';
 import * as Response from '../controllers/respondent.js';
 
-//  проверка логирования
-import { isLoggedIn, loggedCheker } from '../controllers/logged.js';
 
 import ApiRouterCreator from './api.js';
 import {registrationUser, signinUser} from "../controllers/users.js";
+import {verifyToken} from "../controllers/logged.js";
 
 const ApiRouter = ApiRouterCreator();
 
@@ -39,14 +36,14 @@ const initAuthControllers = (app) => {
     
     app.get('/post/:id/non_parsed', Handler.getArticle, Response.jsonValue('article'));
     app.post('/post/:id/update', Handler.updateArticle, Response.jsonValuesWith(['success']))
-    app.post('/post/:id/delete', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
+    app.post('/post/:id/delete', verifyToken, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
     app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonValue('TopArticles'))
-    app.post('/createArticle', isLoggedIn, urlencodedParser, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
+    app.post('/createArticle', verifyToken, urlencodedParser, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
     
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     
     app.get('/post/:id/comments', urlencodedParser, Handler.getComments, Response.jsonValue("comments"));
-    app.post('/post/:id/pushComment', isLoggedIn, urlencodedParser, Handler.pushComment, Response.jsonValuesWith(['success']));
+    app.post('/post/:id/pushComment', verifyToken, urlencodedParser, Handler.pushComment, Response.jsonValuesWith(['success']));
     
     // -- FILE API --
 
@@ -60,28 +57,9 @@ const initAuthControllers = (app) => {
     
     // -- (L)USERS API --
 
-    app.post(
-        '/register',
-        urlencodedParser,
-        userCreateValidator,
-        registrationUser
-        // passport.authenticate('local-signup', {
-        //     successRedirect: '/',
-        //     failureRedirect: '/register'
-        // }),
-    );
+    app.post('/register', urlencodedParser, userCreateValidator, registrationUser);
 
-    app.post(
-        '/sign_In',
-        urlencodedParser,
-        userLoginValidator,
-        signinUser
-
-        // passport.authenticate('local-signin', {
-        //     successRedirect: '/',
-        //     failureRedirect: '/sign_In'
-        // })
-    );
+    app.post('/sign_In', urlencodedParser, userLoginValidator, signinUser);
 
 
 };
