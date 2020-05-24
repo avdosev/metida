@@ -2,7 +2,7 @@
   "name": "metida",
   "version": "0.2.0",
   "description": "Small blog-platform",
-  "main": "application/app.js",
+  "main": "app.js",
   "type": "module",
   "repository": {
     "type": "git",
@@ -18,9 +18,7 @@
   },
   "scripts": {
     "test": "npm run inspect:allConcurency",
-    "serve": "react-scripts start",
-    "build": "tsc && react-scripts build",
-    "start": "nodemon application/app.js",
+    "start": "nodemon app.js",
     "lintFixWarnings": "eslint \"./**/*.js\" --fix",
     "inspect:lint": "eslint \"./**/*.js\" ",
     "inspect:mocha": "./node_modules/mocha/bin/mocha ",
@@ -36,32 +34,13 @@
     "express-session": "^1.15.0",
     "express-validator": "^5.3.1",
     "markdown-it": "^8.4.2",
-    "mysql2": "^1.6.5",
+    "mysql2": "^2.0.1",
     "nodemailer": "^6.1.1",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
     "sequelize": "^5.7.4",
-    "sequelize-cli": "^5.4.0",
-    "typescript": "^3.9.2",
-    "webpack": "=4.42.0"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
+    "sequelize-cli": "^5.4.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "concurrently": "^4.1.1",
@@ -69,10 +48,6 @@
     "eslint": "^6.6.0",
     "lorem-ipsum": "^2.0.2",
     "mocha": "^6.1.4",
-    "prettier": "1.17.0",
-    "@types/dotenv": "^8.2.0",
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5"
+    "prettier": "1.17.0"
   }
 }

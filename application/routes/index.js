@@ -19,10 +19,11 @@ import * as Response from '../controllers/respondent.js';
 import { isLoggedIn, loggedCheker } from '../controllers/logged.js';
 
 import ApiRouterCreator from './api.js';
+import {registrationUser, signinUser} from "../controllers/users.js";
 
 const ApiRouter = ApiRouterCreator();
 
-const initAuthControllers = (app, passport) => {
+const initAuthControllers = (app) => {
     app.use(cors());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
@@ -58,25 +59,28 @@ const initAuthControllers = (app, passport) => {
     app.get("/emailConfirmed/:email", Response.renderPage.emailConfirmed) //для того, чтобы пользователь увидел успешное сообщение
     
     // -- (L)USERS API --
-   
+
     app.post(
         '/register',
         urlencodedParser,
         userCreateValidator,
-        passport.authenticate('local-signup', {
-            successRedirect: '/',
-            failureRedirect: '/register'
-        }),
+        registrationUser
+        // passport.authenticate('local-signup', {
+        //     successRedirect: '/',
+        //     failureRedirect: '/register'
+        // }),
     );
 
     app.post(
-        '/sign_In', 
+        '/sign_In',
         urlencodedParser,
         userLoginValidator,
-        passport.authenticate('local-signin', {
-            successRedirect: '/',
-            failureRedirect: '/sign_In'
-        })
+        signinUser
+
+        // passport.authenticate('local-signin', {
+        //     successRedirect: '/',
+        //     failureRedirect: '/sign_In'
+        // })
     );
 
 
