@@ -7,6 +7,12 @@ import {
 import Burger from "../Burger/Burger";
 
 export default function Header() {
+    let authButtons, notAuthButton
+    const authorised = !!localStorage.getItem('user')
+    if (localStorage.getItem('user')) { //если есть
+
+    }
+
     return (
         <header className="header">
             <div className="header_inner flex space_between_inner">
@@ -16,7 +22,8 @@ export default function Header() {
                     </Link>
                 </div>
                 <div className="regSection">
-                    <Burger authorised={false} />
+
+                    <Burger authorised={authorised} />
                 </div>
             </div>
             <hr/>

@@ -1,8 +1,7 @@
+import bCrypt from 'bcrypt';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-
-import bCrypt from 'bcrypt';
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
 import config from '../config/index.js';
@@ -29,10 +28,10 @@ function generateHash (password) {
     );
 }
 
-export async function registrationUser(req, email, password) {
-    //const res = req.res;
+export async function registrationUser(req, res, next) {
+    let {email, password, login} = req.body
 
-    const errors = validationResult(req); 
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         res.statusCode = 406;
         res.send(validators.register.validationFailed)
@@ -43,10 +42,9 @@ export async function registrationUser(req, email, password) {
         if (user) 
             throw new Error(validators.register.existedEmail);
         
-        const userPassword = generateHash(password); // зашифрованный
-        const username = req.body.login
+        const hashPassword = generateHash(password); // зашифрованный
 
-        const newUser = await UserApi.createUser(email, username, userPassword)
+        const newUser = await UserApi.createUser(email, login, hashPassword)
         
         if (!newUser) {
             throw new Error(validators.register.userNotCreated);
@@ -59,24 +57,26 @@ export async function registrationUser(req, email, password) {
             console.log(err);
         }
 
-        //done(null, newUser); //все ок
-        
+
     } catch (err) {
         res.statusCode = 406;
         res.send(err.message)
     }
 }
 
-export async function signinUser(req, res, next) { //некст нас не кинет на следующий обработчик
-    const {email, password} = req.body
+function loginUser() {
 
+}
+
+export async function signinUser(req, res, next) {
+    let {email, password} = req.body
     const isValidPassword = (userpass, password) => {
         return bCrypt.compareSync(password, userpass);
     };
 
     try {
         const user = await UserApi.getUserByEmail(email)
-        
+
         if (!user) {
             throw new Error(validators.signIn.emailNotExisted);  
         }
@@ -94,58 +94,8 @@ export async function signinUser(req, res, next) { //некст нас не ки
             accessToken:token
         })
 
-        //next(null, userinfo);
-
     } catch(err) {
         res.statusCode = 406;
         res.send(err.message)
     }
 }
-
-// const loadPassportStrategies = (passport) => {
-//     //const User = user;
-//     const LocalStrategy = require('passport-local').Strategy;
-//
-//     passport.serializeUser((user, done) => {
-//         done(null, user.id);
-//     });
-//
-//     // для логаута (камингаута)
-//     passport.deserializeUser((id, done) => {
-//         //находим юзера
-//         UserApi.getUserById(id).then(user => {
-//             done(null, user.get()); //нашли
-//         }).catch(err => {
-//             done('not found', null); //не нашли
-//         });
-//     });
-//
-//     // passport.use(
-//     //     'local-signup',
-//     //     new LocalStrategy(
-//     //         {
-//     //             usernameField: 'email',
-//     //             passwordField: 'password',
-//     //             passReqToCallback: true
-//     //         },
-//     //         registrationUser
-//     //     )
-//     // );
-//
-//     //LOCAL SIGNIN
-//     // passport.use(
-//     //     'local-signin',
-//     //     new LocalStrategy(
-//     //         {
-//     //             // by default, local strategy uses username and password, we will override with email
-//     //             usernameField: 'email',
-//     //             passwordField: 'password',
-//     //             passReqToCallback: true //позволяет нам передать весь запрос на обратный вызов
-//     //         },
-//     //         signinUser
-//     //     )
-//     // );
-//
-// };
-
-//export  {registrationUser, signinUser};

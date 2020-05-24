@@ -8,9 +8,7 @@ import {
     userLoginValidator,
     articleValidator
 } from '../services/validator.js';
-
-//  проверка логирования
-import { loggedCheker } from '../controllers/logged.js';
+import {verifyToken} from "../controllers/logged.js";
 
 // тут будет нормальное REST API
 
@@ -21,8 +19,8 @@ export default () => {
     
     router.get('/post/:id', Handler.getArticle, Response.jsonValue('article'));
     router.put('/post/:id', Handler.updateArticle, Response.jsonValuesWith(['success']))
-    router.delete('/post/:id', loggedCheker, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
-    router.post('/article', loggedCheker, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
+    router.delete('/post/:id', verifyToken, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
+    router.post('/article', verifyToken, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
     
     router.get('/top', Handler.getTopArticles, Response.jsonValue('TopArticles'))
     
@@ -30,7 +28,7 @@ export default () => {
     // я из будущего: и правильно сделал
     
     router.get ('/post/:id/comments', Handler.getComments, Response.jsonValue("comments"));
-    router.post('/post/:id/comments', loggedCheker, Handler.pushComment, Response.jsonValuesWith(['success']));
+    router.post('/post/:id/comments', verifyToken, Handler.pushComment, Response.jsonValuesWith(['success']));
     router.put ('/post/:id/comments');
 
     router.get('/author/:login', Handler.getUserInfo, Response.jsonValue('userInfo') );

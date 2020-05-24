@@ -1,8 +1,4 @@
 'use strict';
-
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
@@ -11,7 +7,7 @@ import fs from 'fs';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const Sequelize = require('sequelize');
+import Sequelize from "sequelize";
 const env = process.env.NODE_ENV || 'development';
 import databaseConfig from '../config/database.js';
 const config = databaseConfig[env];

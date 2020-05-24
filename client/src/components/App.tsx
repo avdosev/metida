@@ -10,6 +10,11 @@ import Register from "./Pages/Register/Register";
 import PostPage from "./Pages/Post/PostPage";
 import Profile from "./Pages/Profile/Profile";
 import Home from "./Pages/Home/Home";
+import CreateArticle from "./Pages/CreateArticle/CreateArticle";
+import Logout from "./Molecules/Logout/Logout";
+import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
+import {isAuth} from "./Organisms/IsAuth";
+
 
 
 function App() {
@@ -17,7 +22,10 @@ function App() {
         <Router>
             <React.StrictMode>
                 <Switch>
-                    <Route path={ROUTES.HOME} component={Home} />
+                    <Route path={ROUTES.CREATE_ARTICLE} component={CreateArticle} />
+                    <Route path={ROUTES.LOGOUT} component={Logout} />
+
+                    <PrivateRoute isAuth={isAuth()} path={ROUTES.HOME} component={Home} />
                     <Route path={ROUTES.PROFILE} component={Profile}/>
                     <Route path={ROUTES.POST} component={PostPage}/>
                     <Route path={ROUTES.SIGN_IN} component={SignIn}/>
@@ -28,5 +36,6 @@ function App() {
         </Router>
     );
 }
+
 
 export default App;

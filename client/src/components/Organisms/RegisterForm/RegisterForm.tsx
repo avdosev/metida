@@ -50,7 +50,6 @@ export default class RegisterForm extends React.Component<IProps, IState> {
     submitBtnHandler = async () => {
         const allValid = this.state.email.valid && this.state.password.valid && this.state.login.valid && this.state.repassword.valid
 
-
         if (allValid ){
             console.log("запрос")
 
@@ -61,7 +60,8 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     response.text().then(this.errorHandler)
                 }
             }
-            await post("/sign_In", {email: this.state.email, password: this.state.password}, mycallback)
+            const res = await post("/register", {email: this.state.email.value, password: this.state.password.value}, mycallback)
+
 
         }
 
@@ -84,7 +84,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp} valid={fd.repassword.valid}
                            validateFunc={this.compareRepassword} value={fd.repassword.value} text={v!.repassword.error_str}/>
 
-                    <button id="submit" type="submit" className="welcome">Войти</button>
+                    <button id="submit" type="submit" className="welcome" onClick={this.submitBtnHandler}>Войти</button>
                     <span id="serverError" aria-live="polite"/>
                 </form>
 
