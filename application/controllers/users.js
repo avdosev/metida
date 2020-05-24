@@ -1,7 +1,7 @@
 import bCrypt from 'bcrypt';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator/check');
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
 import config from '../config/index.js';
@@ -39,33 +39,46 @@ export async function registrationUser(req, res, next) {
     try {
         const user = await UserApi.getUserByEmail(email)
 
-        if (user) 
+        if (user)
             throw new Error(validators.register.existedEmail);
-        
+
         const hashPassword = generateHash(password); // зашифрованный
 
         const newUser = await UserApi.createUser(email, login, hashPassword)
-        
+
         if (!newUser) {
             throw new Error(validators.register.userNotCreated);
         }
 
         const text = config.messages.activation;
-        try {
-            mailer(email, "Confirm this email", text);
-        } catch(err) {
-            console.log(err);
-        }
+        // try {
+        //     mailer(email, "Confirm this email", text);
+        // } catch(err) {
+        //     console.log(err);
+        // }
+        const existedUser = await UserApi.getUserByEmail(email) //круто, да, что вызов дважды за функцию?
+        await loginUser(existedUser, res)
 
 
     } catch (err) {
-        res.statusCode = 406;
-        res.send(err.message)
+        res.status(406).send({
+            ...err.message
+        })
     }
+
+
 }
 
-function loginUser() {
+async function loginUser(user, res) {
+    const token = jwt.sign({id: user.id}, config.secretKey, {
+        expiresIn: 24*60*60 //сутки
+    })
 
+    const userinfo = user.get(); //ради единого интерфейса, чтобы были одни и те же данные, как и после регистрации, так и после сигн ина, сойдемся на том, что юзеры регистрируются 1 раз, а входят много, поэтому лучше сделать регистрацию немного дольше
+    res.status(200).send({
+        ...userinfo,
+        accessToken: token
+    })
 }
 
 export async function signinUser(req, res, next) {
@@ -84,15 +97,8 @@ export async function signinUser(req, res, next) {
         if (!isValidPassword(user.password, password)) {
             throw new Error(validators.signIn.incorrectPassword);
         }
-        const token = jwt.sign({id: user.id}, config.secretKey, {
-            expiresIn: 24*60*60 //сутки
-        })
 
-        const userinfo = user.get();
-        res.status(200).send({
-            ...userinfo,
-            accessToken:token
-        })
+        await loginUser(user, res)
 
     } catch(err) {
         res.statusCode = 406;

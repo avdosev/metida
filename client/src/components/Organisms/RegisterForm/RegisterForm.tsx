@@ -55,13 +55,15 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
             const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
                 if (response.ok) {
-                    document.location.href = document.referrer || "/"
+                    return response.json()
                 } else {
-                    response.text().then(this.errorHandler)
+                    return response.text().then(this.errorHandler)
                 }
             }
             const res = await post("/register", {email: this.state.email.value, password: this.state.password.value}, mycallback)
 
+            localStorage.setItem("user", JSON.stringify(res))
+            document.location.href = document.referrer || "/"
 
         }
 

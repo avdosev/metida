@@ -61,6 +61,8 @@ const initAuthControllers = (app) => {
 
     app.post('/sign_In', urlencodedParser, userLoginValidator, signinUser);
 
+    app.post('/isAuth', urlencodedParser, verifyToken)
+
 
 };
 

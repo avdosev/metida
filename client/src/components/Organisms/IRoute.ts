@@ -2,7 +2,7 @@ import React from "react";
 import {RouteProps} from "react-router-dom";
 
 interface IRoute extends RouteProps {
-    isAuth: boolean;
+    auth: () => Promise<boolean>;
     isAllowed?: boolean;
 }
 
