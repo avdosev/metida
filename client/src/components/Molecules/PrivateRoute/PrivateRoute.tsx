@@ -3,27 +3,32 @@ import { Route, Redirect } from 'react-router-dom';
 import * as ROUTES from "../../../config/routes"
 import {IRoute} from "../../Organisms/IRoute";
 
+interface IState {
+    auth: boolean,
+    requested: boolean
+}
 
-export class PrivateRoute extends React.Component<IRoute, any>{
+export class PrivateRoute extends React.Component<IRoute, IState>{
     redirectPath = ROUTES.SIGN_IN;
 
     constructor(props: IRoute) {
         super(props);
         this.state = {
-            auth: false
+            auth: false,
+            requested: false // если мы запросили значение с сервера, выставляем флаг на true
         }
     }
 
-    componentDidMount() {
-        //const auth = await this.props.isAuth()
-        //console.log(auth)
-        this.setState({auth: true})
-        //this.setState({auth: auth}, () => console.log(this.state.auth))
-
+    async componentDidMount() {
+        const auth = await this.props.isAuth()
+        this.setState({auth: auth, requested: true})
     }
 
     render() {
-        console.log(this.state)
+        if (!this.state.requested) { // это нужно для того, чтобы поддержать redirect компонент, т.к. если мы сразу отправим редирект, мы не дождемся никогда окончания работы асинхронной функции
+            return <> </>
+        }
+
         if (!this.state.auth) {
             const renderComponent = () => <Redirect to={this.redirectPath} />;
             return <Route {...this.props} component={renderComponent} render={undefined} />;

@@ -22,11 +22,11 @@ function App() {
         <Router>
             <React.StrictMode>
                 <Switch>
-                    <Route path={ROUTES.CREATE_ARTICLE} component={CreateArticle} />
                     <Route path={ROUTES.LOGOUT} component={Logout} />
 
+                    <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle} />
                     <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home} />
-                    <PrivateRoute isAuth={isAuth} path={ROUTES.PROFILE} component={Profile}/>
+                    <Route path={ROUTES.PROFILE} component={Profile}/>
                     <Route path={ROUTES.POST} component={PostPage}/>
                     <Route path={ROUTES.SIGN_IN} component={SignIn}/>
                     <Route path={ROUTES.REGISTER} component={Register}/>
