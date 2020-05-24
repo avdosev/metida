@@ -6,6 +6,7 @@ const { validationResult } = require('express-validator/check');
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
 import config from '../config/index.js';
+import jwt from "jsonwebtoken"
 
 const validators = {
     register: {
@@ -28,8 +29,8 @@ function generateHash (password) {
     );
 }
 
-async function registrationUser(req, email, password, done) {
-    const res = req.res;
+export async function registrationUser(req, email, password) {
+    //const res = req.res;
 
     const errors = validationResult(req); 
     if (!errors.isEmpty()) {
@@ -58,7 +59,7 @@ async function registrationUser(req, email, password, done) {
             console.log(err);
         }
 
-        done(null, newUser); //все ок
+        //done(null, newUser); //все ок
         
     } catch (err) {
         res.statusCode = 406;
@@ -66,8 +67,8 @@ async function registrationUser(req, email, password, done) {
     }
 }
 
-async function signinUser(req, email, password, next) { //некст нас не кинет на следующий обработчик
-    const res = req.res;
+export async function signinUser(req, res, next) { //некст нас не кинет на следующий обработчик
+    const {email, password} = req.body
 
     const isValidPassword = (userpass, password) => {
         return bCrypt.compareSync(password, userpass);
@@ -83,10 +84,17 @@ async function signinUser(req, email, password, next) { //некст нас не
         if (!isValidPassword(user.password, password)) {
             throw new Error(validators.signIn.incorrectPassword);
         }
+        const token = jwt.sign({id: user.id}, config.secretKey, {
+            expiresIn: 24*60*60 //сутки
+        })
 
         const userinfo = user.get();
-        
-        next(null, userinfo);
+        res.status(200).send({
+            ...userinfo,
+            accessToken:token
+        })
+
+        //next(null, userinfo);
 
     } catch(err) {
         res.statusCode = 406;
@@ -94,50 +102,50 @@ async function signinUser(req, email, password, next) { //некст нас не
     }
 }
 
-const loadPassportStrategies = (passport) => {
-    //const User = user;
-    const LocalStrategy = require('passport-local').Strategy;
+// const loadPassportStrategies = (passport) => {
+//     //const User = user;
+//     const LocalStrategy = require('passport-local').Strategy;
+//
+//     passport.serializeUser((user, done) => {
+//         done(null, user.id);
+//     });
+//
+//     // для логаута (камингаута)
+//     passport.deserializeUser((id, done) => {
+//         //находим юзера
+//         UserApi.getUserById(id).then(user => {
+//             done(null, user.get()); //нашли
+//         }).catch(err => {
+//             done('not found', null); //не нашли
+//         });
+//     });
+//
+//     // passport.use(
+//     //     'local-signup',
+//     //     new LocalStrategy(
+//     //         {
+//     //             usernameField: 'email',
+//     //             passwordField: 'password',
+//     //             passReqToCallback: true
+//     //         },
+//     //         registrationUser
+//     //     )
+//     // );
+//
+//     //LOCAL SIGNIN
+//     // passport.use(
+//     //     'local-signin',
+//     //     new LocalStrategy(
+//     //         {
+//     //             // by default, local strategy uses username and password, we will override with email
+//     //             usernameField: 'email',
+//     //             passwordField: 'password',
+//     //             passReqToCallback: true //позволяет нам передать весь запрос на обратный вызов
+//     //         },
+//     //         signinUser
+//     //     )
+//     // );
+//
+// };
 
-    passport.serializeUser((user, done) => {
-        done(null, user.id);
-    });
-
-    // для логаута (камингаута)
-    passport.deserializeUser((id, done) => {
-        //находим юзера
-        UserApi.getUserById(id).then(user => {
-            done(null, user.get()); //нашли
-        }).catch(err => {
-            done('not found', null); //не нашли
-        });
-    });
-
-    passport.use(
-        'local-signup',
-        new LocalStrategy(
-            {
-                usernameField: 'email',
-                passwordField: 'password',
-                passReqToCallback: true
-            },
-            registrationUser
-        )
-    );
-
-    //LOCAL SIGNIN
-    passport.use(
-        'local-signin',
-        new LocalStrategy(
-            {
-                // by default, local strategy uses username and password, we will override with email
-                usernameField: 'email',
-                passwordField: 'password',
-                passReqToCallback: true //позволяет нам передать весь запрос на обратный вызов
-            },
-            signinUser
-        )
-    );
-
-};
-
-export default loadPassportStrategies;
+//export  {registrationUser, signinUser};
