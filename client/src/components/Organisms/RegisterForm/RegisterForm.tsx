@@ -4,6 +4,9 @@ import "../../input.css"
 import {IProps, IState} from "./IRegisterForm";
 import {post} from "../../Router";
 import Field from "../../Molecules/Field/Field";
+import * as ROUTES from "../../../config/routes"
+import {Redirect} from "react-router-dom";
+import Form from "../Form/Form";
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -13,6 +16,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             login: {value: '', valid: false},
             email: {value: '', valid: false},
             password: {value: '', valid: false},
+            referrer: <></>,
             validators: {login: {error_str: '', regexp: '', EventError: ['']}, repassword: {error_str: '', regexp: '', EventError: ['']}, email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
     }
 
@@ -60,10 +64,9 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     response.text().then(this.errorHandler)
                 }
             }
-            const res = await post("/register", {email: this.state.email.value, password: this.state.password.value}, mycallback)
+            const res = await post(ROUTES.REGISTER, {email: this.state.email.value, password: this.state.password.value}, mycallback)
             localStorage.setItem("user", JSON.stringify(res))
-            document.location.href = document.referrer || "/"
-
+            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
         }
 
     }
@@ -74,7 +77,8 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
         return (
             <div className="inputForm">
-                <form className="reg">
+                <Form onSubmit={this.submitBtnHandler}>
+                    {this.state.referrer}
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
@@ -87,7 +91,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
                     <button id="submit" type="submit" className="welcome" onClick={this.submitBtnHandler}>Войти</button>
                     <span id="serverError" aria-live="polite"/>
-                </form>
+                </Form>
 
             </div>
 

@@ -7,6 +7,7 @@ interface Field {
 
 interface IIState {
     validators: Validators;
+    referrer: JSX.Element,
     [name: string]: any;
 }
 
