@@ -6,6 +6,8 @@ import Field from "../../Molecules/Field/Field";
 import {post} from "../../Router";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
+import Form from "../Form/Form";
+import {Validators} from "../IValidators";
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -16,14 +18,13 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             validators: {email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
     }
 
-    async componentDidMount() {
-        const promice = await fetch(process.env.PUBLIC_URL + '/json/input_errors.json')
-        const validators = await promice.json()
+    onValidatorChange = (validators: Validators) => {
         this.setState({validators: validators})
-
     }
 
     handleUserInput = (event: any) => {
+        console.log(this.state)
+
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
@@ -69,7 +70,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <form className="reg" onSubmit={this.submitBtnHandler}>
+                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}>
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
@@ -77,7 +78,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
 
                     <button id="submit" type="submit" className="welcome">Войти</button>
                     <span id="serverError" aria-live="polite"/>
-                </form>
+                </Form>
             </div>
 
         )
