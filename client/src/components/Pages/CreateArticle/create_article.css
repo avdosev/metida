@@ -35,7 +35,7 @@
 }
 
 /* переделать минимальные и максимальные занчаения, тк при изменении размеров экрана происходит троллинг */
-.disclaimer{ 
+.disclaimerInput{
     outline: none;
     border: 1px solid var(--main-bord-color);
     padding: 10px 20px 0;
@@ -45,11 +45,11 @@
     resize: vertical;
 }
 
-.disclaimer:focus{
+.disclaimerInput:focus{
     border-color: var(--unique-color);
 }
 
-#header {
+#headerInput {
     margin: 0;
     padding: 4px 20px 0px;
     width: 95%;
@@ -61,7 +61,7 @@
     line-height: 34px;
 }
 
-#header:focus{
+#headerInput:focus{
     border-color: var(--unique-color);
 }
 
