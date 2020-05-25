@@ -1,16 +1,16 @@
 interface IUser {
-    about: string | null
+    about?: string,
     accessToken: string,
     activatedEmail: boolean
-    avatar: null
+    avatar?: null
     createdAt: Date
     email: string,
-    firstname: string | null
+    firstname?: string
     id: number
-    last_login: Date | null
-    lastname: string | null
+    last_login?: Date
+    lastname?: string
     password: string,
-    status: string | null,
+    status?: string,
     updatedAt: Date,
     username: string,
 }

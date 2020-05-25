@@ -68,7 +68,7 @@ export default class Index extends React.Component<IProps, IState> {
     render() {
         return (<SimplePage header={<Header/>} content={
             <div className="layout_body">
-                <div className="content.content">
+                <div className="content">
                     <h1>Умная лента</h1>
                     <hr className="head"/>
                     <Feed>

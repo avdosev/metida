@@ -2,21 +2,21 @@ import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Field from "../../Molecules/Field/Field";
-
+import {IUser} from "../../Organisms/IUser";
 
 
 export default function Home() {
     const userString = localStorage.getItem('user')
-    let user: object = {}
+    let user: IUser = {accessToken: "", activatedEmail: false, createdAt: new Date(), email: "", id: 0, password: "", updatedAt: new Date(), username: ""}
     if (userString) {
-        let user = JSON.parse(userString)
+        user = JSON.parse(userString)
         console.log(user)
     }
 
 
     return (<SimpleTemplate header={<Header />} content={
         <div className="layout_body">
-            <h1>Профиль </h1>
+            <h1>Профиль {user.username}</h1>
             <h3>Заработанные ачивки</h3>
             <h4>*красивые картинки, мотивирующие юзера пользоваться сайтом*</h4>
             <h5>Поменять данные в бд</h5>
