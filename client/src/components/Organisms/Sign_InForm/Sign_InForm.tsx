@@ -4,14 +4,15 @@ import "../../input.css"
 import {IProps, IState} from  "./ISign_InForm"
 import Field from "../../Molecules/Field/Field";
 import {post} from "../../Router";
-import {findRenderedDOMComponentWithTag} from "react-dom/test-utils";
-
+import * as ROUTES from "../../../config/routes"
+import {Redirect} from "react-router-dom"
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
         this.state = {
             email: {value: '', valid: false}, password: {value: '', valid: false},
+            referrer: <></>,
             validators: {email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
     }
 
@@ -51,21 +52,23 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                     return response.text().then(this.errorHandler)
                 }
             }
-            const res = await post("/sign_In", {email: this.state.email.value, password: this.state.password.value}, mycallback)
-            
+            const res = await post(ROUTES.SIGN_IN, {email: this.state.email.value, password: this.state.password.value}, mycallback)
             localStorage.setItem("user", JSON.stringify(res))
-            document.location.href = "/"
 
+            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
         }
 
     }
 
     render() {
+
         const fd = this.state
         const v = this.state.validators
 
         return (
             <div className="inputForm">
+                {this.state.referrer}
                 <form className="reg" onSubmit={this.submitBtnHandler}>
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
