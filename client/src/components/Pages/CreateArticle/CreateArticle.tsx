@@ -1,8 +1,8 @@
 import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
-//import "./create_article.css"
-
+import "./create_article.css"
+import * as ROUTES from "../../../config/routes"
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
 
 
@@ -61,25 +61,32 @@ export default class CreateArticle extends React.Component<IProps, IState> {
     // }
 
     render() {
-        return (<SimpleTemplate header={<Header />} content={<>
-                <script type="text/javascript"
-                        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
-                        async/>
-                <h3>Заголовок:</h3>
-                <input type="text" id="header" name="header"
-                       placeholder="Заголовок должен передавать основной смысл публикации."
-                       value="" minLength={5}/>
-                <span className="headerError" aria-live="polite"/>
-                <h3>Дисклеймер:</h3>
-                <textarea className="disclaimer" id="disclaimer" placeholder="Здесь приводится краткое описание статьи."
-                          name="disclaimer"/>
-                <span className="disclaimerError" aria-live="polite"/>
-                <label> <input type="checkbox" id="previews"/>Предпросмотр </label>
+        return (<SimpleTemplate header={<Header/>} content={
+                <div className="layout_body">
+                    <div className="content">
+                        <script type="text/javascript"
+                                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
+                                async/>
+                        <form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post">
+                            <h3>Заголовок:</h3>
+                            <input type="text" id="headerInput" name="headerInput"
+                                   placeholder="Заголовок должен передавать основной смысл публикации."
+                                   value="" minLength={5}/>
+                            <span className="headerError" aria-live="polite"/>
+                            <h3>Дисклеймер:</h3>
+                            <textarea className="disclaimerInput" id="disclaimer"
+                                      placeholder="Здесь приводится краткое описание статьи."
+                                      name="disclaimer"/>
+                            <span className="disclaimerError" aria-live="polite"/>
+                            <label> <input type="checkbox" id="previews"/>Предпросмотр </label>
 
-                <textarea className="create_area" id="article" placeholder="Текст вашей статьи..." name="art"/>
-                <span className="contentError" aria-live="polite"/>
-                <button id="submit" className="Btn"> Отправить</button>
-            </>
+                            <textarea className="create_area" id="article" placeholder="Текст вашей статьи..."
+                                      name="art"/>
+                            <span className="contentError" aria-live="polite"/>
+                            <button id="submit" className="Btn"> Отправить</button>
+                        </form>
+                    </div>
+                </div>
             }/>
 
 
