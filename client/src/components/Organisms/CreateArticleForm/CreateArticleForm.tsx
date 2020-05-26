@@ -60,8 +60,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     handleCheckboxChange = (e: any) => {
         this.setState({ checked: e.target.checked })
-        this.props.onRenderPreview() // async
-
+        this.props.onRenderPreview()
     }
 
 
