@@ -6,8 +6,12 @@ services:
     env_file: ./application/.env
     environment:
       - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=usersDB2
+      - MYSQL_USER=metidaSQL
+      - MYSQL_PASSWORD=123456
     network_mode: host
-
+    ports:
+      - "8082:3306"
 
   server:
     restart: always
