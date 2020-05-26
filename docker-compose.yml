@@ -1,16 +1,28 @@
 version: '3'
 services:
+  db:
+    image: mysql
+    container_name: db
+    env_file: ./application/.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    network_mode: host
+
+
   server:
     restart: always
     env_file: ./application/.env
+    environment:
+      - NODE_ENV=production
     build:
       context: ./application
       dockerfile: Dockerfile
     ports:
       - "7080:7080"
+    depends_on:
+      - db
     networks:
       - some-net
-
 
   client:
     restart: always
@@ -21,6 +33,10 @@ services:
     ports:
       - "5001:80"
     stdin_open: true
+    networks:
+      - some-net
+    depends_on:
+      - server
 
 networks:
   some-net:
