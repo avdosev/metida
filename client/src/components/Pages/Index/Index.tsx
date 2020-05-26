@@ -3,11 +3,10 @@ import "../../main.css"
 import "../../lenta.css"
 import "../../colors.css"
 import {Post} from "../../Molecules/Post/Post.jsx"
-import {get, post} from "../../Router";
+import {post} from "../../Router";
 import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
-import Sign_InForm from "../../Organisms/Sign_InForm/Sign_InForm";
 import Footer from "../../Organisms/Footer/Footer";
 
 

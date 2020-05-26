@@ -2,15 +2,14 @@ import React from "react";
 import "../../main.css"
 import "../../input.css"
 import {IProps, IState} from "./IRegisterForm";
-import {post} from "../../Router";
 import Field from "../../Molecules/Field/Field";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../Form/Form";
 import {Validators} from "../IValidators";
 import {pushToA} from "../Form/FormHelper";
-import {IIState} from "../IAuth";
 import FieldError from "../../Atoms/FieldError/FieldError";
+
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
