@@ -12,8 +12,10 @@ export const pushToA = async (e: any, serverRoute: string, allFields: IPush) => 
     console.log(allFields)
 
     const response = await post(serverRoute, allFields, (res) => res)
+    console.log(response)
     if (response.ok) {
-        const userinfo = response.json()
+        const userinfo = await response.json()
+        console.log(userinfo)
         localStorage.setItem("user", JSON.stringify(userinfo))
         return ''
     }
