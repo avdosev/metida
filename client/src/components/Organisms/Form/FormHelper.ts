@@ -1,8 +1,5 @@
-import {Field, IIState} from "../IAuth";
 import {post} from "../../Router";
-import * as ROUTES from "../../../config/routes";
-import {Redirect} from "react-router-dom";
-import React from "react";
+
 
 interface IPush {
     [name: string]: string
