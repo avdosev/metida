@@ -3,9 +3,8 @@ import {IUser} from "./Organisms/IUser";
 
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
-    authHeader()
     let response;
-    if (method == "post") {
+    if (method === "post") {
         const options = {
             method: method,
             headers: {
