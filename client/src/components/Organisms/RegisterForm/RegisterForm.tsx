@@ -8,6 +8,8 @@ import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../Form/Form";
 import {Validators} from "../IValidators";
+import {pushToA} from "../Form/FormHelper";
+import {IIState} from "../IAuth";
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -51,27 +53,11 @@ export default class RegisterForm extends React.Component<IProps, IState> {
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
-    errorHandler = () => {}
-
 
     submitBtnHandler = async (event: any) => {
-        const allValid = this.state.email.valid && this.state.password.valid && this.state.login.valid && this.state.repassword.valid
-
-        if (allValid ){
-            console.log("запрос")
-
-            const mycallback = (response: any) => { // ох уж не знаю, мне кажется, это хуйня
-                if (response.ok) {
-                    return response.json()
-                } else {
-                    response.text().then(this.errorHandler)
-                }
-            }
-            const res = await post(ROUTES.REGISTER, {email: this.state.email.value, password: this.state.password.value}, mycallback)
-            localStorage.setItem("user", JSON.stringify(res))
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
-        }
-
+        console.log("Вызов 2")
+        await pushToA(event, ROUTES.REGISTER, this.state as unknown as IIState);
+        this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
     }
 
     render() {

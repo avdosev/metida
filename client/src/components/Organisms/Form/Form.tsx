@@ -1,5 +1,9 @@
 import React from "react";
 import {Validators} from "../IValidators";
+import {post} from "../../Router";
+import * as ROUTES from "../../../config/routes";
+import {Redirect} from "react-router-dom";
+import {IIState} from "../IAuth";
 
 interface IState {
 
@@ -10,11 +14,21 @@ interface IProps {
     onValidatorChange: (validators: Validators) => void
 }
 
+
 export default class Form extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
     }
+
+    errorHandler = () => {}
+
+    onSubmit = (event: any) => {
+        console.log("Вызов 1")
+        event.preventDefault()
+        this.props.onSubmit(event)
+    }
+
 
     async componentDidMount() {
         const promice = await fetch(process.env.PUBLIC_URL + '/json/input_errors.json')
@@ -23,7 +37,11 @@ export default class Form extends React.Component<IProps, IState> {
     }
 
     render() {
-        return <form className="reg"> {this.props.children} </form>;
+        return <form className="reg" onSubmit={this.onSubmit}>
+            {this.props.children}
+            <button id="submit" type="submit" className="welcome">Войти</button>
+
+        </form>;
     }
 }
 
