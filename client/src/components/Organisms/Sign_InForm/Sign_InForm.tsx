@@ -56,7 +56,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}>
+                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler} >
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
