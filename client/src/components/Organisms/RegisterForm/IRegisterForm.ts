@@ -12,6 +12,8 @@ interface IState extends IIState {
     login: Field,
     email: Field,
     password: Field,
+    serverError : string,
+
 }
 
 export type {IState, IProps}

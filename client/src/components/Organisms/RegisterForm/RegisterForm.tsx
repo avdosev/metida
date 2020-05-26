@@ -10,6 +10,7 @@ import Form from "../Form/Form";
 import {Validators} from "../IValidators";
 import {pushToA} from "../Form/FormHelper";
 import {IIState} from "../IAuth";
+import FieldError from "../../Atoms/FieldError/FieldError";
 
 export default class RegisterForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -20,6 +21,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             email: {value: '', valid: false},
             password: {value: '', valid: false},
             referrer: <></>,
+            serverError: '',
             validators: {login: {error_str: '', regexp: '', EventError: ['']}, repassword: {error_str: '', regexp: '', EventError: ['']}, email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
     }
 
@@ -36,28 +38,30 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
 
     comparePassword = (event: any) => {
-        let valid = this.validateField(event.target.name, event.target.value)
+        const valid = this.validateField(event.target.name, event.target.value)
         this.setState({repassword: {value: this.state.repassword.value, valid: event.target.value === this.state.repassword.value}})
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
     compareRepassword = (event: any) => {
-        let valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
+        const valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
     handleUserInput = (event: any) => {
-        console.log(this.state)
-
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
 
     submitBtnHandler = async (event: any) => {
-        console.log("Вызов 2")
-        await pushToA(event, ROUTES.REGISTER, this.state as unknown as IIState);
-        this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        const error = await pushToA(event, ROUTES.REGISTER, {email: this.state.email.value, password: this.state.password.value, login: this.state.login.value});
+        if (error) {
+            this.setState({serverError: error})
+        }
+        else {
+            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        }
     }
 
     render() {
@@ -77,9 +81,8 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                            validateFunc={this.comparePassword} value={fd.password.value} text={v!.password.error_str}/>
                     <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp} valid={fd.repassword.valid}
                            validateFunc={this.compareRepassword} value={fd.repassword.value} text={v!.repassword.error_str}/>
+                    <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
 
-                    <button id="submit" type="submit" className="welcome" onClick={this.submitBtnHandler}>Войти</button>
-                    <span id="serverError" aria-live="polite"/>
                 </Form>
 
             </div>
