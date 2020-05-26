@@ -1,0 +1,27 @@
+version: '3'
+services:
+  server:
+    restart: always
+    env_file: ./application/.env
+    build:
+      context: ./application
+      dockerfile: Dockerfile
+    ports:
+      - "7080:7080"
+    networks:
+      - some-net
+
+
+  client:
+    restart: always
+    env_file: ./client/.env
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    stdin_open: true
+
+networks:
+  some-net:
+    driver: bridge

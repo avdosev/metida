@@ -5,6 +5,9 @@ import {post} from "../../Router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
+import {pushToA} from "../Form/FormHelper";
+import FieldError from "../../Atoms/FieldError/FieldError";
+import Form from "../Form/Form";
 
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
@@ -24,14 +27,6 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         }
     }
 
-
-
-    async componentDidMount() {
-        const promice = await fetch(process.env.PUBLIC_URL + '/json/input_errors.json')
-        const validators = await promice.json()
-        this.setState({validators: validators})
-    }
-
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
@@ -42,20 +37,14 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         return !!fieldValid;
     }
 
-    submitBtnHandler = async () => {
-        const allValid = this.state.email.valid && this.state.password.valid && this.state.login.valid && this.state.repassword.valid
-
-        if (allValid) {
-            console.log("запрос")
-
-            const res = await post(ROUTES.CREATE_ARTICLE, {
-                email: this.state.email.value,
-                password: this.state.password.value
-            })
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
-
+    submitBtnHandler = async (event: any) => {
+        const error = await pushToA(event, ROUTES.CREATE_ARTICLE, {email: this.state.email.value, password: this.state.password.value});
+        if (error) {
+            this.setState({serverError: error})
         }
-
+        else {
+            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        }
     }
 
     handleCheckboxChange = (e: any) => {
@@ -96,8 +85,8 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
             <textarea className="create_area" id="article" placeholder="Текст вашей статьи..."
                       name="art"/>
-            <span className="contentError" aria-live="polite"/>
-            <input type="submit" id="submit" className="Btn"> Отправить</input>
+            <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
+
         </form>;
     }
 }
