@@ -57,6 +57,7 @@ async function isAuth() {
 
 function authHeader() {
     const authInfo = localStorage.getItem('user')
+    console.log(authInfo)
     if (authInfo) {
         const user: IUser = JSON.parse(authInfo);
         if (user && user.accessToken) {
