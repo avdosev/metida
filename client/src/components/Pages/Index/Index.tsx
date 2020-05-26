@@ -72,9 +72,7 @@ export default class Index extends React.Component<IProps, IState> {
                     <h1>Умная лента</h1>
                     <hr className="head"/>
                     <Feed>
-                        <div className="post">
-                            {this.state.lenta}
-                        </div>
+                        {this.state.lenta}
                     </Feed>
                     <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
                 </div>
