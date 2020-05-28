@@ -4,7 +4,7 @@ import Header from "../../Molecules/Header/Header";
 import "./create_article.css"
 import * as ROUTES from "../../../config/routes"
 import CreateArticleForm from "../../Organisms/CreateArticleForm/CreateArticleForm";
-import PreviewArticle from "./PreviewArticle";
+import PreviewArticle from "../../Molecules/PreviewArticles/PreviewArticle";
 
 
 interface IProps {

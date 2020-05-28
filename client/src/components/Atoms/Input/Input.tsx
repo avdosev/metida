@@ -14,7 +14,7 @@ export default class Input extends React.Component<IProps, IState> {
 
     render() {
         return <>
-            <p>{this.props.fieldDescription ? this.props.fieldDescription : this.props.fieldName} </p>
+            <h3>{this.props.fieldDescription ? this.props.fieldDescription : this.props.fieldName} </h3>
             <input
                 id={this.props.fieldId ? this.props.fieldId : this.props.fieldName}
                 className={this.props.fieldClass ? this.props.fieldClass : this.props.fieldName}

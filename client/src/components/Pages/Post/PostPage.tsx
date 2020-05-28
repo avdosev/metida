@@ -6,7 +6,7 @@ import "../../comments.css"
 import {getArticleId, loadComments} from './comments.js';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
-import Footer from "../../Organisms/Footer/Footer";
+import Footer from "../../Molecules/Footer/Footer";
 import {get} from "../../Router";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {Comment} from "../../Molecules/Comment/Comment";

@@ -7,7 +7,7 @@ import {post} from "../../Router";
 import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
-import Footer from "../../Organisms/Footer/Footer";
+import Footer from "../../Molecules/Footer/Footer";
 
 
 interface IProps {
