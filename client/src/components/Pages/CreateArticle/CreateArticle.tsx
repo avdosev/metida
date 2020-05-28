@@ -4,7 +4,7 @@ import Header from "../../Molecules/Header/Header";
 import "./create_article.css"
 import * as ROUTES from "../../../config/routes"
 import CreateArticleForm from "../../Organisms/CreateArticleForm/CreateArticleForm";
-//script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
+import PreviewArticle from "./PreviewArticle";
 
 
 interface IProps {
@@ -12,34 +12,22 @@ interface IProps {
 }
 
 interface IState {
-
+    header: string,
+    disclaimer: string,
+    content: string
 }
+
 
 export default class CreateArticle extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
+        this.state = {header: '', disclaimer: '', content: ''}
     }
 
-    showArtIfCheckboxChecked = () => {
-        // let headerStr = '', textStr = '', disclaimerStr = '';
-        //
-        // if (checkbox.checked) {
-        //     headerStr = document.getElementById('header').value
-        //     textStr = document.getElementById('article').value
-        //     disclaimerStr = document.getElementById('disclaimer').value
-        //
-        //     textStr = md.render(textStr)
-        //     disclaimerStr = md.render(disclaimerStr)
-        // }
-        //
-        // showArticle(headerStr, textStr, disclaimerStr)
+    showArtIfCheckboxChecked = (header: string, disclaimer: string, content: string) => {
+        this.setState({header: header, content: content, disclaimer: disclaimer})
     }
-
-    // showArticle(title, text, disclaimer) {
-    //     const post_text = document.getElementsByClassName('post_text')[0]
-    //     post_text.innerHTML = `<h1>${title}</h1>${disclaimer}${text}`;
-    // }
 
     render() {
         return (<SimpleTemplate header={<Header/>} content={
@@ -48,7 +36,12 @@ export default class CreateArticle extends React.Component<IProps, IState> {
                         <script type="text/javascript"
                                 src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
                                 async/>
-                        <CreateArticleForm onRenderPreview={this.showArtIfCheckboxChecked} />
+                        <script type="text/javascript"
+                                src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"
+                                async/>
+                        <CreateArticleForm onRenderPreview={this.showArtIfCheckboxChecked}/>
+                        <PreviewArticle header={this.state.header} content={this.state.content}
+                                        disclaimer={this.state.disclaimer}/>
                     </div>
                 </div>
             }/>
