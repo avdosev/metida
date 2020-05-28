@@ -90,5 +90,3 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         </form>;
     }
 }
-
-//TODO убрать отсюда
