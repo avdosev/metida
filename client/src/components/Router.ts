@@ -50,14 +50,13 @@ async function post(url: string, data: any, callback?: {(response: any): void })
 
 async function isAuth() {
     const res = await post('/isAuth', {}, (res) => {return res})
-    console.log(await res.json())
     return res.status === 200 //пока не знаю что там пришло, оставлю так
 
 }
 
 function authHeader() {
     const authInfo = localStorage.getItem('user')
-    console.log(authInfo)
+    //console.log(authInfo)
     if (authInfo) {
         const user: IUser = JSON.parse(authInfo);
         if (user && user.accessToken) {

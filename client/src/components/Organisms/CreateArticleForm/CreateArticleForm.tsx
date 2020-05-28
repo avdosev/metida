@@ -37,18 +37,23 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     submitBtnHandler = async (event: any) => {
         event.preventDefault()
-        const error = await post(ROUTES.CREATE_ARTICLE, {
+        const response = await post(ROUTES.CREATE_ARTICLE, {
             disclaimer: this.state.disclaimer.value,
             header: this.state.header.value,
             content: this.state.content.value
         });
 
-            console.log(error)
-        if (error.hasOwnProperty('error')) {
-            this.setState({serverError: error})
+            console.log(response)
+        if (response.hasOwnProperty('error')) {
+            this.setState({serverError: response.error})
         }
         else {
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+            if (response.message) { // такой себе, конечно, кусок кода
+                this.setState({referrer: <Redirect to={"/post/" + response.message} />})
+            }
+            else {
+                this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+            }
             // TODO сделать редирект на статью
         }
     }
