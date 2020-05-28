@@ -24,7 +24,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "typescript": "^3.9.2",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "markdown-it": "^8.4.2"
   },
   "browserslist": {
     "production": [

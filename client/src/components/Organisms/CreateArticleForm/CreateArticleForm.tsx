@@ -59,8 +59,15 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     handleCheckboxChange = (e: any) => {
-        this.setState({ checked: e.target.checked })
-        this.props.onRenderPreview()
+        console.log('поймали этьол')
+        const {content, header, disclaimer} = this.state
+        if (e.target.checked) {
+            this.props.onRenderPreview(header.value, disclaimer.value, content.value)
+        }
+        else {
+            this.props.onRenderPreview("", "", "")
+        }
+
     }
 
     onValidatorChange = (validators: Validators) => {
@@ -98,7 +105,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                         text={v.disclaimer.error_str}
             />
 
-            <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onChange={this.handleCheckboxChange} />
+            <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onClick={this.handleCheckboxChange} />
 
             <FieldTextarea valid={fd.content.valid}
                            fieldDescription="Текст"
