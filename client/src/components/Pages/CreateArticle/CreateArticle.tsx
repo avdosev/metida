@@ -3,7 +3,6 @@ import SimpleTemplate from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import "./create_article.css"
 import * as ROUTES from "../../../config/routes"
-import Field from "../../Molecules/Field/Field";
 import CreateArticleForm from "../../Organisms/CreateArticleForm/CreateArticleForm";
 //script(src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js")
 
