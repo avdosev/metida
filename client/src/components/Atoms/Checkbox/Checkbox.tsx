@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 interface IProps {
     id: string,
@@ -7,5 +7,12 @@ interface IProps {
 }
 
 export default function Checkbox(props: IProps) {
-    return (<label> <input type="checkbox" {...props} />{props.label} </label>)
+    const [check, setX] = useState(false);
+
+    const soldCheckbox = (event: any) => {
+        console.log(check, event.target.checked);
+        setX(event.target.checked);
+    };
+
+    return (<label> <input type="checkbox" checked={check} onChange={soldCheckbox} {...props} />{props.label} </label>)
 }
