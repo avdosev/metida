@@ -14,6 +14,8 @@ export function FieldTextarea(props: IProps) {
 
     return <>
         <Textarea
+            fieldClass={props.fieldClass}
+            fieldId={props.fieldId}
             fieldName={props.fieldName}
             validateFunc={props.validateFunc}
             regexp={props.regexp}

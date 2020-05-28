@@ -28,6 +28,7 @@ export default class PostPage extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {header: '', content: '', disclaimer: '', comments: []}
+        document.title = this.state.header;
 
     }
 

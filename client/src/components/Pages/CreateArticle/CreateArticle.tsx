@@ -21,8 +21,8 @@ interface IState {
 export default class CreateArticle extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-
         this.state = {header: '', disclaimer: '', content: ''}
+        document.title = "Создание статьи";
     }
 
     showArtIfCheckboxChecked = (header: string, disclaimer: string, content: string) => {
