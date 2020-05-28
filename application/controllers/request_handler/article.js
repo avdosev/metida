@@ -35,7 +35,6 @@ export function pushArticle(req, res, next) {
     
     initValues(res)
 
-    console.log(req.body)
     articleApi.pushArticle( 
         header, 
         markdown.MarkdownToHtml(content), 

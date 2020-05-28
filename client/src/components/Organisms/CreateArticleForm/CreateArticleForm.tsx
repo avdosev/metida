@@ -40,15 +40,16 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         const error = await post(ROUTES.CREATE_ARTICLE, {
             disclaimer: this.state.disclaimer.value,
             header: this.state.header.value,
-            art: this.state.content.value} // мм art
-        );
+            content: this.state.content.value
+        });
 
-        console.log(error)
-        if (error) {
+            console.log(error)
+        if (error.hasOwnProperty('error')) {
             this.setState({serverError: error})
         }
         else {
             this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+            // TODO сделать редирект на статью
         }
     }
 
