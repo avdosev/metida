@@ -6,7 +6,7 @@ import Field from "../../Molecules/Field/Field";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../Form/Form";
-import {Validators} from "../IValidators";
+import {initialValidator, Validators} from "../IValidators";
 import {pushToA} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 
@@ -21,9 +21,9 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             password: {value: '', valid: false},
             referrer: <></>,
             serverError: '',
-            validators: {login: {error_str: '', regexp: '', EventError: ['']}, repassword: {error_str: '', regexp: '', EventError: ['']}, email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
+            validators: initialValidator
+        }
     }
-
 
     onValidatorChange = (validators: Validators) => {
         this.setState({validators: validators})
@@ -38,7 +38,12 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
     comparePassword = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({repassword: {value: this.state.repassword.value, valid: event.target.value === this.state.repassword.value}})
+        this.setState({
+            repassword: {
+                value: this.state.repassword.value,
+                valid: event.target.value === this.state.repassword.value
+            }
+        })
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
@@ -54,12 +59,15 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
 
     submitBtnHandler = async (event: any) => {
-        const error = await pushToA(event, ROUTES.REGISTER, {email: this.state.email.value, password: this.state.password.value, login: this.state.login.value});
+        const error = await pushToA(event, ROUTES.REGISTER, {
+            email: this.state.email.value,
+            password: this.state.password.value,
+            login: this.state.login.value
+        });
         if (error) {
             this.setState({serverError: error})
-        }
-        else {
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        } else {
+            this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
         }
     }
 
@@ -70,7 +78,8 @@ export default class RegisterForm extends React.Component<IProps, IState> {
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}>
+                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
+                      action={ROUTES.REGISTER}>
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
@@ -78,9 +87,11 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
                     <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
                            validateFunc={this.comparePassword} value={fd.password.value} text={v!.password.error_str}/>
-                    <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp} valid={fd.repassword.valid}
-                           validateFunc={this.compareRepassword} value={fd.repassword.value} text={v!.repassword.error_str}/>
-                    <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
+                    <Field fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp}
+                           valid={fd.repassword.valid}
+                           validateFunc={this.compareRepassword} value={fd.repassword.value}
+                           text={v!.repassword.error_str}/>
+                    <FieldError valid={!this.state.serverError} text={this.state.serverError}/>
 
                 </Form>
 

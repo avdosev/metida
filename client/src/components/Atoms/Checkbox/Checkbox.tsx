@@ -8,7 +8,7 @@ interface IProps {
 
 export default function Checkbox(props: IProps) {
     const [check, setX] = useState(false);
-
+    console.log(check)
     const soldCheckbox = (event: any) => {
         console.log(check, event.target.checked);
         setX(event.target.checked);

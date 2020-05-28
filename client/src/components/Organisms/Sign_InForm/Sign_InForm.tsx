@@ -1,12 +1,12 @@
 import React from "react";
 import "../../main.css"
 import "../../input.css"
-import {IProps, IState} from  "./ISign_InForm"
+import {IProps, IState} from "./ISign_InForm"
 import Field from "../../Molecules/Field/Field";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../Form/Form";
-import {Validators} from "../IValidators";
+import {initialValidator, Validators} from "../IValidators";
 import {pushToA} from "../Form/FormHelper"
 import FieldError from "../../Atoms/FieldError/FieldError";
 
@@ -18,7 +18,8 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             email: {value: '', valid: false}, password: {value: '', valid: false},
             referrer: <></>,
             serverError: '',
-            validators: {email: {error_str: '', regexp: '', EventError: ['']}, password: {error_str: '', regexp: '', EventError: ['']}}}
+            validators: initialValidator
+        }
     }
 
     onValidatorChange = (validators: Validators) => {
@@ -37,15 +38,18 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = async (event: any) => {
-        const error = await pushToA(event, ROUTES.SIGN_IN, {email: this.state.email.value, password: this.state.password.value});
+        const error = await pushToA(event, ROUTES.SIGN_IN, {
+            email: this.state.email.value,
+            password: this.state.password.value
+        });
         if (error) {
             this.setState({serverError: error})
-        }
-        else {
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+        } else {
+            this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
             //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
         }
     }
+
 
     render() {
         const fd = this.state
@@ -54,12 +58,13 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler} >
+                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
+                      action={ROUTES.SIGN_IN}>
                     <Field fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                            validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <Field fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
                            validateFunc={this.handleUserInput} value={fd.password.value} text={v!.password.error_str}/>
-                   <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
+                    <FieldError valid={!this.state.serverError} text={this.state.serverError}/>
                 </Form>
 
             </div>

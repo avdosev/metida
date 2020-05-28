@@ -8,6 +8,7 @@ import {Redirect} from "react-router-dom";
 import {pushToA} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../Form/Form";
+import {initialValidator, Validators} from "../IValidators";
 
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
@@ -19,11 +20,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             content: {value: '', valid: false},
             previews: false,
             referrer: <></>,
-            validators: {
-                header: {error_str: '', regexp: '', EventError: ['']},
-                content: {error_str: '', regexp: '', EventError: ['']},
-                diclaimer: {error_str: '', regexp: '', EventError: ['']}
-            }
+            validators: initialValidator
         }
     }
 
@@ -33,6 +30,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
+        console.log(fieldName)
         const fieldValid = fieldValue.match(this.state.validators![fieldName].regexp)
         return !!fieldValid;
     }
@@ -52,32 +50,39 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         this.props.onRenderPreview()
     }
 
+    onValidatorChange = (validators: Validators) => {
+        this.setState({validators: validators})
+    }
+
 
     render() {
         const fd = this.state
-        const v = this.state.validators
+        const v: Validators = this.state.validators
 
-        return <form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
-                     onSubmit={this.submitBtnHandler}>
+        return <Form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+                     onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange}>
             {this.state.referrer}
+
             <Field valid={fd.header.valid}
                    fieldDescription="Заголовок"
                    validateFunc={this.handleUserInput}
                    regexp={v.header.error_str}
                    value={fd.header.value}
                    fieldType="text"
-                   fieldName="headerInput"
+                   fieldName="header"
                    placeholder="Заголовок должен передавать основной смысл публикации."
+                   text={v.header.error_str}
             />
 
-            <Field valid={fd.header.valid}
+            <Field valid={fd.disclaimer.valid}
                    fieldDescription="Заголовок"
                    validateFunc={this.handleUserInput}
-                   regexp={v.header.error_str}
-                   value={fd.header.value}
+                   regexp={v.disclaimer.error_str}
+                   value={fd.disclaimer.value}
                    fieldType="text"
-                   fieldName="disclaimerInput"
+                   fieldName="disclaimer"
                    placeholder="Здесь приводится краткое описание статьи."
+                   text={v.disclaimer.error_str}
             />
             {/*тут должна быть текстареа, а не инпут*/}
 
@@ -87,6 +92,6 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                       name="art"/>
             <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
 
-        </form>;
+        </Form>;
     }
 }
