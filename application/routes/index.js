@@ -16,7 +16,7 @@ import * as Response from '../controllers/respondent.js';
 
 import ApiRouterCreator from './api.js';
 import {registrationUser, signinUser} from "../controllers/users.js";
-import {verifyToken} from "../controllers/logged.js";
+import {verifyToken, sendSuccess} from "../controllers/logged.js";
 
 const ApiRouter = ApiRouterCreator();
 
@@ -61,7 +61,7 @@ const initAuthControllers = (app) => {
 
     app.post('/sign_In', urlencodedParser, userLoginValidator, signinUser);
 
-    app.post('/isAuth', urlencodedParser, verifyToken)
+    app.post('/isAuth', urlencodedParser, verifyToken, sendSuccess)
 
 
 };

@@ -30,13 +30,12 @@ export function updateArticle(req, res, next) {
 }
 
 export function pushArticle(req, res, next) {
-    const header = req.body.header;
-    const content = req.body.art;
-    const disclaimer = req.body.disclaimer;
-    const authorId = req.user.id;
+    const {header, content, disclaimer} = req.body
+    const authorId = req.userId;
     
     initValues(res)
-    
+
+    console.log(req.body)
     articleApi.pushArticle( 
         header, 
         markdown.MarkdownToHtml(content), 

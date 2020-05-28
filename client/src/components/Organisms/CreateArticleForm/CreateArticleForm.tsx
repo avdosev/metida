@@ -1,6 +1,6 @@
 import React from "react";
 import * as ROUTES from "../../../config/routes";
-import {FieldTextarea, FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Molecules/Field/FieldInput";
 import {post} from "../../Router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
@@ -9,6 +9,7 @@ import {loginQuery} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../Form/Form";
 import {initialValidator, Validators} from "../IValidators";
+import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
@@ -42,6 +43,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             art: this.state.content.value} // мм art
         );
 
+        console.log(error)
         if (error) {
             this.setState({serverError: error})
         }
@@ -80,7 +82,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             />
 
             <FieldTextarea valid={fd.disclaimer.valid}
-                        fieldDescription="Заголовок"
+                        fieldDescription="Дисклеймер"
                         validateFunc={this.handleUserInput}
                         regexp={v.disclaimer.regexp}
                         value={fd.disclaimer.value}
@@ -100,7 +102,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                            fieldType="text"
                            fieldName="content"
                            placeholder="Текст вашей статьи..."
-                           text={v.disclaimer.error_str}
+                           text={v.content.error_str}
             />
             <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
 
