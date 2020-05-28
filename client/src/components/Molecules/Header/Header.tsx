@@ -18,6 +18,7 @@ const Header:FunctionComponent<{}> = () => {
         checkAuth() // не смотря на предупреждение, все работает корректно
     })
 
+
     return (
         <header className="header">
             <div className="header_inner flex space_between_inner">
