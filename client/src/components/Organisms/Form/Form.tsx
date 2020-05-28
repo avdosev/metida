@@ -6,13 +6,17 @@ interface IState {
 }
 
 interface IProps {
+    className?: string
+    action: string
+    method?: string
     onSubmit: (event: any) => void
     onValidatorChange: (validators: Validators) => void
 }
 
 
 export default class Form extends React.Component<IProps, IState> {
-    errorHandler = () => {}
+    errorHandler = () => {
+    }
 
     onSubmit = (event: any) => {
         event.preventDefault()
@@ -26,7 +30,12 @@ export default class Form extends React.Component<IProps, IState> {
     }
 
     render() {
-        return <form className="reg" onSubmit={this.onSubmit}>
+        return <form
+            className={this.props.className ? this.props.className : "reg"}
+            onSubmit={this.onSubmit}
+            action={this.props.action}
+            method={this.props.method ? this.props.method : "post"}
+        >
             {this.props.children}
             <button id="submit" type="submit" className="welcome">Войти</button>
 
