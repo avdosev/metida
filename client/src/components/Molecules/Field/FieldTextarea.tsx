@@ -1,6 +1,6 @@
-import React from "react";
+import Textarea from "../../Atoms/Textarea/Textarea";
 import FieldError from "../../Atoms/FieldError/FieldError";
-import Input from "../../Atoms/Input/Input";
+import React from "react";
 import {IField, IFieldError} from "../../Atoms/IField";
 
 
@@ -8,9 +8,12 @@ interface IProps extends IFieldError, IField {
 
 }
 
-export function FieldInput(props: IProps) {
+export function FieldTextarea(props: IProps) {
+
+
+
     return <>
-        <Input
+        <Textarea
             fieldName={props.fieldName}
             validateFunc={props.validateFunc}
             regexp={props.regexp}
@@ -21,7 +24,4 @@ export function FieldInput(props: IProps) {
         />
         <FieldError valid={props.valid} text={props.text} />
     </>;
-
 }
-
-
