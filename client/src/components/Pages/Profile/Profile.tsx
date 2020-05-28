@@ -1,11 +1,13 @@
 import React from "react";
+import {IUser} from "../../Organisms/IUser";
 
 interface IState {
 
 }
 
 interface IProps {
-    username: string
+    user?: IUser
+    isHome?: boolean
 }
 
 export function getUsername() {
@@ -40,6 +42,14 @@ export default class Profile extends React.Component<IProps, IState> {
 
 
     render() {
+        let username: string
+        if (this.props.isHome) { // по умолчанию  faLSE
+            username = this.props.user!.username
+        }
+        else {
+            username = getUsername()
+        }
+
         return (
             <div className="layout_body">
                 <h1>Профиль</h1>
@@ -48,7 +58,7 @@ export default class Profile extends React.Component<IProps, IState> {
                         <img className="avatar" src={process.env.PUBLIC_URL + "/img/default/avatar_small.png"}/>
                     </div>
                     <div className="right">
-                        <h3>{this.props.username}</h3>
+                        <h3>{username}</h3>
                         <p className="about">Обо мне:
                             Ты ничего не узнаешь</p>
                     </div>
