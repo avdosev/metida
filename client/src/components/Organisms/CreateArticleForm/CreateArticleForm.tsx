@@ -108,6 +108,8 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onClick={this.handleCheckboxChange} />
 
             <FieldTextarea valid={fd.content.valid}
+                           fieldId="article"
+                           fieldClass="create_area"
                            fieldDescription="Текст"
                            validateFunc={this.handleUserInput}
                            regexp={v.content.regexp}

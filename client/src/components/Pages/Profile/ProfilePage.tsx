@@ -4,5 +4,6 @@ import Header from "../../Molecules/Header/Header";
 import Profile from "./Profile";
 
 export default function ProfilePage() {
+
     return (<SimpleTemplate header={<Header />} content={<Profile />} />)
 }

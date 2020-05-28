@@ -4,6 +4,8 @@ interface IField {
     regexp: string,
     value: string,
 
+    fieldId?: string
+    fieldClass?: string,
     fieldType?: string,
     fieldDescription?: string,
     placeholder?: string,

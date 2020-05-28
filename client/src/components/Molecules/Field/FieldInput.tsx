@@ -11,6 +11,8 @@ interface IProps extends IFieldError, IField {
 export function FieldInput(props: IProps) {
     return <>
         <Input
+            fieldId={props.fieldId}
+            fieldClass={props.fieldClass}
             fieldName={props.fieldName}
             validateFunc={props.validateFunc}
             regexp={props.regexp}
