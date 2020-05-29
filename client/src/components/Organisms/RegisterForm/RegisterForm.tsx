@@ -79,7 +79,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             <div className="inputForm">
                 {this.state.referrer}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
-                      action={ROUTES.REGISTER}>
+                      action={ROUTES.REGISTER} buttonName="Зарегистрироваться">
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
                                 validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <FieldInput fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}

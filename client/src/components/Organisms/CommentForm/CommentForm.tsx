@@ -55,7 +55,8 @@ export default class CommentForm extends React.Component<IProps, IState> {
             comment =
                 <>
                     <h3> Оставить комментарий</h3>
-                    <Form onValidatorChange={this.onValidatorChange} action="#####" onSubmit={this.submitBtn} className="comment">
+                    <Form onValidatorChange={this.onValidatorChange} action="#####" onSubmit={this.submitBtn}
+                          className="comment" buttonName="Отправить">
                         <FieldTextarea fieldClass="comment_area"
                                        placeholder="Комментарий..."
                                        fieldName="comment"
@@ -63,10 +64,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
                                        value={this.state.comment.value}
                                        valid={this.state.comment.valid}
                                        validateFunc={this.handleUserInput}/>
-                       <div className="button_block">
-                           <button className="EnterButton" value="Отправить"/>
-                           <input type="button" id="veiw" value="Предпросмотр"/>
-                       </div>
+                        <div className="button_block">
+                            {/*<button className="EnterButton" value="Отправить"/>*/}
+                            <input type="button" id="veiw" value="Предпросмотр"/>
+                        </div>
                     </Form>
                 </>
         } else {
