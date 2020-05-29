@@ -13,7 +13,7 @@ interface IField {
 
 interface IFieldError {
     valid: boolean
-    text?: string
+    text: string
 }
 
 export type {IField, IFieldError}

@@ -22,8 +22,8 @@ function getComments(req, res, next) {
 }
 
 function pushComment(req, res, next) {
-    const articleId = req.params.id;
-    const author = req.user.id;
+    const articleId = req.body.articleId;
+    const author = req.body.userId;
     const text = req.body.comment;
 
     if(text == undefined) {
