@@ -1,13 +1,23 @@
-import React from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import "./header.css"
 import "../../colors.css" //TODO какого черта импорт происходит и отсюда и из css
 import {
     Link
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
+import {isAuth} from "../../Router";
 
-export default function Header() {
-    const authorised = !!localStorage.getItem('user')
+const Header:FunctionComponent<{}> = () => {
+    const [authorised, setAuthorised] = useState(false)
+
+    useEffect( () => {
+        const checkAuth = async () => {
+            const auth = await isAuth()
+            setAuthorised(auth)
+        }
+        checkAuth() // не смотря на предупреждение, все работает корректно
+    })
+
 
     return (
         <header className="header">
@@ -25,3 +35,5 @@ export default function Header() {
         </header>)
 }
 
+
+export default Header

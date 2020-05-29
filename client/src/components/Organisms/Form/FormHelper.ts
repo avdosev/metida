@@ -5,7 +5,7 @@ interface IPush {
     [name: string]: string
 }
 
-export const pushToA = async (e: any, serverRoute: string, allFields: IPush) => {
+export const loginQuery = async (e: any, serverRoute: string, allFields: IPush) => {
     console.log(allFields)
 
     const response = await post(serverRoute, allFields, (res) => res)
@@ -18,9 +18,8 @@ export const pushToA = async (e: any, serverRoute: string, allFields: IPush) => 
     }
     else {
         const error = await response.text()
-        console.log(error)
+        console.error(error)
         return error
     }
-
 }
 
