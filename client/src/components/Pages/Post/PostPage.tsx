@@ -62,6 +62,12 @@ export default class PostPage extends React.Component<IProps, IState> {
         // TODO похоже на await hell
     }
 
+    onCommentChanged = (newComment: IComments) => {
+        const comments = this.state.comments
+        comments.push(newComment)
+        this.setState({comments: comments})
+    }
+
 
     render() {
 
@@ -80,7 +86,7 @@ export default class PostPage extends React.Component<IProps, IState> {
 
                 </div>
                 <div className="new_comment_block">
-                    <CommentForm />
+                    <CommentForm onCommentChanged={this.onCommentChanged}/>
                 </div>
             </div>
         </div>} footer={<Footer/>}/>)

@@ -5,8 +5,10 @@ import {Field, IIState} from "../IAuth";
 import {getCurrentUser, isAuth, post} from "../../Router";
 import Form from "../Form/Form";
 import {getArticleId} from "../../Pages/Post/comments";
+import {IComments} from "../../IComment";
 
 interface IProps {
+    onCommentChanged: (comment: IComments) => void
 }
 
 interface IState extends IIState {
@@ -46,15 +48,29 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     submitBtn = async (event: any) => {
-        console.log(getCurrentUser())
-        const id = getArticleId()
-        const response = await post("/api/post/" + id + "/comments", {
-            userId: getCurrentUser().id,
-            articleId: id,
+        const articleId = getArticleId()
+        const user = getCurrentUser()
+        const response = await post("/api/post/" + articleId + "/comments", {
+            userId: user.id,
+            articleId: articleId,
             comment: this.state.comment.value
         })
         console.log(response)
 
+        const comment: IComments = {
+            raiting: null,
+            answeringId: null,
+            articleId: articleId,
+            child: [],
+            commentAuthorId: 0,
+            id: 0,
+            text: this.state.comment.value,
+            updatedAt: new Date(), createdAt: new Date(),
+            user: user
+        }
+
+
+        this.props.onCommentChanged(comment)
     }
 
 
