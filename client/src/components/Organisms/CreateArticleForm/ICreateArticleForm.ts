@@ -10,7 +10,7 @@ interface IState extends IIState {
     header: Field,
     content: Field,
     disclaimer: Field,
-    previews: boolean,
+    isPreview: boolean,
 }
 
 export type {IProps, IState}
