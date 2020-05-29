@@ -15,7 +15,7 @@
 
 input {
     padding: 5px 5px 5px 2px;
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     border: 1px solid #333;
     font-family: inherit;
     font-size: 1rem;
