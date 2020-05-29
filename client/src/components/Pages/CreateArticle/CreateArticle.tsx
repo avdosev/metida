@@ -29,6 +29,7 @@ export default class CreateArticle extends React.Component<IProps, IState> {
         this.setState({header: header, content: content, disclaimer: disclaimer})
     }
 
+
     render() {
         return (<SimpleTemplate header={<Header/>} content={
                 <div className="layout_body">

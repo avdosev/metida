@@ -7,7 +7,7 @@ interface Field {
 
 interface IIState {
     validators: Validators;
-    referrer: JSX.Element,
+    referrer?: JSX.Element,
     [name: string]: any;
     [Symbol.iterator](): IterableIterator<Field>
 }

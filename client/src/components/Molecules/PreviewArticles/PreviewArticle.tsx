@@ -1,4 +1,5 @@
 import React from "react";
+import {md} from "../../../markdown"
 
 interface IProps {
     header: string,
@@ -6,11 +7,6 @@ interface IProps {
     content: string
 }
 
-const md = require('markdown-it')({
-    html: true,
-    linkify: true,
-    typographer: true
-});
 
 
 export default function PreviewArticle(props: IProps) {
