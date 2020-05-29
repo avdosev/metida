@@ -59,7 +59,6 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     handleCheckboxChange = (e: any) => {
-        console.log('поймали этьол')
         const {content, header, disclaimer} = this.state
         if (e.target.checked) {
             this.props.onRenderPreview(header.value, disclaimer.value, content.value)

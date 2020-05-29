@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import React from "react";
 
 
-export function Post(props) {
+export function Post(props: any) {
     const url = `/post/${props.json.id}`;
 
     const htmlPost =
