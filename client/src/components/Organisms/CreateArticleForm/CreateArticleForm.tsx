@@ -19,7 +19,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             header: {value: '', valid: false},
             disclaimer: {value: '', valid: false},
             content: {value: '', valid: false},
-            previews: false,
+            isPreview: false,
             referrer: <></>,
             validators: initialValidator
         }
@@ -27,7 +27,13 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+        this.setState({[event.target.name]: {value: event.target.value, valid: valid}}, () => {
+            if (this.state.isPreview) {
+                this.props.onRenderPreview(this.state.header.value, this.state.disclaimer.value, this.state.content.value)
+            }
+        })
+
+
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
@@ -37,14 +43,12 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     submitBtnHandler = async (event: any) => {
         event.preventDefault()
-        console.log(this.state)
         const response = await post(ROUTES.CREATE_ARTICLE, {
             disclaimer: this.state.disclaimer.value,
             header: this.state.header.value,
             content: this.state.content.value
         });
 
-            console.log(response)
         if (response.hasOwnProperty('error')) {
             this.setState({serverError: response.error})
         }
@@ -55,7 +59,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             else {
                 this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
             }
-            // TODO сделать редирект на статью
+            // TODO сделать нормальный редирект на статью
         }
     }
 
@@ -67,7 +71,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         else {
             this.props.onRenderPreview("", "", "")
         }
-
+        this.setState({isPreview: e.target.checked})
     }
 
     onValidatorChange = (validators: Validators) => {
@@ -105,7 +109,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                         text={v.disclaimer.error_str}
             />
 
-            <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onClick={this.handleCheckboxChange} />
+            <Checkbox id="previews" label="Предпросмотр" checked={this.state.isPreview} onClick={this.handleCheckboxChange} />
 
             <FieldTextarea valid={fd.content.valid}
                            fieldId="article"

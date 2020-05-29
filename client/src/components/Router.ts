@@ -51,7 +51,12 @@ async function post(url: string, data: any, callback?: {(response: any): void })
 async function isAuth() {
     const res = await post('/isAuth', {}, (res) => {return res})
     return res.status === 200 //пока не знаю что там пришло, оставлю так
+}
 
+function getCurrentUser(): IUser {
+    const userstring = localStorage.getItem('user')
+    if (!userstring) throw new Error("User is not authed")
+    return JSON.parse(userstring)
 }
 
 function authHeader() {
@@ -68,4 +73,4 @@ function authHeader() {
 
 }
 
-export {get, post, isAuth}
+export {get, post, isAuth, getCurrentUser}

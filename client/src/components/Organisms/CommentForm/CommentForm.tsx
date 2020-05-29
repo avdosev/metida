@@ -2,8 +2,9 @@ import React from "react";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState} from "../IAuth";
-import {isAuth} from "../../Router";
+import {getCurrentUser, isAuth, post} from "../../Router";
 import Form from "../Form/Form";
+import {getArticleId} from "../../Pages/Post/comments";
 
 interface IProps {
 }
@@ -36,6 +37,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     onValidatorChange = async (validators: Validators) => {
+        console.log(validators)
         this.setState({validators: validators})
 
         const authed = await isAuth()
@@ -43,7 +45,15 @@ export default class CommentForm extends React.Component<IProps, IState> {
         console.log(authed)
     }
 
-    submitBtn = (event: any) => {
+    submitBtn = async (event: any) => {
+        console.log(getCurrentUser())
+        const id = getArticleId()
+        const response = await post("/api/post/" + id + "/comments", {
+            userId: getCurrentUser().id,
+            articleId: id,
+            comment: this.state.comment.value
+        })
+        console.log(response)
 
     }
 
@@ -52,28 +62,32 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
         let comment: JSX.Element
         if (this.state.isAuth) {
-            comment =
-                <>
-                    <h3> Оставить комментарий</h3>
-                    <Form onValidatorChange={this.onValidatorChange} action="#####" onSubmit={this.submitBtn}
-                          className="comment" buttonName="Отправить">
-                        <FieldTextarea fieldClass="comment_area"
-                                       placeholder="Комментарий..."
-                                       fieldName="comment"
-                                       regexp={this.state.validators.comment.regexp}
-                                       value={this.state.comment.value}
-                                       valid={this.state.comment.valid}
-                                       validateFunc={this.handleUserInput}/>
-                        <div className="button_block">
-                            {/*<button className="EnterButton" value="Отправить"/>*/}
-                            <input type="button" id="veiw" value="Предпросмотр"/>
-                        </div>
-                    </Form>
-                </>
+            comment = <>
+                <FieldTextarea fieldClass="comment_area"
+                               placeholder="Комментарий..."
+                               fieldName="comment"
+                               regexp={this.state.validators.comment.regexp}
+                               value={this.state.comment.value}
+                               valid={this.state.comment.valid}
+                               text={this.state.validators.comment.error_str}
+                               validateFunc={this.handleUserInput}/>
+                <div className="button_block">
+                    {/*<button className="EnterButton" value="Отправить"/>*/}
+                    <input type="button" id="veiw" value="Предпросмотр"/>
+                </div>
+            </>
+
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
         }
-        return comment
+
+        return <>
+            <h3> Оставить комментарий</h3>
+            <Form onValidatorChange={this.onValidatorChange} action="#####" onSubmit={this.submitBtn}
+                  className="comment" buttonName="Отправить">
+                {comment}
+            </Form>
+        </>
 
     }
 }
