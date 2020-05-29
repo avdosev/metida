@@ -79,8 +79,8 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         const fd = this.state
         const v: Validators = this.state.validators
 
-        return <Form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
-                     onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange}>
+        return <Form buttonName="Отправить" className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+                     onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange} >
             {this.state.referrer}
 
             <FieldInput valid={fd.header.valid}
