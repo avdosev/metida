@@ -1,9 +1,15 @@
 import {Link} from "react-router-dom";
 import React from "react";
 import {md} from "../../../markdown"
+import {IPost} from "../../Pages/Profile/IPost";
+
+interface IProps {
+    json: IPost
+}
 
 
-export function Post(props: any) {
+
+export function Post(props: IProps) {
     const url = `/post/${props.json.id}`;
 
     return (<div key={props.json.id} className="post">
