@@ -15,4 +15,28 @@ interface IUser {
     username: string,
 }
 
-export type {IUser}
+interface ProfileArticle {
+    id: number,
+    header: string,
+    disclaimer: string
+}
+
+interface UserInfo extends IUser {
+    articles: Array<ProfileArticle>
+}
+
+const initialUser: UserInfo = {
+    articles: [],
+    accessToken: "",
+    activatedEmail: false,
+    createdAt: new Date(),
+    email: "",
+    id: 0,
+    password: "",
+    updatedAt: new Date(),
+    username: ""
+}
+
+
+export type {IUser, ProfileArticle, UserInfo}
+export {initialUser}

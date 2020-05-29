@@ -31,9 +31,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             if (this.state.isPreview) {
                 this.props.onRenderPreview(this.state.header.value, this.state.disclaimer.value, this.state.content.value)
             }
-        })
-
-
+        }) 
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
