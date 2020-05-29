@@ -20,7 +20,7 @@ export default () => {
     router.get('/post/:id', Handler.getArticle, Response.jsonValue('article'));
     router.put('/post/:id', Handler.updateArticle, Response.jsonValuesWith(['success']))
     router.delete('/post/:id', verifyToken, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
-    router.post('/article', verifyToken, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
+    router.post('/article', verifyToken, articleValidator, /* отправить на модерацию */ Handler.pushArticle);
     
     router.get('/top', Handler.getTopArticles, Response.jsonValue('TopArticles'))
     

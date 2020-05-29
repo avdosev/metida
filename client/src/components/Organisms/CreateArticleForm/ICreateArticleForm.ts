@@ -3,7 +3,7 @@ import {Field, IIState} from "../IAuth";
 
 
 interface IProps {
-    onRenderPreview: () => void
+    onRenderPreview: (header: string, disclaimer: string, content: string) => void
 }
 
 interface IState extends IIState {

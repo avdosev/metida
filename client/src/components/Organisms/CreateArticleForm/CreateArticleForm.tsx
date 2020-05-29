@@ -1,13 +1,15 @@
 import React from "react";
 import * as ROUTES from "../../../config/routes";
-import Field from "../../Molecules/Field/Field";
+import {FieldInput} from "../../Molecules/Field/FieldInput";
 import {post} from "../../Router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
-import {pushToA} from "../Form/FormHelper";
+import {loginQuery} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../Form/Form";
+import {initialValidator, Validators} from "../IValidators";
+import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
@@ -19,11 +21,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             content: {value: '', valid: false},
             previews: false,
             referrer: <></>,
-            validators: {
-                header: {error_str: '', regexp: '', EventError: ['']},
-                content: {error_str: '', regexp: '', EventError: ['']},
-                diclaimer: {error_str: '', regexp: '', EventError: ['']}
-            }
+            validators: initialValidator
         }
     }
 
@@ -38,57 +36,91 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = async (event: any) => {
-        const error = await pushToA(event, ROUTES.CREATE_ARTICLE, {email: this.state.email.value, password: this.state.password.value});
-        if (error) {
-            this.setState({serverError: error})
+        event.preventDefault()
+        console.log(this.state)
+        const response = await post(ROUTES.CREATE_ARTICLE, {
+            disclaimer: this.state.disclaimer.value,
+            header: this.state.header.value,
+            content: this.state.content.value
+        });
+
+            console.log(response)
+        if (response.hasOwnProperty('error')) {
+            this.setState({serverError: response.error})
         }
         else {
-            this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+            if (response.message) { // такой себе, конечно, кусок кода
+                this.setState({referrer: <Redirect to={"/post/" + response.message} />})
+            }
+            else {
+                this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
+            }
+            // TODO сделать редирект на статью
         }
     }
 
     handleCheckboxChange = (e: any) => {
-        this.setState({ checked: e.target.checked })
-        this.props.onRenderPreview()
+        const {content, header, disclaimer} = this.state
+        if (e.target.checked) {
+            this.props.onRenderPreview(header.value, disclaimer.value, content.value)
+        }
+        else {
+            this.props.onRenderPreview("", "", "")
+        }
+
+    }
+
+    onValidatorChange = (validators: Validators) => {
+        this.setState({validators: validators})
     }
 
 
     render() {
         const fd = this.state
-        const v = this.state.validators
+        const v: Validators = this.state.validators
 
-        return <form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
-                     onSubmit={this.submitBtnHandler}>
+        return <Form buttonName="Отправить" className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+                     onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange} >
             {this.state.referrer}
-            <Field valid={fd.header.valid}
-                   fieldDescription="Заголовок"
-                   validateFunc={this.handleUserInput}
-                   regexp={v.header.error_str}
-                   value={fd.header.value}
-                   fieldType="text"
-                   fieldName="headerInput"
-                   placeholder="Заголовок должен передавать основной смысл публикации."
+
+            <FieldInput valid={fd.header.valid}
+                        fieldDescription="Заголовок"
+                        validateFunc={this.handleUserInput}
+                        regexp={v.header.regexp}
+                        value={fd.header.value}
+                        fieldType="text"
+                        fieldName="header"
+                        placeholder="Заголовок должен передавать основной смысл публикации."
+                        text={v.header.error_str}
             />
 
-            <Field valid={fd.header.valid}
-                   fieldDescription="Заголовок"
-                   validateFunc={this.handleUserInput}
-                   regexp={v.header.error_str}
-                   value={fd.header.value}
-                   fieldType="text"
-                   fieldName="disclaimerInput"
-                   placeholder="Здесь приводится краткое описание статьи."
+            <FieldTextarea valid={fd.disclaimer.valid}
+                        fieldDescription="Дисклеймер"
+                        validateFunc={this.handleUserInput}
+                        regexp={v.disclaimer.regexp}
+                        value={fd.disclaimer.value}
+                        fieldType="text"
+                        fieldName="disclaimer"
+                        placeholder="Здесь приводится краткое описание статьи."
+                        text={v.disclaimer.error_str}
             />
-            {/*тут должна быть текстареа, а не инпут*/}
 
-            <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onChange={this.handleCheckboxChange} />
+            <Checkbox id="previews" label="Предпросмотр" checked={this.state.preview} onClick={this.handleCheckboxChange} />
 
-            <textarea className="create_area" id="article" placeholder="Текст вашей статьи..."
-                      name="art"/>
+            <FieldTextarea valid={fd.content.valid}
+                           fieldId="article"
+                           fieldClass="create_area"
+                           fieldDescription="Текст"
+                           validateFunc={this.handleUserInput}
+                           regexp={v.content.regexp}
+                           value={fd.content.value}
+                           fieldType="text"
+                           fieldName="content"
+                           placeholder="Текст вашей статьи..."
+                           text={v.content.error_str}
+            />
             <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
 
-        </form>;
+        </Form>;
     }
 }
-
-//TODO убрать отсюда
