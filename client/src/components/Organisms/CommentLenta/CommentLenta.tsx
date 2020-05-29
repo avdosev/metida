@@ -1,7 +1,7 @@
 import React from "react";
 import {ChildComment, Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../../IComment";
-import {Simulate} from "react-dom/test-utils";
+import {loginQuery} from "../Form/FormHelper";
 
 
 interface IProps {
@@ -13,47 +13,34 @@ export default function CommentLenta(props: IProps) {
     //console.log(props.comments)
     const initialComments: Map<number, IComments> = new Map()
     for (const comment of props.comments) {
-        if (!comment.answeringId) {
-            initialComments.set(comment.id, comment)
+        initialComments.set(comment.id, comment)
+    }
+
+    let arrayOfChilds: Array<Array<number>> = [[]]
+    for (const baseComment of props.comments) {
+        if (!baseComment.answeringId) {
+            let arrayOfOneComment: number[] = [baseComment.id]
+            for (const comment of props.comments) {
+                if (comment.answeringId && arrayOfOneComment.includes(comment.answeringId)) {
+                    arrayOfOneComment.push(comment.id)
+                }
+            }
+            arrayOfChilds.push(arrayOfOneComment)
         }
     }
 
-    for (const comment of props.comments) {
-        if (comment.answeringId) {
-            let parent = initialComments.get(comment.answeringId)
-            if (!parent) {
-                parent = props.comments.find(com => com.id == comment.answeringId)
-            }
-
-            console.log(comment, parent)
-            if (parent) {
-                if (!parent.child) parent.child = []
-                parent.child?.push(comment)
-                initialComments.set(parent.id, parent)
-            }
-            else {
-                console.warn(comment)
-                console.warn(initialComments.keys())
-                //console.warn(initialComments)
-                throw new Error("соси")
-            }
-            //initialComments.push(<ChildComment comment={comment} />)
-        }
-    }
-
-    console.log(initialComments)
+    console.log(arrayOfChilds)
     let realComments = []
-    for (const comment of initialComments.values()) {
-        realComments.push(<Comment comment={comment} />)
-        // @ts-ignore
-        if (comment.child) {
-            for(const childComment of comment.child) {
-                realComments.push(<ChildComment comment={childComment}/>)
-            }
+    for (const firstLevelComments of arrayOfChilds) {
+        for(const secondLevelComments of firstLevelComments) {
+            // @ts-ignore
+            realComments.push(<ChildComment comment={initialComments.get(secondLevelComments)} /> )
         }
-    }
-    return (<div className="lenta">
 
+    }
+
+
+    return (<div className="lenta">
         {realComments}
     </div>)
 
