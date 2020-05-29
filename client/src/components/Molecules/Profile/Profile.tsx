@@ -1,69 +1,63 @@
 import React from "react";
-import {IUser} from "../../Organisms/IUser";
+import {initialUser, UserInfo} from "../../Organisms/IUser";
+import {get, getCurrentUser} from "../../Router";
 
 interface IState {
-
+    user: UserInfo
 }
 
 interface IProps {
-    user?: IUser
     isHome?: boolean
 }
 
+
 export function getUsername() {
     const url = window.location.href.split("/")
-    return  url[url.length-1]
+    return url[url.length - 1]
 }
 
 export default class Profile extends React.Component<IProps, IState> {
-    getArticles() {
-        fetch(`/api/author/${getUsername()}`, {
-            method: 'get',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(value => {
-            console.log(value)
-            return value.json()
-        }).then((json => {
-            const insertElem = document.querySelector('.lenta')
-            const articles = json.articles;
-            for (let i = 0; i < articles.length; i++) {
-                if (articles[i] == undefined) {
-                    console.error("Все");
-                    break
-                }
-                //insertPostPreview(articles[i], insertElem);
-            }
-        })).catch(error => {
-            console.error(error);
-        })
+    constructor(props: IProps) {
+        super(props);
+        this.state = {user: initialUser}
+    }
+
+    async componentDidMount() {
+        let username: string
+        if (!this.props.isHome) {
+            username = getUsername()
+        }
+        else {
+            username = getCurrentUser().username
+        }
+        console.log(username)
+        const userInfo: UserInfo = await get(`/api/author/${username}`)
+        this.setState({user: userInfo})
+
     }
 
 
     render() {
-        let username: string
-        if (this.props.isHome) { // по умолчанию  faLSE
-            username = this.props.user!.username
-        }
-        else {
-            username = getUsername()
-        }
 
         return (
             <div className="layout_body">
-                <h1>Профиль</h1>
+                <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
                 <div className="profile">
                     <div className="left">
-                        <img className="avatar" src={process.env.PUBLIC_URL + "/img/default/avatar_small.png"}/>
+                        <img className="avatar"
+                             src={this.state.user.avatar ? this.state.user.avatar : process.env.PUBLIC_URL + "/img/default/avatar_small.png"}
+                             alt="avatar"/>
                     </div>
                     <div className="right">
-                        <h3>{username}</h3>
+                        <h3>{this.state.user.username}</h3>
                         <p className="about">Обо мне:
-                            Ты ничего не узнаешь</p>
+                            {this.state.user.about ? this.state.user.about : "Ты ничего не узнаешь"}
+                        </p>
                     </div>
                 </div>
-                <div className="lenta"></div>
+                <div className="lenta">
+                    {}
+                </div>
             </div>)
     }
 }
