@@ -1,6 +1,7 @@
 import React from "react";
 import {initialUser, UserInfo} from "../../Organisms/IUser";
 import {get, getCurrentUser} from "../../Router";
+import {Post} from "../Post/Post";
 
 interface IState {
     user: UserInfo
@@ -38,7 +39,13 @@ export default class Profile extends React.Component<IProps, IState> {
 
 
     render() {
+        let articles = []
+        for (const article of this.state.user.articles) {
+            articles.push(<Post json={article} />)
+        }
+        articles = articles.reverse()
 
+        console.log(this.state.user.articles)
         return (
             <div className="layout_body">
                 <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
@@ -55,8 +62,9 @@ export default class Profile extends React.Component<IProps, IState> {
                         </p>
                     </div>
                 </div>
+                Статейки:
                 <div className="lenta">
-                    {}
+                    {articles}
                 </div>
             </div>)
     }
