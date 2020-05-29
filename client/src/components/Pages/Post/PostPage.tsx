@@ -7,10 +7,13 @@ import {getArticleId, loadComments} from './comments.js';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Footer from "../../Molecules/Footer/Footer";
-import {get} from "../../Router";
+import {get, isAuth} from "../../Router";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../../IComment";
+import CommentForm from "../../Organisms/CommentForm/CommentForm";
+import {md} from "../../../markdown"
+
 
 interface IProps {
 
@@ -21,6 +24,7 @@ interface IState {
     disclaimer: string,
     content: string,
     comments: Array<IComments>
+
 }
 
 
@@ -55,19 +59,20 @@ export default class PostPage extends React.Component<IProps, IState> {
         let comments = await loadComments(getArticleId())
 
         this.setState({comments: comments})
+        // TODO похоже на await hell
     }
 
 
-
     render() {
+
         return (<SimplePage header={<Header/>} content={<div className="layout_body">
             <div className="content">
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
                 <article className="post_text">
-                    <h1 dangerouslySetInnerHTML={{__html: this.state.header}}/>
-                    <p dangerouslySetInnerHTML={{__html: this.state.disclaimer}}/>
-                    <p dangerouslySetInnerHTML={{__html: this.state.content}}/>
+                    <h1 dangerouslySetInnerHTML={{__html: md.render(this.state.header)}}/>
+                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
+                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
@@ -75,7 +80,7 @@ export default class PostPage extends React.Component<IProps, IState> {
 
                 </div>
                 <div className="new_comment_block">
-                    <p>Зарегистрируйся, если хочешь оставить коммент</p>
+                    <CommentForm />
                 </div>
             </div>
         </div>} footer={<Footer/>}/>)
