@@ -37,8 +37,8 @@ export function pushArticle(req, res, next) {
 
     articleApi.pushArticle( 
         header, 
-        markdown.MarkdownToHtml(content), 
-        markdown.MarkdownToHtml(disclaimer), 
+        content,
+        disclaimer,
         authorId 
     ).then((value) => {
         res.values.success = true

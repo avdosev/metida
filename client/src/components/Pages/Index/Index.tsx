@@ -50,7 +50,6 @@ export default class Index extends React.Component<IProps, IState> {
             lenta.push(<Post key={post.id} json={post}/>)
         }
 
-
         this.setState({lenta: lenta})
 
         this.currentCountOfArticles += json.length;

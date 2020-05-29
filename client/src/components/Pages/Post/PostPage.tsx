@@ -12,6 +12,8 @@ import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../../IComment";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
+import {md} from "../../../markdown"
+
 
 interface IProps {
 
@@ -57,7 +59,7 @@ export default class PostPage extends React.Component<IProps, IState> {
         let comments = await loadComments(getArticleId())
 
         this.setState({comments: comments})
-        // похоже на await hell
+        // TODO похоже на await hell
     }
 
 
@@ -68,9 +70,9 @@ export default class PostPage extends React.Component<IProps, IState> {
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
                 <article className="post_text">
-                    <h1 dangerouslySetInnerHTML={{__html: this.state.header}}/>
-                    <p dangerouslySetInnerHTML={{__html: this.state.disclaimer}}/>
-                    <p dangerouslySetInnerHTML={{__html: this.state.content}}/>
+                    <h1 dangerouslySetInnerHTML={{__html: md.render(this.state.header)}}/>
+                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
+                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
