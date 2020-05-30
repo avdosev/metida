@@ -13,7 +13,6 @@ export default class Textarea extends React.Component<IProps, IState> {
 
     render() {
         return <>
-            <p>{this.props.fieldDescription ? this.props.fieldDescription : this.props.fieldName} </p>
             <textarea
                 className={this.props.fieldClass ? this.props.fieldClass : this.props.fieldName}
                 id={this.props.fieldId ? this.props.fieldId : this.props.fieldName}
