@@ -2,10 +2,11 @@ import React from "react";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState} from "../IAuth";
-import {getCurrentUser, isAuth, post} from "../../Router";
+import {post} from "../../../services/router";
+import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../Form/Form";
 import {getArticleId} from "../../Pages/Post/comments";
-import {IComments} from "../../IComment";
+import {IComments} from "../IComment";
 
 interface IProps {
     onCommentChanged: (comment: IComments) => void

@@ -1,4 +1,4 @@
-import {post} from "../../Router";
+import {post} from "../../../services/router";
 
 
 interface IPush {

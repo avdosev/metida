@@ -1,5 +1,5 @@
-import { serverUri } from "./config";
-import {IUser} from "./Organisms/IUser";
+import { serverUri } from "../components/config";
+import {IUser} from "../components/Organisms/IUser";
 
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
@@ -48,17 +48,6 @@ async function post(url: string, data: any, callback?: {(response: any): void })
     return  await query("post", url, data, callback);
 }
 
-async function isAuth() {
-    const res = await post('/isAuth', {}, (res) => {return res})
-    return res.status === 200 //пока не знаю что там пришло, оставлю так
-}
-
-function getCurrentUser(): IUser {
-    const userstring = localStorage.getItem('user')
-    if (!userstring) throw new Error("User is not authed")
-    return JSON.parse(userstring)
-}
-
 function authHeader() {
     const authInfo = localStorage.getItem('user')
     //console.log(authInfo)
@@ -73,4 +62,4 @@ function authHeader() {
 
 }
 
-export {get, post, isAuth, getCurrentUser}
+export {get, post}

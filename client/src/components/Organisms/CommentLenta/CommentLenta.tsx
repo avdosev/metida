@@ -1,6 +1,6 @@
 import React from "react";
 import {ChildComment, Comment} from "../../Molecules/Comment/Comment";
-import {IComments} from "../../IComment";
+import {IComments} from "../IComment";
 import {loginQuery} from "../Form/FormHelper";
 
 
