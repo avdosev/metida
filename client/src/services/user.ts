@@ -21,6 +21,7 @@ function getCurrentUser(): IPublicUser {
 
 async function isAuth() {
     const res = await post('/isAuth', {}, (res) => {return res})
+
     if (res.status !== 200 && res.status !== 500) { // если сервер ответил что-то негативное, и не упал во время этого, то будем считать, что юзер не авторизован
         localStorage.removeItem(ls.user)
     }

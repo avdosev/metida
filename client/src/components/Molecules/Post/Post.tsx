@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import React from "react";
 import {md} from "../../../services/markdown"
 import {IPost} from "../../Pages/Profile/IPost";
@@ -23,9 +23,10 @@ export function Post(props: IProps) {
         </div>
         <div className="after_post">
             <Link to={url} className="BtnToArticle">Читать дальше</Link>
-            <Link to={url + "#comments"} className="BtnToArticleComments">
+            {/*, hash: "#comments"*/}
+            <Link to={{pathname: url, state: {toComments: true}}} className="BtnToArticleComments">
                 <img className="after_post_icon" src={process.env.PUBLIC_URL + "/img/ui_icon/comment.svg"}
-                     alt="after post icon"/>
+                     alt="Смотреть комментарии"/>
             </Link>
         </div>
     </div>);

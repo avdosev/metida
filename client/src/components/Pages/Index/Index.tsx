@@ -54,6 +54,7 @@ export default class Index extends React.Component<IProps, IState> {
 
         this.currentCountOfArticles += json.length;
     }
+
     getMoreArticles = async (e: any) => {
         await this.getArticle(this.articlesCount)
     }

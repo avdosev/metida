@@ -8,6 +8,7 @@ import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Footer from "../../Molecules/Footer/Footer";
 import {get} from "../../../services/router";
+import {Redirect} from "react-router-dom"
 import {isAuth} from "../../../services/user";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {Comment} from "../../Molecules/Comment/Comment";
@@ -60,12 +61,12 @@ export default class PostPage extends React.Component<IProps, IState> {
         let comments = await loadComments(getArticleId())
 
         this.setState({comments: comments})
+
         // TODO похоже на await hell
     }
 
     onCommentChanged = (newComments: Array<IComments>) => {
         this.setState({comments: newComments})
-        console.log(this.state.comments)
     }
 
 

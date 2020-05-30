@@ -5,6 +5,7 @@ import {get} from "../../../services/router";
  */
 export function getArticleId() {
     const url = window.location.href.split("/")
+    console.log(url)
     return  url[url.length-1]
 }
 
