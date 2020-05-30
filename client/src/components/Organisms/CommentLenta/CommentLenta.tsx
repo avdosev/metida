@@ -50,7 +50,7 @@ export default function CommentLenta(props: IProps) {
         for (const secondLevelComments of firstLevelComments[1]) {
             const innerComment = initialComments.get(secondLevelComments)
             if (innerComment)
-                realComments.push(<ChildComment currentUser={user} comment={innerComment} onCommentChanged={props.onCommentChanged} />)
+                realComments.push(<ChildComment key={innerComment.id} currentUser={user} comment={innerComment} onCommentChanged={props.onCommentChanged} />)
         }
     }
 
