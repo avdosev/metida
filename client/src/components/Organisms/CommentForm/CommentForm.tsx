@@ -40,12 +40,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     onValidatorChange = async (validators: Validators) => {
-        console.log(validators)
         this.setState({validators: validators})
 
         const authed = await isAuth()
         this.setState({isAuth: authed})
-        console.log(authed)
     }
 
     submitBtn = async (event: any) => {

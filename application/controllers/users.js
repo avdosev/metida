@@ -71,7 +71,7 @@ export async function registrationUser(req, res, next) {
 
 async function loginUser(user, res) {
     const token = jwt.sign({id: user.id}, config.secretKey, {
-        expiresIn: 24*60*60 //сутки
+        expiresIn: config.sessionTime
     })
 
     const userinfo = user.get(); //ради единого интерфейса, чтобы были одни и те же данные, как и после регистрации, так и после сигн ина, сойдемся на том, что юзеры регистрируются 1 раз, а входят много, поэтому лучше сделать регистрацию немного дольше

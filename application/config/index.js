@@ -21,6 +21,9 @@ const readJson = (filename) => JSON.parse(fs.readFileSync(`${__dirname}/${filena
 const mail = readJson('mail.json');
 const messages = readJson('messages.json');
 
+const sessionTime = 24*60*60 //сутки // через сколько пользователя выкинет // на норм сайтах, выдается на сутки, и продлевается
+
+
 export default {
     port,
     url,
@@ -29,5 +32,6 @@ export default {
     secretKey,
     production,
     mail,
-    messages
+    messages,
+    sessionTime
 };
