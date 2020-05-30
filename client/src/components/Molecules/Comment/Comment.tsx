@@ -29,7 +29,7 @@ export class Comment extends React.Component<IProps, IState> {
     }
 
     onChanged = () => {
-
+        this.setState({isReplying: !this.state.isReplying})
     }
 
     render() {
@@ -41,25 +41,32 @@ export class Comment extends React.Component<IProps, IState> {
         const authorlink = `/author/${comment.user.username}`
 
         const commentform = this.state.isReplying
-            ? <CommentForm replyCommentId={comment.id} replyCommentAuthorName={comment.user.username} onCommentChanged={this.props.onCommentChanged}/>
+            ? <CommentForm replyCommentId={comment.id}
+                           replyCommentAuthorName={comment.user.username}
+                           onReplyCommentSend={this.onChanged}
+                           onCommentChanged={this.props.onCommentChanged}/>
             : <></>
 
         let controlBlock: JSX.Element = <></>
-
-        // TODO мне пришлось сделать по юзернейму, т.к. с сервера не приходит айди, исправить
-        if (this.props.currentUser && this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
-            controlBlock = <>
-                <button className="updateComment GreyButton">Редактировать</button>
-                <button className="removeComment GreyButton">Удалить</button>
-            </>
-        }
-
         let replyButton: JSX.Element = <></>
+
         if (this.props.currentUser) {
-            replyButton = <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
-                {this.state.isReplying ? "Отмена" : "Ответить"}
-            </button>
+            replyButton =
+                <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
+                    {this.state.isReplying ? "Отмена" : "Ответить"}
+                </button>
+
+            if (this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
+                // TODO мне пришлось сделать по юзернейму, т.к. с сервера не приходит айди, исправить
+
+                controlBlock =
+                    <>
+                        <button className="updateComment GreyButton">Редактировать</button>
+                        <button className="removeComment GreyButton">Удалить</button>
+                    </>
+            }
         }
+
 
         return <div key={commentId} className={this.props.isChild ? "comment_childer" : "comment"} id={commentId}
                     data-id={comment.id}>
