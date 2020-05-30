@@ -40,7 +40,7 @@ export default function CommentLenta(props: IProps) {
         user = null
     }
 
-
+    console.log(props)
 
     let realComments = []
     for (const firstLevelComments of arrayOfChilds.entries()) {

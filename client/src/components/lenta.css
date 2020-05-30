@@ -71,7 +71,10 @@ h3 {
 .after_post_icon {
     height: 25px;
     border-radius: unset;
-    color: var(--unique-color)
+    color: var(--unique-color);
+/*    TODO я замазал часть функциональности, она почему-то не рабоатет вообще никак */
+    display:none;
+
 }
 
 .after_post {
