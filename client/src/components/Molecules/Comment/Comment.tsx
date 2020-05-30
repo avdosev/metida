@@ -28,6 +28,10 @@ export class Comment extends React.Component<IProps, IState> {
         this.setState({isReplying: !this.state.isReplying})
     }
 
+    onChanged = () => {
+
+    }
+
     render() {
         const comment = this.props.comment
         const date = new Date(comment.createdAt);
@@ -36,26 +40,29 @@ export class Comment extends React.Component<IProps, IState> {
         const commentId = `comment_${comment.id}`
         const authorlink = `/author/${comment.user.username}`
 
-        const commentform = this.state.isReplying ? <CommentForm onCommentChanged={this.props.onCommentChanged}/> : <></>
+        const commentform = this.state.isReplying
+            ? <CommentForm replyCommentId={comment.id} replyCommentAuthorName={comment.user.username} onCommentChanged={this.props.onCommentChanged}/>
+            : <></>
 
         let controlBlock: JSX.Element = <></>
 
         // TODO мне пришлось сделать по юзернейму, т.к. с сервера не приходит айди, исправить
-        if (this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, чтобы удалить и редачить могли и админы/модераторы
+        if (this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
             controlBlock = <>
                 <button className="updateComment GreyButton">Редактировать</button>
                 <button className="removeComment GreyButton">Удалить</button>
             </>
         }
 
-        return <div key={commentId} className={this.props.isChild ? "comment_childer" : "comment"} id={commentId} data-id={comment.id}>
+        return <div key={commentId} className={this.props.isChild ? "comment_childer" : "comment"} id={commentId}
+                    data-id={comment.id}>
             <div className="author_comment_block">
                 <Link to={authorlink} className="author_login">{comment.user.username}</Link>
-                <time className="created_commit">{DateStr}</time>
+                <time className="created_commit"> {DateStr}</time>
             </div>
             <div className="control_block">
                 <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
-                    {this.state.isReplying ? "Отмена" : "Ответить" }
+                    {this.state.isReplying ? "Отмена" : "Ответить"}
                 </button>
                 {controlBlock}
             </div>
@@ -63,8 +70,6 @@ export class Comment extends React.Component<IProps, IState> {
             {commentform}
 
         </div>
-        // document.querySelector(`#createBtn_${Id}`).addEventListener('click', () => {createClick(Id)})
-        // document.querySelector(`#cancelBtn_${Id}`).addEventListener('click', () => {cancelClick(Id)})
     }
 
 

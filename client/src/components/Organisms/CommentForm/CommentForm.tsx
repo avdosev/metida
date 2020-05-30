@@ -7,9 +7,12 @@ import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../Form/Form";
 import {getArticleId} from "../../Pages/Post/comments";
 import {IComments} from "../IComment";
+import {loginQuery} from "../Form/FormHelper";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
+    replyCommentId?: number
+    replyCommentAuthorName?: string
 }
 
 interface IState extends IIState {
@@ -23,7 +26,8 @@ export default class CommentForm extends React.Component<IProps, IState> {
         this.state = {
             isAuth: false,
             comment: {value: '', valid: false},
-            validators: initialValidator
+            validators: initialValidator,
+            isRendered: false
         }
 
     }
@@ -48,12 +52,13 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     submitBtn = async (event: any) => {
         const articleId = getArticleId()
+
         const user = getCurrentUser()
         const response = await post("/api/post/" + articleId + "/comments", {
             userId: user.id,
             articleId: articleId,
             comment: this.state.comment.value,
-           // answeringId:
+            answeringId: this.props.replyCommentId
         })
         console.log(response)
         const newComments = await get(`/api/post/${articleId}/comments`)
@@ -66,7 +71,15 @@ export default class CommentForm extends React.Component<IProps, IState> {
     render() {
 
         let comment: JSX.Element
+
         if (this.state.isAuth) {
+            if (!this.state.isRendered && (this.props.replyCommentId || this.props.replyCommentAuthorName)) {
+                this.setState({
+                    isRendered: true,
+                    comment: {value: this.props.replyCommentAuthorName + ", ", valid: false}
+                })
+            } // TODO вызывает серьезный варнинг
+
             comment = <>
                 <FieldTextarea fieldClass="comment_area"
                                placeholder="Комментарий..."
