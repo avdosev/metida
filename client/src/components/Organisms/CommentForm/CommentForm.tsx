@@ -13,6 +13,7 @@ interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
     replyCommentId?: number
     replyCommentAuthorName?: string
+    onReplyCommentSend?: () => void
 }
 
 interface IState extends IIState {
@@ -63,8 +64,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
         console.log(response)
         const newComments = await get(`/api/post/${articleId}/comments`)
 
-
         this.props.onCommentChanged(newComments)
+
+        if(this.props.onReplyCommentSend)
+            this.props.onReplyCommentSend()
     }
 
 
