@@ -38,10 +38,9 @@ export default class Form extends React.Component<IProps, IState> {
             method={this.props.method ? this.props.method : "post"}
         >
             {this.props.children}
-            <button id="submit" type="submit" className="welcome">{this.props.buttonName}</button>
+            <input id="submit" type="submit" className="welcome" value={this.props.buttonName} />
 
         </form>;
     }
 }
 
-//TODO убрать отсюда

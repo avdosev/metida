@@ -24,8 +24,9 @@ export default class Checkbox extends React.Component<IProps, IState> {
     render() {
         return (<label>
             <input type="checkbox"
-                   defaultChecked={this.state.isChecked}
+                   checked={this.state.isChecked}
                    onClick={this.soldCheckbox}
+                   onChange={this.soldCheckbox}
                    {...this.props} />
             {this.props.label}
         </label>)

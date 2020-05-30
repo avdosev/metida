@@ -29,15 +29,16 @@ input:invalid {
 }
   
 input:focus:invalid {
-   outline: none;
+   /*outline: none;*/
 }
   
 input:valid {
     border: 1px solid steelblue;
 }
 
+
 .welcome {
-    outline: none;
+    /*outline: none;*/
     margin-top: 1.5rem;
     border: 1px solid black;
     background: rgba(255, 255, 255, 0.1);

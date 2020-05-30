@@ -11,6 +11,7 @@ interface IProps extends IFieldError, IField {
 export function FieldInput(props: IProps) {
     return <>
         <Input
+            autofocus={props.autofocus}
             fieldId={props.fieldId}
             fieldClass={props.fieldClass}
             fieldName={props.fieldName}

@@ -44,7 +44,7 @@
 
 
 .comment_area {
-    outline: none;
+    /*outline: none;*/
     resize: none;
     border: 1px solid var(--main-bord-color);
     width: 100%;
@@ -62,7 +62,7 @@
 }
 
 #veiw{
-    outline: none;
+    /*outline: none;*/
     height: 30px;
     width: 150px;
     margin-left: 10px;
@@ -74,7 +74,7 @@
 }
 
 .EnterButton {
-    outline: none;
+    /*outline: none;*/
     height: 30px;
     width: 150px;
     margin-right: 10px;
@@ -106,7 +106,7 @@
     color: white;
     background-color: var(--unique-color);
     padding: 4px;
-    outline: none;
+    /*outline: none;*/
     border: 0;
 }
 

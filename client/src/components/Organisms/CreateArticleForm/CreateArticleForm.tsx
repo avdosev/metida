@@ -93,6 +93,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                         fieldName="header"
                         placeholder="Заголовок должен передавать основной смысл публикации."
                         text={v.header.error_str}
+                        autofocus
             />
 
             <FieldTextarea valid={fd.disclaimer.valid}

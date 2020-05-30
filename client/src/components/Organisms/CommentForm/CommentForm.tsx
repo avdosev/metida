@@ -44,11 +44,13 @@ export default class CommentForm extends React.Component<IProps, IState> {
         return !!fieldValid;
     }
 
-    onValidatorChange = async (validators: Validators) => {
-        this.setState({validators: validators})
-
+    async componentDidMount() {
         const authed = await isAuth()
         this.setState({isAuth: authed})
+    }
+
+    onValidatorChange = async (validators: Validators) => {
+        this.setState({validators: validators})
     }
 
     submitBtn = async (event: any) => {
