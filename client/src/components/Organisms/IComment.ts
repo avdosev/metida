@@ -1,4 +1,4 @@
-import {initialUser, IUser} from "./IUser";
+import {initialUser, IPrivateUser, IPublicUser} from "./IPrivateUser";
 
 interface IComments {
     id: number,
@@ -9,7 +9,7 @@ interface IComments {
     raiting: number | null,
     createdAt: Date,
     updatedAt: Date,
-    user: IUser,
+    user: IPublicUser,
     child: Array<IComments> | null
 }
 

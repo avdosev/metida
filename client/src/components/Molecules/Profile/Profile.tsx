@@ -1,5 +1,5 @@
 import React from "react";
-import {initialUser, UserInfo} from "../../Organisms/IUser";
+import {initialUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";

@@ -2,14 +2,14 @@ import {DateToStr} from "../../Pages/Post/dateRU";
 import React from "react";
 import {Link} from "react-router-dom";
 import {IComments} from "../../Organisms/IComment";
-import {IUser} from "../../Organisms/IUser";
+import {IPrivateUser, IPublicUser} from "../../Organisms/IPrivateUser";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
 
 interface IProps {
     comment: IComments
-    currentUser: IUser
+    currentUser: IPublicUser
     isChild?: boolean
-    onCommentChanged: (comment: IComments) => void
+    onCommentChanged: (comment: Array<IComments>) => void
 
 }
 
@@ -25,11 +25,7 @@ export class Comment extends React.Component<IProps, IState> {
     }
 
     onReplyClick = (event: any) => {
-        this.setState({isReplying: true})
-    }
-
-    onCancelReplyClick = (event: any) => {
-        this.setState({isReplying: false})
+        this.setState({isReplying: !this.state.isReplying})
     }
 
     render() {
@@ -58,8 +54,9 @@ export class Comment extends React.Component<IProps, IState> {
                 <time className="created_commit">{DateStr}</time>
             </div>
             <div className="control_block">
-                <button className="reply comment_control" data-type="create" onClick={this.onReplyClick} id={"createBtn_" + comment.id}/>
-                <button className="reply comment_control" data-type="cancel" onClick={this.onCancelReplyClick} id={"cancelBtn_" + comment.id}/>
+                <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
+                    {this.state.isReplying ? "Отмена" : "Ответить" }
+                </button>
                 {controlBlock}
             </div>
             <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text"/>
