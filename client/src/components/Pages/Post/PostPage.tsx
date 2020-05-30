@@ -83,7 +83,7 @@ export default class PostPage extends React.Component<IProps, IState> {
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
-                    <CommentLenta comments={this.state.comments}/>
+                    <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments}/>
 
                 </div>
                 <div className="new_comment_block">

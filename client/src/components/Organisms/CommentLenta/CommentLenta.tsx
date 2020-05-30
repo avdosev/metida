@@ -2,10 +2,13 @@ import React from "react";
 import {ChildComment, Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../IComment";
 import {loginQuery} from "../Form/FormHelper";
+import {getCurrentUser} from "../../../services/user";
+import {IUser} from "../IUser";
 
 
 interface IProps {
     comments: Array<IComments>
+    onCommentChanged: (comment: IComments) => void
 }
 
 
@@ -30,15 +33,20 @@ export default function CommentLenta(props: IProps) {
     }
 
 
+
+    const User:IUser = getCurrentUser()
+
+
+
     let realComments = []
     for (const firstLevelComments of arrayOfChilds.entries()) {
         const comment = initialComments.get(firstLevelComments[0])
         if (comment)
-            realComments.push(<Comment comment={comment}/>)
+            realComments.push(<Comment currentUser={User} comment={comment} onCommentChanged={props.onCommentChanged}/>)
         for (const secondLevelComments of firstLevelComments[1]) {
             const innerComment = initialComments.get(secondLevelComments)
             if (innerComment)
-                realComments.push(<ChildComment comment={innerComment}/>)
+                realComments.push(<ChildComment currentUser={User} comment={innerComment} onCommentChanged={props.onCommentChanged} />)
         }
     }
 

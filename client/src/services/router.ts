@@ -1,6 +1,6 @@
 import { serverUri } from "../components/config";
 import {IUser} from "../components/Organisms/IUser";
-
+import * as ls from "./localstorage"
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
     let response;
@@ -49,7 +49,7 @@ async function post(url: string, data: any, callback?: {(response: any): void })
 }
 
 function authHeader() {
-    const authInfo = localStorage.getItem('user')
+    const authInfo = localStorage.getItem(ls.user)
     //console.log(authInfo)
     if (authInfo) {
         const user: IUser = JSON.parse(authInfo);
