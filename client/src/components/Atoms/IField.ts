@@ -9,6 +9,7 @@ interface IField {
     fieldType?: string,
     fieldDescription?: string,
     placeholder?: string,
+    autofocus?: boolean
 }
 
 interface IFieldError {

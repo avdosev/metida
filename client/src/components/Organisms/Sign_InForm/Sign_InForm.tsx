@@ -60,7 +60,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                 {this.state.referrer}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
                       action={ROUTES.SIGN_IN} buttonName="Войти">
-                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
+                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
                                 validateFunc={this.handleUserInput} value={fd.password.value} text={v!.password.error_str}/>

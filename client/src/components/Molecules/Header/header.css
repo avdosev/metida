@@ -43,7 +43,7 @@ img.logoImg {
     font-weight: bold;
     user-select: none;
     padding: 0.3em 1.2em;
-    outline: none;
+    /*outline: none;*/
     border-radius: 3px;
     transition: all 0.218s ease 0s;
 }
@@ -110,7 +110,7 @@ header ul {
         color: var(--smoke-color);
         margin-right: 0px;
         text-decoration: none;
-        outline: none;
+        /*outline: none;*/
         color: white;
         text-align: left;
         font-family: 'Lato', sans-serif;

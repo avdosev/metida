@@ -25,6 +25,8 @@ export default class Input extends React.Component<IProps, IState> {
                 pattern={this.props.regexp}
                 onChange={this.props.validateFunc}
                 value={this.props.value}
+                autoFocus={this.props.autofocus}
+
             />
 
         </>;

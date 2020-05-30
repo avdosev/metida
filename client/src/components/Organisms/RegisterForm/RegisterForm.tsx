@@ -80,7 +80,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                 {this.state.referrer}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
                       action={ROUTES.REGISTER} buttonName="Зарегистрироваться">
-                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid}
+                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <FieldInput fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
                                 validateFunc={this.handleUserInput} value={fd.login.value} text={v!.login.error_str}/>
