@@ -55,7 +55,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const articleId = getArticleId()
 
         const user = getCurrentUser()
-        const response = await post("/api/post/" + articleId + "/comments", {
+        const response = await post(`/api/post/${articleId}/comments`, {
             userId: user.id,
             articleId: articleId,
             comment: this.state.comment.value,
@@ -66,7 +66,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
         this.props.onCommentChanged(newComments)
 
-        if(this.props.onReplyCommentSend)
+        if (this.props.onReplyCommentSend) // это тупо затычка для того, чтобы закрывать окошко ответа на коммент после его отправки
             this.props.onReplyCommentSend()
     }
 
@@ -84,31 +84,31 @@ export default class CommentForm extends React.Component<IProps, IState> {
             } // TODO вызывает серьезный варнинг
 
             comment = <>
-                <FieldTextarea fieldClass="comment_area"
-                               placeholder="Комментарий..."
-                               fieldName="comment"
-                               regexp={this.state.validators.comment.regexp}
-                               value={this.state.comment.value}
-                               valid={this.state.comment.valid}
-                               text={this.state.validators.comment.error_str}
-                               validateFunc={this.handleUserInput}/>
-                <div className="button_block">
-                    {/*<button className="EnterButton" value="Отправить"/>*/}
-                    <input type="button" id="veiw" value="Предпросмотр"/>
-                </div>
+                <Form onValidatorChange={this.onValidatorChange} action="#####"
+                      onSubmit={this.submitBtn} // TODO определиться с экшеном
+                      className="comment" buttonName="Отправить"><FieldTextarea fieldClass="comment_area"
+                                                                                placeholder="Комментарий..."
+                                                                                fieldName="comment"
+                                                                                regexp={this.state.validators.comment.regexp}
+                                                                                value={this.state.comment.value}
+                                                                                valid={this.state.comment.valid}
+                                                                                text={this.state.validators.comment.error_str}
+                                                                                validateFunc={this.handleUserInput}/>
+                    <div className="button_block">
+                        <input type="button" id="veiw" value="Предпросмотр"/>
+                    </div>
+                </Form>
             </>
 
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
         }
 
-        return <>
-            <h3> Оставить комментарий</h3>
-            <Form onValidatorChange={this.onValidatorChange} action="#####" onSubmit={this.submitBtn}
-                  className="comment" buttonName="Отправить">
+        return (
+            <>
+                <h3>Оставить комментарий</h3>
                 {comment}
-            </Form>
-        </>
+            </>)
 
     }
 }
