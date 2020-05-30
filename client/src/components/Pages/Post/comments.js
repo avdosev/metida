@@ -1,4 +1,4 @@
-import {get} from "../../Router";
+import {get} from "../../../services/router";
 
 /**
  * из данных в хтмл/url получаем айдишник статьи

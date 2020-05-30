@@ -1,6 +1,7 @@
 import React from "react";
 import {initialUser, UserInfo} from "../../Organisms/IUser";
-import {get, getCurrentUser} from "../../Router";
+import {get} from "../../../services/router";
+import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
 
 interface IState {

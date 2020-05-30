@@ -1,4 +1,4 @@
-import {initialUser, IUser} from "./Organisms/IUser";
+import {initialUser, IUser} from "./IUser";
 
 interface IComments {
     id: number,

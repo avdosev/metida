@@ -12,7 +12,7 @@ import Home from "./Pages/Home/Home";
 import CreateArticle from "./Pages/CreateArticle/CreateArticle";
 import Logout from "./Molecules/Logout/Logout";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
-import {isAuth} from "./Router";
+import {isAuth} from "../services/user";
 import ProfilePage from "./Pages/Profile/ProfilePage";
 
 

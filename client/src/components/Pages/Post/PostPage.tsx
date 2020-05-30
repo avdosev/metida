@@ -7,12 +7,13 @@ import {getArticleId, loadComments} from './comments.js';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Footer from "../../Molecules/Footer/Footer";
-import {get, isAuth} from "../../Router";
+import {get} from "../../../services/router";
+import {isAuth} from "../../../services/user";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {Comment} from "../../Molecules/Comment/Comment";
-import {IComments} from "../../IComment";
+import {IComments} from "../../Organisms/IComment";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
-import {md} from "../../../markdown"
+import {md} from "../../../services/markdown"
 
 
 interface IProps {

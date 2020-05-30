@@ -5,7 +5,7 @@ import {
     Link
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
-import {isAuth} from "../../Router";
+import {isAuth} from "../../../services/user";
 
 const Header:FunctionComponent<{}> = () => {
     const [authorised, setAuthorised] = useState(false)

@@ -1,5 +1,5 @@
 import React from "react";
-import {md} from "../../../markdown"
+import {md} from "../../../services/markdown"
 
 interface IProps {
     header: string,

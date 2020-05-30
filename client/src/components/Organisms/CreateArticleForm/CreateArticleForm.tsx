@@ -1,11 +1,10 @@
 import React from "react";
 import * as ROUTES from "../../../config/routes";
 import {FieldInput} from "../../Molecules/Field/FieldInput";
-import {post} from "../../Router";
+import {post} from "../../../services/router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
-import {loginQuery} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../Form/Form";
 import {initialValidator, Validators} from "../IValidators";
