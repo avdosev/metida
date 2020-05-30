@@ -1,5 +1,5 @@
 import { serverUri } from "../components/config";
-import {IUser} from "../components/Organisms/IUser";
+import {IPrivateUser} from "../components/Organisms/IPrivateUser";
 import * as ls from "./localstorage"
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
@@ -52,7 +52,7 @@ function authHeader() {
     const authInfo = localStorage.getItem(ls.user)
     //console.log(authInfo)
     if (authInfo) {
-        const user: IUser = JSON.parse(authInfo);
+        const user: IPrivateUser = JSON.parse(authInfo);
         if (user && user.accessToken) {
             return { 'x-access-token': user.accessToken };
         } else {

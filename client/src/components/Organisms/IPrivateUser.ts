@@ -1,15 +1,19 @@
-interface IUser {
-    about?: string,
-    accessToken: string,
+interface IPrivateUser extends IPublicUser{
     activatedEmail: boolean
+    email: string,
+    password: string,
+    accessToken: string,
+
+}
+
+interface IPublicUser {
+    about?: string,
     avatar?: null
     createdAt: Date
-    email: string,
     firstname?: string
     id: number
     last_login?: Date
     lastname?: string
-    password: string,
     status?: string,
     updatedAt: Date,
     username: string,
@@ -21,7 +25,7 @@ interface ProfileArticle {
     disclaimer: string
 }
 
-interface UserInfo extends IUser {
+interface UserInfo extends IPrivateUser {
     articles: Array<ProfileArticle>
 }
 
@@ -38,5 +42,5 @@ const initialUser: UserInfo = {
 }
 
 
-export type {IUser, ProfileArticle, UserInfo}
+export type {IPrivateUser, ProfileArticle, UserInfo, IPublicUser}
 export {initialUser}

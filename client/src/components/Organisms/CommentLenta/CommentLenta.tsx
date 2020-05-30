@@ -3,12 +3,12 @@ import {ChildComment, Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../IComment";
 import {loginQuery} from "../Form/FormHelper";
 import {getCurrentUser} from "../../../services/user";
-import {IUser} from "../IUser";
+import {IPrivateUser, IPublicUser} from "../IPrivateUser";
 
 
 interface IProps {
     comments: Array<IComments>
-    onCommentChanged: (comment: IComments) => void
+    onCommentChanged: (comment: Array<IComments>) => void
 }
 
 
@@ -34,7 +34,7 @@ export default function CommentLenta(props: IProps) {
 
 
 
-    const User:IUser = getCurrentUser()
+    const User:IPublicUser = getCurrentUser()
 
 
 

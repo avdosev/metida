@@ -63,10 +63,9 @@ export default class PostPage extends React.Component<IProps, IState> {
         // TODO похоже на await hell
     }
 
-    onCommentChanged = (newComment: IComments) => {
-        const comments = this.state.comments
-        comments.push(newComment)
-        this.setState({comments: comments})
+    onCommentChanged = (newComments: Array<IComments>) => {
+        this.setState({comments: newComments})
+        console.log(this.state.comments)
     }
 
 

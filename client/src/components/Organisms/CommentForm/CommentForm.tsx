@@ -2,14 +2,14 @@ import React from "react";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState} from "../IAuth";
-import {post} from "../../../services/router";
+import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../Form/Form";
 import {getArticleId} from "../../Pages/Post/comments";
 import {IComments} from "../IComment";
 
 interface IProps {
-    onCommentChanged: (comment: IComments) => void
+    onCommentChanged: (comment: Array<IComments>) => void
 }
 
 interface IState extends IIState {
@@ -52,24 +52,14 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const response = await post("/api/post/" + articleId + "/comments", {
             userId: user.id,
             articleId: articleId,
-            comment: this.state.comment.value
+            comment: this.state.comment.value,
+           // answeringId:
         })
         console.log(response)
-
-        const comment: IComments = {
-            raiting: null,
-            answeringId: null,
-            articleId: articleId,
-            child: [],
-            commentAuthorId: 0,
-            id: 0,
-            text: this.state.comment.value,
-            updatedAt: new Date(), createdAt: new Date(),
-            user: user
-        }
+        const newComments = await get(`/api/post/${articleId}/comments`)
 
 
-        this.props.onCommentChanged(comment)
+        this.props.onCommentChanged(newComments)
     }
 
 
