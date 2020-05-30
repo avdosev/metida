@@ -7,7 +7,7 @@ import CommentForm from "../../Organisms/CommentForm/CommentForm";
 
 interface IProps {
     comment: IComments
-    currentUser: IPublicUser
+    currentUser: IPublicUser | null
     isChild?: boolean
     onCommentChanged: (comment: Array<IComments>) => void
 
@@ -47,11 +47,18 @@ export class Comment extends React.Component<IProps, IState> {
         let controlBlock: JSX.Element = <></>
 
         // TODO мне пришлось сделать по юзернейму, т.к. с сервера не приходит айди, исправить
-        if (this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
+        if (this.props.currentUser && this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
             controlBlock = <>
                 <button className="updateComment GreyButton">Редактировать</button>
                 <button className="removeComment GreyButton">Удалить</button>
             </>
+        }
+
+        let replyButton: JSX.Element = <></>
+        if (this.props.currentUser) {
+            replyButton = <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
+                {this.state.isReplying ? "Отмена" : "Ответить"}
+            </button>
         }
 
         return <div key={commentId} className={this.props.isChild ? "comment_childer" : "comment"} id={commentId}
@@ -61,9 +68,7 @@ export class Comment extends React.Component<IProps, IState> {
                 <time className="created_commit"> {DateStr}</time>
             </div>
             <div className="control_block">
-                <button className="reply comment_control" onClick={this.onReplyClick} id={"createBtn_" + comment.id}>
-                    {this.state.isReplying ? "Отмена" : "Ответить"}
-                </button>
+                {replyButton}
                 {controlBlock}
             </div>
             <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text"/>
