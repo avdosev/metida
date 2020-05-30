@@ -30,6 +30,7 @@ export default class Profile extends React.Component<IProps, IState> {
             username = getUsername()
         }
         else {
+
             username = getCurrentUser().username
         }
         console.log(username)

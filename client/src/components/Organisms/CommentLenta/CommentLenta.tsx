@@ -32,9 +32,13 @@ export default function CommentLenta(props: IProps) {
         }
     }
 
+    let user:IPublicUser | null
 
-
-    const User:IPublicUser = getCurrentUser()
+    try {
+        user = getCurrentUser()
+    }catch (e) {
+        user = null
+    }
 
 
 
@@ -42,11 +46,11 @@ export default function CommentLenta(props: IProps) {
     for (const firstLevelComments of arrayOfChilds.entries()) {
         const comment = initialComments.get(firstLevelComments[0])
         if (comment)
-            realComments.push(<Comment key={comment.id} currentUser={User} comment={comment} onCommentChanged={props.onCommentChanged}/>)
+            realComments.push(<Comment key={comment.id} currentUser={user} comment={comment} onCommentChanged={props.onCommentChanged}/>)
         for (const secondLevelComments of firstLevelComments[1]) {
             const innerComment = initialComments.get(secondLevelComments)
             if (innerComment)
-                realComments.push(<ChildComment currentUser={User} comment={innerComment} onCommentChanged={props.onCommentChanged} />)
+                realComments.push(<ChildComment currentUser={user} comment={innerComment} onCommentChanged={props.onCommentChanged} />)
         }
     }
 
