@@ -11,7 +11,6 @@ import {get} from "../../../services/router";
 import {Redirect} from "react-router-dom"
 import {isAuth} from "../../../services/user";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
-import {Comment} from "../../Molecules/Comment/Comment";
 import {IComments} from "../../Organisms/IComment";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
 import {md} from "../../../services/markdown"
