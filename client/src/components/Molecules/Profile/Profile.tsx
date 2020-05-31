@@ -49,23 +49,25 @@ export default class Profile extends React.Component<IProps, IState> {
         console.log(this.state.user.articles)
         return (
             <div className="layout_body">
-                <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
-                <div className="profile">
-                    <div className="left">
-                        <img className="avatar"
-                             src={this.state.user.avatar ? this.state.user.avatar : process.env.PUBLIC_URL + "/img/default/avatar_small.png"}
-                             alt="avatar"/>
+                <div className="content">
+                    <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
+                    <div className="profile">
+                        <div className="left">
+                            <img className="avatar"
+                                src={this.state.user.avatar ? this.state.user.avatar : process.env.PUBLIC_URL + "/img/default/avatar_small.png"}
+                                alt="avatar"/>
+                        </div>
+                        <div className="right">
+                            <h3>{this.state.user.username}</h3>
+                            <p className="about">Обо мне:
+                                {this.state.user.about ? this.state.user.about : "Ты ничего не узнаешь"}
+                            </p>
+                        </div>
                     </div>
-                    <div className="right">
-                        <h3>{this.state.user.username}</h3>
-                        <p className="about">Обо мне:
-                            {this.state.user.about ? this.state.user.about : "Ты ничего не узнаешь"}
-                        </p>
+                    Статейки:
+                    <div className="lenta">
+                        {articles}
                     </div>
-                </div>
-                Статейки:
-                <div className="lenta">
-                    {articles}
                 </div>
             </div>)
     }
