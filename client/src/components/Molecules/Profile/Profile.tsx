@@ -3,6 +3,7 @@ import {initialUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
+import Feed from "../../Organisms/Feed/Feed";
 
 interface IState {
     user: UserInfo
@@ -65,9 +66,9 @@ export default class Profile extends React.Component<IProps, IState> {
                         </div>
                     </div>
                     Статейки:
-                    <div className="lenta">
+                    <Feed>
                         {articles}
-                    </div>
+                    </Feed>
                 </div>
             </div>)
     }
