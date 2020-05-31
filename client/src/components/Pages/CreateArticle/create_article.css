@@ -15,10 +15,6 @@
 
 }
 
-.create_area > input {
-    margin-bottom: 20px;
-}
-
 .create_area:focus{
     border-color: var(--unique-color);
 }
