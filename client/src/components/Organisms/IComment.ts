@@ -1,6 +1,6 @@
 import {initialUser, IPrivateUser, IPublicUser} from "./IPrivateUser";
 
-interface IComments {
+interface IComment {
     id: number,
     commentAuthorId: number,
     text: string,
@@ -9,11 +9,16 @@ interface IComments {
     raiting: number | null,
     createdAt: Date,
     updatedAt: Date,
-    user: IPublicUser,
-    child: Array<IComments> | null
+    user: IPublicUser
 }
 
-const initialComment: IComments = {
+interface ITreeComments {
+    parent: ITreeComments | null;
+    comment: IComment,
+    childs: Map<number, ITreeComments>
+}
+
+const initialComment: IComment = {
     id: 0,
     commentAuthorId: 0,
     text: "",
@@ -22,10 +27,9 @@ const initialComment: IComments = {
     raiting: null,
     createdAt: new Date(),
     updatedAt: new Date(),
-    user: initialUser,
-    child: null
+    user: initialUser
 }
 
-export type {IComments}
+export type {IComment as IComments, ITreeComments}
 
 export {initialComment}

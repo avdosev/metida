@@ -1,23 +1,21 @@
 import {DateToStr} from "../../Pages/Post/dateRU";
 import React from "react";
 import {Link} from "react-router-dom";
-import {IComments} from "../../Organisms/IComment";
+import {IComments, ITreeComments} from "../../Organisms/IComment";
 import {IPrivateUser, IPublicUser} from "../../Organisms/IPrivateUser";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
 
 interface IProps {
-    comment: IComments
+    comment: ITreeComments
     currentUser: IPublicUser | null
-    isChild?: boolean
     onCommentChanged: (comment: Array<IComments>) => void
-
 }
 
 interface IState {
     isReplying: boolean
 }
 
-export class Comment extends React.Component<IProps, IState> {
+export default class Comment extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
 
@@ -33,7 +31,7 @@ export class Comment extends React.Component<IProps, IState> {
     }
 
     render() {
-        const comment = this.props.comment
+        const comment = this.props.comment.comment;
         const date = new Date(comment.createdAt);
         const DateStr = DateToStr(date);
 
@@ -56,7 +54,7 @@ export class Comment extends React.Component<IProps, IState> {
                     {this.state.isReplying ? "Отмена" : "Ответить"}
                 </button>
 
-            if (this.props.comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
+            if (comment.user.username === this.props.currentUser.username) { // TODO можно потом учесть, что удалить и редачить могли и админы/модераторы
                 // TODO мне пришлось сделать по юзернейму, т.к. с сервера не приходит айди, исправить
 
                 controlBlock =
@@ -67,30 +65,22 @@ export class Comment extends React.Component<IProps, IState> {
             }
         }
 
-
-        return <div key={commentId} className={this.props.isChild ? "comment_childer" : "comment"} id={commentId}
-                    data-id={comment.id}>
-            <div className="author_comment_block">
-                <Link to={authorlink} className="author_login">{comment.user.username}</Link>
-                <time className="created_commit"> {DateStr}</time>
+        return (
+            <div key={commentId} className="comment" id={commentId} data-id={comment.id}>
+                <div className="author_comment_block">
+                    <Link to={authorlink} className="author_login">{comment.user.username}</Link>
+                    <time className="created_commit"> {DateStr}</time>
+                </div>
+                <div className="control_block">
+                    {replyButton}
+                    {controlBlock}
+                </div>
+                <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text"/>
+                {commentform}
+                <div className="comment_childer">
+                    {this.props.comment.childs?.map(comment => <Comment key={comment.id} comment={comment} currentUser={this.props.currentUser} onCommentChanged={this.props.onCommentChanged}/>)}
+                </div>
             </div>
-            <div className="control_block">
-                {replyButton}
-                {controlBlock}
-            </div>
-            <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text"/>
-            {commentform}
-
-        </div>
+        )
     }
-
-
-}
-
-
-export function ChildComment(props: IProps) {
-    return (<Comment onCommentChanged={props.onCommentChanged}
-                     comment={props.comment}
-                     currentUser={props.currentUser}
-                     isChild={true}/>)
 }
