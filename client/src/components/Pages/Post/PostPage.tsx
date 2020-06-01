@@ -76,14 +76,13 @@ export default class PostPage extends React.Component<IProps, IState> {
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
                 <article className="post_text">
-                    <h1 dangerouslySetInnerHTML={{__html: md.render(this.state.header)}}/>
-                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
-                    <p dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
+                    <h1 dangerouslySetInnerHTML={{__html: this.state.header}}/>
+                    <div dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
+                    <div dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
                 <div className="comments_lenta onfullwidth" id="comments">
                     <h3>Комментарии:</h3>
                     <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments}/>
-
                 </div>
                 <div className="new_comment_block">
                     <CommentForm onCommentChanged={this.onCommentChanged}/>

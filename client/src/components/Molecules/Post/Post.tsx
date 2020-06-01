@@ -15,11 +15,11 @@ export function Post(props: IProps) {
     return (<div key={props.json.id} className="post">
         <div className="title">
             <Link to={url}>
-                <h3 dangerouslySetInnerHTML={{__html: md.render(props.json.header)}}/>
+                <h3 dangerouslySetInnerHTML={{__html: props.json.header}}/>
             </Link>
         </div>
-        <div className="disclaimer">
-            <p dangerouslySetInnerHTML={{__html: md.render(props.json.disclaimer)}}/>
+        <div className="disclaimer" dangerouslySetInnerHTML={
+            {__html: md.render(props.json.disclaimer)}}>
         </div>
         <div className="after_post">
             <Link to={url} className="BtnToArticle">Читать дальше</Link>
