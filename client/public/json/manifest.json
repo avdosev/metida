@@ -1,0 +1,32 @@
+{
+    "name": "Metida",
+    "short_name": "Metida",
+    "icons": [
+        {
+            "src": "/img/app_icon/logo64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "/img/app_icon/logo128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/img/app_icon/logo256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/img/app_icon/logo512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f7f7f7",
+    "theme_color": "#393939",
+    "description": "Маленький сайт для чтения и публикации статей.",
+    "lang": "ru"
+}

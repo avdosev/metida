@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Cabin|Montserrat&subset=cyrillic');
+
+@import url('colors.css');
+@import url('Molecules/Header/header.css');
+
+/* flex inners */
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.space_around_inner {
+    justify-content: space-around;
+}
+
+.space_between_inner {
+    justify-content: space-between;
+}
+
+.center_inner {
+    align-items: center;
+    justify-content: center;
+}
+
+.column_inner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.onfullwidth {
+    width: 100%;
+}
+
+.no_horizontal_border {
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+
+.no_vertical_margin {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.with_top_margin {
+    margin-top: 1rem;
+}
+
+.with_bottom_margin {
+    margin-bottom: 1rem;
+}
+
+/* universal */
+
+body {
+    background: var(--main-metida-color);
+    word-wrap: break-word;
+    margin: 0;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--url-color);
+}
+
+pre {
+    word-wrap: break-word;
+}
+
+img {
+    max-width: 100%;
+    max-height: 600px;
+
+    height: auto;
+    border: 10px black;
+    border-radius: 15px; /* хз может убрать */
+}
+
+button {
+    border-style: none;
+    padding: 0.3em 1em
+}
+
+h1, h2, h3, h4, h5, h6 {
+    align-self: center;
+}
+
+/* class */
+
+.content {
+    display: flex;
+    justify-content: center;
+    float: left;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+    max-width: 780px; /* очень спорно но пускай пока будет так */
+}
+
+.content .post_text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.content .lenta {
+    /*display: flex;*/
+    flex-direction: column;
+    align-items: center;
+}
+
+.content pre {
+    background-color: #2e2f30;
+    color: white;
+    padding: 1.5%;
+    width: 97%;
+    max-width: 100%;
+    border-radius: 3px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.content pre code {
+    background-color: #2e2f30;
+    overflow-x: auto;
+    white-space: unset;
+    display: block;
+    line-height: 25px;
+}
+
+.content .pre_table {
+    background-color: inherit;
+    color: var(--main-back-color);
+    box-shadow: none;
+}
+
+.scroll_inner_pre {
+    overflow-x: auto;
+}
+
+.content table {
+    width: 100%;
+    border: 1px solid #d5dddf;
+    border-collapse: collapse;
+}
+
+.content table td,
+.content table th {
+    padding: 6px 12px 9px;
+    border: 1px solid #d5dddf;
+    line-height: 1.5;
+}
+
+table thead {
+    background: #eaecea;
+    /* display: block; */
+}
+
+@media screen and (max-width: 650px) {
+    .content .post_text {
+        align-items: flex-start;
+    }
+}
+
+.layout_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    /* font-size: 18px; */
+    padding: 15px 5px 15px 5px;
+    font-family: 'Montserrat', 'Cabin', sans-serif;
+    font-size: 1rem; 
+    color: var(--back-color);
+    line-height: 1.5rem;
+}
+
+
+input#previews:checked {
+    background-color: black;
+}

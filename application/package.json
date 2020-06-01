@@ -1,0 +1,54 @@
+{
+  "name": "metida",
+  "version": "0.2.0",
+  "description": "Small blog-platform",
+  "main": "app.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avdosev/metida"
+  },
+  "engines": {
+    "node": "13.7.x"
+  },
+  "author": "K. company",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avdosev/metida/issues"
+  },
+  "scripts": {
+    "test": "npm run inspect:allConcurency",
+    "start": "nodemon app.js",
+    "lintFixWarnings": "eslint \"./**/*.js\" --fix",
+    "inspect:lint": "eslint \"./**/*.js\" ",
+    "inspect:mocha": "./node_modules/mocha/bin/mocha ",
+    "inspect:vulnerabilities": "npm audit",
+    "inspect:all": " npm run inspect:vulnerabilities && npm run inspect:lint && npm run inspect:mocha ",
+    "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.0",
+    "body-parser": "^1.16.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "express-session": "^1.15.0",
+    "express-validator": "^5.3.1",
+    "markdown-it": "^8.4.2",
+    "mysql2": "^2.0.1",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.1.1",
+    "sequelize": "^5.7.4",
+    "jsonwebtoken": "^8.5.1"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.4.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "concurrently": "^4.1.1",
+    "eslint": "^6.6.0",
+    "lorem-ipsum": "^2.0.2",
+    "mocha": "^6.1.4",
+    "prettier": "1.17.0",
+    "nodemon": "^2.0.4"
+  }
+}
