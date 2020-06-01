@@ -78,7 +78,7 @@ export default class Comment extends React.Component<IProps, IState> {
                 <div dangerouslySetInnerHTML={{__html: comment.text}} className="comment_text"/>
                 {commentform}
                 <div className="comment_childer">
-                    {this.props.comment.childs?.map(comment => <Comment key={comment.id} comment={comment} currentUser={this.props.currentUser} onCommentChanged={this.props.onCommentChanged}/>)}
+                    {this.props.comment.childs?.map(treecomment => <Comment key={treecomment.comment.id} comment={treecomment} currentUser={this.props.currentUser} onCommentChanged={this.props.onCommentChanged}/>)}
                 </div>
             </div>
         )
