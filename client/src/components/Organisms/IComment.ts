@@ -13,9 +13,8 @@ interface IComment {
 }
 
 interface ITreeComments {
-    parent: ITreeComments | null;
     comment: IComment,
-    childs: Map<number, ITreeComments>
+    childs: Array<ITreeComments>
 }
 
 const initialComment: IComment = {

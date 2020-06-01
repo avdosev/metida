@@ -12,6 +12,38 @@ interface IProps {
 }
 
 
+function buildTreeComments(comments: Array<IComments>): Array<ITreeComments> {
+    const initialComments: Map<number, IComments> = new Map()
+    for (const comment of comments) {
+        initialComments.set(comment.id, comment)
+    }
+
+
+    const arrayOfChilds: Map<number | null, Array<IComments>> = new Map<number | null, Array<IComments>>()
+    for (const comment of comments) {
+        if (arrayOfChilds.has(comment.answeringId)) {
+            arrayOfChilds.get(comment.answeringId)?.push(comment)
+        } else {
+            arrayOfChilds.set(comment.answeringId, [comment])
+        }
+    }
+
+    console.log("childs", arrayOfChilds)
+
+    function buildTree(parent: IComments): ITreeComments {
+        const childs = arrayOfChilds.get(parent.id) ?? []
+        const tree: ITreeComments = {
+            comment: parent,
+            childs: childs.map(buildTree)
+        }
+        return tree
+    }
+
+    const res = (arrayOfChilds.get(null) ?? []).map(buildTree);
+    return res;
+}
+
+
 export default function CommentLenta(props: IProps) {
     console.log(props.comments)
 
@@ -23,23 +55,14 @@ export default function CommentLenta(props: IProps) {
         user = null
     }
 
-    function buildTreeComments(comments: Array<IComments>): Map<number, ITreeComments> {
-        const res = new Map<number, ITreeComments>();
-        for (const comment of comments) {
-            
-        }
-        return res;
-    }
-
     const treeComments = buildTreeComments(props.comments);
-    // realComments.push(<Comment key={comment.id} currentUser={user} comment={comment} onCommentChanged={props.onCommentChanged}/>
     
     console.log(treeComments)
 
-    return (<div className="lenta">
-        {}
-    </div>)
+    return (
+        <div className="lenta">
+            {treeComments.map(treeComment => <Comment comment={treeComment} currentUser={user} onCommentChanged={props.onCommentChanged}/>)}
+        </div>
+    )
 
 }
-
-// TODO возможно, тут будет проблема, что я тут использую тег, которого не было в оригинале
