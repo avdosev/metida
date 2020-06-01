@@ -1,11 +1,11 @@
+import * as articleApi from '../../services/article.js';
+import { MarkdownToHtml } from '../../services/markdown.js';
+
 function initValues(req) {
     if (!req.values) {
         req.values = new Object;
     }
 }
-
-import * as articleApi from '../../services/article.js';
-import * as markdown from '../../services/markdown.js';
 
 export function updateArticle(req, res, next) {
     const id = req.params.id
@@ -17,9 +17,9 @@ export function updateArticle(req, res, next) {
     
     articleApi.updateArticle(
         id,
-        markdown.MarkdownToHtml(content), 
+        MarkdownToHtml(content), 
         header,
-        markdown.MarkdownToHtml(disclaimer)
+        MarkdownToHtml(disclaimer)
     ).then((value) => {
         res.values.article = value.dataValues;
         res.values.success = true;
