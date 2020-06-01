@@ -11,17 +11,17 @@ if (!production) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const port = process.env.SERVER_PORT;
-const url = `localhost:${port}`;
-const mainDir = path.join(__dirname, '..', '..');
-const imgDir = mainDir + '/public/img';
-const secretKey = process.env.SECRET_KEY
+export const port = process.env.SERVER_PORT;
+export const url = `localhost:${port}`;
+export const mainDir = path.join(__dirname, '..', '..');
+export const imgDir = mainDir + '/public/img';
+export const secretKey = process.env.SECRET_KEY
 
-const readJson = (filename) => JSON.parse(fs.readFileSync(`${__dirname}/${filename}`).toString());
-const mail = readJson('mail.json');
-const messages = readJson('messages.json');
+export const readJson = (filename) => JSON.parse(fs.readFileSync(`${__dirname}/${filename}`).toString());
+export const mail = readJson('mail.json');
+export const messages = readJson('messages.json');
 
-const sessionTime = 24*60*60 //сутки // через сколько пользователя выкинет // на норм сайтах, выдается на сутки, и продлевается
+export const sessionTime = 24*60*60 //сутки // через сколько пользователя выкинет // на норм сайтах, выдается на сутки, и продлевается
 
 
 export default {

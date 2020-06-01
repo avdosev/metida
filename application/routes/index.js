@@ -10,7 +10,7 @@ import {
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-import * as Handler from '../controllers/request_handler/index.js';
+import Handler from '../controllers/request_handler/index.js';
 import * as Response from '../controllers/respondent.js';
 
 

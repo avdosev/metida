@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 
 import express from 'express';
 import session from 'express-session';
@@ -8,17 +8,16 @@ import models from './database/models/index.js';
 
 import initAuthControllers from './routes/index.js';
 //import loadPassportStrategies from './controllers/users.js';
-import config from './config/index.js';
-const { port, imgDir, mainDir } = config;
+import { port, mainDir, secretKey } from './config/index.js';
 
-const app = express();
 async function start() {
     console.log('Workspace initialization...');
-
+    
+    const app = express();
     // For Passport
     app.use(
         session({
-            secret: config.secretKey,
+            secret: secretKey,
             resave: true,
             saveUninitialized: true
         })

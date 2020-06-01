@@ -1,7 +1,4 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-
-const nodemail = require('nodemailer'); //только так, они не поддерживают модули
+import nodemail from 'nodemailer';
 import config from "../config/index.js";
 
 export default (email, subject, message) => {

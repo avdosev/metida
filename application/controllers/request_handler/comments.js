@@ -1,5 +1,5 @@
 import * as commentApi from '../../services/comments.js';
-import * as markdown from '../../services/markdown.js';
+import { MarkdownToHtml } from '../../services/markdown.js';
 
 function initValues(req) {
     if (!req.values) {
@@ -42,7 +42,7 @@ function pushComment(req, res, next) {
     commentApi.pushComment(
         articleId, 
         author, 
-        markdown.MarkdownToHtml(text), 
+        MarkdownToHtml(text), 
         answeringId
     ).then(value => {
         initValues(res)

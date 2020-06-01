@@ -17,7 +17,7 @@ function logResponseValues(req, res, next) {
     next()
 }
 
-module.exports = {
+export {
     logRequest,
     logRequestValues,
     logResponseValues
