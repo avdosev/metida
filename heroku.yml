@@ -2,3 +2,6 @@ build:
   docker:
     client: client/Dockerfile
     server: application/Dockerfile
+run:
+  server: node app.js
+  client: nginx -g daemon off
