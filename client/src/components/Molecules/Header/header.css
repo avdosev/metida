@@ -1,0 +1,162 @@
+@import url('../../colors.css');
+
+a {
+    text-decoration: none;
+}
+
+hr {
+    margin: 0.5rem 0px;
+    border: 0;
+    height: 1px;
+    background: var(--main-back-color);
+    background-image: -webkit-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -moz-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -ms-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background-image: -o-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+}
+
+.header {
+    font-family: 'Cabin', sans-serif;
+    font-size: 26px;
+}
+
+.header_inner {
+    height: 4rem;  /* на большом монике все портится */
+}
+
+img.logoImg {
+    height: 3rem; /* ы */
+    padding: 7px 0px 0px 17px;
+}
+
+.regSection {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.regSection .GreyButton, .BlackButton {
+    margin-right: 0.5rem;
+    display: inline-block;
+    font-family: arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+    padding: 0.3em 1.2em;
+    /*outline: none;*/
+    border-radius: 3px;
+    transition: all 0.218s ease 0s;
+}
+
+.BlackButton {
+    background-color: var(--main-back-color);
+    color: var(--smoke-color);
+}
+
+.GreyButton {
+    background-color: var(--ccc-color);
+    color: black;
+}
+
+#createArticle .btn_text {
+    display: inline;
+}
+
+.icon {
+    display: none;
+}
+
+nav ul {
+    list-style: none;
+}
+
+.submenu {
+    display: flex;
+    flex-direction: row;
+}
+
+header ul {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.BlackButton:active, .GreyButton:active {
+    background-color: var(--unique-color);
+    color: var(--smoke-color);
+}
+
+@media screen and (max-width: 650px) {
+    .icon {
+        display: inline;
+    }
+
+    .regSection {
+        margin-left: 10%;
+    }
+
+    .header_inner {
+        height: 3rem;
+    }
+
+    img.logoImg {
+        height: 2.4rem;
+        min-width: 10rem;
+    }
+
+    .regSection .GreyButton,
+    .regSection .BlackButton {
+        display: block;
+        background-color: var(--main-back-color);
+        color: var(--smoke-color);
+        margin-right: 0px;
+        text-decoration: none;
+        /*outline: none;*/
+        color: white;
+        text-align: left;
+        font-family: 'Lato', sans-serif;
+        padding: 12px 15px;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+      
+    nav {
+        display: table;
+        margin: auto auto;
+        padding: 7px 7px 0px 0px;
+    }
+
+    header nav ul {
+        margin: 0;
+        padding: 0; 
+    }
+
+    .topmenu > li {
+        width: 45%;
+        float: right;
+        position: relative;
+    }
+      
+    .submenu {
+        flex-direction: column;
+        background: var(--main-back-color);
+        position: absolute;
+        left: -185%;
+        top: 100%;
+        z-index: 5;
+        width: 120px;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: 0 0;
+        transition: .5s ease-in-out;
+    }
+
+    #submenu__active{
+        opacity: 1;
+        transform: scaleY(1);
+    }
+} 
+
+.BlackButton:hover, .GreyButton:hover {
+    background-color: var(--unique-color);
+    color: var(--smoke-color);
+}

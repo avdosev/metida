@@ -2,3 +2,7 @@ node_modules
 .vscode
 .idea
 package-lock.json
+*.sql
+test.js
+build
+src/components/Pages/TemplateClass.tsx

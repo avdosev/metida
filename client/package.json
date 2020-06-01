@@ -1,0 +1,49 @@
+{
+  "name": "metida",
+  "version": "0.2.0",
+  "description": "Small blog-platform",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avdosev/metida"
+  },
+  "engines": {
+    "node": "13.7.x"
+  },
+  "author": "K. company",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avdosev/metida/issues"
+  },
+  "scripts": {
+    "build": "tsc && react-scripts build",
+    "start": "react-scripts start"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.9.2",
+    "jsonwebtoken": "^8.5.1",
+    "markdown-it": "^8.4.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5"
+  }
+}

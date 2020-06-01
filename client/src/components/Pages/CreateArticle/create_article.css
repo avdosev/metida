@@ -1,0 +1,86 @@
+.pushArticle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.create_area {
+    /*outline: none;*/
+    padding: 20px 20px 0;
+    border: 1px solid var(--main-bord-color);
+    min-height: 500px !important;
+    width: 95%;
+    resize: vertical;
+
+}
+
+.create_area:focus{
+    border-color: var(--unique-color);
+}
+
+.Btn{
+    /*outline: none;*/
+    height: 30px;
+    width: 150px;
+    margin-right: 10px;
+    border: 3px;
+    border-style: double;
+    background-color: var(--unique-color);
+    color: var(--main-metida-color);
+    transition: 0.5s;
+}
+
+/* переделать минимальные и максимальные занчаения, тк при изменении размеров экрана происходит троллинг */
+#disclaimer{
+    /*outline: none;*/
+    border: 1px solid var(--main-bord-color);
+    padding: 10px 20px 0;
+    width: 94.5%;
+    min-height: 5vw;
+    max-height: 15vw;
+    resize: vertical;
+}
+
+#disclaimer:focus{
+    border-color: var(--unique-color);
+}
+
+#header {
+    margin: 0;
+    padding: 4px 20px 0px;
+    width: 100%;
+    height: 34px;
+    border: 1px solid var(--main-bord-color);
+    /*outline: none;*/
+    color: #3b3b3b;
+    font-size: 15px;
+    line-height: 34px;
+}
+
+#header:focus{
+    border-color: var(--unique-color);
+}
+
+.Btn:active{
+    background-color: var(--buttom-active);
+}
+
+@media screen and (max-width: 650px) {
+    .pushArticle {
+        width: 100%
+    }
+    .pushArticle #header,
+    .pushArticle #disclaimer,
+    .pushArticle #article {
+        width: 90%
+    }
+}
+
+@media (hover:hover) {
+
+    .create_area:hover, .disclaimer:hover, #header:hover {
+        border-color: var(--main-hover-color);
+    }
+    
+}
