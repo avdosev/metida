@@ -6,7 +6,7 @@ RUN cd client && npm install --silent && npm install react-scripts -g --silent &
 
 
 ### STAGE 2: Production Environment ###
-FROM node:13
+FROM mhart/alpine-node:14
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/client/build /usr/src/app/client/build
 COPY application application
