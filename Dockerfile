@@ -2,10 +2,7 @@
 FROM node:9.11.1 as build
 WORKDIR /usr/src/app
 COPY . .
-RUN cd client
-RUN npm install --silent
-RUN npm install react-scripts -g --silent
-RUN npm run build
+RUN cd client && ls && npm install --silent && npm install react-scripts -g --silent && npm run build
 
 
 ### STAGE 2: Production Environment ###
