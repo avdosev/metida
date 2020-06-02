@@ -11,6 +11,7 @@ import Sequelize from "sequelize";
 const env = process.env.NODE_ENV || 'development';
 import databaseConfig from '../config/database.js';
 const config = databaseConfig[env];
+console.log(config)
 const sequelize = new Sequelize(
     config.database,
     config.username,

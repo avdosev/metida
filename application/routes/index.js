@@ -9,6 +9,8 @@ import {
 
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import path from 'path';
+
 
 import Handler from '../controllers/request_handler/index.js';
 import * as Response from '../controllers/respondent.js';
@@ -30,7 +32,14 @@ const initAuthControllers = (app) => {
 
     app.use('/api', ApiRouter);
 
-
+    if (process.env.NODE_ENV === 'production') {
+        // Serve any static files
+        app.use(express.static(path.join(config.mainDir, 'client', 'build')));
+        // Handle React routing, return all requests to React app
+        app.get('*', function(req, res) {
+            res.sendFile(path.join(config.mainDir, 'client', 'build', 'index.html'));
+        });
+    }
 
     // -- ARTICLES API -- 
     
