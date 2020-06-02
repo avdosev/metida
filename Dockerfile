@@ -2,13 +2,12 @@
 FROM node:9.11.1 as build
 WORKDIR /usr/src/app
 COPY . .
-RUN cd client && ls && npm install --silent && npm install react-scripts -g --silent && npm run build
+RUN cd client && npm install --silent && npm install react-scripts -g --silent && npm run build
 
 
 ### STAGE 2: Production Environment ###
-FROM node:13
+FROM mhart/alpine-node:14
 WORKDIR /usr/src/app
-RUN ls
 COPY --from=build /usr/src/app/client/build /usr/src/app/client/build
 COPY application application
 RUN cd application && npm i --only=production
