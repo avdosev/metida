@@ -8,7 +8,8 @@ RUN cd client && ls && npm install --silent && npm install react-scripts -g --si
 ### STAGE 2: Production Environment ###
 FROM node:13
 WORKDIR /usr/src/app
-COPY --from=build /usr/src/app/build /usr/src/app/build
+RUN ls
+COPY --from=build /usr/src/app/client/build /usr/src/app/client/build
 COPY application application
 RUN cd application && npm i --only=production
 
