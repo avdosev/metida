@@ -11,7 +11,7 @@ if (!production) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const port = process.env.SERVER_PORT;
+export const port = process.env.PORT;
 export const url = `localhost:${port}`;
 export const mainDir = path.join(__dirname, '..', '..');
 export const imgDir = mainDir + '/public/img';

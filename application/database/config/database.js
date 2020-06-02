@@ -3,7 +3,7 @@ dotenv.config();
 
 export default {
     "development": {
-        "username": process.env.LOGININMETIDA,
+        "username": process.env.LOGIN,
         "password": process.env.PASSWORD,
         "database": process.env.DATABASE,
         "host": process.env.HOST,
