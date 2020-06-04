@@ -20,11 +20,75 @@ const isLocalhost = Boolean(
     )
 );
 
+
+const cacheName = 'static_cache';
+const precacheResources = [
+  'offline',
+  //-- images --
+  'img/logo.png',
+  'img/mobile_menu.png',
+  //-- json --
+  'json/input_errors.json',
+  'json/lexem_table.json',
+];
+
+self.addEventListener('install', (evt) => {
+  console.log('[ServiceWorker] Install');
+
+  evt.waitUntil(
+      caches.open(cacheName).then((cache) => {
+        console.log('[ServiceWorker] Pre-caching offline page');
+        return cache.addAll(precacheResources);
+      })
+  );
+
+  self.skipWaiting();
+});
+
+
+
+self.addEventListener('activate', (evt) => {
+  console.log('[ServiceWorker] Activate');
+
+  evt.waitUntil(
+      caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+          if (key !== cacheName) {
+            console.log('[ServiceWorker] Removing old cache', key);
+            return caches.delete(key);
+          }
+        }));
+      })
+  );
+
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  console.log('[ServiceWorker] Fetch ', event);
+
+  event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp || fetch(event.request).then((response) => {
+          return caches.open(cacheName).then((cache) => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        });
+      })
+  );
+});
+
+
 export function register(config) {
+  console.log('[ServiceWorker] Register');
+
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
+      console.log('[ServiceWorker] publicUrl != locationUrl');
+
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
@@ -33,6 +97,7 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      console.log('[ServiceWorker] Load');
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -48,6 +113,8 @@ export function register(config) {
         });
       } else {
         // Is not localhost. Just register service worker
+        console.log('[ServiceWorker] Valid Register');
+
         registerValidSW(swUrl, config);
       }
     });
