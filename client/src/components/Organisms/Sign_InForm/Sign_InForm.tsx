@@ -1,6 +1,6 @@
 import React from "react";
-import "../../main.css"
-import "../../input.css"
+import "../../styles/main.css"
+import "../../styles/input.css"
 import {IProps, IState} from "./ISign_InForm"
 import {FieldInput} from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
@@ -38,11 +38,15 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = async (event: any) => {
-        const error = await loginQuery(event, ROUTES.SIGN_IN, {
+        let error = await loginQuery(event, ROUTES.SIGN_IN, {
             email: this.state.email.value,
             password: this.state.password.value
         });
         if (error) {
+            if (error.match("Cannot POST")) {
+                console.warn("Сервер не отвечает")
+                error = "Сервер не отвечает, попробуйте позже."
+            }
             this.setState({serverError: error})
         } else {
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
@@ -63,7 +67,8 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.handleUserInput} value={fd.password.value} text={v!.password.error_str}/>
+                                validateFunc={this.handleUserInput} value={fd.password.value}
+                                text={v!.password.error_str}/>
                     <FieldError valid={!this.state.serverError} text={this.state.serverError}/>
                 </Form>
 

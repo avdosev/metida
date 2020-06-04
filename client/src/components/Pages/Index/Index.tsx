@@ -1,7 +1,7 @@
 import React from "react";
-import "../../main.css"
-import "../../lenta.css"
-import "../../colors.css"
+import "../../styles/main.css"
+import "../../styles/lenta.css"
+import "../../styles/colors.css"
 import {Post} from "../../Molecules/Post/Post"
 import {post} from "../../../services/router";
 import Feed from "../../Organisms/Feed/Feed";

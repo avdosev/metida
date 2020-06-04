@@ -1,8 +1,8 @@
 import React from "react";
-import "../../input.css"
-import "../../main.css"
+import "../../styles/input.css"
+import "../../styles/main.css"
 import "./post.css"
-import "../../comments.css"
+import "../../styles/comments.css"
 import {getArticleId, loadComments} from './comments.js';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";

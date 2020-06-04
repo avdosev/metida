@@ -15,7 +15,8 @@
     "url": "https://github.com/avdosev/metida/issues"
   },
   "scripts": {
-    "build": "tsc && react-scripts build",
+    "build": "npm run test && react-scripts build",
+    "test": "tsc",
     "start": "react-scripts start"
   },
   "dependencies": {
@@ -40,10 +41,16 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
     "@types/dotenv": "^8.2.0",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "eslint": "^6.6.0",
+    "husky": "^4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import "../../main.css"
-import "../../input.css"
+import "../../styles/main.css"
+import "../../styles/input.css"
 import {IProps, IState} from "./IRegisterForm";
 import {FieldInput} from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
