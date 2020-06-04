@@ -1,4 +1,4 @@
-import { serverUri } from "../components/config";
+import { serverUri } from "../config/config";
 import {IPrivateUser} from "../components/Organisms/IPrivateUser";
 import * as ls from "./localstorage"
 
