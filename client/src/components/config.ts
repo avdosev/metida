@@ -1,11 +1,13 @@
-
-
-const serverPort = 7080
-let host: string
+console.log(process.env.NODE_ENV)
 let serverUri: string;
 
-host = "localhost"
-//serverUri = `http://${host}:${serverPort}`
-serverUri = ''
+if (process.env.NODE_ENV === "development") {
+    const host = "localhost"
+    const serverPort = 7080
+    serverUri = `http://${host}:${serverPort}`
+} else {
+    serverUri = ''
+
+}
 
 export {serverUri}
