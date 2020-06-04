@@ -20,6 +20,64 @@ const isLocalhost = Boolean(
     )
 );
 
+
+const cacheName = 'static_cache';
+const precacheResources = [
+  'offline',
+  //-- images --
+  '/public/img/logo.png',
+  '/public/img/mobile_menu.png',
+  //-- json --
+  '/public/json/input_errors.json',
+  '/public/json/lexem_table.json',
+];
+
+self.addEventListener('install', (evt) => {
+  console.log('[ServiceWorker] Install');
+
+  evt.waitUntil(
+      caches.open(cacheName).then((cache) => {
+        console.log('[ServiceWorker] Pre-caching offline page');
+        return cache.addAll(precacheResources);
+      })
+  );
+
+  self.skipWaiting();
+});
+
+
+
+self.addEventListener('activate', (evt) => {
+  console.log('[ServiceWorker] Activate');
+
+  evt.waitUntil(
+      caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+          if (key !== cacheName) {
+            console.log('[ServiceWorker] Removing old cache', key);
+            return caches.delete(key);
+          }
+        }));
+      })
+  );
+
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+      caches.match(event.request).then((resp) => {
+        return resp || fetch(event.request).then((response) => {
+          return caches.open(cacheName).then((cache) => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
+        });
+      })
+  );
+});
+
+
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
