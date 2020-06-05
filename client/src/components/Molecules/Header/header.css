@@ -36,7 +36,7 @@ hr {
     color: #393939;
     float: right;
     margin-left: -1rem;
-    font-size: calc( (100vw - 30rem)/(80 - 30) * (1.5 - 1) + 2rem);
+    font-size: calc( (100vw - 30rem)/(80 - 30) * (1.5 - 1) + 1.5rem);
 }
 
 .logo__underline {
