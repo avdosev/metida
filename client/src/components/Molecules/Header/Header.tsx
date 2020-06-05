@@ -21,22 +21,25 @@ const Header: FunctionComponent<{}> = () => {
 
     return (
         <header className="header">
-            <div className="header_inner flex space_between_inner">
-
+            <div className="header_inner flex alignCenter space_between_inner">
+                {/**/}
                 <div className="logo">
                     <Link to="/">
-                        <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"/>
+                        <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
+                             width="100"/>
+                        <div className="logo__title">
+                            METIDA
+                            <div className="logo__underline" />
+                        </div>
                     </Link>
                 </div>
 
-                <Link to="/">
-                    <div className="logo__title">METIDA</div>
-                </Link>
 
 
                 <div className="regSection">
                     <Burger authorised={authorised}/>
                 </div>
+
             </div>
             <hr/>
         </header>)
