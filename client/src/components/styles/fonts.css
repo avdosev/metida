@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Droid Sans';
+    src: url('fonts/subset-DroidSans-Bold.woff2') format('woff2'),
+    url('fonts/subset-DroidSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+

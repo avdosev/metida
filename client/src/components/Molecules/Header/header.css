@@ -1,5 +1,5 @@
 @import url('../../styles/colors.css');
-
+@import url('../../styles/fonts.css');
 a {
     text-decoration: none;
 }
@@ -24,10 +24,20 @@ hr {
     height: 4rem;  /* на большом монике все портится */
 }
 
-img.logoImg {
+img.logo__image {
     height: 3rem; /* ы */
     padding: 7px 0px 0px 17px;
 }
+
+.logo__title {
+    font-family: Droid Sans, serif;
+    color: black;
+    text-decoration: none;
+    border-bottom: 3px solid grey;
+    padding-bottom: 1px;
+    align-items: center;
+}
+
 
 .regSection {
     margin-left: auto;
@@ -98,7 +108,7 @@ header ul {
         height: 3rem;
     }
 
-    img.logoImg {
+    img.logo__image {
         height: 2.4rem;
         min-width: 10rem;
     }
