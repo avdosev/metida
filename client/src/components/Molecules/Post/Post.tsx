@@ -21,13 +21,5 @@ export function Post(props: IProps) {
         <div className="disclaimer" dangerouslySetInnerHTML={
             {__html: md.render(props.json.disclaimer)}}>
         </div>
-        <div className="after_post">
-            <Link to={url} className="BtnToArticle">Читать дальше</Link>
-            {/*, hash: "#comments"*/}
-            <Link to={{pathname: url, state: {toComments: true}}} className="BtnToArticleComments">
-                <img className="after_post_icon" src={process.env.PUBLIC_URL + "/img/ui_icon/comment.svg"}
-                     alt="Смотреть комментарии"/>
-            </Link>
-        </div>
     </div>);
 }
