@@ -32,52 +32,6 @@ const precacheResources = [
   'json/lexem_table.json',
 ];
 
-self.addEventListener('install', (evt) => {
-  console.log('[ServiceWorker] Install');
-
-  evt.waitUntil(
-      caches.open(cacheName).then((cache) => {
-        console.log('[ServiceWorker] Pre-caching offline page');
-        return cache.addAll(precacheResources);
-      })
-  );
-
-  self.skipWaiting();
-});
-
-
-
-self.addEventListener('activate', (evt) => {
-  console.log('[ServiceWorker] Activate');
-
-  evt.waitUntil(
-      caches.keys().then((keyList) => {
-        return Promise.all(keyList.map((key) => {
-          if (key !== cacheName) {
-            console.log('[ServiceWorker] Removing old cache', key);
-            return caches.delete(key);
-          }
-        }));
-      })
-  );
-
-  self.clients.claim();
-});
-
-self.addEventListener('fetch', (event) => {
-  console.log('[ServiceWorker] Fetch ', event);
-
-  event.respondWith(
-      caches.match(event.request).then((resp) => {
-        return resp || fetch(event.request).then((response) => {
-          return caches.open(cacheName).then((cache) => {
-            cache.put(event.request, response.clone());
-            return response;
-          });
-        });
-      })
-  );
-});
 
 
 export function register(config) {
