@@ -15,35 +15,35 @@ hr {
     background-image: -o-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
 }
 
-.header {
-    font-family: 'Cabin', sans-serif;
-    font-size: 26px;
+.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
 .header_inner {
-    height: 4rem;  /* на большом монике все портится */
+    margin-top: 1rem;
 }
 
-img.logo__image {
-    height: 3rem; /* ы */
-    padding: 7px 0px 0px 17px;
+.logo__image {
+    height: 3rem;
+
 }
 
 .logo__title {
-    font-family: Droid Sans, serif;
-    color: black;
-    text-decoration: none;
-    border-bottom: 3px solid grey;
-    padding-bottom: 1px;
-    align-items: center;
+    font-family: "Droid Sans", sans-serif;
+    color: #393939;
+    float: right;
+    margin-left: -1rem;
+    font-size: calc( (100vw - 30rem)/(80 - 30) * (1.5 - 1) + 2rem);
 }
 
-
-.regSection {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
+.logo__underline {
+    border-bottom: 2.5px solid #393939 ;
+    margin-left: 2%;
 }
+
 
 .regSection .GreyButton, .BlackButton {
     margin-right: 0.5rem;
@@ -66,10 +66,6 @@ img.logo__image {
 .GreyButton {
     background-color: var(--ccc-color);
     color: black;
-}
-
-#createArticle .btn_text {
-    display: inline;
 }
 
 .icon {
@@ -110,7 +106,7 @@ header ul {
 
     img.logo__image {
         height: 2.4rem;
-        min-width: 10rem;
+        /*min-width: 10rem;*/
     }
 
     .regSection .GreyButton,

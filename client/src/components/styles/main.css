@@ -14,6 +14,11 @@
     flex-wrap: wrap;
 }
 
+.alignCenter {
+    align-items: center;
+
+}
+
 .space_around_inner {
     justify-content: space-around;
 }
