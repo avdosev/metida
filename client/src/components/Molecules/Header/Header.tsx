@@ -22,7 +22,6 @@ const Header: FunctionComponent<{}> = () => {
     return (
         <header className="header">
             <div className="header_inner flex alignCenter space_between_inner">
-                {/**/}
                 <div className="logo">
                     <Link to="/">
                         <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
