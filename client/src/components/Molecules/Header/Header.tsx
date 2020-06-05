@@ -7,10 +7,10 @@ import {
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
 
-const Header:FunctionComponent<{}> = () => {
+const Header: FunctionComponent<{}> = () => {
     const [authorised, setAuthorised] = useState(false)
 
-    useEffect( () => {
+    useEffect(() => {
         const checkAuth = async () => {
             const auth = await isAuth()
             setAuthorised(auth)
@@ -22,13 +22,20 @@ const Header:FunctionComponent<{}> = () => {
     return (
         <header className="header">
             <div className="header_inner flex space_between_inner">
+
                 <div className="logo">
                     <Link to="/">
-                        <img className="logoImg" src={process.env.PUBLIC_URL + '/img/logo_svg.svg'} alt="Metida"/>
+                        <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"/>
                     </Link>
                 </div>
+
+                <Link to="/">
+                    <div className="logo__title">METIDA</div>
+                </Link>
+
+
                 <div className="regSection">
-                    <Burger authorised={authorised} />
+                    <Burger authorised={authorised}/>
                 </div>
             </div>
             <hr/>
