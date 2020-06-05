@@ -27,7 +27,6 @@ const Header: FunctionComponent<{}> = () => {
                         <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
                              width="100"/>
                         <div className="logo__title">
-                            METIDA
                             <div className="logo__underline" />
                         </div>
                     </Link>
