@@ -3,7 +3,7 @@ import "../../styles/input.css"
 import "../../styles/main.css"
 import "./post.css"
 import "../../styles/comments.css"
-import {getArticleId, loadComments} from './comments.js';
+import {getArticleId, loadComments} from '../../../services/comments';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Footer from "../../Molecules/Footer/Footer";
@@ -70,6 +70,7 @@ export default class PostPage extends React.Component<IProps, IState> {
 
 
     render() {
+        console.log(this.state.comments)
 
         return (<SimplePage header={<Header/>} content={<div className="layout_body">
             <div className="content">
@@ -80,7 +81,7 @@ export default class PostPage extends React.Component<IProps, IState> {
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
-                <div className="comments_lenta onfullwidth" id="comments">
+                <div className="comments_lenta onfullwidth" id="comments2">
                     <h3>Комментарии:</h3>
                     <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments}/>
                 </div>

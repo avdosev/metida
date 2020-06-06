@@ -73,7 +73,6 @@ h3 {
     border-radius: unset;
     color: var(--unique-color);
 /*    TODO я замазал часть функциональности, она почему-то не рабоатет вообще никак */
-    display:none;
 
 }
 

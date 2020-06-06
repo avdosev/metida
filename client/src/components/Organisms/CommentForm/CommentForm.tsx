@@ -5,7 +5,7 @@ import {Field, IIState} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../Form/Form";
-import {getArticleId} from "../../Pages/Post/comments";
+import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
 import {loginQuery} from "../Form/FormHelper";
 

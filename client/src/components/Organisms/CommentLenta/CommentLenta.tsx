@@ -28,8 +28,6 @@ function buildTreeComments(comments: Array<IComments>): Array<ITreeComments> {
         }
     }
 
-    console.log("childs", arrayOfChilds)
-
     function buildTree(parent: IComments): ITreeComments {
         const childs = arrayOfChilds.get(parent.id) ?? []
         const tree: ITreeComments = {
@@ -45,8 +43,7 @@ function buildTreeComments(comments: Array<IComments>): Array<ITreeComments> {
 
 
 export default function CommentLenta(props: IProps) {
-    console.log(props.comments)
-
+    console.log(props)
     let user:IPublicUser | null
 
     try {
@@ -56,12 +53,10 @@ export default function CommentLenta(props: IProps) {
     }
 
     const treeComments = buildTreeComments(props.comments);
-    
-    console.log(treeComments)
 
     return (
         <div className="lenta">
-            {treeComments.map(treeComment => <Comment comment={treeComment} currentUser={user} onCommentChanged={props.onCommentChanged}/>)}
+            {treeComments.map(treeComment => <Comment key={treeComment.comment.id} comment={treeComment} currentUser={user} onCommentChanged={props.onCommentChanged}/>)}
         </div>
     )
 

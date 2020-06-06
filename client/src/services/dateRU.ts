@@ -1,8 +1,8 @@
-export function DateToStr(date) {
+export function DateToStr(date: Date) {
     const now = new Date();
     let str;
     const nearlyDay =
-        date.getYear() == now.getYear() && date.getMonth() == now.getMonth();
+        date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth();
     const subDay = now.getDate() - date.getDate();
 
     if (nearlyDay && subDay == 1) {
