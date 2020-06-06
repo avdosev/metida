@@ -6,12 +6,9 @@ export default function SimpleTemplate(props: { header: React.ReactNode; content
     return (
 
         <div className={styles.template}>
-            {props.header}
-            <Suspense fallback={<div className="suspense">Загрузка идет222...</div>}>
-
+            {/*{props.header}*/}
             {props.content}
                 {props.footer}
-            </Suspense>
         </div>
     )
 }

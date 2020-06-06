@@ -19,20 +19,19 @@ function App() {
     return (
         <Router>
             <React.StrictMode>
-                {/*<Header />*/}
-                {/*<Suspense fallback={<div className="suspense">Загрузка идет...</div>}>*/}
-
-                <Switch>
-                    <Route path={ROUTES.LOGOUT} component={Logout}/>
-                    <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle}/>
-                    <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home}/>
-                    <Route path={ROUTES.PROFILE} component={ProfilePage}/>
-                    <Route path={ROUTES.POST} component={PostPage}/>
-                    <Route path={ROUTES.SIGN_IN} component={SignIn}/>
-                    <Route path={ROUTES.REGISTER} component={Register}/>
-                    <Route path={ROUTES.LANDING} component={Index}/>
-                </Switch>
-                {/*</Suspense>*/}
+                <Header/>
+                <Suspense fallback={<div className="suspense">Загрузка идет...</div>}>
+                    <Switch>
+                        <Route path={ROUTES.LOGOUT} component={Logout}/>
+                        <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle}/>
+                        <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home}/>
+                        <Route path={ROUTES.PROFILE} component={ProfilePage}/>
+                        <Route path={ROUTES.POST} component={PostPage}/>
+                        <Route path={ROUTES.SIGN_IN} component={SignIn}/>
+                        <Route path={ROUTES.REGISTER} component={Register}/>
+                        <Route path={ROUTES.LANDING} component={Index}/>
+                    </Switch>
+                </Suspense>
 
             </React.StrictMode>
         </Router>
