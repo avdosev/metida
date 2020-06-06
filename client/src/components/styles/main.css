@@ -4,6 +4,11 @@
 
 /* flex inners */
 
+.suspense {
+    font-size: 100px;
+    color: red;
+}
+
 .flex {
     display: flex;
 }

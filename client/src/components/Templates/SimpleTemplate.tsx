@@ -1,12 +1,17 @@
-import React from "react";
-import "./style.css"
+import React, {Suspense} from "react";
+import styles from "./SimpleTempate.module.css"
+
 
 export default function SimpleTemplate(props: { header: React.ReactNode; content: React.ReactNode; footer?: React.ReactNode; }) {
     return (
-        <div className="template">
+
+        <div className={styles.template}>
             {props.header}
+            <Suspense fallback={<div className="suspense">Загрузка идет222...</div>}>
+
             {props.content}
-            {props.footer}
+                {props.footer}
+            </Suspense>
         </div>
     )
 }
