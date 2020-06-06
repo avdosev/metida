@@ -7,8 +7,11 @@ import {
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
 
-const Header: FunctionComponent<{}> = () => {
+const Header: FunctionComponent<{url: string}> = (props) => {
     const [authorised, setAuthorised] = useState(false)
+
+    console.log(props.url)
+
 
     useEffect(() => {
         const checkAuth = async () => {

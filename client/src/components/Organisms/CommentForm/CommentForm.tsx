@@ -1,13 +1,12 @@
 import React from "react";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
-import {Field, IIState} from "../IAuth";
+import {Field, IIState, Valid} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../Form/Form";
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
-import {loginQuery} from "../Form/FormHelper";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
@@ -26,7 +25,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             isAuth: false,
-            comment: {value: '', valid: false},
+            comment: {value: '', valid: Valid.Intermediate},
             validators: initialValidator,
             isRendered: false
         }
@@ -40,8 +39,9 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = fieldValue.match(this.state.validators![fieldName].regexp)
-        return !!fieldValid;
+        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
+        if (fieldValid) return Valid.Acceptable
+        else return Valid.Invalid
     }
 
     async componentDidMount() {
@@ -81,7 +81,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
             if (!this.state.isRendered && (this.props.replyCommentId || this.props.replyCommentAuthorName)) {
                 this.setState({
                     isRendered: true,
-                    comment: {value: this.props.replyCommentAuthorName + ", ", valid: false}
+                    comment: {value: this.props.replyCommentAuthorName + ", ", valid: this.validateField('comment', this.state.comment.value)}
                 })
             } // TODO вызывает серьезный варнинг
 

@@ -1,34 +1,29 @@
 import React from "react";
 import {IField} from "../IField";
 
-interface IState {
+
+interface IProps extends IField {}
+
+
+const Input: React.FC<IProps> = (props: IProps) => {
+     return(<>
+        <h3>{props.fieldDescription ?? props.fieldName} </h3>
+        <input
+            id={props.fieldId ?? props.fieldName}
+            className={props.fieldClass ?? props.fieldName}
+            type={props.fieldType ?? props.fieldName}
+            name={props.fieldName}
+            placeholder={props.placeholder ?? props.fieldName}
+            required
+            pattern={props.regexp}
+            onChange={props.validateFunc}
+            value={props.value}
+            autoFocus={props.autofocus}
+        />
+    </>)
 
 }
 
-interface IProps extends IField {
-
-}
-
-export default class Input extends React.Component<IProps, IState> {
+export default Input
 
 
-    render() {
-        return <>
-            <h3>{this.props.fieldDescription ?? this.props.fieldName} </h3>
-            <input
-                id={this.props.fieldId ?? this.props.fieldName}
-                className={this.props.fieldClass ?? this.props.fieldName}
-                type={this.props.fieldType ?? this.props.fieldName}
-                name={this.props.fieldName}
-                placeholder={this.props.placeholder ?? this.props.fieldName}
-                required
-                pattern={this.props.regexp}
-                onChange={this.props.validateFunc}
-                value={this.props.value}
-                autoFocus={this.props.autofocus}
-
-            />
-
-        </>;
-    }
-}

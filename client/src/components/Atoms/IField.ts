@@ -1,6 +1,9 @@
+import {Valid} from "../Organisms/IAuth";
+import React from "react";
+
 interface IField {
     fieldName: string,
-    validateFunc: (event: any) => void,
+    validateFunc: (event: React.ChangeEvent<any>) => void,
     regexp: string,
     value: string,
 
@@ -13,7 +16,7 @@ interface IField {
 }
 
 interface IFieldError {
-    valid: boolean
+    valid: Valid,
     text: string
 }
 

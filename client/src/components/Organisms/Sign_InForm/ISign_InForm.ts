@@ -7,7 +7,7 @@ interface IProps {
 interface IState extends IIState {
     email: Field,
     password: Field,
-    serverError : string,
+    serverError: Field,
 
     [Symbol.iterator](): IterableIterator<Field> //если понадобится, то писать так
 

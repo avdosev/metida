@@ -9,22 +9,24 @@ import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../Form/Form";
 import {initialValidator, Validators} from "../IValidators";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {Valid} from "../IAuth";
 
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
         this.state = {
-            header: {value: '', valid: false},
-            disclaimer: {value: '', valid: false},
-            content: {value: '', valid: false},
+            header: {value: '', valid: Valid.Intermediate},
+            disclaimer: {value: '', valid: Valid.Intermediate},
+            content: {value: '', valid: Valid.Intermediate},
             isPreview: false,
             referrer: <></>,
+            serverError: {value: '', valid: Valid.Intermediate},
             validators: initialValidator
         }
     }
 
-    handleUserInput = (event: any) => {
+    handleUserInput = (event: React.ChangeEvent<any>) => {
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}}, () => {
             if (this.state.isPreview) {
@@ -34,11 +36,12 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = fieldValue.match(this.state.validators![fieldName].regexp)
-        return !!fieldValid;
+        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
+        if (fieldValid) return Valid.Acceptable
+        else return Valid.Invalid
     }
 
-    submitBtnHandler = async (event: any) => {
+    submitBtnHandler = async (event: React.FormEvent) => {
         event.preventDefault()
         const response = await post(ROUTES.CREATE_ARTICLE, {
             disclaimer: this.state.disclaimer.value,
@@ -60,7 +63,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         }
     }
 
-    handleCheckboxChange = (e: any) => {
+    handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {content, header, disclaimer} = this.state
         if (e.target.checked) {
             this.props.onRenderPreview(header.value, disclaimer.value, content.value)
@@ -121,7 +124,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                            placeholder="Текст вашей статьи..."
                            text={v.content.error_str}
             />
-            <FieldError valid={!this.state.serverError}  text={this.state.serverError}/>
+            <FieldError valid={this.state.serverError.valid}  text={this.state.serverError.value}/>
 
         </Form>;
     }

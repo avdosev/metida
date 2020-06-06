@@ -31,7 +31,7 @@ export default class CreateArticle extends React.Component<IProps, IState> {
 
 
     render() {
-        return (<SimpleTemplate header={<Header/>} content={
+        return (<SimpleTemplate content={
                 <div className="layout_body">
                     <div className="content">
                         <script type="text/javascript"

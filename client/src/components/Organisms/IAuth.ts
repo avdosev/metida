@@ -2,7 +2,13 @@ import {Validators} from "./IValidators";
 
 interface Field {
     value: string,
-    valid: boolean
+    valid: Valid
+}
+
+export enum Valid {
+    Invalid,
+    Acceptable,
+    Intermediate
 }
 
 interface IIState {

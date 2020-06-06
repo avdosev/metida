@@ -72,7 +72,7 @@ export default class PostPage extends React.Component<IProps, IState> {
     render() {
         console.log(this.state.comments)
 
-        return (<SimplePage header={<Header/>} content={<div className="layout_body">
+        return (<SimplePage content={<div className="layout_body">
             <div className="content">
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
