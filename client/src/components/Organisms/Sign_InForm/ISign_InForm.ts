@@ -2,6 +2,7 @@ import {Field, IIState} from "../IAuth";
 
 
 interface IProps {
+    onUserQuery: (isAuthed: boolean) => void
 }
 
 interface IState extends IIState {

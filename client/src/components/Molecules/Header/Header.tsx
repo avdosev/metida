@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
 import "./header.css"
-import "../../styles/colors.css" //TODO какого черта импорт происходит и отсюда и из css
+import "../../styles/flex.css"
+import "../../styles/main.css"
 import {
     Link
 } from "react-router-dom";

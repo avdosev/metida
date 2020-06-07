@@ -4,6 +4,7 @@ import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
 import Feed from "../../Organisms/Feed/Feed";
+import "../../styles/lenta.css"
 
 interface IState {
     user: UserInfo
@@ -43,7 +44,7 @@ export default class Profile extends React.Component<IProps, IState> {
     render() {
         let articles = []
         for (const article of this.state.user.articles) {
-            articles.push(<Post json={article} />)
+            articles.push(<Post key={article.id} json={article} />)
         }
         articles = articles.reverse()
 

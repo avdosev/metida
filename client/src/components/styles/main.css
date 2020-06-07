@@ -2,42 +2,6 @@
 @import url('../Molecules/Header/header.css');
 @import url('fonts.css');
 
-/* flex inners */
-
-.suspense {
-}
-
-.flex {
-    display: flex;
-}
-
-.flex-wrap {
-    flex-wrap: wrap;
-}
-
-.alignCenter {
-    align-items: center;
-
-}
-
-.space_around_inner {
-    justify-content: space-around;
-}
-
-.space_between_inner {
-    justify-content: space-between;
-}
-
-.center_inner {
-    align-items: center;
-    justify-content: center;
-}
-
-.column_inner {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 .onfullwidth {
     width: 100%;
