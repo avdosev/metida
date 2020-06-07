@@ -7,6 +7,7 @@ import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
 import Header from "./Molecules/Header/Header";
 import Logout from "./Molecules/Logout/Logout";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
+import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))
@@ -24,14 +25,14 @@ function App() {
                 <Header url="fsa"/>
                 <Suspense fallback={<BubbleLoader/>}>
                     <Switch>
-                        <Route path={ROUTES.LOGOUT} component={Logout}/>
+                        <PublicRoute path={ROUTES.LOGOUT} component={Logout}/>
                         <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle}/>
                         <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home}/>
-                        <Route path={ROUTES.PROFILE} component={ProfilePage}/>
-                        <Route path={ROUTES.POST} component={PostPage}/>
-                        <Route path={ROUTES.SIGN_IN} component={SignIn}/>
-                        <Route path={ROUTES.REGISTER} component={Register}/>
-                        <Route path={ROUTES.LANDING} component={Index}/>
+                        <PublicRoute path={ROUTES.PROFILE} component={ProfilePage}/>
+                        <PublicRoute path={ROUTES.POST} component={PostPage}/>
+                        <PublicRoute path={ROUTES.SIGN_IN} component={SignIn}/>
+                        <PublicRoute path={ROUTES.REGISTER} component={Register}/>
+                        <PublicRoute path={ROUTES.LANDING} component={Index}/>
                     </Switch>
                 </Suspense>
 
