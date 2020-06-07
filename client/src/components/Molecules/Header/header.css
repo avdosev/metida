@@ -61,6 +61,7 @@ hr {
     transition: all 0.218s ease 0s;
 }
 
+
 .BlackButton {
     background-color: var(--main-back-color);
     color: var(--smoke-color);
@@ -93,6 +94,13 @@ header ul {
     background-color: var(--unique-color);
     color: var(--smoke-color);
 }
+
+.BlackButton:hover, .GreyButton:hover, .BlackButton:focus, .GreyButton:focus {
+    background-color: var(--unique-color);
+    color: var(--smoke-color);
+    outline: none;
+}
+
 
 @media screen and (max-width: 650px) {
     .icon {
@@ -168,7 +176,3 @@ header ul {
     }
 } 
 
-.BlackButton:hover, .GreyButton:hover {
-    background-color: var(--unique-color);
-    color: var(--smoke-color);
-}

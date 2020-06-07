@@ -17,6 +17,7 @@ interface IPublicUser {
     status?: string,
     updatedAt: Date,
     username: string,
+    articles: Array<any>
 }
 
 interface ProfileArticle {
@@ -29,16 +30,12 @@ interface UserInfo extends IPrivateUser {
     articles: Array<ProfileArticle>
 }
 
-const initialUser: UserInfo = {
-    articles: [],
-    accessToken: "",
-    activatedEmail: false,
+const initialUser: IPublicUser = {
     createdAt: new Date(),
-    email: "",
     id: 0,
-    password: "",
     updatedAt: new Date(),
-    username: ""
+    username: "",
+    articles: []
 }
 
 

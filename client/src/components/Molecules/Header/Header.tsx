@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
-import {IPublicUser} from "../../Organisms/IPrivateUser";
+import {initialUser, IPublicUser} from "../../Organisms/IPrivateUser";
+import {UserConsumer} from "../UserContextProvider";
 
 interface IHeader {
     user: IPublicUser | undefined
 }
 
-export const UserContext = React.createContext<IHeader>({user: undefined})
+export const UserContext = React.createContext<IHeader>({user: initialUser})
 
 
 const Header: () => JSX.Element = () => {
@@ -29,8 +30,8 @@ const Header: () => JSX.Element = () => {
     })
 
     return (
-        <UserContext.Consumer>
-            {({user}: IHeader) => (
+        <UserConsumer>
+            { ({user}: IHeader) => (
                 <header className="header">
                     <div className="header_inner flex alignCenter space_between_inner">
                         <div className="logo">
@@ -44,7 +45,6 @@ const Header: () => JSX.Element = () => {
                         </div>
 
                         {console.log(user)}
-                        {user}
 
                         <div className="regSection">
                             {user?.username}
@@ -56,7 +56,7 @@ const Header: () => JSX.Element = () => {
                 </header>
             )}
 
-        </UserContext.Consumer>)
+        </UserConsumer>)
 }
 
 

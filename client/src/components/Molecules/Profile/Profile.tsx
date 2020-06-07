@@ -1,5 +1,5 @@
 import React from "react";
-import {initialUser, UserInfo} from "../../Organisms/IPrivateUser";
+import {initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
@@ -7,7 +7,7 @@ import Feed from "../../Organisms/Feed/Feed";
 import "../../styles/lenta.css"
 
 interface IState {
-    user: UserInfo
+    user: IPublicUser
 }
 
 interface IProps {
@@ -38,6 +38,7 @@ export default class Profile extends React.Component<IProps, IState> {
         const userInfo: UserInfo = await get(`/api/author/${username}`)
         this.setState({user: userInfo})
 
+
     }
 
 
@@ -48,7 +49,6 @@ export default class Profile extends React.Component<IProps, IState> {
         }
         articles = articles.reverse()
 
-        console.log(this.state.user.articles)
         return (
             <div className="layout_body">
                 <main className="content">

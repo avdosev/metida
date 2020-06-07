@@ -34,6 +34,13 @@ h3 {
     margin-right: auto;
 }
 
+.BtnToArticle:focus {
+    color: var(--text-color) !important;
+    background-color: rgb(219, 219, 219);
+    transition: 0.3s;
+    outline: none;
+}
+
 .BtnToArticleComments {
     display: flex;
     align-items: center;
@@ -51,6 +58,23 @@ h3 {
 
 .title a {
     color: var(--text-color);
+    text-decoration: underline var(--ccc-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+}
+
+.title a:hover {
+    color: var(--unique-color);
+}
+
+.title a:visited {
+    color: var(--url-color)
+}
+
+.title a:focus {
+    font-weight: bolder; /* не работает */
+    color: tomato;
+    outline: none
 }
 
 .post a:active {
