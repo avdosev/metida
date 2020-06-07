@@ -63,22 +63,19 @@ h3 {
     text-underline-offset: 6px;
 }
 
-.title a:hover {
-    color: var(--unique-color);
+.title a:visited:hover, .title a:hover {
+    color: var(--url-color);
 }
 
+
 .title a:visited {
-    color: var(--url-color)
+    color: var(--unique-color);
 }
 
 .title a:focus {
     font-weight: bolder; /* не работает */
     color: tomato;
     outline: none
-}
-
-.post a:active {
-    color: var(--buttom-active);
 }
 
 .post p {
@@ -88,9 +85,7 @@ h3 {
     margin-top: 0;
 }
 
-.post a:hover {
-    color: var(--unique-color);
-}
+
 
 .after_post_icon {
     height: 25px;
