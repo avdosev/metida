@@ -6,6 +6,8 @@ import Profile from "../../Molecules/Profile/Profile";
 
 
 export default function Home() {
-    return (<SimpleTemplate content={<Profile isHome={true}  /> } />
+    return (<SimpleTemplate>
+            <Profile isHome={true}/>
+        </SimpleTemplate>
       )
 }

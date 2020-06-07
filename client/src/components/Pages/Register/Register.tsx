@@ -6,6 +6,8 @@ import Header from "../../Molecules/Header/Header";
 export default function Register() {
     document.title = "Register";
 
-    return (<SimplePage content={<RegisterForm />} />)
+    return (<SimplePage>
+        <RegisterForm/>
+    </SimplePage>)
 
 }

@@ -51,7 +51,7 @@ export default class Profile extends React.Component<IProps, IState> {
         console.log(this.state.user.articles)
         return (
             <div className="layout_body">
-                <div className="content">
+                <main className="content">
                     <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
                     <div className="profile">
                         <div className="left">
@@ -70,7 +70,7 @@ export default class Profile extends React.Component<IProps, IState> {
                     <Feed>
                         {articles}
                     </Feed>
-                </div>
+                </main>
             </div>)
     }
 }

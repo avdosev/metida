@@ -51,6 +51,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             this.setState({serverError: {value: error, valid: Valid.Invalid}})
         } else {
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
+            this.props.onUserQuery(true)
             //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
         }
     }

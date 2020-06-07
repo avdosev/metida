@@ -65,7 +65,7 @@ export default class Index extends React.Component<IProps, IState> {
 
 
     render() {
-        return (<SimplePage content={
+        return (<SimplePage>
             <div className="layout_body">
                 <div className="content">
                     <h1>Умная лента</h1>
@@ -76,8 +76,7 @@ export default class Index extends React.Component<IProps, IState> {
                     <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
                 </div>
             </div>
-        }
-                            footer={<Footer/>}/>)
+        </SimplePage>)
     }
 
 

@@ -1,13 +1,15 @@
 import React, {Suspense} from "react";
 import styles from "./SimpleTempate.module.css"
+import Header from "../Molecules/Header/Header";
+import Footer from "../Molecules/Footer/Footer";
 
 
-export default function SimpleTemplate(props: { header?: React.ReactNode; content: React.ReactNode; footer?: React.ReactNode; }) {
+export default function SimpleTemplate(props: any) {
     return (
-
-        <div className={styles.template}>
-            {props.content}
-                {props.footer}
-        </div>
+        <>
+            {/*<Header />*/}
+            {props.children}
+            {/*<Footer />*/}
+        </>
     )
 }

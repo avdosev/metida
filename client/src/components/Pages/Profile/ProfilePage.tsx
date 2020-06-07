@@ -5,5 +5,7 @@ import Profile from "../../Molecules/Profile/Profile";
 
 export default function ProfilePage() {
 
-    return (<SimpleTemplate content={<Profile />} />)
+    return (<SimpleTemplate>
+        <Profile />
+    </SimpleTemplate>)
 }

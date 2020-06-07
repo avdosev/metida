@@ -72,7 +72,8 @@ export default class PostPage extends React.Component<IProps, IState> {
     render() {
         console.log(this.state.comments)
 
-        return (<SimplePage content={<div className="layout_body">
+        return (<SimplePage>
+            <div className="layout_body">
             <div className="content">
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
@@ -89,7 +90,8 @@ export default class PostPage extends React.Component<IProps, IState> {
                     <CommentForm onCommentChanged={this.onCommentChanged}/>
                 </div>
             </div>
-        </div>} footer={<Footer/>}/>)
+        </div>
+        </SimplePage>)
 
     }
 }

@@ -31,7 +31,7 @@ export default class CreateArticle extends React.Component<IProps, IState> {
 
 
     render() {
-        return (<SimpleTemplate content={
+        return (<SimpleTemplate>
                 <div className="layout_body">
                     <div className="content">
                         <script type="text/javascript"
@@ -45,9 +45,7 @@ export default class CreateArticle extends React.Component<IProps, IState> {
                                         disclaimer={this.state.disclaimer}/>
                     </div>
                 </div>
-            }/>
-
-
+            </SimpleTemplate>
         )
     }
 }

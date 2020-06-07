@@ -10,6 +10,8 @@ interface IProps {
 export default function SignIn(props: IProps) {
     document.title = "Sign in";
 
-    return (<SimplePage  content={<Sign_InForm onUserQuery={props.onUserQuery} />} />)
+    return (<SimplePage>
+        <Sign_InForm onUserQuery={props.onUserQuery}/>
+    </SimplePage>)
 
 }

@@ -20,23 +20,20 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 function App() {
     return (
         <Router>
-            <React.StrictMode>
-                {/*не обновляется хедер при изменении страницы. исправить*/}
-                <Header url="fsa"/>
-                <Suspense fallback={<BubbleLoader/>}>
-                    <Switch>
-                        <PublicRoute path={ROUTES.LOGOUT} component={Logout}/>
-                        <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle}/>
-                        <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home}/>
-                        <PublicRoute path={ROUTES.PROFILE} component={ProfilePage}/>
-                        <PublicRoute path={ROUTES.POST} component={PostPage}/>
-                        <PublicRoute path={ROUTES.SIGN_IN} component={SignIn}/>
-                        <PublicRoute path={ROUTES.REGISTER} component={Register}/>
-                        <PublicRoute path={ROUTES.LANDING} component={Index}/>
-                    </Switch>
-                </Suspense>
-
-            </React.StrictMode>
+            {/*не обновляется хедер при изменении страницы. исправить*/}
+            <Header />
+            <Suspense fallback={<BubbleLoader/>}>
+                <Switch>
+                    <PublicRoute path={ROUTES.LOGOUT} component={Logout}/>
+                    <PrivateRoute isAuth={isAuth} path={ROUTES.CREATE_ARTICLE} component={CreateArticle}/>
+                    <PrivateRoute isAuth={isAuth} path={ROUTES.HOME} component={Home}/>
+                    <PublicRoute path={ROUTES.PROFILE} component={ProfilePage}/>
+                    <PublicRoute path={ROUTES.POST} component={PostPage}/>
+                    <PublicRoute path={ROUTES.SIGN_IN} component={SignIn}/>
+                    <PublicRoute path={ROUTES.REGISTER} component={Register}/>
+                    <PublicRoute path={ROUTES.LANDING} component={Index}/>
+                </Switch>
+            </Suspense>
         </Router>
     );
 }

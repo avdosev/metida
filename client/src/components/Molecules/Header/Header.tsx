@@ -8,10 +8,10 @@ import {
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
 
-const Header: FunctionComponent<{url: string}> = (props) => {
+const Header: FunctionComponent<{}> = (props) => {
     const [authorised, setAuthorised] = useState(false)
 
-    console.log(props.url)
+    // console.log(props.url)
 
 
     useEffect(() => {
