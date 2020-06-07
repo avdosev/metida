@@ -8,6 +8,7 @@ import Header from "./Molecules/Header/Header";
 import Logout from "./Molecules/Logout/Logout";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
+import {IPublicUser} from "./Organisms/IPrivateUser";
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))
@@ -16,6 +17,9 @@ const Home = lazy(() => import("./Pages/Home/Home"))
 const CreateArticle = lazy(() => import("./Pages/CreateArticle/CreateArticle"))
 const SignIn = lazy(() => import("./Pages/Sign_In/Sign_In"))
 const Register = lazy(() => import("./Pages/Register/Register"))
+
+
+
 
 function App() {
     return (

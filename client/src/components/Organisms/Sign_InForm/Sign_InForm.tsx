@@ -10,6 +10,9 @@ import {initialValidator, Validators} from "../IValidators";
 import {loginQuery} from "../Form/FormHelper"
 import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
+import {UserContext} from "../../Molecules/Header/Header";
+import {initialUser, IPublicUser} from "../IPrivateUser";
+import {getCurrentUser} from "../../../services/user";
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -18,7 +21,8 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             email: {value: '', valid: Valid.Intermediate}, password: {value: '', valid: Valid.Intermediate},
             referrer: <></>,
             serverError: {value: '', valid: Valid.Intermediate},
-            validators: initialValidator
+            validators: initialValidator,
+            user: initialUser
         }
     }
 
@@ -27,7 +31,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
     }
 
     handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({serverError: {value:'', valid: Valid.Acceptable}})
+        this.setState({serverError: {value: '', valid: Valid.Acceptable}})
         const valid = this.validateField(event.target.name, event.target.value)
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
@@ -50,8 +54,9 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             }
             this.setState({serverError: {value: error, valid: Valid.Invalid}})
         } else {
+            this.setState({user: getCurrentUser()})
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
-            this.props.onUserQuery(true)
+            console.log(this.state)
             //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
         }
     }
@@ -62,19 +67,22 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         const v = this.state.validators
 
         return (
-            <div className="inputForm">
-                {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
-                      action={ROUTES.SIGN_IN} buttonName="Войти">
-                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
-                                validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
-                    <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.handleUserInput} value={fd.password.value}
-                                text={v!.password.error_str}/>
-                    <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-                </Form>
+            <UserContext.Provider value={{user: this.state.user}}>
+                <div className="inputForm">
+                    {this.state.referrer}
+                    <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
+                          action={ROUTES.SIGN_IN} buttonName="Войти">
+                        <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
+                                    validateFunc={this.handleUserInput} value={fd.email.value}
+                                    text={v!.email.error_str}/>
+                        <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
+                                    validateFunc={this.handleUserInput} value={fd.password.value}
+                                    text={v!.password.error_str}/>
+                        <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
+                    </Form>
 
-            </div>
+                </div>
+            </UserContext.Provider>
 
         )
     }

@@ -7,11 +7,17 @@ import {
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
+import {IPublicUser} from "../../Organisms/IPrivateUser";
 
-const Header: FunctionComponent<{}> = (props) => {
+interface IHeader {
+    user: IPublicUser | undefined
+}
+
+export const UserContext = React.createContext<IHeader>({user: undefined})
+
+
+const Header: () => JSX.Element = () => {
     const [authorised, setAuthorised] = useState(false)
-
-    // console.log(props.url)
 
 
     useEffect(() => {
@@ -22,29 +28,35 @@ const Header: FunctionComponent<{}> = (props) => {
         checkAuth() // не смотря на предупреждение, все работает корректно
     })
 
-
     return (
-        <header className="header">
-            <div className="header_inner flex alignCenter space_between_inner">
-                <div className="logo">
-                    <Link to="/">
-                        <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
-                             width="100"/>
-                        <div className="logo__title">
-                            <div className="logo__underline" />
+        <UserContext.Consumer>
+            {({user}: IHeader) => (
+                <header className="header">
+                    <div className="header_inner flex alignCenter space_between_inner">
+                        <div className="logo">
+                            <Link to="/">
+                                <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
+                                     width="100"/>
+                                <div className="logo__title">
+                                    <div className="logo__underline"/>
+                                </div>
+                            </Link>
                         </div>
-                    </Link>
-                </div>
 
+                        {console.log(user)}
+                        {user}
 
+                        <div className="regSection">
+                            {user?.username}
+                            <Burger authorised={authorised}/>
+                        </div>
 
-                <div className="regSection">
-                    <Burger authorised={authorised}/>
-                </div>
+                    </div>
+                    <hr/>
+                </header>
+            )}
 
-            </div>
-            <hr/>
-        </header>)
+        </UserContext.Consumer>)
 }
 
 
