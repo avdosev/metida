@@ -117,6 +117,8 @@ header ul {
 
     .header_inner {
         height: 3rem;
+        margin-top: 0.5rem;
+
     }
 
     img.logo__image {
@@ -130,8 +132,6 @@ header ul {
         color: var(--smoke-color);
         margin-right: 0px;
         text-decoration: none;
-        /*outline: none;*/
-        color: white;
         text-align: left;
         font-family: 'Lato', sans-serif;
         padding: 12px 15px;
