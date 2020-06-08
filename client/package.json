@@ -15,9 +15,10 @@
     "url": "https://github.com/avdosev/metida/issues"
   },
   "scripts": {
-    "build": "yarn test && react-scripts build",
+    "dev": "$(yarn bin)/webpack -d",
+    "build": "yarn test && ./node_modules/.bin/webpack -p --progress --profile",
     "test": "tsc",
-    "start": "react-scripts start"
+    "start": "./node_modules/.bin/webpack-dev-server --inline --hot "
   },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
@@ -28,7 +29,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "scss": "^0.2.4",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.2",
+    "webpack": "^4.43.0"
   },
   "browserslist": {
     "production": [
@@ -47,9 +49,16 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
     "eslint": "^7.2.0",
     "husky": "^4.2.5",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "sass-loader": "^8.0.2",
+    "ts-loader": "^7.0.5",
+    "url-loader": "^4.1.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "husky": {
     "hooks": {

@@ -19,6 +19,7 @@ import * as Response from '../controllers/respondent.js';
 import ApiRouterCreator from './api.js';
 import {registrationUser, signinUser} from "../controllers/users.js";
 import {verifyToken, sendSuccess} from "../controllers/logged.js";
+import {initClientControllers} from "./client.js"
 
 const ApiRouter = ApiRouterCreator();
 
@@ -33,12 +34,7 @@ const initAuthControllers = (app) => {
     app.use('/api', ApiRouter);
 
     if (process.env.NODE_ENV === 'production') {
-        // Serve any static files
-        app.use(express.static(path.join(config.mainDir, 'client', 'build')));
-        // Handle React routing, return all requests to React app
-        app.get('*', function(req, res) {
-            res.sendFile(path.join(config.mainDir, 'client', 'build', 'index.html'));
-        });
+        initClientControllers(app)
     }
 
     // -- ARTICLES API -- 

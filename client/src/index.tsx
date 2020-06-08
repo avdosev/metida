@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import {UserContext} from "./components/Molecules/Header/Header";
 import {UserProvider} from "./components/Molecules/UserContextProvider";
 
 
@@ -15,6 +14,9 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 );
+
+// с помощью этого можно собирать ts
+// --source-map
 
 
 // If you want your app to work offline and load faster, you can change
