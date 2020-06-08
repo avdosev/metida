@@ -19,9 +19,15 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false
+    "noEmit": false,
+    // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */,
+    "declaration": true
+
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

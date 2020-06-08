@@ -15,8 +15,6 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-// с помощью этого можно собирать ts
-// --source-map
 
 
 // If you want your app to work offline and load faster, you can change

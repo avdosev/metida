@@ -15,8 +15,9 @@
     "url": "https://github.com/avdosev/metida/issues"
   },
   "scripts": {
-    "dev": "$(yarn bin)/webpack -d",
-    "build": "yarn test && ./node_modules/.bin/webpack -p --progress --profile",
+    "dev": "./node_modules/.bin/webpack -d",
+    "tslint": "./node_modules/.bin/tslint -c tslint.json 'src/**/*.ts' ",
+    "build": "./node_modules/.bin/webpack -p --progress --profile",
     "test": "tsc",
     "start": "./node_modules/.bin/webpack-dev-server --inline --hot "
   },
@@ -29,6 +30,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "scss": "^0.2.4",
+    "tslint": "^6.1.2",
     "typescript": "^3.9.2",
     "webpack": "^4.43.0"
   },
@@ -50,11 +52,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.5.3",
     "eslint": "^7.2.0",
+    "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "sass-loader": "^8.0.2",
     "ts-loader": "^7.0.5",
+    "tslint-loader": "^3.5.4",
     "url-loader": "^4.1.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
