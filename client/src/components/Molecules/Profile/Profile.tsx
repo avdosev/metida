@@ -56,7 +56,7 @@ export default class Profile extends React.Component<IProps, IState> {
                     <div className="profile">
                         <div className="left">
                             <img className="avatar"
-                                src={this.state.user.avatar ?? process.env.PUBLIC_URL + "/img/default/avatar_small.png"}
+                                src={this.state.user.avatar ?? "/img/default/avatar_small.png"}
                                 alt="avatar"/>
                         </div>
                         <div className="right">

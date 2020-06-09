@@ -25,7 +25,7 @@ export function Post(props: IProps) {
             <Link to={url} className="BtnToArticle">Читать дальше</Link>
             {/*{pathname: url, hash: "#comments", state: {toComments: true}}  */}
             <Link to={{pathname: url, hash: "#comments2", state: {toComments: true}} } className="BtnToArticleComments">
-                <img className="after_post_icon" src={process.env.PUBLIC_URL + "/img/ui_icon/comment.svg"}
+                <img className="after_post_icon" src={"/img/ui_icon/comment.svg"}
                      alt="Смотреть комментарии"/>
             </Link>
         </div>

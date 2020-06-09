@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 
-
 const path = require('path');
 const isProduction = process.env.NODE_ENV !== 'undefined' && process.env.NODE_ENV === 'production';
 const mode = isProduction ? 'production' : 'development'; // TODO   не работает, фикси
@@ -12,9 +11,14 @@ console.log(mode)
 
 module.exports = {
     entry: "./src/index.tsx",
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '', // этот путь будет добавляться в пути до каждого бандла внутри хтмл и других бандлов
+        publicPath: '/', // этот путь будет добавляться в пути до каждого бандла внутри хтмл и других бандлов
         filename: "js/[name].bundle.js"
     },
     mode,
@@ -38,29 +42,32 @@ module.exports = {
                     {
                         loader: "css-loader",
                         options: {
-                            modules: true
+                            modules: false, //без этого классы в css будут хешами(можно не ставить, если css импортирован как реакт компонент)
                         }
                     }
                 ]
-            },
-            {
-                test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-                loader: 'url-loader?name=[name].[ext]&limit=100000'
             },
             {
                 test: /\.scss$/,
                 use: [
                     "style-loader", "css-loader", "sass-loader"
                 ],
+            },
+            {
+                test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?name=[name].[ext]&limit=100000'
             }
         ]
     },
     devServer: {
         contentBase: path.join(__dirname, 'public'),
-        port: 3000,
+        port: 8080,
         watchContentBase: true,
         progress: true,
         compress: true,
+        historyApiFallback: {
+            index: 'index.html'
+        }
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js'],
@@ -70,10 +77,7 @@ module.exports = {
         new CleanWebpackPlugin(),
         new CopyPlugin({
             patterns: [
-                // { from: '.', to: '/src/' },
-
                 { from: 'public', to: '.' },
-
             ],
         }),
         new HtmlWebpackPlugin({ template: './public/index.html' }),

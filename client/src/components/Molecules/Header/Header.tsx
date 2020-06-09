@@ -36,7 +36,7 @@ const Header: () => JSX.Element = () => {
                     <div className="header_inner flex alignCenter space_between_inner">
                         <div className="logo">
                             <Link to="/">
-                                <img className="logo__image" src={process.env.PUBLIC_URL + '/img/fav.svg'} alt="Metida"
+                                <img className="logo__image" src='/img/fav.svg' alt="Metida"
                                      width="100"/>
                                 <div className="logo__title">
                                     <div className="logo__underline"/>

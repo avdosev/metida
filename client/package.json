@@ -22,7 +22,6 @@
     "start": "./node_modules/.bin/webpack-dev-server --inline --hot "
   },
   "dependencies": {
-    "http-server": "^0.12.3",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^11.0.0",
     "react": "^16.13.1",
@@ -59,7 +58,7 @@
     "eslint": "^7.2.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^7.0.1",
     "ts-loader": "^7.0.5",
     "tslint-loader": "^3.5.4",
     "url-loader": "^4.1.0",
