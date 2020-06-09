@@ -26,7 +26,9 @@ module.exports = {
                 "args": "after-used",
                 "ignoreRestSiblings": false
             }
-        ]
+        ],
+        "no-prototype-builtins": 1,
+
 
     }
 

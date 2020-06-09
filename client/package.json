@@ -15,11 +15,11 @@
     "url": "https://github.com/avdosev/metida/issues"
   },
   "scripts": {
-    "dev": "./node_modules/.bin/webpack -d",
-    "tslint": "./node_modules/.bin/tslint -c tslint.json 'src/**/*.ts' ",
-    "build": "./node_modules/.bin/webpack -p --progress --profile",
+    "start": "yarn webpack:dev",
+    "build": "yarn webpack:prod",
     "test": "tsc",
-    "start": "./node_modules/.bin/webpack-dev-server --inline --hot "
+    "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
+    "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
