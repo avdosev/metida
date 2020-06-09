@@ -20,16 +20,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "removeComments": true
+    "removeComments": true,
 
     // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */,
-//    "declaration": true
+    "declaration": true
 
   },
   "include": [
-    "src"
+    "src",
+    "typings"
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+
 }

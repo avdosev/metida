@@ -2,8 +2,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-
-
 const path = require('path');
 
 
@@ -64,7 +62,7 @@ module.exports = env => {
         },
         devServer: {
             contentBase: path.join(__dirname, 'public'),
-            port: 8080,
+            port: 3000,
             watchContentBase: true,
             progress: true,
             compress: true,
