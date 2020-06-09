@@ -1,5 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const {CopyWebpackPlugin} = require('copy-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -14,7 +14,7 @@ module.exports = {
     entry: "./src/index.tsx",
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/src',
+        publicPath: '', // этот путь будет добавляться в пути до каждого бандла внутри хтмл и других бандлов
         filename: "js/[name].bundle.js"
     },
     mode,
@@ -66,28 +66,16 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js'],
     },
     plugins: [
+        new webpack.ProgressPlugin(),
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin([
-            {
-                from: 'public/index.html',
-                to: './index.html'
-            },
-            {
-                from: 'src/assets/**/*',
-                to: './assets',
-                transformPath(targetPath, absolutePath) {
-                    return targetPath.replace('src/assets', '');
-                }
-            },
-        ]),
-        new HtmlWebpackPlugin({
-            template: 'public/index.html',
-            minify: {
-                collapseWhitespace: true,
-                removeComments: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true
-            }
-        })
-    ]
+        new CopyPlugin({
+            patterns: [
+                // { from: '.', to: '/src/' },
+
+                { from: 'public', to: '.' },
+
+            ],
+        }),
+        new HtmlWebpackPlugin({ template: './public/index.html' }),
+    ],
 }

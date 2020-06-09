@@ -20,8 +20,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
+    "removeComments": true
+
     // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */,
-    "declaration": true
+//    "declaration": true
 
   },
   "include": [
