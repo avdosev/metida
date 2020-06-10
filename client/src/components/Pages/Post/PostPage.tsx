@@ -3,7 +3,7 @@ import "../../styles/input.css"
 import "../../styles/main.css"
 import "./post.css"
 import "../../styles/comments.css"
-import {getArticleId, loadComments} from './comments.js';
+import {getArticleId, loadComments} from '../../../services/comments';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
 import Footer from "../../Molecules/Footer/Footer";
@@ -70,8 +70,10 @@ export default class PostPage extends React.Component<IProps, IState> {
 
 
     render() {
+        console.log(this.state.comments)
 
-        return (<SimplePage header={<Header/>} content={<div className="layout_body">
+        return (<SimplePage>
+            <div className="layout_body">
             <div className="content">
                 <button className="deleteAricleLink" onClick={this.updateArticle}>Удалить статью</button>
                 <button className="updateAricleLink" onClick={this.deleteArticle}>Редактировать статью</button>
@@ -80,7 +82,7 @@ export default class PostPage extends React.Component<IProps, IState> {
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
-                <div className="comments_lenta onfullwidth" id="comments">
+                <div className="comments_lenta onfullwidth" id="comments2">
                     <h3>Комментарии:</h3>
                     <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments}/>
                 </div>
@@ -88,7 +90,8 @@ export default class PostPage extends React.Component<IProps, IState> {
                     <CommentForm onCommentChanged={this.onCommentChanged}/>
                 </div>
             </div>
-        </div>} footer={<Footer/>}/>)
+        </div>
+        </SimplePage>)
 
     }
 }

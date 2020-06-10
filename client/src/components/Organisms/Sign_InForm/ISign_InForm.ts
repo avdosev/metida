@@ -1,13 +1,17 @@
 import {Field, IIState} from "../IAuth";
+import {IPublicUser} from "../IPrivateUser";
 
 
 interface IProps {
+    onUserQuery: (isAuthed: boolean) => void
 }
 
 interface IState extends IIState {
     email: Field,
     password: Field,
-    serverError : string,
+    serverError: Field,
+    user: IPublicUser,
+    [field: string]: any
 
     [Symbol.iterator](): IterableIterator<Field> //если понадобится, то писать так
 

@@ -1,4 +1,4 @@
-import {DateToStr} from "../../Pages/Post/dateRU";
+import {DateToStr} from "../../../services/dateRU";
 import React from "react";
 import {Link} from "react-router-dom";
 import {IComments, ITreeComments} from "../../Organisms/IComment";

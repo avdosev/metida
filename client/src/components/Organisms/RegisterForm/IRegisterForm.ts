@@ -12,7 +12,7 @@ interface IState extends IIState {
     login: Field,
     email: Field,
     password: Field,
-    serverError : string,
+    serverError : Field,
 
 }
 

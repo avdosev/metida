@@ -1,3 +1,4 @@
+
 module.exports = {
     "env": {
         "browser": true,
@@ -19,14 +20,16 @@ module.exports = {
         "no-console": "off",
         // "quotes": ["warn", "single"],
         "no-unused-vars": [
-            "warn", 
-            { 
-                "vars": "all", 
-                "args": "after-used", 
-                "ignoreRestSiblings": false 
+            "warn",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": false
             }
-        ]
+        ],
+        "no-prototype-builtins": 1,
+
 
     }
-    
+
 };

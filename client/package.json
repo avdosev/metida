@@ -7,7 +7,7 @@
     "url": "git+https://github.com/avdosev/metida"
   },
   "engines": {
-    "node": "13.7.x"
+    "node": "14.x"
   },
   "author": "K. company",
   "license": "ISC",
@@ -15,18 +15,22 @@
     "url": "https://github.com/avdosev/metida/issues"
   },
   "scripts": {
-    "build": "npm run test && react-scripts build",
+    "start": "yarn webpack:dev",
+    "build": "yarn webpack:prod",
     "test": "tsc",
-    "start": "react-scripts start"
+    "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
+    "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "markdown-it": "^11.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.1",
+    "scss": "^0.2.4",
     "typescript": "^3.9.2",
-    "jsonwebtoken": "^8.5.1",
-    "markdown-it": "^8.4.2"
+    "webpack": "^4.43.0"
   },
   "browserslist": {
     "production": [
@@ -45,12 +49,25 @@
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
-    "eslint": "^6.6.0",
-    "husky": "^4.2.5"
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.0.2",
+    "css-loader": "^3.5.3",
+    "style-loader": "^1.2.1",
+    "eslint": "^7.2.0",
+    "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
+    "sass-loader": "^7.0.1",
+    "ts-loader": "^7.0.5",
+    "tslint-loader": "^3.5.4",
+    "url-loader": "^4.1.0",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+      "pre-push": "yarn test"
     }
   }
 }

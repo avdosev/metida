@@ -1,12 +1,14 @@
-import React from "react";
-import "./style.css"
+import React, {Suspense} from "react";
+import Header from "../Molecules/Header/Header";
+import Footer from "../Molecules/Footer/Footer";
 
-export default function SimpleTemplate(props: { header: React.ReactNode; content: React.ReactNode; footer?: React.ReactNode; }) {
+
+export default function SimpleTemplate(props: any) {
     return (
-        <div className="template">
-            {props.header}
-            {props.content}
-            {props.footer}
-        </div>
+        <>
+            {/*<Header />*/}
+            {props.children}
+            {/*<Footer />*/}
+        </>
     )
 }
