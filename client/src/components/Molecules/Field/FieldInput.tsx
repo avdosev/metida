@@ -2,6 +2,7 @@ import React from "react";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Input from "../../Atoms/Input/Input";
 import {IField, IFieldError} from "../../Atoms/IField";
+import {Valid} from "../../Organisms/IAuth";
 
 
 interface IProps extends IFieldError, IField {
@@ -9,6 +10,7 @@ interface IProps extends IFieldError, IField {
 }
 
 export function FieldInput(props: IProps) {
+
     return <>
         <Input
             autofocus={props.autofocus}

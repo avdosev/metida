@@ -10,6 +10,7 @@ interface IState extends IIState {
     header: Field,
     content: Field,
     disclaimer: Field,
+    serverError: Field
     isPreview: boolean,
 }
 

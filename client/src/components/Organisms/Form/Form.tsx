@@ -25,7 +25,7 @@ export default class Form extends React.Component<IProps, IState> {
     }
 
     async componentDidMount() {
-        const promise = await fetch(process.env.PUBLIC_URL + '/json/input_errors.json')
+        const promise = await fetch('/json/input_errors.json')
         const validators = await promise.json()
         this.props.onValidatorChange(validators)
     }

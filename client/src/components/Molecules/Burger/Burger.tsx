@@ -4,7 +4,7 @@ import "./Burger.css"
 
 function BurgerImage(props: { toggleMethod: (event: any) => void }) {
     return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
-                 src={process.env.PUBLIC_URL + '/img/ui_icon/mobile_menu.png'}/>)
+                 src='/img/ui_icon/mobile_menu.png'/>)
 }
 
 export default function Burger(props: { authorised: boolean }) {

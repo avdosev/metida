@@ -1,11 +1,10 @@
-import {get} from "../../../services/router";
+import {get} from "./router";
 
 /**
  * из данных в хтмл/url получаем айдишник статьи
  */
-export function getArticleId() {
+export function getArticleId(): string {
     const url = window.location.href.split("/")
-    console.log(url)
     return  url[url.length-1]
 }
 
@@ -13,6 +12,6 @@ export function getArticleId() {
 /**
  * загрузка комментов
  */
-export async function loadComments(post_id) {
+export async function loadComments(post_id: string | number) {
  return await get(`/api/post/${post_id}/comments`);
 }

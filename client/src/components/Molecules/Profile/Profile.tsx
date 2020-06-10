@@ -1,12 +1,13 @@
 import React from "react";
-import {initialUser, UserInfo} from "../../Organisms/IPrivateUser";
+import {initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
 import Feed from "../../Organisms/Feed/Feed";
+import "../../styles/lenta.css"
 
 interface IState {
-    user: UserInfo
+    user: IPublicUser
 }
 
 interface IProps {
@@ -37,25 +38,25 @@ export default class Profile extends React.Component<IProps, IState> {
         const userInfo: UserInfo = await get(`/api/author/${username}`)
         this.setState({user: userInfo})
 
+
     }
 
 
     render() {
         let articles = []
         for (const article of this.state.user.articles) {
-            articles.push(<Post json={article} />)
+            articles.push(<Post key={article.id} json={article} />)
         }
         articles = articles.reverse()
 
-        console.log(this.state.user.articles)
         return (
             <div className="layout_body">
-                <div className="content">
+                <main className="content">
                     <h1>{this.props.isHome ? "Мой профиль" : "Профиль"}</h1>
                     <div className="profile">
                         <div className="left">
                             <img className="avatar"
-                                src={this.state.user.avatar ?? process.env.PUBLIC_URL + "/img/default/avatar_small.png"}
+                                src={this.state.user.avatar ?? "/img/default/avatar_small.png"}
                                 alt="avatar"/>
                         </div>
                         <div className="right">
@@ -69,7 +70,7 @@ export default class Profile extends React.Component<IProps, IState> {
                     <Feed>
                         {articles}
                     </Feed>
-                </div>
+                </main>
             </div>)
     }
 }

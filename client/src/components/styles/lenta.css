@@ -34,6 +34,13 @@ h3 {
     margin-right: auto;
 }
 
+.BtnToArticle:focus {
+    color: var(--text-color) !important;
+    background-color: rgb(219, 219, 219);
+    transition: 0.3s;
+    outline: none;
+}
+
 .BtnToArticleComments {
     display: flex;
     align-items: center;
@@ -51,10 +58,24 @@ h3 {
 
 .title a {
     color: var(--text-color);
+    text-decoration: underline var(--ccc-color);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
 }
 
-.post a:active {
-    color: var(--buttom-active);
+.title a:visited:hover, .title a:hover {
+    color: var(--url-color);
+}
+
+
+.title a:visited {
+    color: var(--unique-color);
+}
+
+.title a:focus {
+    font-weight: bolder; /* не работает */
+    color: tomato;
+    outline: none
 }
 
 .post p {
@@ -64,16 +85,13 @@ h3 {
     margin-top: 0;
 }
 
-.post a:hover {
-    color: var(--unique-color);
-}
+
 
 .after_post_icon {
     height: 25px;
     border-radius: unset;
     color: var(--unique-color);
 /*    TODO я замазал часть функциональности, она почему-то не рабоатет вообще никак */
-    display:none;
 
 }
 
