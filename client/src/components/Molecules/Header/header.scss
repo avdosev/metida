@@ -1,5 +1,17 @@
-@import url('../../styles/colors.css');
-@import url('../../styles/fonts.css');
+@import '../../styles/colors';
+@import '../../styles/fonts';
+
+/* logo */
+/* только для полужирных букв METIDA */
+@font-face {
+    font-family: 'Droid Sans';
+    src: url('/fonts/subset-DroidSans-Bold.woff2') format('woff2'),
+    url('/fonts/subset-DroidSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
 a {
     text-decoration: none;
 }
@@ -8,18 +20,17 @@ hr {
     margin: 0.5rem 0px;
     border: 0;
     height: 1px;
-    background: var(--main-back-color);
-    background-image: -webkit-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
-    background-image: -moz-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
-    background-image: -ms-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
-    background-image: -o-linear-gradient(left, var(--ccc-color), var(--main-back-color), var(--ccc-color));
+    background: $main-back-color;
+    background-image: -webkit-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
+    background-image: -moz-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
+    background-image: -ms-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
+    background-image: -o-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
 }
 
 .logo {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 .header_inner {
@@ -63,12 +74,12 @@ hr {
 
 
 .BlackButton {
-    background-color: var(--main-back-color);
-    color: var(--smoke-color);
+    background-color: $main-back-color;
+    color: $smoke-color;
 }
 
 .GreyButton {
-    background-color: var(--ccc-color);
+    background-color: $ccc-color;
     color: black;
 }
 
@@ -91,13 +102,13 @@ header ul {
 }
 
 .BlackButton:active, .GreyButton:active {
-    background-color: var(--unique-color);
-    color: var(--smoke-color);
+    background-color: $unique-color;
+    color: $smoke-color;
 }
 
 .BlackButton:hover, .GreyButton:hover, .BlackButton:focus, .GreyButton:focus {
-    background-color: var(--unique-color);
-    color: var(--smoke-color);
+    background-color: $unique-color;
+    color: $smoke-color;
     outline: none;
 }
 
@@ -128,8 +139,8 @@ header ul {
     .regSection .GreyButton,
     .regSection .BlackButton {
         display: block;
-        background-color: var(--main-back-color);
-        color: var(--smoke-color);
+        background-color: $main-back-color;
+        color: $smoke-color;
         margin-right: 0px;
         text-decoration: none;
         text-align: left;
@@ -158,7 +169,7 @@ header ul {
       
     .submenu {
         flex-direction: column;
-        background: var(--main-back-color);
+        background: $main-back-color;
         position: absolute;
         left: -185%;
         top: 100%;

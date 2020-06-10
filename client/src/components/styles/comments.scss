@@ -1,3 +1,5 @@
+@import 'colors';
+
 .new_comment_block {
     width: 100%
 }
@@ -13,16 +15,14 @@
 
 .comment_childer {
     padding-left: 25px;
-    border-left: solid 1px var(--comments-left-border-color);
+    border-left: solid 1px $comments-left-border-color;
 }
 
 .comment_control[data-type=create]::after {
-    /* width: 100px; */
     content: "ответить";
 }
 
 .comment_control[data-type=cancel]::after {
-    /* width: 100px; */
     content: "отмена";
 }
 
@@ -52,7 +52,7 @@
 }
 
 .comment_area:focus{
-    border-color: var(--unique-color);
+    border-color: $unique-color;
 }
 
 .button_block {
@@ -69,7 +69,7 @@
     border: 1px;
     border-style: solid;
     border-color:black;
-    background-color: var(--main-metida-color);
+    background-color: $main-metida-color;
     transition: 0.5s;
 }
 
@@ -80,17 +80,17 @@
     margin-right: 10px;
     border: 3px;
     border-style: double;
-    background-color: var(--unique-color);
-    color: var(--main-metida-color);
+    background-color: $unique-color;
+    color: $main-metida-color;
     transition: 0.5s;
 }
 
 #veiw:active{
-    background-color: var(--buttom-active);
+    background-color: $buttom-active;
 }
 
 .EnterButton:active{
-    background-color: var(--buttom-active);
+    background-color: $buttom-active;
 }
 
 .reply {
@@ -104,7 +104,7 @@
     /* font-size: 12px; */
     text-decoration: none;
     color: white;
-    background-color: var(--unique-color);
+    background-color: $unique-color;
     padding: 4px;
     /*outline: none;*/
     border: 0;
@@ -140,7 +140,7 @@
 
     #veiw:hover{
         background-color: var(--buttom-hover);
-        color: var(--main-metida-color);
+        color: $main-metida-color;
         transition: 0.5s;
     }
 

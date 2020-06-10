@@ -1,3 +1,6 @@
+@import "fonts";
+@import "colors";
+
 .post {
     border-bottom: 1px solid grey;
     margin-bottom: 20px;
@@ -28,14 +31,14 @@ h3 {
     font-size: 14px;
     border: 0.5px solid grey;
     padding: 2px 10px;
-    color: var(--text-color);
+    color: $text-color;
 
     margin-left: auto;
     margin-right: auto;
 }
 
 .BtnToArticle:focus {
-    color: var(--text-color) !important;
+    color: $text-color !important;
     background-color: rgb(219, 219, 219);
     transition: 0.3s;
     outline: none;
@@ -47,7 +50,7 @@ h3 {
 }
 
 .BtnToArticle:hover {
-    color: var(--text-color) !important;
+    color: $text-color !important;
     background-color: rgb(219, 219, 219);
     transition: 0.7s;
 }
@@ -57,19 +60,19 @@ h3 {
 }
 
 .title a {
-    color: var(--text-color);
+    color: $text-color;
     text-decoration: underline var(--ccc-color);
     text-decoration-thickness: 3px;
     text-underline-offset: 6px;
 }
 
 .title a:visited:hover, .title a:hover {
-    color: var(--url-color);
+    color: $url-color;
 }
 
 
 .title a:visited {
-    color: var(--unique-color);
+    color: $unique-color;
 }
 
 .title a:focus {
@@ -86,13 +89,10 @@ h3 {
 }
 
 
-
 .after_post_icon {
     height: 25px;
     border-radius: unset;
-    color: var(--unique-color);
-/*    TODO я замазал часть функциональности, она почему-то не рабоатет вообще никак */
-
+    color: $unique-color;
 }
 
 .after_post {

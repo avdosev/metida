@@ -4,7 +4,7 @@ import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
 import Feed from "../../Organisms/Feed/Feed";
-import "../../styles/lenta.css"
+import "../../styles/lenta.scss"
 
 interface IState {
     user: IPublicUser
@@ -32,7 +32,9 @@ export default class Profile extends React.Component<IProps, IState> {
             username = getUsername()
         }
         else {
-            username = getCurrentUser().username
+            const user = getCurrentUser()
+            if (user) username = user.username
+            else username = "Произошла непредвиденная ошибка"
         }
         console.log(username)
         const userInfo: UserInfo = await get(`/api/author/${username}`)

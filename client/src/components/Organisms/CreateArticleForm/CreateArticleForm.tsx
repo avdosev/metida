@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/input.css"
+import "../../styles/input.scss"
 import * as ROUTES from "../../../config/routes";
 import {FieldInput} from "../../Molecules/Field/FieldInput";
 import {post} from "../../../services/router";

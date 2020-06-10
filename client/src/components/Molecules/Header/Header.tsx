@@ -1,20 +1,17 @@
 import React, {FunctionComponent, useEffect, useState} from "react";
-import "./header.css"
-import "../../styles/flex.css"
-import "../../styles/main.css"
+import "./header.scss"
+import "../../styles/flex.scss"
+import "../../styles/main.scss"
 import {
     Link
 } from "react-router-dom";
 import Burger from "../Burger/Burger";
 import {isAuth} from "../../../services/user";
 import {initialUser, IPublicUser} from "../../Organisms/IPrivateUser";
-import {UserConsumer} from "../UserContextProvider";
 
 interface IHeader {
     user: IPublicUser | undefined
 }
-
-export const UserContext = React.createContext<IHeader>({user: initialUser})
 
 
 const Header: () => JSX.Element = () => {
@@ -30,8 +27,6 @@ const Header: () => JSX.Element = () => {
     })
 
     return (
-        <UserConsumer>
-            { ({user}: IHeader) => (
                 <header className="header">
                     <div className="header_inner flex alignCenter space_between_inner">
                         <div className="logo">
@@ -44,19 +39,14 @@ const Header: () => JSX.Element = () => {
                             </Link>
                         </div>
 
-                        {console.log(user)}
-
                         <div className="regSection">
-                            {user?.username}
                             <Burger authorised={authorised}/>
                         </div>
 
                     </div>
                     <hr/>
                 </header>
-            )}
-
-        </UserConsumer>)
+      )
 }
 
 

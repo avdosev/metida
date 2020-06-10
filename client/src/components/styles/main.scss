@@ -1,6 +1,6 @@
-@import url('colors.css');
-@import url('../Molecules/Header/header.css');
-@import url('fonts.css');
+@import 'colors.scss';
+@import '../Molecules/Header/header';
+@import 'fonts';
 
 .onfullwidth {
     width: 100%;
@@ -27,7 +27,7 @@
 /* universal */
 
 body {
-    background: var(--main-metida-color);
+    background: $main-metida-color;
     word-wrap: break-word;
     margin: 0;
     font-size: 16px;

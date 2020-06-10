@@ -1,5 +1,5 @@
 import React from 'react';
-import style from "./bubble.module.css"
+import "./Bubble.scss"
 
 interface IProps  {
     // color: string,
@@ -8,13 +8,9 @@ interface IProps  {
 }
 
 const BubbleLoader = (props: IProps) => (
-    <div className={style.bubble} />
+    <div className="bubble" />
 );
 
-// BubbleLoader.defaultProps = {
-//     color: '#000',
-//     duration: 1.8,
-//     size: 10,
-// };
+
 
 export default BubbleLoader;

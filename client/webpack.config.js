@@ -22,6 +22,17 @@ module.exports = env => {
             filename: "js/[name].bundle.js",
             chunkFilename: 'js/[name].bundle.js',
         },
+        // optimization: {
+        //     splitChunks: {
+        //         cacheGroups: {
+        //             commons: {
+        //                 name: 'commons',
+        //                 chunks: 'initial',
+        //                 minChunks: 2
+        //             }
+        //         }
+        //     }
+        // },
         mode,
         devtool: devtool,
         module: {
@@ -55,8 +66,20 @@ module.exports = env => {
                     ],
                 },
                 {
-                    test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-                    loader: 'url-loader?name=[name].[ext]&limit=100000'
+                    test: /\.(jpg|jpeg|gif|png|svg)$/,
+                    exclude: /node_modules/,
+                    loader: [
+                        'url-loader?limit=1024&name=images/[name].[ext]',
+                        'image-webpack?progressive=true&optimizationLevel=7&interlaced=true'
+                    ]
+
+                },
+                {
+                    test: /\.(woff|woff2|eot|ttf)$/,
+                    exclude: /node_modules/,
+                    loader:'file-loader?name=fonts/[name].[hash].[ext]',
+                    // loader: 'url-loader?name=fonts/[name].[ext]&limit=100000'
+                    // можно использовать эту строчку, если нужно передавать шрифт через base64
                 }
             ]
         },

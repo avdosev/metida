@@ -5,16 +5,17 @@ import config from "../config/index.js"
 export function verifyToken (req, res, next)  {
     let token = req.headers["x-access-token"];
 
+    res.status(200)
     if (!token) {
-        return res.status(403).send({
-            message: "No token provided!"
+        return res.send({
+            error: "No token provided!"
         });
     }
 
     jwt.verify(token, config.secretKey, (err, decoded) => {
         if (err) {
-            return res.status(401).send({
-                message: "Unauthorized!"
+            return res.send({
+                error: "Unauthorized!"
             });
         }
         req.userId = decoded.id;
@@ -23,7 +24,7 @@ export function verifyToken (req, res, next)  {
 }
 
 export function sendSuccess(req, res, next) {
-    res.status(200).send({
+    res.send({
         message: "Success"
     })
 }
