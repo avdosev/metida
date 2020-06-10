@@ -57,6 +57,11 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const articleId = getArticleId()
 
         const user = getCurrentUser()
+        if (!user) {
+            console.error("Непредвиденная ситуация")
+            return
+        }
+
         const response = await post(`/api/post/${articleId}/comments`, {
             userId: user.id,
             articleId: articleId,

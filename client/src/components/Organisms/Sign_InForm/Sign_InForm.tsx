@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/main.css"
-import "../../styles/input.css"
+import "../../styles/main.scss"
+import "../../styles/input.scss"
 import {IProps, IState} from "./ISign_InForm"
 import {FieldInput} from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
@@ -10,10 +10,8 @@ import {initialValidator, Validators} from "../IValidators";
 import {loginQuery} from "../Form/FormHelper"
 import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
-import {UserContext} from "../../Molecules/Header/Header";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
-import {UserConsumer} from "../../Molecules/UserContextProvider";
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -55,33 +53,17 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             }
             this.setState({serverError: {value: error, valid: Valid.Invalid}})
         } else {
-
-            const block = <UserConsumer>
-                {({user, updateUser}) => (
-                    <> {
-                        updateUser(getCurrentUser())
-                    }
-                    </>
-                )}
-            </UserConsumer>
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
-            this.setState({block: block})
             console.log(this.state)
             //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
         }
     }
-
-    updateUser = () => {
-
-    }
-
 
     render() {
         const fd = this.state
         const v = this.state.validators
 
         return (
-
             <div className="inputForm">
                 {this.state.referrer}
                 {this.state.block}

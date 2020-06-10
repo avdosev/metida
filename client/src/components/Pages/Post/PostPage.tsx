@@ -1,8 +1,8 @@
 import React from "react";
-import "../../styles/input.css"
-import "../../styles/main.css"
+import "../../styles/input.scss"
+import "../../styles/main.scss"
 import "./post.css"
-import "../../styles/comments.css"
+import "../../styles/comments.scss"
 import {getArticleId, loadComments} from '../../../services/comments';
 import SimplePage from "../../Templates/SimpleTemplate";
 import Header from "../../Molecules/Header/Header";
@@ -70,8 +70,6 @@ export default class PostPage extends React.Component<IProps, IState> {
 
 
     render() {
-        console.log(this.state.comments)
-
         return (<SimplePage>
             <div className="layout_body">
             <div className="content">

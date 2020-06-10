@@ -46,11 +46,9 @@ export default function CommentLenta(props: IProps) {
     console.log(props)
     let user:IPublicUser | null
 
-    try {
-        user = getCurrentUser()
-    } catch (e) {
-        user = null
-    }
+
+    user = getCurrentUser()
+
 
     const treeComments = buildTreeComments(props.comments);
 
