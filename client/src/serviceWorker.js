@@ -35,13 +35,15 @@ const precacheResources = [
 
 
 export function register(config) {
-  console.log('[ServiceWorker] Register');
+  console.log('[ServiceWorker] Register on' +  process.env.NODE_ENV);
 
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+    const publicUrl = new URL(window.location.href);
+    console.log('[ServiceWorker] was register on ' + publicUrl);
+
     if (publicUrl.origin !== window.location.origin) {
-      console.log('[ServiceWorker] publicUrl != locationUrl');
+      console.warn('[ServiceWorker] publicUrl is not equal locationUrl');
 
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
@@ -50,7 +52,7 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `/service-worker.js`;
       console.log('[ServiceWorker] Load');
 
       if (isLocalhost) {
@@ -81,11 +83,16 @@ function registerValidSW(swUrl, config) {
     .then(registration => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
+        console.log("[ServiceWorker] Installing")
+
         if (installingWorker == null) {
+          console.warn("[ServiceWorker] Has no installing worker")
           return;
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
+            console.log("[ServiceWorker] Installed")
+
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,
               // but the previous service worker will still serve the older
@@ -97,6 +104,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onUpdate) {
+                console.log("[ServiceWorker] Updating cache callback")
                 config.onUpdate(registration);
               }
             } else {
@@ -107,6 +115,7 @@ function registerValidSW(swUrl, config) {
 
               // Execute callback
               if (config && config.onSuccess) {
+                console.log("[ServiceWorker] Running cache callback")
                 config.onSuccess(registration);
               }
             }
@@ -121,11 +130,13 @@ function registerValidSW(swUrl, config) {
 
 function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
+  console.log("[ServiceWorker] Check for valid ")
   fetch(swUrl, {
     headers: { 'Service-Worker': 'script' },
   })
     .then(response => {
       // Ensure service worker exists, and that we really are getting a JS file.
+      console.log("[ServiceWorker] Get valid SW ")
       const contentType = response.headers.get('content-type');
       if (
         response.status === 404 ||

@@ -1,8 +1,9 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 
 module.exports = env => {
@@ -77,7 +78,7 @@ module.exports = env => {
                 {
                     test: /\.(woff|woff2|eot|ttf)$/,
                     exclude: /node_modules/,
-                    loader:'file-loader?name=fonts/[name].[hash].[ext]',
+                    loader: 'file-loader?name=fonts/[name].[hash].[ext]',
                     // loader: 'url-loader?name=fonts/[name].[ext]&limit=100000'
                     // можно использовать эту строчку, если нужно передавать шрифт через base64
                 }
@@ -106,6 +107,12 @@ module.exports = env => {
                 ],
             }),
             new HtmlWebpackPlugin({template: './public/index.html'}),
+            new WorkboxPlugin.GenerateSW({
+                // these options encourage the ServiceWorkers to get in there fast
+                // and not allow any straggling "old" SWs to hang around
+                clientsClaim: true,
+                skipWaiting: true,
+            }),
         ]
     }
 }
