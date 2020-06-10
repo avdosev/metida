@@ -9,7 +9,7 @@ import {
 
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import path from 'path';
+import compression from 'compression';
 
 
 import Handler from '../controllers/request_handler/index.js';
@@ -25,11 +25,14 @@ const ApiRouter = ApiRouterCreator();
 
 const initAuthControllers = (app) => {
     app.use(cors());
+    app.use(compression());
+
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
     // -- API --
+
 
     app.use('/api', ApiRouter);
 
