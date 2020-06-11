@@ -18,7 +18,7 @@
     "start": "yarn webpack:dev",
     "build": "yarn webpack:prod",
     "test": "tsc",
-    "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot",
+    "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot --watch",
     "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {

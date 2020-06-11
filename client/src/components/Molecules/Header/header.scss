@@ -12,6 +12,11 @@
     font-display: swap;
 }
 
+@media (prefers-color-scheme: dark) {
+    * {
+    }
+}
+
 a {
     text-decoration: none;
 }
@@ -28,6 +33,7 @@ hr {
 }
 
 .logo {
+    margin-left: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,14 +45,15 @@ hr {
 
 .logo__image {
     height: 3rem;
-
+    width: 3rem;
+    object-fit: cover
 }
 
 .logo__title {
     font-family: "Droid Sans", sans-serif;
     color: #393939;
     float: right;
-    margin-left: -1rem;
+    margin-left: 0.5rem;
     font-size: 2rem;
 }
 

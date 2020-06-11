@@ -22,6 +22,7 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 
 
 function App() {
+
     return (
         <Router>
             {/*не обновляется хедер при изменении страницы. исправить*/}

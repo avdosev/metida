@@ -17,7 +17,6 @@ interface IHeader {
 const Header: () => JSX.Element = () => {
     const [authorised, setAuthorised] = useState(false)
 
-
     useEffect(() => {
         const checkAuth = async () => {
             const auth = await isAuth()
@@ -26,13 +25,15 @@ const Header: () => JSX.Element = () => {
         checkAuth() // не смотря на предупреждение, все работает корректно
     })
 
-    return (
+    //const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    //const logoLink = isDarkSystemTheme ? "/img/myCustomSVGWhite.svg" : "/img/myCustomSVG.svg"
+
+        return (
                 <header className="header">
                     <div className="header_inner flex alignCenter space_between_inner">
                         <div className="logo">
                             <Link to="/">
-                                <img className="logo__image" src='/img/fav.svg' alt="Metida"
-                                     width="100"/>
+                                <img className="logo__image" src="/img/changableColorLogo.svg" alt="Metida"/>
                                 <div className="logo__title">
                                     <div className="logo__underline"/>
                                 </div>
