@@ -9,6 +9,9 @@ import Logout from "./Molecules/Logout/Logout";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
 import {IPublicUser} from "./Organisms/IPrivateUser";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {logout, signIn} from "../store/actions";
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))
@@ -21,7 +24,9 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 
 
 
-function App() {
+function App(props: any) {
+    console.log(props)
+    const {user} = props
 
     return (
         <Router>
@@ -43,5 +48,20 @@ function App() {
     );
 }
 
+function putStateToProps(state: any) {
+    console.log(state)
+    return {...state}
+}
 
-export default App;
+
+function putActionsToProps(dispatch: any) { // по идее это какая-то функция
+    return {
+        signIn: bindActionCreators(signIn, dispatch),
+        logout: bindActionCreators(logout, dispatch)
+    }
+}
+
+
+
+export default connect(putStateToProps, putActionsToProps)(App)
+;

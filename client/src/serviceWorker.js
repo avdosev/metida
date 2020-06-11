@@ -35,7 +35,7 @@ const precacheResources = [
 
 
 export function register(config) {
-  console.log('[ServiceWorker] Register on' +  process.env.NODE_ENV);
+  console.log('[ServiceWorker] Register on ' +  process.env.NODE_ENV);
 
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.

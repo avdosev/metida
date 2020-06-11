@@ -25,8 +25,9 @@ const Header: () => JSX.Element = () => {
         checkAuth() // не смотря на предупреждение, все работает корректно
     })
 
-    //const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
     //const logoLink = isDarkSystemTheme ? "/img/myCustomSVGWhite.svg" : "/img/myCustomSVG.svg"
+    console.log(isDarkSystemTheme)
 
         return (
                 <header className="header">
