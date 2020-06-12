@@ -16,7 +16,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {logout, signIn} from "../../../store/actions";
 
-class Sign_InForm extends React.Component<IProps, IState> {
+export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
         console.log(props)
@@ -91,18 +91,4 @@ class Sign_InForm extends React.Component<IProps, IState> {
     }
 }
 
-export function putStateToProps(state: any) {
-    console.log(state)
-    return {user: state.user}
-}
 
-
-export function putActionsToProps(dispatch: any) { // по идее это какая-то функция
-    console.log(dispatch)
-    return {
-        signIn: bindActionCreators(signIn, dispatch),
-        logout: bindActionCreators(logout, dispatch)
-    }
-}
-
-export default connect(putStateToProps, putActionsToProps)(Sign_InForm)

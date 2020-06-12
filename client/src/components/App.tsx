@@ -22,12 +22,7 @@ const SignIn = lazy(() => import("./Pages/Sign_In/Sign_In"))
 const Register = lazy(() => import("./Pages/Register/Register"))
 
 
-
-
-function App(props: any) {
-    console.log(props)
-    const {user} = props
-
+export default function App() {
     return (
         <Router>
             {/*не обновляется хедер при изменении страницы. исправить*/}
@@ -48,20 +43,3 @@ function App(props: any) {
     );
 }
 
-function putStateToProps(state: any) {
-    console.log(state)
-    return {...state}
-}
-
-
-function putActionsToProps(dispatch: any) { // по идее это какая-то функция
-    return {
-        signIn: bindActionCreators(signIn, dispatch),
-        logout: bindActionCreators(logout, dispatch)
-    }
-}
-
-
-
-export default connect(putStateToProps, putActionsToProps)(App)
-;
