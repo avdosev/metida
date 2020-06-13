@@ -1,6 +1,6 @@
 import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
-import Header from "../../Molecules/Header/Header";
+import Header from "../../Molecules/Header/HeaderContainer";
 import "./create_article.css"
 import * as ROUTES from "../../../config/routes"
 import CreateArticleForm from "../../Organisms/CreateArticleForm/CreateArticleForm";

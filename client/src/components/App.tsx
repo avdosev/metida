@@ -4,14 +4,11 @@ import {isAuth} from "../services/user";
 import * as ROUTES from '../config/routes';
 import {BrowserRouter as Router, Switch, Route, useLocation} from "react-router-dom";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
-import Header from "./Molecules/Header/Header";
-import Logout from "./Molecules/Logout/Logout";
+import Header from "./Molecules/Header/HeaderContainer";
+import Logout from "./Molecules/Logout/LogoutContainer";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
-import {IPublicUser} from "./Organisms/IPrivateUser";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import {logout, signIn} from "../store/actions";
+
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))

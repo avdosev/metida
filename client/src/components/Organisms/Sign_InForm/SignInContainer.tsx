@@ -1,5 +1,5 @@
 import {bindActionCreators} from "redux";
-import {logout, signIn} from "../../../store/actions";
+import { setAuth} from "../../../store/actions";
 import {connect} from "react-redux";
 import Sign_InForm from "./Sign_InForm";
 import React from "react";
@@ -12,17 +12,13 @@ function SignInFormContainer(props: any) {
 
 export function putStateToProps(state: any) {
     console.log(state)
-    return {user: state.user}
+    return {auth: state.auth}
 }
 
-export function putActionsToProps(dispatch: any) { // по идее это какая-то функция
-    console.log(dispatch)
-    return {
-        signIn: bindActionCreators(signIn, dispatch),
-        logout: bindActionCreators(logout, dispatch)
-    }
+const mapDispatchToProps = {
+    setAuth
 }
 
 
 
-export default connect(putStateToProps, putActionsToProps)(SignInFormContainer)
+export default connect(putStateToProps, mapDispatchToProps)(SignInFormContainer)

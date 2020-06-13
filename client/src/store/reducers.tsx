@@ -8,10 +8,8 @@ const initialState = {
 
 function rootReducer(state  = initialState, action: ActionType) {
     switch (action.type) {
-        case SIGN_IN:
+        case SIGN_IN || LOGOUT:
             return {...state, user: action.payload }
-        case LOGOUT:
-            return {...state, user: null }
     }
     return state;
 }

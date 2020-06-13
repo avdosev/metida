@@ -27,7 +27,7 @@ const Header: () => JSX.Element = () => {
 
     const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
     //const logoLink = isDarkSystemTheme ? "/img/myCustomSVGWhite.svg" : "/img/myCustomSVG.svg"
-    console.log(isDarkSystemTheme)
+    console.log("Current system is dark? ", isDarkSystemTheme)
 
         return (
                 <header className="header">
@@ -52,4 +52,4 @@ const Header: () => JSX.Element = () => {
 }
 
 
-export default Header
+export {Header}

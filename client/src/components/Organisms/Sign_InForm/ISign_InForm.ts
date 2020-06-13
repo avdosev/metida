@@ -6,6 +6,7 @@ interface IProps {
     // user: null | IPublicUser
     // signIn: () => any // какую-то функцию
     // logout: () => any
+    setAuth: any
 }
 
 interface IState extends IIState {

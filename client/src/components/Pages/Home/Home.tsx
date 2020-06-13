@@ -1,6 +1,6 @@
 import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
-import Header from "../../Molecules/Header/Header";
+import Header from "../../Molecules/Header/HeaderContainer";
 import {IPrivateUser} from "../../Organisms/IPrivateUser";
 import Profile from "../../Molecules/Profile/Profile";
 

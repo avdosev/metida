@@ -12,9 +12,8 @@ import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {logout, signIn} from "../../../store/actions";
+
+
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -59,7 +58,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             const user = getCurrentUser()
             if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
 
-            signIn(user)
+            this.props.setAuth({...user})
 
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
             console.log(this.state)

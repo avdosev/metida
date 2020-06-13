@@ -5,7 +5,7 @@ import "./post.css"
 import "../../styles/comments.scss"
 import {getArticleId, loadComments} from '../../../services/comments';
 import SimplePage from "../../Templates/SimpleTemplate";
-import Header from "../../Molecules/Header/Header";
+import Header from "../../Molecules/Header/HeaderContainer";
 import Footer from "../../Molecules/Footer/Footer";
 import {get} from "../../../services/router";
 import {Redirect} from "react-router-dom"

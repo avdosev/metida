@@ -1,23 +1,18 @@
+import React from 'react'
 
-import React from 'react';
-import { connect } from 'react-redux';
+import {Header} from './Header'
+import { connect } from 'react-redux'
 
-import Header from "./Header";
-
-
-function HeaderContainer(props: any) {
-    return (<Header {...props} />)
-}
-
-const mapStateToProps = (state) => {
-    return {
-        email: state.auth.email,
-        password: state.auth.password
+class HeaderContainer extends React.Component {
+    render() {
+        return <Header />
     }
 }
 
-const mapDispatchToProps = {
-    setEmail, setPassword
+const mapStateToProps = (state: any) => {
+    return {
+        auth: state.auth,
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default connect(mapStateToProps)(HeaderContainer)
