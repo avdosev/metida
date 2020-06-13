@@ -1,5 +1,4 @@
 import React, {Suspense} from "react";
-import Header from "../Molecules/Header/Header";
 import Footer from "../Molecules/Footer/Footer";
 
 
