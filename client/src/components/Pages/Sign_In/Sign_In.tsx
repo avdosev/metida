@@ -1,5 +1,5 @@
 import React from "react";
-import Sign_InForm from "../../Organisms/Sign_InForm/SignInContainer";
+import Sign_InForm from "../../Organisms/Sign_InForm/SignInFormContainer";
 import SimplePage from "../../Templates/SimpleTemplate";
 
 interface IProps {

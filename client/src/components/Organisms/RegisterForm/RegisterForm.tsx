@@ -10,6 +10,7 @@ import {initialValidator, Validators} from "../IValidators";
 import {loginQuery} from "../Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
+import {getCurrentUser} from "../../../services/user";
 
 
 export default class RegisterForm extends React.Component<IProps, IState> {
@@ -69,16 +70,28 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        const error = await loginQuery(event, ROUTES.REGISTER, {
+        let error = await loginQuery(event, ROUTES.REGISTER, {
             email: this.state.email.value,
             password: this.state.password.value,
             login: this.state.login.value
+
         });
         if (error) {
-            this.setState({serverError: error})
+            if (error.match("Cannot POST")) {
+                console.warn("Сервер не отвечает")
+                error = "Сервер не отвечает, попробуйте позже."
+            }
+            this.setState({serverError: {value: error, valid: Valid.Invalid}})
         } else {
+            const user = getCurrentUser()
+            if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
+
+            this.props.setAuth({...user})
+
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
+            console.log(this.state)
         }
+
     }
 
     render() {

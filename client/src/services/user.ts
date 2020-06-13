@@ -1,7 +1,6 @@
 import {IPrivateUser, IPublicUser} from "../components/Organisms/IPrivateUser";
 import {post} from "./router";
 import * as ls from "./localstorage"
-import {logout} from "../../build/store/actions";
 
 
 function getCurrentUser(): IPublicUser | null {

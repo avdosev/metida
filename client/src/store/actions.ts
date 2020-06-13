@@ -1,4 +1,3 @@
-import {ActionType} from "./actionType";
 import {LOGOUT, SIGN_IN} from "../actions/events";
 import {IPublicUser} from "../components/Organisms/IPrivateUser";
 

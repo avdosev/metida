@@ -32,8 +32,8 @@ input:invalid {
     background-color: #FDD;
 }
   
-input:focus:invalid {
-   /*outline: none;*/
+input:hover:invalid {
+    border: 1px solid #900 ;
 }
   
 input:valid {
@@ -42,7 +42,6 @@ input:valid {
 
 
 .welcome {
-    /*outline: none;*/
     margin-top: 1.5rem;
     border: 1px solid black;
     background: rgba(255, 255, 255, 0.1);

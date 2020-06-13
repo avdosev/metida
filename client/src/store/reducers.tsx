@@ -1,4 +1,4 @@
-import { ActionType } from "./actionType";
+import { ActionType } from "./typings/actionType";
 import {SIGN_IN, LOGOUT} from "../actions/events";
 import {getCurrentUser} from "../services/user";
 
