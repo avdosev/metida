@@ -5,13 +5,14 @@ import { connect } from 'react-redux'
 
 class HeaderContainer extends React.Component {
     render() {
-        return <Header />
+        return <Header {...this.props} />
     }
 }
 
 const mapStateToProps = (state: any) => {
+    console.log(state)
     return {
-        auth: state.auth,
+        user: state.user,
     }
 }
 

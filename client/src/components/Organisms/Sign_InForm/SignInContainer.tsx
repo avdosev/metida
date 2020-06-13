@@ -12,7 +12,7 @@ function SignInFormContainer(props: any) {
 
 export function putStateToProps(state: any) {
     console.log(state)
-    return {auth: state.auth}
+    return {user: state.user}
 }
 
 const mapDispatchToProps = {

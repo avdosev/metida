@@ -4,7 +4,7 @@ import * as ROUTES from "../../../config/routes"
 
 export default function Logout(props: any) {
     localStorage.removeItem("user");
-    props.logout(null)
+    props.setAuth(null)
 
     return <Redirect to={ROUTES.LANDING}/>
 }

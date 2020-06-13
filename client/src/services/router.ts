@@ -1,6 +1,7 @@
 import { serverUri } from "../config/config";
 import {IPrivateUser} from "../components/Organisms/IPrivateUser";
 import * as ls from "./localstorage"
+import {logout} from "../../build/store/actions";
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
     let response;

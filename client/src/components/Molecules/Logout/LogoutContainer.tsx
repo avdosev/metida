@@ -12,8 +12,9 @@ function LogoutContainer(props: any) {
 
 
 const mapStateToProps = (state: any) => {
+    console.log(state)
     return {
-        auth: state.auth,
+        user: state.user,
     }
 }
 
