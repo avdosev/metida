@@ -13,15 +13,17 @@ import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
 
+
+
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
+        console.log(props)
         this.state = {
             email: {value: '', valid: Valid.Intermediate}, password: {value: '', valid: Valid.Intermediate},
             referrer: <></>,
             serverError: {value: '', valid: Valid.Intermediate},
             validators: initialValidator,
-            user: initialUser
         }
     }
 
@@ -53,6 +55,11 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             }
             this.setState({serverError: {value: error, valid: Valid.Invalid}})
         } else {
+            const user = getCurrentUser()
+            if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
+
+            this.props.setAuth({...user})
+
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
             console.log(this.state)
             //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
@@ -81,6 +88,6 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             </div>
         )
     }
-
 }
+
 

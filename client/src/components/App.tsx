@@ -4,11 +4,12 @@ import {isAuth} from "../services/user";
 import * as ROUTES from '../config/routes';
 import {BrowserRouter as Router, Switch, Route, useLocation} from "react-router-dom";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
-import Header from "./Molecules/Header/Header";
-import Logout from "./Molecules/Logout/Logout";
+import Header from "./Molecules/Header/HeaderContainer";
+import Logout from "./Molecules/Logout/LogoutContainer";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
-import {IPublicUser} from "./Organisms/IPrivateUser";
+import Offline from "./Pages/Offline/Offline";
+
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))
@@ -19,10 +20,7 @@ const SignIn = lazy(() => import("./Pages/Sign_In/Sign_In"))
 const Register = lazy(() => import("./Pages/Register/Register"))
 
 
-
-
-function App() {
-
+export default function App() {
     return (
         <Router>
             {/*не обновляется хедер при изменении страницы. исправить*/}
@@ -37,11 +35,11 @@ function App() {
                     <PublicRoute path={ROUTES.SIGN_IN} component={SignIn}/>
                     <PublicRoute path={ROUTES.REGISTER} component={Register}/>
                     <PublicRoute path={ROUTES.LANDING} component={Index}/>
+                    <PublicRoute path={ROUTES.OFFLINE} component={Offline}/>
+
                 </Switch>
             </Suspense>
         </Router>
     );
 }
 
-
-export default App;

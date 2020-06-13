@@ -1,17 +1,15 @@
 import React from "react";
-import Sign_InForm from "../../Organisms/Sign_InForm/Sign_InForm";
+import Sign_InForm from "../../Organisms/Sign_InForm/SignInFormContainer";
 import SimplePage from "../../Templates/SimpleTemplate";
-import Header from "../../Molecules/Header/Header";
 
 interface IProps {
-    onUserQuery: (isAuthed: boolean) => void
 }
 
 export default function SignIn(props: IProps) {
     document.title = "Sign in";
 
     return (<SimplePage>
-        <Sign_InForm onUserQuery={props.onUserQuery}/>
+        <Sign_InForm />
     </SimplePage>)
 
 }

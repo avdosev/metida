@@ -16,11 +16,13 @@ function getCurrentUser(): IPublicUser | null {
 
 async function isAuth() {
     const res = await post('/isAuth', {}, (res) => {return res})
+    const body = await res.json()
+    console.log(body)
 
-    if (res.hasOwnProperty('error')) {
+    if (body.hasOwnProperty('error')) {
         localStorage.removeItem(ls.user)
     }
-    return res.hasOwnProperty('message')
+    return body.hasOwnProperty('message')
 }
 
 export {getCurrentUser, isAuth}

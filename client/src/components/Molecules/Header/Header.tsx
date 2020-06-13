@@ -14,19 +14,11 @@ interface IHeader {
 }
 
 
-const Header: () => JSX.Element = () => {
-    const [authorised, setAuthorised] = useState(false)
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            const auth = await isAuth()
-            setAuthorised(auth)
-        }
-        checkAuth() // не смотря на предупреждение, все работает корректно
-    })
-
-    //const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+const Header: (props: any) => any = (props: any) => {
+    console.log(props)
+    const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
     //const logoLink = isDarkSystemTheme ? "/img/myCustomSVGWhite.svg" : "/img/myCustomSVG.svg"
+    console.log("Current system is dark? ", isDarkSystemTheme)
 
         return (
                 <header className="header">
@@ -41,7 +33,7 @@ const Header: () => JSX.Element = () => {
                         </div>
 
                         <div className="regSection">
-                            <Burger authorised={authorised}/>
+                            <Burger authorised={props.user}/>
                         </div>
 
                     </div>
@@ -51,4 +43,4 @@ const Header: () => JSX.Element = () => {
 }
 
 
-export default Header
+export {Header}
