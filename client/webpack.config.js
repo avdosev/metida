@@ -23,17 +23,6 @@ module.exports = env => {
             filename: "js/[name].bundle.js",
             chunkFilename: 'js/[name].bundle.js',
         },
-        // optimization: {
-        //     splitChunks: {
-        //         cacheGroups: {
-        //             commons: {
-        //                 name: 'commons',
-        //                 chunks: 'initial',
-        //                 minChunks: 2
-        //             }
-        //         }
-        //     }
-        // },
         mode,
         devtool: devtool,
         module: {
