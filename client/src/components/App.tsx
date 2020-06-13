@@ -8,6 +8,7 @@ import Header from "./Molecules/Header/HeaderContainer";
 import Logout from "./Molecules/Logout/LogoutContainer";
 import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
+import Offline from "./Pages/Offline/Offline";
 
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
@@ -34,6 +35,8 @@ export default function App() {
                     <PublicRoute path={ROUTES.SIGN_IN} component={SignIn}/>
                     <PublicRoute path={ROUTES.REGISTER} component={Register}/>
                     <PublicRoute path={ROUTES.LANDING} component={Index}/>
+                    <PublicRoute path={ROUTES.OFFLINE} component={Offline}/>
+
                 </Switch>
             </Suspense>
         </Router>

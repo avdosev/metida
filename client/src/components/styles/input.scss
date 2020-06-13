@@ -41,13 +41,17 @@ input:valid {
 }
 
 
-.welcome {
+.welcome, .welcome:hover {
     margin-top: 1.5rem;
     border: 1px solid black;
     background: rgba(255, 255, 255, 0.1);
-    transition: 0.7s;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+}
+
+.welcome:hover {
+    background: rgba(255, 255, 1, 0.5);
+    transition: 0.7s;
 }
 
 /* Тут хочу сделать разные цвета кнопки для верных и неверных значений, проблема в том, что я хз как передать на кнопку результат */
