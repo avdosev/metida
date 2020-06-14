@@ -1,6 +1,6 @@
 import {Link, Redirect} from "react-router-dom";
 import React from "react";
-import {md} from "../../../services/markdown"
+import {md} from "../../../config/markdown"
 import {IPost} from "../../Pages/Profile/IPost";
 
 interface IProps {

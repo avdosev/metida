@@ -10,7 +10,7 @@
 }
 
 .new_comment_block .comment * {
-    /*margin-block-end: 10px*/
+    margin-block-end: 10px
 }
 
 .comment_childer {
@@ -42,11 +42,9 @@
 }
 
 
-
 .comment_area {
-    /*outline: none;*/
     resize: none;
-    border: 1px solid var(--main-bord-color);
+    border: 1px solid $main-bord-color;
     width: 100%;
     min-height: 170px
 }
@@ -61,7 +59,7 @@
     font-family: 'Lato', sans-serif;
 }
 
-#veiw{
+#view{
     /*outline: none;*/
     height: 30px;
     width: 150px;
@@ -85,7 +83,7 @@
     transition: 0.5s;
 }
 
-#veiw:active{
+#view:active{
     background-color: $buttom-active;
 }
 
@@ -130,16 +128,16 @@
 @media (hover:hover) { 
 
     .comment_area:hover{
-        border-color: var(--main-hover-color);
+        border-color: $main-hover-color;
     }
 
     .Btn:hover{
-        background-color: var(--buttom-hover);
+        background-color: $buttom-hover;
         transition: 0.5s;
     }
 
-    #veiw:hover{
-        background-color: var(--buttom-hover);
+    #view:hover{
+        background-color: $buttom-hover;
         color: $main-metida-color;
         transition: 0.5s;
     }
@@ -150,7 +148,7 @@
     }
 
     .EnterButton:hover{
-        background-color: var(--buttom-hover);
+        background-color: $buttom-hover;
         transition: 0.5s;
     }
 

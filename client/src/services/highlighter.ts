@@ -67,17 +67,3 @@ export function highLighter(codeText: string, lexTable: LexTable) {
     return text;
 }
 
-// тупа хайлайт кода
-export async function highlightArrayOfCodeElems(elems: any, lexTableUrl = '/public/json/lexem_table.json') {
-    if (!elems) {
-        return;
-    }
-    
-    const lexTable = await getData(lexTableUrl)
-    for (let i = 0; i < elems.length; i++) {
-        elems[i].innerHTML = highLighter(elems[i].innerText, lexTable);
-    }
-    
-}
-
-

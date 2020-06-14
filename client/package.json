@@ -22,8 +22,7 @@
     "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {
-    "@types/react-redux": "^7.1.9",
-    "@types/redux-logger": "^3.0.8",
+    "highlight.js": "^10.1.0",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^11.0.0",
     "react": "^16.13.1",
@@ -50,9 +49,12 @@
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
+    "@types/highlight.js": "^9.12.4",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/redux-logger": "^3.0.8",
     "@types/webpack-env": "^1.15.2",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",

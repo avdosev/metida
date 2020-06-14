@@ -1,19 +1,17 @@
 import React from "react";
 import "../../styles/input.scss"
 import "../../styles/main.scss"
-import "./post.css"
+import "./post.scss"
 import "../../styles/comments.scss"
 import {getArticleId, loadComments} from '../../../services/comments';
 import SimplePage from "../../Templates/SimpleTemplate";
-import Header from "../../../containers/HeaderContainer";
-import Footer from "../../Molecules/Footer/Footer";
 import {get} from "../../../services/router";
 import {Redirect} from "react-router-dom"
 import {isAuth} from "../../../services/user";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {IComments} from "../../Organisms/IComment";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
-import {md} from "../../../services/markdown"
+import {md} from "../../../config/markdown"
 
 
 interface IProps {
@@ -52,24 +50,26 @@ export default class PostPage extends React.Component<IProps, IState> {
         throw new Error('not implemented');
     }
 
+    getArticle = async (articleId: string) => {
+        return get(`/api/post/${articleId}`)
+    }
+
     async componentDidMount() {
-        const article = await get(`/api/post/${getArticleId()}`)
-        this.setState({...article})
-
+        const articleId = getArticleId()
+        const [article, comments] = await Promise.all([
+            this.getArticle(articleId), loadComments(articleId) //, getData(lexTableUrl)
+        ])
+        this.setState({...article, comments: comments})
+        console.log(this.state)
         document.title = this.state.header;
-        let comments = await loadComments(getArticleId())
-
-        this.setState({comments: comments})
-
-        // TODO похоже на await hell
     }
 
     onCommentChanged = (newComments: Array<IComments>) => {
         this.setState({comments: newComments})
     }
 
-
     render() {
+        console.log(this.state.content)
         return (<SimplePage>
             <div className="layout_body">
             <div className="content">
@@ -80,6 +80,7 @@ export default class PostPage extends React.Component<IProps, IState> {
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
                     <div dangerouslySetInnerHTML={{__html: md.render(this.state.content)}}/>
                 </article>
+
                 <div className="comments_lenta onfullwidth" id="comments2">
                     <h3>Комментарии:</h3>
                     <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments}/>

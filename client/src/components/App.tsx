@@ -2,10 +2,10 @@ import React, {lazy, Suspense} from 'react';
 import {isAuth} from "../services/user";
 
 import * as ROUTES from '../config/routes';
-import {BrowserRouter as Router, Switch, Route, useLocation} from "react-router-dom";
+import {BrowserRouter as Router, Switch} from "react-router-dom";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
-import Header from "../containers/HeaderContainer";
-import Logout from "../containers/LogoutContainer";
+import Header from "Containers/HeaderContainer";
+import Logout from "Containers/LogoutContainer";
 import BubbleLoader  from './Molecules/BubbleLoader/BubbleLoader';
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
 import Offline from "./Pages/Offline/Offline";
@@ -23,7 +23,6 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 export default function App() {
     return (
         <Router>
-            {/*не обновляется хедер при изменении страницы. исправить*/}
             <Header />
             <Suspense fallback={<BubbleLoader/>}>
                 <Switch>
