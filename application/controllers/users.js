@@ -75,8 +75,9 @@ async function loginUser(user, res) {
     })
 
     const userinfo = user.get(); //ради единого интерфейса, чтобы были одни и те же данные, как и после регистрации, так и после сигн ина, сойдемся на том, что юзеры регистрируются 1 раз, а входят много, поэтому лучше сделать регистрацию немного дольше
+    const {password, ...publicUser} = userinfo
     res.status(200).send({
-        ...userinfo,
+        ...publicUser,
         accessToken: token
     })
 }
