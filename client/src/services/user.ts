@@ -1,17 +1,15 @@
 import {IPrivateUser, IPublicUser} from "../components/Organisms/IPrivateUser";
 import {post} from "./router";
-import * as ls from "./localstorage"
+import {deleteUserFromLS, getUserFromLS} from "./localstorage";
 
 
 function getCurrentUser(): IPublicUser | null {
-    const userstring = localStorage.getItem(ls.user)
+    const userstring = getUserFromLS()
+    console.log(userstring)
     if (!userstring) return null
-    const userinfo: IPrivateUser = JSON.parse(userstring)
-    const publicUser: IPublicUser = {
-        ...userinfo
-    }
-    console.log(publicUser)
-    return publicUser
+    const userinfo: IPublicUser = <IPublicUser>JSON.parse(userstring)
+    console.log(userinfo)
+    return userinfo
 }
 
 async function isAuth() {
@@ -20,7 +18,7 @@ async function isAuth() {
     console.log(body)
 
     if (body.hasOwnProperty('error')) {
-        localStorage.removeItem(ls.user)
+        deleteUserFromLS()
     }
     return body.hasOwnProperty('message')
 }

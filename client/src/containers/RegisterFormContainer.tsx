@@ -1,10 +1,11 @@
 import {bindActionCreators} from "redux";
-import { setAuth} from "../../../store/actions";
+import { setAuth} from "../store/actions";
 import {connect} from "react-redux";
 import React from "react";
-import RegisterForm from "./RegisterForm";
+import RegisterForm from "../components/Organisms/RegisterForm/RegisterForm";
 
 function RegisterFormContainer(props: any) {
+    console.log(typeof props)
     return (<RegisterForm {...props} />)
 }
 

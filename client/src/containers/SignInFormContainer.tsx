@@ -1,11 +1,12 @@
 import {bindActionCreators} from "redux";
-import { setAuth} from "../../../store/actions";
+import { setAuth} from "../store/actions";
 import {connect} from "react-redux";
-import Sign_InForm from "./Sign_InForm";
+import Sign_InForm from "../components/Organisms/Sign_InForm/Sign_InForm";
 import React from "react";
 
 
 function SignInFormContainer(props: any) {
+    console.log(typeof props)
     return (<Sign_InForm {...props} />)
 }
 

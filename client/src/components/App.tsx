@@ -4,12 +4,12 @@ import {isAuth} from "../services/user";
 import * as ROUTES from '../config/routes';
 import {BrowserRouter as Router, Switch, Route, useLocation} from "react-router-dom";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
-import Header from "./Molecules/Header/HeaderContainer";
-import Logout from "./Molecules/Logout/LogoutContainer";
-import BubbleLoader from "./Molecules/BubbleLoader/BubbleLoader";
+import Header from "../containers/HeaderContainer";
+import Logout from "../containers/LogoutContainer";
+import BubbleLoader  from './Molecules/BubbleLoader/BubbleLoader';
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
 import Offline from "./Pages/Offline/Offline";
-
+//import {BubbleLoader } from "components"
 
 const PostPage = lazy(() => import("./Pages/Post/PostPage"))
 const Index = lazy(() => import("./Pages/Index/Index"))

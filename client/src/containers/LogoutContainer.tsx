@@ -1,8 +1,8 @@
 import {bindActionCreators} from "redux";
-import {setAuth} from "../../../store/actions";
+import {setAuth} from "../store/actions";
 import {connect} from "react-redux";
 import React from "react";
-import Logout from "./Logout";
+import Logout from "../components/Molecules/Logout/Logout";
 import {validateSourceMapOncePerProject} from "ts-loader/dist/utils";
 
 

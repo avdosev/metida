@@ -1,5 +1,5 @@
 import React from "react";
-import {initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
+import {initialAuthor, initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
 import {Post} from "../Post/Post";
@@ -7,7 +7,7 @@ import Feed from "../../Organisms/Feed/Feed";
 import "../../styles/lenta.scss"
 
 interface IState {
-    user: IPublicUser
+    user: UserInfo
 }
 
 interface IProps {
@@ -23,7 +23,7 @@ export function getUsername() {
 export default class Profile extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {user: initialUser}
+        this.state = {user: initialAuthor}
     }
 
     async componentDidMount() {
@@ -45,11 +45,13 @@ export default class Profile extends React.Component<IProps, IState> {
 
 
     render() {
-        let articles = []
-        for (const article of this.state.user.articles) {
-            articles.push(<Post key={article.id} json={article} />)
+        let articles: JSX.Element[] = []
+        if (this.state.user.articles) {
+            for (const article of this.state.user.articles) {
+                articles.push(<Post key={article.id} json={article} />)
+            }
+            articles = articles.reverse() // потому что они должны быть отсортированы от самой новой
         }
-        articles = articles.reverse()
 
         return (
             <div className="layout_body">

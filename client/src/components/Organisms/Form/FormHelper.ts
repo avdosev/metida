@@ -1,4 +1,6 @@
-import {post} from "../../../services/router";
+import {get, post} from "../../../services/router";
+import {IPublicUser} from "../IPrivateUser";
+import {writeUserInLS} from "../../../services/localstorage";
 
 
 interface IPush {
@@ -12,8 +14,14 @@ export const loginQuery = async (e: any, serverRoute: string, allFields: IPush) 
     console.log(response)
     if (response.ok) {
         const userinfo = await response.json()
-        console.log(userinfo)
-        localStorage.setItem("user", JSON.stringify(userinfo))
+        const accessToken = userinfo.accessToken
+
+        let publicUser = await get(`/api/author/${userinfo.username}`) // TODO специфическая херня
+        delete publicUser['articles'] // я бы хотел на сервере иметь роут для возвращения безопасных значений юзера
+        publicUser['accessToken'] = accessToken
+
+        writeUserInLS(publicUser)
+        console.log(publicUser)
         return ''
     }
     else {

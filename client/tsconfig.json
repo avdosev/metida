@@ -21,9 +21,14 @@
     "isolatedModules": true,
     "noEmit": false,
     "removeComments": true,
-
+//    "declaration": true,
     // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */,
-    "declaration": true
+
+    "baseUrl": "src",
+    "types": [
+      "node",
+      "webpack-env"
+    ]
 
   },
   "include": [
