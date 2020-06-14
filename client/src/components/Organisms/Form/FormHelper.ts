@@ -14,14 +14,8 @@ export const loginQuery = async (e: any, serverRoute: string, allFields: IPush) 
     console.log(response)
     if (response.ok) {
         const userinfo = await response.json()
-        const accessToken = userinfo.accessToken
-
-        let publicUser = await get(`/api/author/${userinfo.username}`) // TODO специфическая херня
-        delete publicUser['articles'] // я бы хотел на сервере иметь роут для возвращения безопасных значений юзера
-        publicUser['accessToken'] = accessToken
-
-        writeUserInLS(publicUser)
-        console.log(publicUser)
+        writeUserInLS(userinfo)
+        console.log(userinfo)
         return ''
     }
     else {

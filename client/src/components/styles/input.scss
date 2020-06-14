@@ -27,16 +27,12 @@ input {
     box-sizing: border-box;
 }
 
-input:invalid {
-    border-color: #900;
-    background-color: #FDD;
+input:invalid, input:hover:invalid {
+    background-color: #FDD ;
+    border: 1px solid #900;
 }
   
-input:hover:invalid {
-    border: 1px solid #900 ;
-}
-  
-input:valid {
+input:valid, input:valid:hover {
     border: 1px solid steelblue;
 }
 
