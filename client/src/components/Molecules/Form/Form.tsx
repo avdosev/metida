@@ -1,5 +1,5 @@
 import React from "react";
-import {Validators} from "../IValidators";
+import {Validators} from "../../Organisms/IValidators";
 
 interface IState {
 

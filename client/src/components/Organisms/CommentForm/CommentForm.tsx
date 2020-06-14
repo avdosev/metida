@@ -4,7 +4,7 @@ import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState, Valid} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
-import Form from "../Form/Form";
+import Form from "../../Molecules/Form/Form";
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
 
@@ -102,7 +102,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
                                                                                 text={this.state.validators.comment.error_str}
                                                                                 validateFunc={this.handleUserInput}/>
                     <div className="button_block">
-                        <input type="button" id="veiw" value="Предпросмотр"/>
+                        <input type="button" id="view" value="Предпросмотр"/>
                     </div>
                 </Form>
             </>

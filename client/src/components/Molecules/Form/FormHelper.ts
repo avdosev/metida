@@ -1,5 +1,5 @@
 import {get, post} from "../../../services/router";
-import {IPublicUser} from "../IPrivateUser";
+import {IPublicUser} from "../../Organisms/IPrivateUser";
 import {writeUserInLS} from "../../../services/localstorage";
 
 

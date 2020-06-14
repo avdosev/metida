@@ -20,8 +20,8 @@ module.exports = env => {
         output: {
             path: path.resolve(__dirname, 'dist'),
             publicPath: '/', // этот путь будет добавляться в пути до каждого бандла внутри хтмл и других бандлов
-            filename: "js/[name].bundle.js",
-            chunkFilename: 'js/[name].bundle.js',
+            filename: "js/[name].[hash].bundle.js",
+            chunkFilename: 'js/[name].[hash].bundle.js',
         },
         mode,
         devtool: devtool,
@@ -86,6 +86,10 @@ module.exports = env => {
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js'],
+            alias: {
+                Components: path.resolve(__dirname, 'src/components/'),
+                Containers: path.resolve(__dirname, 'src/containers/')
+            }
         },
         plugins: [
             new webpack.ProgressPlugin(),
