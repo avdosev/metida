@@ -60,7 +60,6 @@ export default class PostPage extends React.Component<IProps, IState> {
             this.getArticle(articleId), loadComments(articleId) //, getData(lexTableUrl)
         ])
         this.setState({...article, comments: comments})
-        console.log(this.state)
         document.title = this.state.header;
     }
 
@@ -69,7 +68,6 @@ export default class PostPage extends React.Component<IProps, IState> {
     }
 
     render() {
-        console.log(this.state.content)
         return (<SimplePage>
             <div className="layout_body">
             <div className="content">

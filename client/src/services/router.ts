@@ -49,6 +49,10 @@ async function post(url: string, data: any, callback?: {(response: any): void })
     return  await query("post", url, data, callback);
 }
 
+async function deleteMethod(url: string, data: any, callback?: {(response: any): void }) {
+    return await query("delete", url, data, callback);
+}
+
 function authHeader() {
     const authInfo = getUserFromLS()
     //console.log(authInfo)
