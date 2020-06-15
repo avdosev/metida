@@ -30,5 +30,18 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
+
+    <script>
+      import * as sw from "/serviceWorker";
+      if ('serviceWorker' in navigator) {
+        document.addEventListener('DOMContentLoaded', () => {
+          sw.register() //serviceWorker.register();
+        })
+
+      }
+
+    </script>
+
+
   </body>
 </html>

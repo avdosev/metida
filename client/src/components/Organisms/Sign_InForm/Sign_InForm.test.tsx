@@ -1,14 +1,8 @@
-import TestRenderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import React from "react";
+import SignInForm from "../../../containers/ChangeHeaderEvent/SignInFormContainer";
 
-function Link(props: any) {
-    return (<a href={props.page}>{props.children}</a>);
-}
-
-test('component', () => {
-    const tree = TestRenderer.create(
-        <Link page="https://www.facebook.com/">Facebook</Link>
-    ).toJSON();
-    expect(tree).toMatchSnapshot();
-})
-
+it("render correctly date component", () => {
+    const DateInputComponent = renderer.create(<SignInForm />).toJSON();
+    expect(DateInputComponent).toMatchSnapshot();
+});
