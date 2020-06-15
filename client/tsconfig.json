@@ -27,16 +27,18 @@
     "baseUrl": "src",
     "types": [
       "node",
-      "webpack-env"
+      "webpack-env",
+      "jest"
     ]
 
   },
   "include": [
     "src",
-    "typings"
+    "typings",
+    "node_modules/@types/jest/index.d.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
+  ]
 
 }
