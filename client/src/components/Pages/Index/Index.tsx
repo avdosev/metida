@@ -73,7 +73,7 @@ export default class Index extends React.Component<IProps, IState> {
                     <Feed>
                         {this.state.lenta}
                     </Feed>
-                    <button className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
+                    <button type="button" className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
                 </div>
             </div>
         </SimplePage>)
