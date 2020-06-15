@@ -17,12 +17,11 @@
   "scripts": {
     "start": "yarn webpack:dev",
     "build": "yarn webpack:prod",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot --watch",
     "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {
-    "@types/jest": "^26.0.0",
     "highlight.js": "^10.1.0",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^11.0.0",
@@ -33,7 +32,6 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "scss": "^0.2.4",
-    "ts-jest": "^26.1.0",
     "typescript": "^3.9.2",
     "webpack": "^4.43.0"
   },
@@ -49,9 +47,12 @@
       "last 1 safari version"
     ]
   },
+
   "devDependencies": {
+    "@babel/preset-react": "^7.10.1",
     "@types/dotenv": "^8.2.0",
     "@types/highlight.js": "^9.12.4",
+    "@types/jest": "^26.0.0",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
@@ -70,6 +71,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^1.2.1",
+    "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.5",
     "url-loader": "^4.1.0",
     "webpack-bundle-analyzer": "^3.8.0",
