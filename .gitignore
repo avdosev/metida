@@ -9,3 +9,4 @@ src/components/Pages/TemplateClass.tsx
 yarn.lock
 dist
 yarn*
+__snapshots__
