@@ -32,10 +32,9 @@
 
 
     <script>
-      import * as sw from "/serviceWorker";
       if ('serviceWorker' in navigator) {
         document.addEventListener('DOMContentLoaded', () => {
-          sw.register() //serviceWorker.register();
+          navigator.serviceWorker.register("/serviceWorker.js"); //serviceWorker.register();
         })
 
       }
