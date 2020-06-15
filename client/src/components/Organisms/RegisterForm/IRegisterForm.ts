@@ -3,7 +3,7 @@ import {IIState, Field} from "../IAuth";
 
 
 interface IProps {
-    setAuth?: any
+
 }
 
 

@@ -6,7 +6,7 @@ import {Post} from "../../Molecules/Post/Post"
 import {post} from "../../../services/router";
 import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
-import Header from "../../../containers/HeaderContainer";
+import Header from "../../../containers/ChangeHeaderEvent/HeaderContainer";
 import Footer from "../../Molecules/Footer/Footer";
 
 

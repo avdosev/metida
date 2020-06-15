@@ -4,11 +4,9 @@ import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState, Valid} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
-import Form from "../../Molecules/Form/Form";
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
 import InnerCommentForm from "./InnerCommentForm";
-import logger from "redux-logger";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
@@ -97,7 +95,6 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     render() {
         let comment: JSX.Element
-        console.log(this.state)
         if (this.state.isAuth) {
             comment = <InnerCommentForm
                 onSubmit={this.submitBtn}

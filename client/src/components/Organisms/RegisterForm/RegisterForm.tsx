@@ -11,10 +11,11 @@ import {loginQuery} from "../../Molecules/Form/FormHelper";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
 import {getCurrentUser} from "../../../services/user";
+import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispatcher";
 
 
-export default class RegisterForm extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+export default class RegisterForm extends React.Component<ChangeHeaderInterface, IState> {
+    constructor(props: ChangeHeaderInterface) {
         super(props)
         this.state = {
             repassword: {value: '', valid: Valid.Intermediate},
@@ -86,7 +87,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
             const user = getCurrentUser()
             if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
 
-            this.props.setAuth({...user})
+            this.props.signIn(user)
 
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
             console.log(this.state)
