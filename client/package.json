@@ -17,7 +17,8 @@
   "scripts": {
     "start": "yarn webpack:dev",
     "build": "yarn webpack:prod",
-    "test": "jest --detectOpenHandles",
+    "test": "tsc",
+    "jest": "jest --detectOpenHandles",
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot --watch",
     "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
@@ -29,11 +30,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-logger": "^3.0.6",
-    "scss": "^0.2.4",
-    "typescript": "^3.9.2",
-    "webpack": "^4.43.0"
+    "redux": "^4.0.5"
   },
   "browserslist": {
     "production": [
@@ -46,6 +43,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.1",
@@ -68,8 +71,11 @@
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
+    "scss": "^0.2.4",
+    "redux-logger": "^3.0.6",
+    "typescript": "^3.9.2",
+    "webpack": "^4.43.0",
     "node-sass": "^4.14.1",
-    "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^1.2.1",
