@@ -17,11 +17,12 @@
   "scripts": {
     "start": "yarn webpack:dev",
     "build": "yarn webpack:prod",
-    "test": "tsc",
+    "test": "jest",
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot --watch",
     "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
   },
   "dependencies": {
+    "@types/jest": "^26.0.0",
     "highlight.js": "^10.1.0",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^11.0.0",
@@ -32,6 +33,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "scss": "^0.2.4",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.9.2",
     "webpack": "^4.43.0"
   },
@@ -64,6 +66,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
+    "jest": "^26.0.1",
     "node-sass": "^4.14.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^1.2.1",

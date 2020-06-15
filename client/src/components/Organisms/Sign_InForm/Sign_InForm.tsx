@@ -12,11 +12,12 @@ import FieldError from "../../Atoms/FieldError/FieldError";
 import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
+import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispatcher";
 
 
 
-export default class Sign_InForm extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
+    constructor(props: ChangeHeaderInterface) {
         super(props)
         console.log(props)
         this.state = {
@@ -58,7 +59,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             const user = getCurrentUser()
             if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
 
-            this.props.setAuth({...user})
+            this.props.signIn(user)
 
             this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
             console.log(this.state)
