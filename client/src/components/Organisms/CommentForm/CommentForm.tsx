@@ -7,6 +7,8 @@ import {getCurrentUser, isAuth} from "../../../services/user"
 import Form from "../../Molecules/Form/Form";
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
+import InnerCommentForm from "./InnerCommentForm";
+import logger from "redux-logger";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
@@ -17,17 +19,23 @@ interface IProps {
 
 interface IState extends IIState {
     isAuth: boolean,
-    comment: Field
+    isRendered: boolean,
+    comment: Field,
+    linkToSend: string,
+    articleId: string
 }
 
 export default class CommentForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
+        const articleId = getArticleId()
         this.state = {
             isAuth: false,
             comment: {value: '', valid: Valid.Intermediate},
             validators: initialValidator,
-            isRendered: false
+            isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
+            articleId: articleId,
+            linkToSend: `/api/post/${articleId}/comments`
         }
 
     }
@@ -46,7 +54,18 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     async componentDidMount() {
         const authed = await isAuth()
-        this.setState({isAuth: authed})
+        console.log(this.props)
+        if (authed && !this.state.isRendered ) {
+            const replyCommentAuthorName =  this.props.replyCommentId || this.props.replyCommentAuthorName ? this.props.replyCommentAuthorName + ", " : ""
+            this.setState({
+                isAuth: authed,
+                isRendered: true,
+                comment: {
+                    value: replyCommentAuthorName,
+                    valid: this.validateField('comment', this.state.comment.value)
+                }
+            })
+        }
     }
 
     onValidatorChange = async (validators: Validators) => {
@@ -54,22 +73,20 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     submitBtn = async (event: any) => {
-        const articleId = getArticleId()
-
         const user = getCurrentUser()
         if (!user) {
             console.error("Непредвиденная ситуация")
             return
         }
 
-        const response = await post(`/api/post/${articleId}/comments`, {
+        const response = await post(this.state.linkToSend, {
             userId: user.id,
-            articleId: articleId,
+            articleId: this.state.articleId,
             comment: this.state.comment.value,
             answeringId: this.props.replyCommentId
         })
         console.log(response)
-        const newComments = await get(`/api/post/${articleId}/comments`)
+        const newComments = await get(this.state.linkToSend)
 
         this.props.onCommentChanged(newComments)
 
@@ -79,34 +96,17 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
 
     render() {
-
         let comment: JSX.Element
-
+        console.log(this.state)
         if (this.state.isAuth) {
-            if (!this.state.isRendered && (this.props.replyCommentId || this.props.replyCommentAuthorName)) {
-                this.setState({
-                    isRendered: true,
-                    comment: {value: this.props.replyCommentAuthorName + ", ", valid: this.validateField('comment', this.state.comment.value)}
-                })
-            } // TODO вызывает серьезный варнинг
-
-            comment = <>
-                <Form onValidatorChange={this.onValidatorChange} action="#####"
-                      onSubmit={this.submitBtn} // TODO определиться с экшеном
-                      className="comment" buttonName="Отправить"><FieldTextarea fieldClass="comment_area"
-                                                                                placeholder="Комментарий..."
-                                                                                fieldName="comment"
-                                                                                regexp={this.state.validators.comment.regexp}
-                                                                                value={this.state.comment.value}
-                                                                                valid={this.state.comment.valid}
-                                                                                text={this.state.validators.comment.error_str}
-                                                                                validateFunc={this.handleUserInput}/>
-                    <div className="button_block">
-                        <input type="button" id="view" value="Предпросмотр"/>
-                    </div>
-                </Form>
-            </>
-
+            comment = <InnerCommentForm
+                onSubmit={this.submitBtn}
+                onValidatorChange={this.onValidatorChange}
+                validators={this.state.validators}
+                comment={this.state.comment}
+                linkToSend={this.state.linkToSend}
+                validateFunc={this.handleUserInput}
+            />
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
         }

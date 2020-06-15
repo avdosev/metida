@@ -22,7 +22,6 @@ const md = require('markdown-it')({
                 return hljs.highlight(lang, str).value;
             } catch (__) {}
         }
-
         return 'Ваш язык не поддерживается'; // use external default escaping
     },
     html: true,
