@@ -1,10 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./Burger.css"
 
 function BurgerImage(props: { toggleMethod: (event: any) => void }) {
-    return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
-                 src='/img/ui_icon/mobile_menu.png'/>)
+    return (
+        <svg width={40} viewBox="0 0 12 10" fill="hsl(0, 0%, 20%)" className="icon" id="burger" onClick={props.toggleMethod}>
+            <rect width={12} height={2} x={0} y={0} />
+            <rect width={12} height={2} x={0} y={4} />
+            <rect width={12} height={2} x={0} y={8} />
+        </svg>)
+    // return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
+    //              src='/img/ui_icon/mobile_menu.png'/>)
 }
 
 export default function Burger(props: { authorised: boolean }) {
@@ -30,8 +35,6 @@ export default function Burger(props: { authorised: boolean }) {
                 <li><Link className="BlackButton" id="home" to="/home">Профиль</Link></li>
                 <li><Link className="GreyButton" id="logout" to="/logout">Выйти</Link></li>
             </>
-    // мне кажется, выйти не должна быть ссылкой, мы же не рендерим что-то
-
     } else {
         buttons =
             <>

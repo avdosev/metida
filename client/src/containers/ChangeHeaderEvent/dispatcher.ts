@@ -6,8 +6,6 @@ import {ChangeHeader} from "../../store/typings/actionType";
 
 
 const signInAction = (state: {user: IPublicUser}) => {
-    console.log(state)
-
     return {
         user: state.user,
     }
