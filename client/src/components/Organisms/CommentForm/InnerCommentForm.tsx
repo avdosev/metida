@@ -21,7 +21,8 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
           action={props.linkToSend}
           onSubmit={props.onSubmit}
           extendedButtons={props.extendedButtons}
-          className="comment" buttonName="Отправить">
+          className="comment"
+          buttonName="Отправить">
 
         <FieldTextarea fieldClass="comment_area"
                        placeholder="Комментарий..."

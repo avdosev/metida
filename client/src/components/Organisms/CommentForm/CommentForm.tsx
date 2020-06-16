@@ -101,7 +101,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
                 comment={this.state.comment}
                 linkToSend={this.state.linkToSend}
                 validateFunc={this.handleUserInput}
-                extendedButtons={<input type="button" className="mainButton" value="Предпросмотр"/>}
+                extendedButtons={<button type="button" className="mainButton">Предпросмотр</button>}
             />
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
