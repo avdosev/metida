@@ -88,7 +88,9 @@ module.exports = env => {
             extensions: ['.ts', '.tsx', '.js'],
             alias: {
                 Components: path.resolve(__dirname, 'src/components/'),
-                Containers: path.resolve(__dirname, 'src/containers/')
+                Containers: path.resolve(__dirname, 'src/containers/'),
+                Styles: path.resolve(__dirname, 'src/components/styles/')
+
             }
         },
         plugins: [

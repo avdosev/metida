@@ -1,8 +1,7 @@
 import React from "react";
 import SimpleTemplate from "../../Templates/SimpleTemplate";
 import Header from "../../../containers/ChangeHeaderEvent/HeaderContainer";
-import "./create_article.css"
-import * as ROUTES from "../../../config/routes"
+import "Styles/create_article.scss"
 import CreateArticleForm from "../../Organisms/CreateArticleForm/CreateArticleForm";
 import PreviewArticle from "../../Molecules/PreviewArticles/PreviewArticle";
 
@@ -34,12 +33,6 @@ export default class CreateArticle extends React.Component<IProps, IState> {
         return (<SimpleTemplate>
                 <div className="layout_body">
                     <div className="content">
-                        <script type="text/javascript"
-                                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
-                                async/>
-                        <script type="text/javascript"
-                                src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.4.2/markdown-it.min.js"
-                                async/>
                         <CreateArticleForm onRenderPreview={this.showArtIfCheckboxChecked}/>
                         <PreviewArticle header={this.state.header} content={this.state.content}
                                         disclaimer={this.state.disclaimer}/>
