@@ -43,12 +43,8 @@ function buildTreeComments(comments: Array<IComments>): Array<ITreeComments> {
 
 
 export default function CommentLenta(props: IProps) {
-    console.log(props)
     let user:IPublicUser | null
-
-
     user = getCurrentUser()
-
 
     const treeComments = buildTreeComments(props.comments);
 

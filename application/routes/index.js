@@ -46,7 +46,7 @@ const initAuthControllers = (app) => {
     app.post('/post/:id/update', Handler.updateArticle, Response.jsonValuesWith(['success']))
     app.post('/post/:id/delete', verifyToken, /* проверка на владельца статьи или админа */ Handler.removeArticle, Response.jsonValuesWith(['success']))
     app.post('/top', urlencodedParser, Handler.getTopArticles, Response.jsonValue('TopArticles'))
-    app.post('/createArticle', verifyToken, urlencodedParser, articleValidator, /* отправить на модерацию */ Handler.pushArticle, Response.redirectToArticle);
+    app.post('/createArticle', verifyToken, urlencodedParser, articleValidator, /* отправить на модерацию */  Handler.pushArticle, Response.redirectToArticle);
     
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     

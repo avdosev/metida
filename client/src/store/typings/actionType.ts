@@ -2,10 +2,6 @@ import {LOGOUT, SIGN_IN} from "../../actions/events";
 import {IPublicUser} from "../../components/Organisms/IPrivateUser";
 
 
-interface IStore extends ChangeHeader{
-
-}
-
 interface ActionType {
     type: string
     payload: any
@@ -28,5 +24,5 @@ interface LogoutAction extends ActionType {
     payload: null
 }
 
-export type {ActionType, IStore, ChangeHeader }
+export type {ActionType, ChangeHeader }
 export type ChangeHeaderAction = SignInAction | LogoutAction

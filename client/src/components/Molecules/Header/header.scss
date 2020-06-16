@@ -21,15 +21,19 @@ a {
     text-decoration: none;
 }
 
+@mixin grad($vars...) {
+    background-image: -webkit-linear-gradient($vars);
+    background-image: -moz-linear-gradient($vars);
+    background-image: -ms-linear-gradient($vars);
+    background-image: -o-linear-gradient($vars);
+}
+
 hr {
     margin: 0.5rem 0px;
     border: 0;
     height: 1px;
     background: $main-back-color;
-    background-image: -webkit-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
-    background-image: -moz-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
-    background-image: -ms-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
-    background-image: -o-linear-gradient(left, $ccc-color, $main-back-color, $ccc-color);
+    @include grad(left, $ccc-color, $main-back-color, $ccc-color)
 }
 
 .logo {
@@ -123,6 +127,7 @@ header ul {
 @media screen and (max-width: 650px) {
     .icon {
         display: inline;
+        margin-right: 70px;
     }
 
     .logo__title:before {
