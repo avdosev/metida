@@ -27,22 +27,11 @@ h3 {
     width: 100%;
 }
 
-.BtnToArticle {
-    font-size: 14px;
-    border: 0.5px solid grey;
-    padding: 2px 10px;
-    color: $text-color;
-
+.after_post__button {
     margin-left: auto;
     margin-right: auto;
 }
 
-.BtnToArticle:focus {
-    color: $text-color !important;
-    background-color: rgb(219, 219, 219);
-    transition: 0.3s;
-    outline: none;
-}
 
 .BtnToArticleComments {
     display: flex;

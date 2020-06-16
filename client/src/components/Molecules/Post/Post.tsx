@@ -22,7 +22,7 @@ export function Post(props: IProps) {
             {__html: md.render(props.json.disclaimer)}}>
         </div>
         <div className="after_post">
-            <Link to={url} className="BtnToArticle">Читать дальше</Link>
+            <Link to={url} className="after_post__button mainButton">Читать дальше</Link>
             {/*{pathname: url, hash: "#comments", state: {toComments: true}}  */}
             <Link to={{pathname: url, hash: "#comments2", state: {toComments: true}} } className="BtnToArticleComments">
                 <img className="after_post_icon" src={"/img/ui_icon/comment.svg"}

@@ -11,6 +11,7 @@ interface IProps {
     comment: Field,
     validators: Validators,
     validateFunc: (event: React.ChangeEvent<any>) => void
+    extendedButtons?: Array<JSX.Element> | JSX.Element
 }
 
 const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
@@ -19,6 +20,7 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
     <Form onValidatorChange={props.onValidatorChange}
           action={props.linkToSend}
           onSubmit={props.onSubmit}
+          extendedButtons={props.extendedButtons}
           className="comment" buttonName="Отправить">
 
         <FieldTextarea fieldClass="comment_area"
@@ -29,9 +31,6 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
                        valid={props.comment.valid}
                        text={props.validators.comment.error_str}
                        validateFunc={props.validateFunc}/>
-        <div className="button_block">
-            <input type="button" id="view" value="Предпросмотр"/>
-        </div>
     </Form>)
 }
 

@@ -64,9 +64,7 @@
     height: 30px;
     width: 150px;
     margin-left: 10px;
-    border: 1px;
-    border-style: solid;
-    border-color:black;
+    border: 1px solid black;
     background-color: $main-metida-color;
     transition: 0.5s;
 }
@@ -76,8 +74,7 @@
     height: 30px;
     width: 150px;
     margin-right: 10px;
-    border: 3px;
-    border-style: double;
+    border: 3px double;
     background-color: $unique-color;
     color: $main-metida-color;
     transition: 0.5s;
@@ -92,19 +89,12 @@
 }
 
 .reply {
-    /* display: block; */
-    /* position: absolute; */
-    /* line-height: 2; */
     font-weight: bold;
-    /* margin-left: 68%;
-    margin-top: 0; */
     text-align: center;
-    /* font-size: 12px; */
     text-decoration: none;
     color: white;
     background-color: $unique-color;
     padding: 4px;
-    /*outline: none;*/
     border: 0;
 }
 

@@ -35,9 +35,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`
         }
-
     }
-
 
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
@@ -103,6 +101,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
                 comment={this.state.comment}
                 linkToSend={this.state.linkToSend}
                 validateFunc={this.handleUserInput}
+                extendedButtons={<input type="button" className="mainButton" value="Предпросмотр"/>}
             />
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
