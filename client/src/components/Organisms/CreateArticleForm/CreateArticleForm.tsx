@@ -84,7 +84,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         const fd = this.state
         const v: Validators = this.state.validators
 
-        return <Form buttonName="Отправить" className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+        return <Form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
                      onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange} >
             {this.state.referrer}
 
@@ -126,6 +126,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                            text={v.content.error_str}
             />
             <FieldError valid={this.state.serverError.valid}  text={this.state.serverError.value}/>
+            <input id="submit" type="submit" className="welcome" value="Отправить" />
 
         </Form>;
     }

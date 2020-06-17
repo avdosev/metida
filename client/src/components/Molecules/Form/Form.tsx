@@ -11,8 +11,6 @@ interface IProps {
     method?: string
     onSubmit: (event: any) => void
     onValidatorChange: (validators: Validators) => void
-    buttonName: string
-    extendedButtons?: Array<JSX.Element> | JSX.Element
 }
 
 
@@ -40,10 +38,6 @@ export default class Form extends React.Component<IProps, IState> {
         >
             {this.props.children}
 
-            <div className="button_block">
-                <input id="submit" type="submit" className="mainButton" value={this.props.buttonName} />
-                {this.props.extendedButtons}
-            </div>
         </form>;
     }
 }

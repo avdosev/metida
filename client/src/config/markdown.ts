@@ -1,6 +1,6 @@
 //const hljs = require('highlight.js') // почему-то не работает es6, хотя типы есть
 const hljs = require("highlight.js/lib/core");  // так можно выбрать конкретные языки
-import 'highlight.js/styles/dark.css'
+import 'highlight.js/styles/vs2015.css'
 
 // TODO  можно поробовать определять на этапе открытия статьи, какой там код используется, и подгрузить нужный
 // но не сегодня

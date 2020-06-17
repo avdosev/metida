@@ -9,6 +9,7 @@ import {md} from "../../../config/markdown"
 import "Styles/input.scss"
 import "Styles/main.scss"
 import "Styles/comments.scss"
+import "./post.scss"
 
 interface IProps {
     articleId: string
@@ -63,7 +64,7 @@ export default class Article extends React.Component<IProps, IState> {
     }
 
     render() {
-        return (<SimplePage>
+        return (
             <div className="layout_body">
                 <div className="content">
                     <button className="mainButton" onClick={this.updateArticle}>Удалить статью</button>
@@ -82,8 +83,7 @@ export default class Article extends React.Component<IProps, IState> {
                         <CommentForm onCommentChanged={this.onCommentChanged}/>
                     </div>
                 </div>
-            </div>
-        </SimplePage>)
+            </div>)
 
     }
 }
