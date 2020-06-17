@@ -11,7 +11,6 @@ interface IProps {
     method?: string
     onSubmit: (event: any) => void
     onValidatorChange: (validators: Validators) => void
-    buttonName: string
 }
 
 
@@ -38,8 +37,6 @@ export default class Form extends React.Component<IProps, IState> {
             method={this.props.method ?? "post"}
         >
             {this.props.children}
-            <input id="submit" type="submit" className="welcome" value={this.props.buttonName} />
-
         </form>;
     }
 }
