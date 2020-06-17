@@ -104,17 +104,41 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
                 {this.state.referrer}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
                       action={ROUTES.REGISTER}>
-                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
-                                validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
-                    <FieldInput fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
-                                validateFunc={this.handleUserInput} value={fd.login.value} text={v!.login.error_str}/>
+                    <FieldInput fieldName="email"
+                                autofocus
+                                regexp={v!.email.regexp}
+                                valid={fd.email.valid}
+                                validateFunc={this.handleUserInput}
+                                value={fd.email.value}
+                                text={v!.email.error_str}
+                                fieldDescription="Электронная почта"
+                    />
+                    <FieldInput fieldName="login"
+                                regexp={v!.login.regexp}
+                                valid={fd.login.valid}
+                                fieldDescription="Логин"
+                                validateFunc={this.handleUserInput}
+                                value={fd.login.value}
+                                text={v!.login.error_str}/>
 
-                    <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.comparePassword} value={fd.password.value} text={v!.password.error_str}/>
-                    <FieldInput fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp}
+                    <FieldInput fieldName="password"
+                                regexp={v!.password.regexp}
+                                valid={fd.password.valid}
+                                fieldDescription="Пароль"
+                                validateFunc={this.comparePassword}
+                                value={fd.password.value}
+                                text={v!.password.error_str}/>
+
+                    <FieldInput fieldName="repassword"
+                                fieldType="password"
+                                regexp={v!.repassword.regexp}
                                 valid={fd.repassword.valid}
-                                validateFunc={this.compareRepassword} value={fd.repassword.value}
-                                text={v!.repassword.error_str}/>
+                                validateFunc={this.compareRepassword}
+                                value={fd.repassword.value}
+                                text={v!.repassword.error_str}
+                                fieldDescription="Повторите пароль"
+                    />
+
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
                     <button type="submit" className="mainButton">Зарегистрироваться</button>
 

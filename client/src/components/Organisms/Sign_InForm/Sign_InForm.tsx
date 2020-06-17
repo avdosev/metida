@@ -79,10 +79,10 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                       action={ROUTES.SIGN_IN}>
 
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
-                                validateFunc={this.handleUserInput} value={fd.email.value}
+                                validateFunc={this.handleUserInput} value={fd.email.value} fieldDescription="Электронная почта"
                                 text={v!.email.error_str}/>
                     <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.handleUserInput} value={fd.password.value}
+                                validateFunc={this.handleUserInput} value={fd.password.value} fieldDescription="Пароль"
                                 text={v!.password.error_str}/>
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
                     

@@ -5,7 +5,7 @@ import {get} from "../../../services/router";
 import CommentLenta from "../../Organisms/CommentLenta/CommentLenta";
 import {IComments} from "../../Organisms/IComment";
 import CommentForm from "../../Organisms/CommentForm/CommentForm";
-import {md} from "../../../config/markdown"
+import md from "../../../services/markdown"
 import "Styles/input.scss"
 import "Styles/main.scss"
 import "Styles/comments.scss"
