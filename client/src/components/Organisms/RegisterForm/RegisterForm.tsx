@@ -116,9 +116,8 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
                                 validateFunc={this.compareRepassword} value={fd.repassword.value}
                                 text={v!.repassword.error_str}/>
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-                    <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
+                    <button type="submit" className="mainButton">Зарегистрироваться</button>
 
-                    <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
                 </Form>
 
             </div>

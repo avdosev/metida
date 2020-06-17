@@ -10,6 +10,7 @@ import "Styles/input.scss"
 import "Styles/main.scss"
 import "Styles/comments.scss"
 import "./post.scss"
+import {getCurrentUser} from "../../../services/user";
 
 interface IProps {
     articleId: string
@@ -20,14 +21,14 @@ interface IState {
     disclaimer: string,
     content: string,
     comments: Array<IComments>
-
+    authorId: number
 }
 
 
 export default class Article extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {header: '', content: '', disclaimer: '', comments: []}
+        this.state = {header: '', content: '', disclaimer: '', authorId: -1, comments: []}
         document.title = this.state.header;
     }
 
@@ -53,7 +54,7 @@ export default class Article extends React.Component<IProps, IState> {
     async componentDidMount() {
         const articleId = this.props.articleId
         const [article, comments] = await Promise.all([
-            this.getArticle(articleId), loadComments(articleId) //, getData(lexTableUrl)
+            this.getArticle(articleId), loadComments(articleId)
         ])
         this.setState({...article, comments: comments})
         document.title = this.state.header;
@@ -64,11 +65,19 @@ export default class Article extends React.Component<IProps, IState> {
     }
 
     render() {
+        const currentUser = getCurrentUser()
+        let buttons: JSX.Element = <></>
+        if (currentUser && this.state.authorId === currentUser.id) {
+            buttons = <div className="button_block">
+                <button className="mainButton" onClick={this.updateArticle}>Удалить статью</button>
+                <button className="mainButton" onClick={this.deleteArticle}>Редактировать статью</button>
+            </div>
+        }
+
         return (
             <div className="layout_body">
                 <div className="content">
-                    <button className="mainButton" onClick={this.updateArticle}>Удалить статью</button>
-                    <button className="mainButton" onClick={this.deleteArticle}>Редактировать статью</button>
+                    {buttons}
                     <article className="post_text">
                         <h1 dangerouslySetInnerHTML={{__html: this.state.header}}/>
                         <div dangerouslySetInnerHTML={{__html: md.render(this.state.disclaimer)}}/>
