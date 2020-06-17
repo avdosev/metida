@@ -51,8 +51,8 @@ module.exports = env => {
                     ]
                 },
                 {
-                    test: /\.scss$/,
-                    exclude: /\.module.(scss)$/,
+                    test: /\.(scss|module.(scss))$/,
+                    exclude: /\.$/,
                     loader: [
                         !isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
                         'css-loader',
