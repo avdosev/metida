@@ -21,7 +21,7 @@
     "start": "nodemon app.js",
     "lintFixWarnings": "eslint \"./**/*.js\" --fix",
     "inspect:lint": "eslint \"./**/*.js\" ",
-    "inspect:mocha": "./node_modules/mocha/bin/mocha ",
+    "inspect:mocha": "mocha ",
     "inspect:vulnerabilities": "npm audit",
     "inspect:all": " npm run inspect:vulnerabilities && npm run inspect:lint && npm run inspect:mocha ",
     "inspect:allConcurency": " concurrently \"npm run inspect:vulnerabilities\"  \"npm run inspect:lint\" \"npm run inspect:mocha\"  "

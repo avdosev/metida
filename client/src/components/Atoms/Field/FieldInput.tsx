@@ -1,7 +1,7 @@
 import React from "react";
-import FieldError from "../../Atoms/FieldError/FieldError";
-import Input from "../../Atoms/Input/Input";
-import {IField, IFieldError} from "../../Atoms/IField";
+import FieldError from "../FieldError/FieldError";
+import Input from "../Input/Input";
+import {IField, IFieldError} from "../IField";
 import {Valid} from "../../Organisms/IAuth";
 
 

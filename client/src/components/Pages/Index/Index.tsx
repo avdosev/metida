@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/lenta.scss"
 import "../../styles/colors.scss"
-import {Post} from "../../Molecules/Post/Post"
+import {IndexShortPost} from "../../Molecules/IndexShortPost/IndexShortPost"
 import {post} from "../../../services/router";
 import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
@@ -47,7 +47,7 @@ export default class Index extends React.Component<IProps, IState> {
 
         let lenta = this.state.lenta
         for (const post of json) {
-            lenta.push(<Post key={post.id} json={post}/>)
+            lenta.push(<IndexShortPost key={post.id} json={post}/>)
         }
 
         this.setState({lenta: lenta})
@@ -62,7 +62,6 @@ export default class Index extends React.Component<IProps, IState> {
     async componentDidMount() {
         await this.getArticle(this.articlesCount)
     }
-
 
     render() {
         return (<SimplePage>

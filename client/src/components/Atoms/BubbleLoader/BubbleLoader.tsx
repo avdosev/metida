@@ -1,14 +1,12 @@
 import React from 'react';
-import "./Bubble.scss"
+import style from "./Bubble.module.scss"
 
 interface IProps  {
-    // color: string,
-    // duration: number,
-    // size: number,
+
 }
 
 const BubbleLoader = (props: IProps) => (
-    <div className="bubble" />
+    <div className={style.bubble} />
 );
 
 

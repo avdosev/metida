@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/input.scss"
 import * as ROUTES from "../../../config/routes";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Atoms/Field/FieldInput";
 import {post} from "../../../services/router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
 import {Valid} from "../IAuth";
 
 
@@ -84,7 +84,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         const fd = this.state
         const v: Validators = this.state.validators
 
-        return <Form  className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+        return <Form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
                      onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange} >
             {this.state.referrer}
 
@@ -126,6 +126,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                            text={v.content.error_str}
             />
             <FieldError valid={this.state.serverError.valid}  text={this.state.serverError.value}/>
+            <input id="submit" type="submit" className="welcome" value="Отправить" />
 
             <input id="submit" type="submit" className="welcome" value="Отправить" />
         </Form>;
