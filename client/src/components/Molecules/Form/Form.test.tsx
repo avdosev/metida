@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 import Sign_InForm from "../../../containers/ChangeHeaderEvent/SignInFormContainer";
-import config from "../../../.jest/enzymeConfig"
+import config from "../../../test/enzymeConfig"
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {store} from "../../../store";

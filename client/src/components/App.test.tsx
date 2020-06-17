@@ -6,7 +6,7 @@ import {store} from "../store";
 import {Provider} from "react-redux";
 
 
-it('renders without crashing', () => {
+it('Renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Provider store={store}><App/> </Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
