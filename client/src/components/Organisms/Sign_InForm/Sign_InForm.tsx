@@ -85,7 +85,8 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                                 validateFunc={this.handleUserInput} value={fd.password.value}
                                 text={v!.password.error_str}/>
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-                    <input id="submit" type="submit" className="welcome" value="Войти" />
+                    
+                    <button type="submit" className="mainButton">Войти </button>
 
                 </Form>
 
