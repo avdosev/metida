@@ -1,5 +1,5 @@
 import React from "react";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState, Valid} from "../IAuth";
 import {get, post} from "../../../services/router";

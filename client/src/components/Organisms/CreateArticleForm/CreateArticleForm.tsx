@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/input.scss"
 import * as ROUTES from "../../../config/routes";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Atoms/Field/FieldInput";
 import {post} from "../../../services/router";
 import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
@@ -9,7 +9,7 @@ import {Redirect} from "react-router-dom";
 import FieldError from "../../Atoms/FieldError/FieldError";
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
 import {Valid} from "../IAuth";
 
 

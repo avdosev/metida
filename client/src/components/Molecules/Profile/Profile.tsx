@@ -2,7 +2,7 @@ import React from "react";
 import {initialAuthor, initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
-import {Post} from "../Post/Post";
+import {IndexShortPost} from "../IndexShortPost/IndexShortPost";
 import Feed from "../../Organisms/Feed/Feed";
 import "../../styles/lenta.scss"
 
@@ -48,7 +48,7 @@ export default class Profile extends React.Component<IProps, IState> {
         let articles: JSX.Element[] = []
         if (this.state.user.articles) {
             for (const article of this.state.user.articles) {
-                articles.push(<Post key={article.id} json={article} />)
+                articles.push(<IndexShortPost key={article.id} json={article} />)
             }
             articles = articles.reverse() // потому что они должны быть отсортированы от самой новой
         }

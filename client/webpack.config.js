@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = env => {
@@ -44,16 +45,24 @@ module.exports = env => {
                         {
                             loader: "css-loader",
                             options: {
-                                modules: false, //без этого классы в css будут хешами(можно не ставить, если css импортирован как реакт компонент)
+                                modules: true, //без этого классы в css будут хешами(можно не ставить, если css импортирован как реакт компонент)
                             }
                         }
                     ]
                 },
                 {
                     test: /\.scss$/,
-                    use: [
-                        "style-loader", "css-loader", "sass-loader"
-                    ],
+                    exclude: /\.module.(scss)$/,
+                    loader: [
+                        !isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: !isProduction
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(jpg|jpeg|gif|png|svg)$/,
@@ -96,6 +105,10 @@ module.exports = env => {
         plugins: [
             new webpack.ProgressPlugin(),
             new CleanWebpackPlugin(),
+            new MiniCssExtractPlugin({
+                filename: '[name].[hash].css',
+                chunkFilename: '[id].[hash].css'
+            }),
             new CopyPlugin({
                 patterns: [
                     {from: 'public', to: '.'},

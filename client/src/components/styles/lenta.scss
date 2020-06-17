@@ -84,6 +84,10 @@ h3 {
     color: $unique-color;
 }
 
+.after_post_icon:hover {
+    filter: invert(27%)  brightness(104%) contrast(97%);
+}
+
 .after_post {
     /* border-top: 1px solid grey; */
     width: 99%;

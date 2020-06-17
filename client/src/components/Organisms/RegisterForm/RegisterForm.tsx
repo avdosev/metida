@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./IRegisterForm";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Atoms/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";

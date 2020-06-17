@@ -1,6 +1,6 @@
 import React, {ChangeEvent, FC} from "react";
 import Form from "../../Molecules/Form/Form";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
 import {Validators} from "../IValidators";
 import {Field} from "../IAuth";
 

@@ -1,7 +1,7 @@
 import {Link, Redirect} from "react-router-dom";
 import React from "react";
 import {md} from "../../../config/markdown"
-import {IPost} from "../../Pages/Profile/IPost";
+import {IPost} from "../../Pages/IPost";
 
 interface IProps {
     json: IPost
@@ -9,7 +9,7 @@ interface IProps {
 
 
 
-export function Post(props: IProps) {
+export function IndexShortPost(props: IProps) {
     const url = `/post/${props.json.id}`;
 
     return (<div key={props.json.id} className="post">
