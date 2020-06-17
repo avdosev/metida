@@ -13,6 +13,11 @@
       "dom.iterable",
       "esnext"
     ],
+//    "paths": {
+//      "Containers/*": ["src/containers/*"],
+//      "Components/*": ["src/components/*"],
+//      "Styles/*": ["src/components/styles/*"]
+//    },
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
@@ -30,15 +35,15 @@
       "webpack-env",
       "jest"
     ]
-
   },
+
   "include": [
     "src",
     "typings",
     "node_modules/@types/jest/index.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules", "dist"
   ]
 
 }
