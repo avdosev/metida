@@ -103,7 +103,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
             <div className="inputForm">
                 {this.state.referrer}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
-                      action={ROUTES.REGISTER} >
+                      action={ROUTES.REGISTER}>
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
                     <FieldInput fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
@@ -118,6 +118,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
                     <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
 
+                    <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
                 </Form>
 
             </div>

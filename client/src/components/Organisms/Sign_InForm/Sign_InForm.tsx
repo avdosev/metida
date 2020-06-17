@@ -77,6 +77,7 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                 {this.state.block}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
                       action={ROUTES.SIGN_IN}>
+
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value}
                                 text={v!.email.error_str}/>

@@ -128,6 +128,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             <FieldError valid={this.state.serverError.valid}  text={this.state.serverError.value}/>
             <input id="submit" type="submit" className="welcome" value="Отправить" />
 
+            <input id="submit" type="submit" className="welcome" value="Отправить" />
         </Form>;
     }
 }

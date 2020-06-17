@@ -20,8 +20,7 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
     <Form onValidatorChange={props.onValidatorChange}
           action={props.linkToSend}
           onSubmit={props.onSubmit}
-          className="comment"
-          >
+          className="comment">
 
         <FieldTextarea fieldClass="comment_area"
                        placeholder="Комментарий..."
