@@ -8,7 +8,6 @@ const initialState = {
 };
 
 function rootReducer(state: IStore  = initialState, action: ActionType) {
-    console.log(action.payload)
     switch (action.type) {
         case SIGN_IN:
             return {...state, user: action.payload }

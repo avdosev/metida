@@ -21,8 +21,8 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 
 
 export default function App() {
-    const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-    console.log("Current system is dark? ", isDarkSystemTheme)
+    //const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    //console.log("Current system is dark? ", isDarkSystemTheme)
 
     return (
         <Router>
