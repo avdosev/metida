@@ -19,7 +19,7 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
     <Form onValidatorChange={props.onValidatorChange}
           action={props.linkToSend}
           onSubmit={props.onSubmit}
-          className="comment" buttonName="Отправить">
+          className="comment">
 
         <FieldTextarea fieldClass="comment_area"
                        placeholder="Комментарий..."
@@ -30,6 +30,7 @@ const InnerCommentForm: FC<IProps> = (props: IProps) =>  {
                        text={props.validators.comment.error_str}
                        validateFunc={props.validateFunc}/>
         <div className="button_block">
+            <input id="submit" type="submit" className="welcome" value="Отправить" />
             <input type="button" id="view" value="Предпросмотр"/>
         </div>
     </Form>)
