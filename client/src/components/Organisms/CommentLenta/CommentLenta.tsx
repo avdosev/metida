@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "../../Molecules/Comment/Comment";
+import Comment from "../../Atoms/Comment/Comment";
 import {IComments, ITreeComments} from "../IComment";
 import {loginQuery} from "../../Molecules/Form/FormHelper";
 import {getCurrentUser} from "../../../services/user";

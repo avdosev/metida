@@ -1,5 +1,5 @@
 import React from "react";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
 import {initialValidator, Validators} from "../IValidators";
 import {Field, IIState, Valid} from "../IAuth";
 import {get, post} from "../../../services/router";
@@ -35,9 +35,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`
         }
-
     }
-
 
     handleUserInput = (event: any) => {
         const valid = this.validateField(event.target.name, event.target.value)
@@ -103,6 +101,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
                 comment={this.state.comment}
                 linkToSend={this.state.linkToSend}
                 validateFunc={this.handleUserInput}
+                extendedButtons={<button type="button" className="mainButton">Предпросмотр</button>}
             />
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>

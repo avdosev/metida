@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Switch} from "react-router-dom";
 import PrivateRoute from "./Molecules/PrivateRoute/PrivateRoute";
 import Header from "Containers/ChangeHeaderEvent/HeaderContainer";
 import Logout from "Containers/ChangeHeaderEvent/LogoutContainer";
-import BubbleLoader  from './Molecules/BubbleLoader/BubbleLoader';
+import BubbleLoader  from './Atoms/BubbleLoader/BubbleLoader';
 import PublicRoute from "./Molecules/PublicRoute/PublicRoute";
 import Offline from "./Pages/Offline/Offline";
 //import {BubbleLoader } from "components"
@@ -21,6 +21,9 @@ const Register = lazy(() => import("./Pages/Register/Register"))
 
 
 export default function App() {
+    const isDarkSystemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+    console.log("Current system is dark? ", isDarkSystemTheme)
+
     return (
         <Router>
             <Header />

@@ -37,6 +37,7 @@ export default class Form extends React.Component<IProps, IState> {
             method={this.props.method ?? "post"}
         >
             {this.props.children}
+
         </form>;
     }
 }

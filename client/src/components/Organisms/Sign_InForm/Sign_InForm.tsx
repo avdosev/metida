@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./ISign_InForm"
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Atoms/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../../Molecules/Form/Form";
@@ -76,7 +76,8 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                 {this.state.referrer}
                 {this.state.block}
                 <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
-                      action={ROUTES.SIGN_IN} >
+                      action={ROUTES.SIGN_IN}>
+
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
                                 validateFunc={this.handleUserInput} value={fd.email.value}
                                 text={v!.email.error_str}/>
@@ -84,8 +85,8 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                                 validateFunc={this.handleUserInput} value={fd.password.value}
                                 text={v!.password.error_str}/>
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-
                     <input id="submit" type="submit" className="welcome" value="Войти" />
+
                 </Form>
 
             </div>

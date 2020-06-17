@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./IRegisterForm";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import {FieldInput} from "../../Atoms/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";
@@ -116,6 +116,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
                                 validateFunc={this.compareRepassword} value={fd.repassword.value}
                                 text={v!.repassword.error_str}/>
                     <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
+                    <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
 
                     <input id="submit" type="submit" className="welcome" value="Зарегистрироваться" />
                 </Form>

@@ -1,7 +1,7 @@
-import Textarea from "../../Atoms/Textarea/Textarea";
-import FieldError from "../../Atoms/FieldError/FieldError";
+import Textarea from "../Textarea/Textarea";
+import FieldError from "../FieldError/FieldError";
 import React from "react";
-import {IField, IFieldError} from "../../Atoms/IField";
+import {IField, IFieldError} from "../IField";
 
 
 interface IProps extends IFieldError, IField {

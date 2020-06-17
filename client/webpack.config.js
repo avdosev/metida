@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
 module.exports = env => {
@@ -50,10 +51,18 @@ module.exports = env => {
                     ]
                 },
                 {
-                    test: /\.scss$/,
-                    use: [
-                        "style-loader", "css-loader", "sass-loader"
-                    ],
+                    test: /\.(scss|module.(scss))$/,
+                    exclude: /\.$/,
+                    loader: [
+                        !isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: !isProduction
+                            }
+                        }
+                    ]
                 },
                 {
                     test: /\.(jpg|jpeg|gif|png|svg)$/,
@@ -96,6 +105,10 @@ module.exports = env => {
         plugins: [
             new webpack.ProgressPlugin(),
             new CleanWebpackPlugin(),
+            new MiniCssExtractPlugin({
+                filename: '[name].[hash].css',
+                chunkFilename: '[id].[hash].css'
+            }),
             new CopyPlugin({
                 patterns: [
                     {from: 'public', to: '.'},
@@ -103,22 +116,13 @@ module.exports = env => {
             }),
             new HtmlWebpackPlugin({template: './public/index.html'}),
             new WorkboxPlugin.GenerateSW({
-                // these options encourage the ServiceWorkers to get in there fast
-                // and not allow any straggling "old" SWs to hang around
                 clientsClaim: true,
                 skipWaiting: true,
                 exclude: [/\.(?:png|jpg|jpeg|svg)$/],
-
-                // Define runtime caching rules.
                 runtimeCaching: [{
-                    // Match any request that ends with .png, .jpg, .jpeg or .svg.
                     urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
-
-                    // Apply a cache-first strategy.
                     handler: 'CacheFirst',
-
                     options: {
-                        // Use a custom cache name.
                         cacheName: 'images',
                         expiration: {
                             maxEntries: 20,
