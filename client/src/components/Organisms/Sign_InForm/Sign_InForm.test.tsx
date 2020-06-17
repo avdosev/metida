@@ -13,17 +13,18 @@ const mockStore = configureStore([]);
 
 
 describe('<SignInForm/>', () => {
+    const config = configure({ adapter: new Adapter() });
+
     let store;
     let component: ReactTestRenderer;
+    let wrapper: ShallowWrapper;
     beforeEach(() => {
         store = mockStore({
             myState: 'sample text',
         })
-        component = renderer.create(
-            <Provider store={store}><Sign_InForm/></Provider>
-        );
+        wrapper = shallow( <Provider store={store}><Sign_InForm/></Provider>)
+        console.log(wrapper.debug())
     })
-    
 
     it('should render self an', () => {
         // Выведем отрендеренный компонент
