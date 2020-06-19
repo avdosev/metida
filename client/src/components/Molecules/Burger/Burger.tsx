@@ -8,8 +8,6 @@ function BurgerImage(props: { toggleMethod: (event: any) => void }) {
             <rect width={12} height={2} x={0} y={4} />
             <rect width={12} height={2} x={0} y={8} />
         </svg>)
-    // return (<img className="icon" id="burger" alt="burger menu button" onClick={props.toggleMethod}
-    //              src='/img/ui_icon/mobile_menu.png'/>)
 }
 
 export default function Burger(props: { authorised: boolean }) {

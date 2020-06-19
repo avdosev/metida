@@ -51,7 +51,7 @@ h3 {
 
 .title a {
     color: $text-color;
-    text-decoration: underline var(--ccc-color);
+    text-decoration: underline $ccc-color;
     text-decoration-thickness: 3px;
     text-underline-offset: 6px;
 }
@@ -82,7 +82,7 @@ h3 {
 .after_post_icon {
     height: 25px;
     border-radius: unset;
-    color: $unique-color;
+    fill: $main-back-color;
 }
 
 .after_post_icon:hover {
