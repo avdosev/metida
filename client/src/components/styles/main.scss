@@ -44,7 +44,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--url-color);
+    color: $url-color
 }
 
 pre {
@@ -165,3 +165,10 @@ input#previews:checked {
     background-color: black;
 }
 
+
+@media print {
+    .header_inner {
+        display: none;
+    }
+    a[href]:after { content: " (" attr(href) ")";}
+}
