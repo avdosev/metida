@@ -2,13 +2,13 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./ISign_InForm"
-import {FieldInput} from "../../Atoms/Field/FieldInput";
+import {FieldInput} from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
 import {loginQuery} from "../../Molecules/Form/FormHelper"
-import FieldError from "../../Atoms/FieldError/FieldError";
+import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
@@ -84,7 +84,7 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                     <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
                                 validateFunc={this.handleUserInput} value={fd.password.value}
                                 text={v!.password.error_str}/>
-                    <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} text={this.state.serverError.value}/>
                     
                     <button type="submit" className="mainButton">Войти </button>
 

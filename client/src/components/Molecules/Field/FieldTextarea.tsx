@@ -1,17 +1,14 @@
-import Textarea from "../Textarea/Textarea";
-import FieldError from "../FieldError/FieldError";
+import Textarea from "../../Atoms/Textarea/Textarea";
+import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import React from "react";
-import {IField, IFieldError} from "../IField";
+import {ITextFieldErrored} from "./IField";
 
 
-interface IProps extends IFieldError, IField {
+interface IProps extends ITextFieldErrored {
 
 }
 
 export function FieldTextarea(props: IProps) {
-
-
-
     return <>
         <Textarea
             fieldClass={props.fieldClass}
@@ -24,6 +21,6 @@ export function FieldTextarea(props: IProps) {
             placeholder={props.placeholder}
             value={props.value}
         />
-        <FieldError valid={props.valid} text={props.text} />
+        <ErrorPlaceholder valid={props.valid} value={props.value} />
     </>;
 }

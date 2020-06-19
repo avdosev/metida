@@ -1,14 +1,13 @@
+import { regexpVerifiable } from "../../services/validator/validator";
+export { ValidatorState } from "../../services/validator/validator";
+
 interface ValidatorFields {
     error_str: string,
     EventError: Array<string>,
     regexp: string
 }
 
-interface IValidators {
-    [fieldName: string]: ValidatorFields
-}
-
-interface Validators extends IValidators {
+export interface Validators {
     header: ValidatorFields,
     comment: ValidatorFields
     disclaimer: ValidatorFields
@@ -19,7 +18,7 @@ interface Validators extends IValidators {
     login: ValidatorFields
 }
 
-const initialValidator: Validators = {
+export const initialValidator: Validators = {
     login: {error_str: '', regexp: '', EventError: ['']},
     repassword: {error_str: '', regexp: '', EventError: ['']},
     email: {error_str: '', regexp: '', EventError: ['']},
@@ -29,9 +28,3 @@ const initialValidator: Validators = {
     disclaimer: {error_str: '', regexp: '', EventError: ['']},
     header: {error_str: '', regexp: '', EventError: ['']}
 }
-
-
-export type {Validators}
-export {initialValidator}
-
-

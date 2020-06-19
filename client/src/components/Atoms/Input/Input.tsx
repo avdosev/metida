@@ -1,8 +1,8 @@
 import React from "react";
-import {IField} from "../IField";
+import {ITextField} from "../ITextField"
 
 
-interface IProps extends IField {}
+interface IProps extends ITextField {}
 
 
 const Input: React.FC<IProps> = (props: IProps) => {

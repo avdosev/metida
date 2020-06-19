@@ -1,12 +1,13 @@
 import React from "react";
-import {FieldTextarea} from "../../Atoms/Field/FieldTextarea";
-import {initialValidator, Validators} from "../IValidators";
-import {Field, IIState, Valid} from "../IAuth";
+import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
+import {initialValidator, Validators, ValidatorState} from "../IValidators";
+import {IIState} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
 import InnerCommentForm from "./InnerCommentForm";
+import {IFieldError} from "../../../services/validator/validator";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
@@ -18,7 +19,7 @@ interface IProps {
 interface IState extends IIState {
     isAuth: boolean,
     isRendered: boolean,
-    comment: Field,
+    comment: IFieldError,
     linkToSend: string,
     articleId: string
 }
@@ -29,7 +30,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const articleId = getArticleId()
         this.state = {
             isAuth: false,
-            comment: {value: '', valid: Valid.Intermediate},
+            comment: {value: '', valid: ValidatorState.Intermediate},
             validators: initialValidator,
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,

@@ -1,15 +1,5 @@
-import {Validators} from "./IValidators";
+import {Validators, ValidatorState} from "./IValidators";
 
-interface Field {
-    value: string,
-    valid: Valid
-}
-
-export enum Valid {
-    Invalid,
-    Acceptable,
-    Intermediate
-}
 
 interface IIState {
     validators: Validators;
@@ -18,4 +8,4 @@ interface IIState {
     [Symbol.iterator](): IterableIterator<Field>
 }
 
-export type {Field, IIState}
+export type {IIState}

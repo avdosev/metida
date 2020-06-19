@@ -1,11 +1,10 @@
-import {Valid} from "../Organisms/IAuth";
 import React from "react";
 
-interface IField {
+interface ITextField {
     fieldName: string,
     validateFunc: (event: React.ChangeEvent<any>) => void,
     regexp: string,
-    value: string,
+    value: string
 
     fieldId?: string
     fieldClass?: string,
@@ -15,9 +14,4 @@ interface IField {
     autofocus?: boolean
 }
 
-interface IFieldError {
-    valid: Valid,
-    text: string
-}
-
-export type {IField, IFieldError}
+export type {ITextField};

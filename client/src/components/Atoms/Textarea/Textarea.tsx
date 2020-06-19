@@ -1,11 +1,11 @@
 import React from "react";
-import {IField} from "../IField";
+import {ITextField} from "../ITextField"
 
 interface IState {
 
 }
 
-interface IProps extends IField {
+interface IProps extends ITextField {
 
 }
 

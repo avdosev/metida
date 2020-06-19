@@ -2,13 +2,13 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./IRegisterForm";
-import {FieldInput} from "../../Atoms/Field/FieldInput";
+import {FieldInput} from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
 import {loginQuery} from "../../Molecules/Form/FormHelper";
-import FieldError from "../../Atoms/FieldError/FieldError";
+import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {Valid} from "../IAuth";
 import {getCurrentUser} from "../../../services/user";
 import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispatcher";
@@ -115,7 +115,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
                                 valid={fd.repassword.valid}
                                 validateFunc={this.compareRepassword} value={fd.repassword.value}
                                 text={v!.repassword.error_str}/>
-                    <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value}/>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} text={this.state.serverError.value}/>
                     <button type="submit" className="mainButton">Зарегистрироваться</button>
 
                 </Form>
