@@ -20,14 +20,14 @@ export default class FieldInput extends React.Component<IProps, IState> implemen
                 fieldId={this.props.fieldId}
                 fieldClass={this.props.fieldClass}
                 fieldName={this.props.fieldName}
-                validateFunc={this.props.validateFunc}
+                onChange={this.props.onChange}
                 regexp={this.props.regexp}
                 fieldType={this.props.fieldType}
                 fieldDescription={this.props.fieldDescription}
                 placeholder={this.props.placeholder}
                 value={this.props.value}
             />
-            <ErrorPlaceholder valid={this.state.valid} value={this.props.value} />
+            <ErrorPlaceholder valid={this.state.valid} value={this.props.value} showStrategy={this.props.showErrorStrategy} />
         </>);
     }
 }

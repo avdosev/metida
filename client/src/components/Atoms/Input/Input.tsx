@@ -1,8 +1,8 @@
 import React from "react";
-import {ITextField} from "../ITextField"
+import {ITextInput} from "../ITextField"
 
 
-interface IProps extends ITextField {}
+interface IProps extends ITextInput {}
 
 
 const Input: React.FC<IProps> = (props: IProps) => {
@@ -16,7 +16,7 @@ const Input: React.FC<IProps> = (props: IProps) => {
             placeholder={props.placeholder ?? props.fieldName}
             required
             pattern={props.regexp}
-            onChange={props.validateFunc}
+            onChange={props.onChange}
             value={props.value}
             autoFocus={props.autofocus}
         />

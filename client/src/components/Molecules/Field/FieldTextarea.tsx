@@ -14,7 +14,7 @@ export function FieldTextarea(props: IProps) {
             fieldClass={props.fieldClass}
             fieldId={props.fieldId}
             fieldName={props.fieldName}
-            validateFunc={props.validateFunc}
+            onChange={props.onChange}
             regexp={props.regexp}
             fieldType={props.fieldType}
             fieldDescription={props.fieldDescription}

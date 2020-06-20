@@ -1,11 +1,11 @@
 import React from "react";
-import {ITextField} from "../ITextField"
+import {ITextInput} from "../ITextField"
 
 interface IState {
 
 }
 
-interface IProps extends ITextField {
+interface IProps extends ITextInput {
 
 }
 
@@ -19,7 +19,7 @@ export default class Textarea extends React.Component<IProps, IState> {
                 name={this.props.fieldName}
                 placeholder={this.props.placeholder ?? this.props.fieldName}
                 required
-                onChange={this.props.validateFunc}
+                onChange={this.props.onChange}
                 value={this.props.value}
             />
 

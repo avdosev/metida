@@ -1,10 +1,9 @@
 import React from "react";
 
 interface ITextField {
-    fieldName: string,
-    validateFunc: (event: React.ChangeEvent<any>) => void,
-    regexp: string,
+    onChange: (event: React.ChangeEvent<any>) => void
     value: string
+    fieldName: string
 
     fieldId?: string
     fieldClass?: string,
@@ -14,4 +13,8 @@ interface ITextField {
     autofocus?: boolean
 }
 
-export type {ITextField};
+interface ITextInput extends ITextField {
+    regexp: string
+}
+
+export type {ITextField, ITextInput};
