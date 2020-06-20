@@ -2,7 +2,7 @@ import React from "react";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import Input from "../../Atoms/Input/Input";
 import {ITextFieldErrored} from "./IField";
-import {IValid, IVerifiable} from "../../../services/validator/validator";
+import {IValid, IVerifiable, ValidatorState} from "../../../services/validator/validator";
 
 interface IState extends IValid {
 
@@ -13,6 +13,14 @@ interface IProps extends ITextFieldErrored {
 }
 
 export default class FieldInput extends React.Component<IProps, IState> implements IVerifiable {
+    validate(): ValidatorState {
+        return this.props.validate(this.props.value)
+    }
+
+    changeValidatorState(state: ValidatorState): void {
+        this.setState({valid: state})
+    }
+
     render() {
         return (<>
             <Input
@@ -27,7 +35,7 @@ export default class FieldInput extends React.Component<IProps, IState> implemen
                 placeholder={this.props.placeholder}
                 value={this.props.value}
             />
-            <ErrorPlaceholder valid={this.state.valid} value={this.props.value} showStrategy={this.props.showErrorStrategy} />
+            <ErrorPlaceholder valid={this.state.valid} value={this.props.errorText} showStrategy={this.props.showErrorStrategy} />
         </>);
     }
 }
