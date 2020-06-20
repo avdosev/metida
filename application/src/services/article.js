@@ -1,4 +1,4 @@
-import db from '../database/models/index.js';
+import db from '../database/models';
 const { user: User, article: Article } = db;
 import * as Comment from './comments.js';
 

@@ -1,5 +1,5 @@
 import path from "path";
-import {mainDir} from "../config/index.js"
+import {mainDir} from "../config/index.ts"
 import express from "express";
 
 export const initClientControllers = (app) => {

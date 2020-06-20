@@ -13,11 +13,11 @@
       "dom.iterable",
       "esnext"
     ],
-//    "paths": {
-//      "Containers/*": ["src/containers/*"],
-//      "Components/*": ["src/components/*"],
-//      "Styles/*": ["src/components/styles/*"]
-//    },
+    "paths": {
+      "Containers/*": ["src/containers/*"],
+      "Components/*": ["src/components/*"],
+      "Styles/*": ["src/components/styles/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,

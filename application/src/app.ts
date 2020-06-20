@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 
 import express from 'express';
 import session from 'express-session';
@@ -7,7 +7,7 @@ import models from './database/models/index.js';
 
 
 import initAuthControllers from './routes/index.js';
-import { port, mainDir, secretKey } from './config/index.js';
+import { port, mainDir, secretKey } from './config/index';
 
 async function start() {
     console.log('Workspace initialization...');
@@ -16,17 +16,11 @@ async function start() {
     // For Passport
     app.use(
         session({
-            secret: secretKey,
+            secret: secretKey!.toString(),
             resave: true,
             saveUninitialized: true
         })
     ); // session secret
-
-
-    app.set('views', './views');
-    app.set('views', path.join(mainDir, 'views'));
-    app.set('view engine', 'pug');
-
 
     //app.use(logRequest); // логирование всех (или тех что никак не обработались) запросов
 

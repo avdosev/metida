@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import config from "../config/index.js"
+import config from "../config"
 
 //топовая проверка на допуск юзера до страницы(но другая)
 export function verifyToken (req, res, next)  {

@@ -20,7 +20,7 @@ const sequelize = new Sequelize(
 );
 
 const db = fs.readdirSync(__dirname)
-    .filter(file=> file.indexOf('.') !== 0 && file !== 'index.js')
+    .filter(file=> file.indexOf('.') !== 0 && file !== 'index.ts')
     .map(file => sequelize.import(path.join(__dirname, file)))
     .reduce((models, model) => {
         models[model.name] = model;

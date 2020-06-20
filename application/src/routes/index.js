@@ -1,5 +1,5 @@
 import express from 'express'
-import config from '../config/index.js';
+import config from '../config/index.ts';
 
 import {
     userCreateValidator,
@@ -12,7 +12,7 @@ import cors from 'cors'
 import compression from 'compression';
 
 
-import Handler from '../controllers/request_handler/index.js';
+import Handler from '../controllers/request_handler.js';
 import * as Response from '../controllers/respondent.js';
 
 

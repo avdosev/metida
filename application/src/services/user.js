@@ -1,4 +1,4 @@
-import db from '../database/models/index.js';
+import db from '../database/models';
 const { user: User, article: Article, comments: Comment } = db;
 
 function isConfirmedEmail(userId) {

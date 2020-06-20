@@ -1,4 +1,4 @@
-import db from '../database/models/index.js';
+import db from '../database/models';
 const { user: User, comments: Comment } = db;
 
 function removeAllCommentsByArticle(articleId, authorId) {

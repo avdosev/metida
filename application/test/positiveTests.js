@@ -3,7 +3,7 @@ const mocha = require("mocha");
 const chai = require("chai");   
 const chaiHttp = require("chai-http");
 
-const app = require("../app")
+const app = require("../src/app")
 const expect = chai.expect;
 const should = chai.should(); //использую это постоянно
 
