@@ -8,12 +8,12 @@ export function updateArticle(req: Request, res: Response, next: NextFunction) {
     const header = req.body.header;
     const content = req.body.art;
     const disclaimer = req.body.disclaimer;
-    
+
     initValues(res)
-    
+
     articleApi.updateArticle(
         parseInt(id),
-        MarkdownToHtml(content), 
+        MarkdownToHtml(content),
         header,
         MarkdownToHtml(disclaimer)
     ).then((value: { dataValues: any; }) => {
@@ -25,25 +25,21 @@ export function updateArticle(req: Request, res: Response, next: NextFunction) {
     })
 }
 
-export function pushArticle(req: Request, res: Response, next: NextFunction) {
+export async function pushArticle(req: Request, res: Response, next: NextFunction) {
     const {header, content, disclaimer} = req.body
     const authorId = req.userId;
     initValues(res)
 
-    articleApi.pushArticle( 
-        header, 
-        content,
-        disclaimer,
-        authorId 
-    ).then((value: { dataValues: any; }) => {
+    try {
+        const result = await articleApi.pushArticle(header, content, disclaimer, authorId)
         res.values.success = true
-        res.values.article = value.dataValues;
-        next()
-    }).catch((error: any) => {
-        console.error(error)
+        res.values.article = result.dataValues;
+    }catch (e) {
+        console.error(e)
         res.values.success = false
-        next()
-    })
+    }
+
+    next()
 }
 
 export async function getTopArticles(req: Request, res: Response, next: NextFunction) {
@@ -51,12 +47,12 @@ export async function getTopArticles(req: Request, res: Response, next: NextFunc
     const end = req.body.end ?? 10;
     const type = req.body.type ?? 'date';
     const minDate = req.body.minDate ? new Date(req.body.minDate) : new Date(1999, 11, 11);
-    
-    initValues(res)            
+
+    initValues(res)
 
     try {
         res.values.TopArticles = await articleApi.getTopArticles(begin, end, type, {minDate})
-    }catch (e) {
+    } catch (e) {
         console.error(e);
         res.values.TopArticles = [];
     }
@@ -64,29 +60,28 @@ export async function getTopArticles(req: Request, res: Response, next: NextFunc
 
 }
 
-export function getArticle(req: Request, res: Response, next: NextFunction) {
+export async function getArticle(req: Request, res: Response, next: NextFunction) {
     const id = parseInt(req.params.id);
 
-    articleApi.getArticle(id).then((article: any) => {
-        initValues(res)
-        res.values.article = article;
-        next();
-    });
+    const article = await articleApi.getArticle(id)
+    initValues(res)
+    res.values.article = article;
+    next();
+
 }
 
-export function removeArticle(req: Request, res: Response, next: NextFunction) {
+export async function removeArticle(req: Request, res: Response, next: NextFunction) {
     const id = parseInt(req.params.id)
     const authorId = req.user.id
 
-    articleApi.removeArticle(id, authorId)
-    .then((value) => {
+    try {
+        await articleApi.removeArticle(id, authorId)
         initValues(res);
         res.values.success = true;
-        next()
-    }).catch(error => {
-        console.error(error);
-        res.values.success = true;
-        next()
-    });
+    } catch (e) {
+        console.error(e);
+        res.values.success = false;
+    }
+    next()
 }
 

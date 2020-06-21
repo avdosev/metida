@@ -1,29 +1,31 @@
 import * as commentApi from '../../services/comments.js';
-import { MarkdownToHtml } from '../../services/markdown.js';
+import {MarkdownToHtml} from '../../services/markdown.js';
 import {NextFunction, Request, Response} from "express";
 import {initValues} from "../../services/initValues";
 
 
-function getComments(req: Request, res: Response, next: NextFunction) {
+async function getComments(req: Request, res: Response, next: NextFunction) {
     const articleId = parseInt(req.params.id);
-    initValues(res)
-    commentApi.getAllCommentsByArticle(articleId)
-    .then(comments => {
-        res.values.comments = comments;
-        next()
-    }).catch((err) => {
-        console.log(err)
+
+    try {
+        const comment = await commentApi.getAllCommentsByArticle(articleId)
+        initValues(res)
+        res.values.comments = comment;
+    }catch (e) {
+        console.log(e)
         res.values.comments = []
-        next()
-    });
+    }
+
+    next()
+
 }
 
-function pushComment(req: Request, res: Response, next: NextFunction) {
+async function pushComment(req: Request, res: Response, next: NextFunction) {
     const articleId = req.body.articleId;
     const author = req.body.userId;
     const text = req.body.comment;
 
-    if(text == undefined) {
+    if (text == undefined) {
         console.error("Текст коммента до сюда не дошел. req.body.comment == undefined")
         return
     }
@@ -32,25 +34,20 @@ function pushComment(req: Request, res: Response, next: NextFunction) {
         answeringId = req.body.answeringId
     else if (req.query.answeringId)
         answeringId = req.query.answeringId
-    else 
+    else
         answeringId = null; // Этот нейминг важно(нет можно просто имена заменить) соблюсти для фронтендера
-    
-    
-    commentApi.pushComment(
-        articleId, 
-        author, 
-        MarkdownToHtml(text), 
-        answeringId
-    ).then(value => {
+
+    try {
+        const comment = await commentApi.pushComment(articleId, author, MarkdownToHtml(text), answeringId)
         initValues(res)
-        res.values.success = true; 
+        res.values.success = true;
         next()
-    }).catch(error => {
+    }catch (e) {
         initValues(res)
         res.values.success = false;
-        console.error(error);
-        next()
-    })
+        console.error(e);
+    }
+    next()
 }
 
 export {
