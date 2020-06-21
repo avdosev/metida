@@ -1,6 +1,5 @@
 import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { body } = require('express-validator/check');
+import {body} from "express-validator/check";
 
 const emailValidator = body('email')
     .isEmail()

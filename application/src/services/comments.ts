@@ -1,7 +1,7 @@
 import db from '../database/models';
 const { user: User, comments: Comment } = db;
 
-function removeAllCommentsByArticle(articleId, authorId) {
+function removeAllCommentsByArticle(articleId) {
     return Comment.destroy({ //артикл не объявлен
         where: {
             articleId

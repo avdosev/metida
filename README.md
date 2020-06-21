@@ -18,14 +18,22 @@
 Команды терминала сервера:
 
     cd application
-    npm i
-    npm start
+    yarn install
+    yarn start
 
 Команды MySQL Command Line:
 
     create database usersDB2; 
     create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
     grant all privileges on usersDB2.* to 'metidaSQL'@'localhost';
+
+Сделать бекап БД:
+
+    mysqldump -h HOST -u USERNAME -pPASSWORD DATABASE > backup.sql
+    mysql -u root -p usersDB2 < backup.sql
+
+
+Пароль написан слитно, это не ошибка
 
 Таблицы и поля в ней создадутся автоматически
 

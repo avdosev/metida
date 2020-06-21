@@ -1,4 +1,3 @@
-import imageminMozjpeg from "imagemin-mozjpeg";
 const imagemin = require('imagemin');
 // распарсить текст на наличие jpg картинок (потом можно и для всех остальных)
 //получаем статью, пытаемся достать оттуда по md регулярке ссылку на изображение.

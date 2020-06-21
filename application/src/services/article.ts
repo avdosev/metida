@@ -1,6 +1,6 @@
 import db from '../database/models';
 const { user: User, article: Article } = db;
-import * as Comment from './comments.js';
+import * as Comment from './comments';
 
 import sequelize from 'sequelize';
 const Op = sequelize.Op;
@@ -66,6 +66,7 @@ function getTopArticles(begin, end, fncType, otherData) {
         count = count < 0 ? -count : count;
         return fnc(begin, count, otherData);
     } else {
+        // @ts-ignore
         return new Promise.reject('not found function type request of toptypefnc');
     }
 }
