@@ -2,7 +2,7 @@ import bCrypt from 'bcrypt';
 import {validationResult} from "express-validator/check";
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
-import config from '../config/index.js';
+import config, {secretKey, sessionTime} from '../config/index.js';
 import jwt from "jsonwebtoken"
 import {generateHash} from "../services/hasher";
 import {NextFunction, Request, Response} from "express";
@@ -63,8 +63,8 @@ export async function registrationUser(req: Request, res: Response, next: NextFu
 }
 
 async function loginUser(user, res) {
-    const token = jwt.sign({id: user.id}, config.secretKey, {
-        expiresIn: config.sessionTime
+    const token = jwt.sign({id: user.id}, secretKey, {
+        expiresIn: sessionTime
     })
 
     const userinfo = user.get(); //ради единого интерфейса, чтобы были одни и те же данные, как и после регистрации, так и после сигн ина, сойдемся на том, что юзеры регистрируются 1 раз, а входят много, поэтому лучше сделать регистрацию немного дольше

@@ -15,16 +15,11 @@ export const mainDir = path.join(__dirname, '..', '..', '..');
 export const imgDir = mainDir + '/public/img';
 export const secretKey = process.env.SECRET_KEY
 export const sessionTime = 24*60*60 //сутки // через сколько пользователя выкинет // на норм сайтах, выдается на сутки, и продлевается
+export const clientDir = path.join(mainDir, 'client', 'dist')
 
 
 export default {
-    port,
-    url,
-    mainDir,
-    imgDir,
-    secretKey,
     production,
     mail,
     messages,
-    sessionTime
 };

@@ -1,15 +1,13 @@
 import path from "path";
-import {mainDir} from "../config"
+import {clientDir, mainDir} from "../config"
 import express, {Request, Response} from "express";
 
 function sender(req: Request, res: Response) {
-    res.sendFile(path.join(buildDir, 'index.html'));
-
+    res.sendFile(path.join(clientDir, 'index.html'));
 }
 
 export const initClientControllers = (app) => {
-    const buildDir = path.join(mainDir, 'client', 'dist')
-    app.use(express.static(buildDir));
+    app.use(express.static(clientDir));
     app.get('*', sender);
 
 }

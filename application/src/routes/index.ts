@@ -1,5 +1,5 @@
 import express from 'express'
-import config from '../config/index';
+import config, {mainDir} from '../config/index';
 
 import {
     userCreateValidator,
@@ -55,7 +55,7 @@ const initAuthControllers = (app) => {
     
     // -- FILE API --
 
-    app.use('/public',  express.static(config.mainDir + '/public' ));
+    app.use('/public',  express.static(mainDir + '/public' ));
 
     // -- EMAIL API -- // TO DO
 

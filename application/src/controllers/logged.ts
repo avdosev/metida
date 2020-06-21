@@ -1,5 +1,5 @@
 import jwt, {VerifyErrors} from "jsonwebtoken"
-import config from "../config/index.js"
+import config, {secretKey} from "../config/index.js"
 import {Request, Response, NextFunction} from "express";
 
 //топовая проверка на допуск юзера до страницы(но другая)
@@ -16,7 +16,7 @@ export function verifyToken (req: Request, res: Response, next: NextFunction)  {
         });
     }
 
-    jwt.verify(token, config.secretKey, (err: VerifyErrors | null, decoded: any/* Приходит объект юзера */) => {
+    jwt.verify(token, secretKey, (err: VerifyErrors | null, decoded: any/* Приходит объект юзера */) => {
         if (err) {
             return res.send({
                 error: "Unauthorized!"
