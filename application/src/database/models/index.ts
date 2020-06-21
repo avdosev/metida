@@ -22,8 +22,6 @@ interface IDB {
     [name :string]: any
 }
 
-console.log(fs.readdirSync(dirname))
-
 const db: IDB = fs.readdirSync(dirname)
     .filter(file=> file !== 'index.js' && path.extname(file) !== ".map" )
     .map(file => sequelize.import(path.join(dirname, file)))
