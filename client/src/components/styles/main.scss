@@ -29,7 +29,8 @@
 html{
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: hidden; // скроем для мобилок горизонтальный скролл(он появляется только там)
+    overflow-y: scroll; // а обычный будем показывать всегда
 }
 
 body {
