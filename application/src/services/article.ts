@@ -5,7 +5,7 @@ import * as Comment from './comments';
 import sequelize from 'sequelize';
 const Op = sequelize.Op;
 
-function getArticle(ArticleId) {
+function getArticle(ArticleId: number) {
     return Article.findOne({ 
         where: {
             id: ArticleId
@@ -13,7 +13,7 @@ function getArticle(ArticleId) {
     })
 }
 
-function pushArticle(header, content, disclaimer, authorId) {
+function pushArticle(header: string, content: string, disclaimer: string, authorId) {
     return Article.create({
         header,
         content,
@@ -22,7 +22,7 @@ function pushArticle(header, content, disclaimer, authorId) {
     })
 }
 
-function updateArticle(articleId, content, header, disclaimer) {
+function updateArticle(articleId: number, content: string, header: string, disclaimer: string) {
     return Article.update({
         content: content,
         header: header,
@@ -34,7 +34,7 @@ function updateArticle(articleId, content, header, disclaimer) {
     })
 }
 
-async function removeArticle(articleId, authorId) {
+async function removeArticle(articleId: number, authorId: number) {
     const destroy = await Article.destroy({
         where: {
             id: articleId,
@@ -46,7 +46,7 @@ async function removeArticle(articleId, authorId) {
     return destroy;
 }
 
-function getTopArticles(begin, end, fncType, otherData) {
+function getTopArticles(begin: number, end: number, fncType: any, otherData: any) {
     // getTopFromSQL
     // здесь предполагается что будет три входных параметра
     // первый начальный индекс топа
@@ -66,8 +66,7 @@ function getTopArticles(begin, end, fncType, otherData) {
         count = count < 0 ? -count : count;
         return fnc(begin, count, otherData);
     } else {
-        // @ts-ignore
-        return new Promise.reject('not found function type request of toptypefnc');
+        return Promise.reject('not found function type request of toptypefnc');
     }
 }
 
@@ -81,7 +80,7 @@ export {
 
 /// Top page requests
 
-function getArticlesByAuthor(begin, count, otherData) {
+function getArticlesByAuthor(begin: number, count: number, otherData: any) {
     Article.findAll({
         attributes: [
             'id', 'header', 'disclaimer'
@@ -97,11 +96,11 @@ function getArticlesByAuthor(begin, count, otherData) {
     });
 }
 
-function getTopRatingArticlesFromSQL(begin, count, otherData) {
+function getTopRatingArticlesFromSQL(begin: number, count: number, otherData: any) {
 
 }
 
-function getTopDateArticlesFromSQL(begin, count, otherData) {
+function getTopDateArticlesFromSQL(begin: number, count: number, otherData: any) {
     // SELECT * FROM `table` WHERE `date` BETWEEN '2010-10-21 0:00:00' AND '2012-10-21 23:59:59'
     return Article.findAll({
         attributes: [
@@ -120,6 +119,6 @@ function getTopDateArticlesFromSQL(begin, count, otherData) {
     });
 }
 
-function getTopInterestedArticleFromSQL(begin, count, otherData) {
+function getTopInterestedArticleFromSQL(begin: number, count: number, otherData: any) {
 
 }

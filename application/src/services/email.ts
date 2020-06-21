@@ -1,7 +1,7 @@
 import nodemail from 'nodemailer';
 import config from "../config";
 
-export default (email, subject, message) => {
+export default (email: string, subject: string, message: string) => {
     
     let info = {
         from: '"Metida company 👻"',

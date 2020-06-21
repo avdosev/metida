@@ -1,14 +1,11 @@
 import * as commentApi from '../../services/comments.js';
 import { MarkdownToHtml } from '../../services/markdown.js';
+import {NextFunction, Request, Response} from "express";
+import {initValues} from "../../services/initValues";
 
-function initValues(req) {
-    if (!req.values) {
-        req.values = {};
-    }
-}
 
-function getComments(req, res, next) {
-    const articleId = req.params.id;
+function getComments(req: Request, res: Response, next: NextFunction) {
+    const articleId = parseInt(req.params.id);
     initValues(res)
     commentApi.getAllCommentsByArticle(articleId)
     .then(comments => {
@@ -21,7 +18,7 @@ function getComments(req, res, next) {
     });
 }
 
-function pushComment(req, res, next) {
+function pushComment(req: Request, res: Response, next: NextFunction) {
     const articleId = req.body.articleId;
     const author = req.body.userId;
     const text = req.body.comment;

@@ -9,8 +9,8 @@ function redirectToArticle(req: Request, res: Response, next: NextFunction) {
     res.status(200).send({message: res.values.article.id})
 }
 
-function jsonValuesWith(arr) {
-    return function(req, res) {
+function jsonValuesWith(arr: Array<any>) {
+    return function(req: Request, res: Response) {
         const obj = new Object;
         for (let i = 0; i < arr.length; i++) {
             const key = arr[i];
@@ -22,8 +22,8 @@ function jsonValuesWith(arr) {
     }
 }
 
-function jsonValue(key) {
-    return function (req, res, next) {
+function jsonValue(key: string) {
+    return function (req: Request, res: Response, next: NextFunction) {
         if (res.values[key])
             res.json(res.values[key])
         else {

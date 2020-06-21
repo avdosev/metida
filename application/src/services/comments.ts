@@ -1,7 +1,7 @@
 import db from '../database/models';
 const { user: User, comments: Comment } = db;
 
-function removeAllCommentsByArticle(articleId) {
+function removeAllCommentsByArticle(articleId: number) {
     return Comment.destroy({ //артикл не объявлен
         where: {
             articleId
@@ -9,7 +9,7 @@ function removeAllCommentsByArticle(articleId) {
     })
 }
 
-function removeComment(сommentId) {
+function removeComment(сommentId: number) {
     // здесь будет куча ассинхронно-рекурсивных запросов к бд
     // либо хитрый sql запрос
     // но пока здесь будет лежать этот коммент
@@ -17,7 +17,7 @@ function removeComment(сommentId) {
     // очень хитро
 }
 
-function getAllCommentsByArticle(articleId) {
+function getAllCommentsByArticle(articleId: number) {
     return Comment.findAll({
         where: {
             articleId
@@ -33,7 +33,7 @@ function getAllCommentsByArticle(articleId) {
     })
 }
 
-function pushComment(articleId, author, text, answeringId) {
+function pushComment(articleId: number, author: string, text: string, answeringId: number) {
     return Comment.create({
         articleId, 
         commentAuthorId: author,

@@ -1,46 +1,7 @@
 import db from '../database/models';
 const { user: User, article: Article, comments: Comment } = db;
 
-function isConfirmedEmail(userId) {
-    return new Promise((resolve, reject) => {
-        User.findOne({
-            attributes: [
-                'activatedEmail'
-            ],
-            where: {
-                id: userId
-            }
-        }).then((value) =>{
-            console.log(value)
-            resolve(value)
-        }).catch(err => {
-            reject(err)
-        })
-    })
-}
-
-
-function confirmEmailById(userId) {
-    return User.update({
-        activatedEmail: true
-    }, {
-        where:{
-            id: userId
-        }
-    })
-}
-
-function confirmEmailByEmail(email) {
-    return User.update({
-        activatedEmail: true
-    }, {
-        where:{
-            email: email
-        }
-    })
-}
-
-function getUserById(userId) {
+function getUserById(userId: number) {
     return User.findOne({
         where: {
            id: userId
@@ -48,7 +9,7 @@ function getUserById(userId) {
     })
 }
 
-function getUserByEmail(email) {
+function getUserByEmail(email: string) {
     return User.findOne({
         where: {
            email
@@ -56,7 +17,7 @@ function getUserByEmail(email) {
     })
 }
 
-function createUser(email, username, password) {
+function createUser(email: string, username: string, password: string) {
     return User.create({
         email,
         username,
@@ -64,7 +25,7 @@ function createUser(email, username, password) {
     })
 }
 
-function getAllPublicInfo(whereUser) {
+function getAllPublicInfo(whereUser: {[name: string]: any}) {
     return User.findOne({
         where: whereUser,
         include: [{
@@ -82,9 +43,6 @@ function getAllPublicInfo(whereUser) {
 }
 
 export {
-    isConfirmedEmail,
-    confirmEmailByEmail,
-    confirmEmailById,
     createUser,
     getUserById,
     getUserByEmail,

@@ -1,4 +1,6 @@
-function logRequest(req, res, next) {
+import {NextFunction, Request, Response} from "express";
+
+function logRequest(req: Request, res: Response, next: NextFunction) {
     console.log('REQUEST:');
     console.log('body: ', req.body);
     console.log('url: ', req.url);
@@ -7,12 +9,12 @@ function logRequest(req, res, next) {
     next();
 }
 
-function logRequestValues(req, res, next) {
+function logRequestValues(req: Request, res: Response, next: NextFunction) {
     console.log('Request values: ', req.values);
     next()
 }
 
-function logResponseValues(req, res, next) {
+function logResponseValues(req: Request, res: Response, next: NextFunction) {
     console.log('Response values: ', res.values);
     next()
 }

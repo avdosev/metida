@@ -1,5 +1,5 @@
-module.exports = (sequelize, Sequelize) => {
-    return sequelize.define('article', {
+module.exports = (connection, Sequelize) => {
+    return connection.define('article', {
         id: {autoIncrement: true, primaryKey: true, type: Sequelize.INTEGER},
         header: {type: Sequelize.STRING, allowNull: false},
         disclaimer: {type: Sequelize.TEXT, allowNull: false}, // TODO!!! fix allowNULL - false , и при добавлении делать дисклеймер
