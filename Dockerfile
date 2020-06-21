@@ -13,4 +13,4 @@ COPY application application
 RUN cd application && npm i --only=production
 
 
-CMD ["node", "application/app.ts" ]
+CMD ["node", "application/dist/app.js" ]
