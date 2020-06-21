@@ -26,6 +26,7 @@ export default () => {
     
     // - COMMENTS API - по идее это часть апи предыдущего но я решил вынести это в отдельный блочок
     // я из будущего: и правильно сделал
+    // саня из далекого будущего: лол
     
     router.get ('/post/:id/comments', Handler.getComments, Response.jsonValue("comments"));
     router.post('/post/:id/comments', verifyToken, Handler.pushComment, Response.jsonValuesWith(['success']));

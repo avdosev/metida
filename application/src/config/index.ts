@@ -1,6 +1,4 @@
 import * as path from 'path';
-import * as fs from 'fs';
-import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import mail from './mail.json'
 import messages from './messages.json'
@@ -13,7 +11,7 @@ if (!production) {
 
 export const port = process.env.PORT;
 export const url = `localhost:${port}`;
-export const mainDir = path.join(__dirname, '..', '..');
+export const mainDir = path.join(__dirname, '..', '..', '..');
 export const imgDir = mainDir + '/public/img';
 export const secretKey = process.env.SECRET_KEY
 export const sessionTime = 24*60*60 //сутки // через сколько пользователя выкинет // на норм сайтах, выдается на сутки, и продлевается

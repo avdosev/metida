@@ -3,11 +3,11 @@ import * as path from 'path';
 import express from 'express';
 import session from 'express-session';
 
-import models from './database/models/index';
+import models from './database/models';
 
 
-import initAuthControllers from './routes/index';
-import { port, mainDir, secretKey } from './config/index';
+import initAuthControllers from './routes';
+import { port, mainDir, secretKey } from './config';
 
 async function start() {
     console.log('Workspace initialization...');

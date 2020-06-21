@@ -1,5 +1,5 @@
 import * as articleApi from '../../services/article.js';
-import { MarkdownToHtml } from '../../services/markdown.js';
+import {MarkdownToHtml} from '../../services/markdown.js';
 import {NextFunction, Request, Response} from "express";
 import {initValues} from "../../services/initValues";
 
@@ -46,27 +46,22 @@ export function pushArticle(req: Request, res: Response, next: NextFunction) {
     })
 }
 
-export function getTopArticles(req: Request, res: Response, next: NextFunction) {
-    const begin = req.body.begin ? req.body.begin : 0;
-    const end = req.body.end ? req.body.end : 10;
-    const type = req.body.type ? req.body.type : 'date';
+export async function getTopArticles(req: Request, res: Response, next: NextFunction) {
+    const begin = req.body.begin ?? 0;
+    const end = req.body.end ?? 10;
+    const type = req.body.type ?? 'date';
     const minDate = req.body.minDate ? new Date(req.body.minDate) : new Date(1999, 11, 11);
     
     initValues(res)            
 
-    articleApi.getTopArticles(
-        begin, end, type, 
-        { 
-            minDate
-        }
-    ).then((value: any) => {
-        res.values.TopArticles = value;
-        next()
-    }).catch((error: any) => {
-        console.error(error);
+    try {
+        res.values.TopArticles = await articleApi.getTopArticles(begin, end, type, {minDate})
+    }catch (e) {
+        console.error(e);
         res.values.TopArticles = [];
-        next()
-    })
+    }
+    next()
+
 }
 
 export function getArticle(req: Request, res: Response, next: NextFunction) {
