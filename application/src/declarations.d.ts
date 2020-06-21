@@ -1,8 +1,13 @@
 // нужно для корректного распознавание css модулей
+export {};
 
-// declare module 'dotenv' {
-//     export function load() {
-
-//     }
-
-// }
+declare global{
+    namespace Express {
+        interface Request {
+            userId: number
+        }
+        interface Response {
+            values: any
+        }
+    }
+}

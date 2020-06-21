@@ -1,8 +1,9 @@
 import jwt from "jsonwebtoken"
 import config from "../config/index.js"
+import {Request, Response, NextFunction} from "express";
 
 //топовая проверка на допуск юзера до страницы(но другая)
-export function verifyToken (req, res, next)  {
+export function verifyToken (req: Request, res: Response, next: NextFunction)  {
     let token = req.headers["x-access-token"];
 
     res.status(200)
@@ -23,7 +24,7 @@ export function verifyToken (req, res, next)  {
     });
 }
 
-export function sendSuccess(req, res, next) {
+export function sendSuccess(req: Request, res: Response, next: NextFunction) {
     res.send({
         message: "Success"
     })

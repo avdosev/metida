@@ -1,4 +1,6 @@
-function redirectToArticle(req, res, next) {
+import {Request, Response, NextFunction} from "express";
+
+function redirectToArticle(req: Request, res: Response, next: NextFunction) {
     // по идее этого здесь быть не должно но тогда сервак станет еще более модульным что не совсем хорошо так что пусть будет здесь
     if (!res.values.success) {
         //res.render('error_page')
@@ -33,11 +35,9 @@ function jsonValue(key) {
     }
 }
 
-import * as renderPage from './page.js';
 
 export {
     redirectToArticle,
-    renderPage,
     jsonValuesWith,
     jsonValue
 };

@@ -59,10 +59,6 @@ const initAuthControllers = (app) => {
 
     // -- EMAIL API -- // TO DO
 
-    app.post("/emailConfirmed/:email", /*сделать get запрос на /emailMessage*/ /*отправить полученный хтмл в сообщении*/  /*изменить в бд подтвержение емейла на тру*/ ) //это кнопочка из сообщения
-    app.get("/emailMessage", Response.renderPage.emailMessage) // нужно только для того, чтобы проверить как будет выглядить сообщение(и запросить с этой странице его текст)
-    app.get("/emailConfirmed/:email", Response.renderPage.emailConfirmed) //для того, чтобы пользователь увидел успешное сообщение
-    
     // -- (L)USERS API --
 
     app.post('/register', urlencodedParser, userCreateValidator, registrationUser);

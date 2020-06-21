@@ -4,6 +4,8 @@ import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
 import config from '../config/index.js';
 import jwt from "jsonwebtoken"
+import {generateHash} from "../services/hasher";
+import {NextFunction, Request, Response} from "express";
 
 const validators = {
     register: {
@@ -18,15 +20,8 @@ const validators = {
     }
 };
 
-function generateHash (password) {
-    return bCrypt.hashSync(
-        password,
-        bCrypt.genSaltSync(10),
-        null
-    );
-}
 
-export async function registrationUser(req, res, next) {
+export async function registrationUser(req: Request, res: Response, next: NextFunction) {
     let {email, password, login} = req.body
 
     const errors = validationResult(req);
