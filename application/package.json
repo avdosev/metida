@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "description": "Small blog-platform",
   "main": "src/app.ts",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avdosev/metida"

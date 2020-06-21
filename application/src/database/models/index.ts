@@ -1,17 +1,16 @@
-'use strict';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import fs from 'fs';
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const dirname = path.resolve(__dirname)
 
-import Sequelize from "sequelize";
+
+import {Sequelize} from "sequelize";
 const env = process.env.NODE_ENV || 'development';
-import databaseConfig from '../config/database.js';
+import databaseConfig from '../config/database';
 const config = databaseConfig[env];
-console.log(config)
+
 const sequelize = new Sequelize(
     config.database,
     config.username,
@@ -19,14 +18,19 @@ const sequelize = new Sequelize(
     config
 );
 
-const db = fs.readdirSync(__dirname)
-    .filter(file=> file.indexOf('.') !== 0 && file !== 'index.ts')
-    .map(file => sequelize.import(path.join(__dirname, file)))
+interface IDB {
+    [name :string]: any
+}
+
+
+const db: IDB = fs.readdirSync(dirname)
+    .filter(file=> file !== 'index.js' && path.extname(file) !== ".map" )
+    .map(file => sequelize.import(path.join(dirname, file)))
     .reduce((models, model) => {
+
         models[model.name] = model;
         return models;
     }, {});
-
 Object.keys(db).forEach(modelName => {
     if ('associate' in db[modelName]) {
         db[modelName].associate(db);

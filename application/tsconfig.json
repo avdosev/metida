@@ -1,26 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "esnext",
-    "outDir": "dist",
-    "rootDir": "src",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false,
-    "removeComments": true,
-    "baseUrl": "src"
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "target": "es6",
+      "noImplicitAny": false,
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "baseUrl": ".",
+      "resolveJsonModule": true,
+      "paths": {
+          "*": [
+              "node_modules/*",
+              "src/types/*"
+          ]
+      }
   },
-  "exclude": [
-    "node_modules", "dist"
-  ],
   "include": [
-    "src"
+      "src/**/*"
   ]
-
 }

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import Handler from '../controllers/request_handler';
+import Handler from '../controllers/request_handler/index.js';
 import * as Response from '../controllers/respondent.js';
 
 import {

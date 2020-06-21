@@ -3,15 +3,15 @@ import * as path from 'path';
 import express from 'express';
 import session from 'express-session';
 
-import models from './database/models/index.js';
+import models from './database/models/index';
 
 
-import initAuthControllers from './routes/index.js';
+import initAuthControllers from './routes/index';
 import { port, mainDir, secretKey } from './config/index';
 
 async function start() {
     console.log('Workspace initialization...');
-    
+
     const app = express();
     // For Passport
     app.use(

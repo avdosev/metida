@@ -4,7 +4,7 @@ const require = createRequire(import.meta.url);
 const { validationResult } = require('express-validator/check');
 import mailer from "../services/email.js";
 import * as UserApi from "../services/user.js";
-import config from '../config';
+import config from '../config/index.js';
 import jwt from "jsonwebtoken"
 
 const validators = {

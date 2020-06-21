@@ -1,5 +1,5 @@
 import express from 'express'
-import config from '../config/index.ts';
+import config from '../config/index';
 
 import {
     userCreateValidator,
@@ -12,14 +12,14 @@ import cors from 'cors'
 import compression from 'compression';
 
 
-import Handler from '../controllers/request_handler.js';
-import * as Response from '../controllers/respondent.js';
+import Handler from '../controllers/request_handler/index';
+import * as Response from '../controllers/respondent';
 
 
 import ApiRouterCreator from './api.js';
-import {registrationUser, signinUser} from "../controllers/users.js";
-import {verifyToken, sendSuccess} from "../controllers/logged.js";
-import {initClientControllers} from "./client.js"
+import {registrationUser, signinUser} from "../controllers/users";
+import {verifyToken, sendSuccess} from "../controllers/logged";
+import {initClientControllers} from "./client"
 
 const ApiRouter = ApiRouterCreator();
 
