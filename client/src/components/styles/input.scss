@@ -29,19 +29,11 @@ input {
     box-sizing: border-box;
 }
 
-input:invalid, input:hover:invalid {
+input:invalid {
     background-color: #FDD ;
     border: 1px solid #900;
 }
-  
-input:valid, input:valid:hover {
-    border: 1px solid steelblue;
-}
 
-// эти стили нужны для того, чтобы переопределить синюю обводку для всех полей ввода для кнопки отправки формы
-input[type='submit'], input[type='submit']:hover {
-    border: 0.5px solid grey;
-}
 
 .welcome, .welcome:hover {
     margin-top: 1.5rem;
@@ -80,10 +72,10 @@ form.comment {
 }
 
 @media (hover:hover) {
-
-    input:hover{
-        border: 1px solid $main-hover-color;
-    }
+    //
+    //input:hover{
+    //    border: 1px solid $main-hover-color;
+    //}
 
     .welcome:hover{
         color: black;

@@ -2,14 +2,13 @@
   "name": "metida",
   "version": "0.2.0",
   "description": "Small blog-platform",
-  "main": "app.js",
-  "type": "module",
+  "main": "src/app.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/avdosev/metida"
   },
   "engines": {
-    "node": "13.7.x"
+    "node": "14.x"
   },
   "author": "K. company",
   "license": "ISC",
@@ -18,7 +17,11 @@
   },
   "scripts": {
     "test": "npm run inspect:allConcurency",
-    "start": "nodemon app.js",
+    "start": "yarn run startjs",
+    "start:prod": "yarn run serve",
+    "serve": "ts-node src/app.ts",
+    "startjs": "yarn run type && node dist/app.js",
+    "type": "tsc",
     "lintFixWarnings": "eslint \"./**/*.js\" --fix",
     "inspect:lint": "eslint \"./**/*.js\" ",
     "inspect:mocha": "mocha ",
@@ -39,17 +42,24 @@
     "markdown-it": "^8.4.2",
     "mysql2": "^2.0.1",
     "nodemailer": "^6.1.1",
-    "sequelize": "^5.7.4"
+    "sequelize": "^5.7.4",
+    "ts-node": "^8.10.2"
   },
   "devDependencies": {
-    "sequelize-cli": "^5.4.0",
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.6",
+    "@types/express-session": "^1.17.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/markdown-it": "^10.0.1",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "concurrently": "^4.1.1",
     "eslint": "^6.6.0",
     "lorem-ipsum": "^2.0.2",
     "mocha": "^6.1.4",
+    "nodemon": "^2.0.4",
     "prettier": "1.17.0",
-    "nodemon": "^2.0.4"
+    "sequelize-cli": "^5.4.0",
+    "typescript": "^3.9.5"
   }
 }
