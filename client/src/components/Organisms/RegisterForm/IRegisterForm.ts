@@ -1,5 +1,5 @@
 import {Validators} from "../IValidators";
-import {IIState, Field} from "../IAuth";
+import {IIState} from "../IAuth";
 
 
 interface IProps {

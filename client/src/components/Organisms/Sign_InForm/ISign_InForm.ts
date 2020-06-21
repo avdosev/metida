@@ -1,4 +1,4 @@
-import {Field, IIState} from "../IAuth";
+import {IIState} from "../IAuth";
 import {IPublicUser} from "../IPrivateUser";
 
 

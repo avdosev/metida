@@ -7,7 +7,7 @@ import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
-import {loginQuery} from "../../Molecules/Form/FormHelper"
+import {loginQuery} from "../../../services/FormHelper"
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";

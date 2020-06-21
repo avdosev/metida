@@ -2,16 +2,17 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./IRegisterForm";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";
 import {initialValidator, Validators} from "../IValidators";
-import {loginQuery} from "../../Molecules/Form/FormHelper";
+import {loginQuery} from "../../../services/FormHelper";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
-import {Valid} from "../IAuth";
 import {getCurrentUser} from "../../../services/user";
 import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispatcher";
+import ValidateForm from "../ValidableForm/ValidateForm";
+import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
 
 export default class RegisterForm extends React.Component<ChangeHeaderInterface, IState> {
@@ -64,12 +65,6 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
         this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
-    handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
-    }
-
-
     submitBtnHandler = async (event: React.FormEvent) => {
         let error = await loginQuery(event, ROUTES.REGISTER, {
             email: this.state.email.value,
@@ -102,23 +97,23 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
+                <ValidateForm onSubmit={this.submitBtnHandler}
                       action={ROUTES.REGISTER}>
                     <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
-                                validateFunc={this.handleUserInput} value={fd.email.value} text={v!.email.error_str}/>
+                                 value={fd.email.value} errorText={v!.email.error_str}/>
                     <FieldInput fieldName="login" regexp={v!.login.regexp} valid={fd.login.valid}
-                                validateFunc={this.handleUserInput} value={fd.login.value} text={v!.login.error_str}/>
+                                 value={fd.login.value} errorText={v!.login.error_str}/>
 
                     <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.comparePassword} value={fd.password.value} text={v!.password.error_str}/>
+                                validateFunc={this.comparePassword} value={fd.password.value} errorText={v!.password.error_str}/>
                     <FieldInput fieldName="repassword" fieldType="password" regexp={v!.repassword.regexp}
                                 valid={fd.repassword.valid}
                                 validateFunc={this.compareRepassword} value={fd.repassword.value}
-                                text={v!.repassword.error_str}/>
-                    <ErrorPlaceholder valid={this.state.serverError.valid} text={this.state.serverError.value}/>
+                                errorText={v!.repassword.error_str}/>
                     <button type="submit" className="mainButton">Зарегистрироваться</button>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
 
-                </Form>
+                </ValidateForm>
 
             </div>
 

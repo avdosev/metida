@@ -1,6 +1,6 @@
-import {get, post} from "../../../services/router";
-import {IPublicUser} from "../../Organisms/IPrivateUser";
-import {writeUserInLS} from "../../../services/localstorage";
+import {get, post} from "./router";
+import {IPublicUser} from "../components/Organisms/IPrivateUser";
+import {writeUserInLS} from "./localstorage";
 
 
 interface IPush {

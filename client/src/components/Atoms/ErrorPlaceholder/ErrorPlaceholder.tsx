@@ -1,17 +1,17 @@
 import React from "react";
 import "./error.css"
 import {ValidatorState, IValid} from "../../../services/validator/validator";
-import {IShowStrategy} from "../../../services/validator/show_error_strategies";
+import {IShowStrategy, IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
 
 interface IProps extends IValid {
     value: string
-    showStrategy: IShowStrategy
+    showStrategy?: IShowStrategy
 }
 
 
 export default function ErrorPlaceholder(props: IProps) {
-    const show = props.showStrategy(props.valid);
+    const show = (props.showStrategy ?? IntermediateIsValid)(props.valid);
 
     const spanError: JSX.Element = show ?
         <span className="error active" aria-live="polite"> {props.value} </span> :
