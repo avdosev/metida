@@ -3,7 +3,7 @@ import {MarkdownToHtml} from '../../services/markdown.js';
 import {NextFunction, Request, Response} from "express";
 import {initValues} from "../../services/initValues";
 
-export function updateArticle(req: Request, res: Response, next: NextFunction) {
+export async function updateArticle(req: Request, res: Response, next: NextFunction) {
     const id = req.params.id
     const header = req.body.header;
     const content = req.body.art;
@@ -11,18 +11,16 @@ export function updateArticle(req: Request, res: Response, next: NextFunction) {
 
     initValues(res)
 
-    articleApi.updateArticle(
-        parseInt(id),
-        MarkdownToHtml(content),
-        header,
-        MarkdownToHtml(disclaimer)
-    ).then((value: { dataValues: any; }) => {
-        res.values.article = value.dataValues;
+    try {
+        const article = await articleApi.updateArticle(parseInt(id), MarkdownToHtml(content), header, MarkdownToHtml(disclaimer))
+        res.values.article = article.dataValues;
+        res.values.success = true; 
+    } catch (e) {
+        console.error(e);
         res.values.success = true;
-    }).catch((error: any) => {
-        console.error(error);
-        res.values.success = true;
-    })
+    }
+
+
 }
 
 export async function pushArticle(req: Request, res: Response, next: NextFunction) {

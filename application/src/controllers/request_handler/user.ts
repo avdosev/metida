@@ -3,15 +3,13 @@ import * as userApi from '../../services/user.js';
 import {initValues} from "../../services/initValues";
 
 
-function getUserInfo(req: Request, res: Response, next: NextFunction) {
+async function getUserInfo(req: Request, res: Response, next: NextFunction) {
     const login = req.params.login;
 
-    userApi.getAllPublicInfo({username: login})
-        .then((value) => {
-            initValues(res);
-            res.values.userInfo = value.dataValues;
-            next()
-        })
+    const publicinfo = await userApi.getAllPublicInfo({username: login})
+    initValues(res);
+    res.values.userInfo = publicinfo.dataValues;
+    next()
 }
 
 export {
