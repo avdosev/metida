@@ -2,7 +2,7 @@ import React from "react";
 import {initialAuthor, initialUser, IPublicUser, UserInfo} from "../../Organisms/IPrivateUser";
 import {get} from "../../../services/router";
 import {getCurrentUser} from "../../../services/user"
-import {IndexShortPost} from "../IndexShortPost/IndexShortPost";
+import {IndexShortPost} from "../../Atoms/IndexShortPost/IndexShortPost";
 import Feed from "../../Organisms/Feed/Feed";
 import "../../styles/lenta.scss"
 

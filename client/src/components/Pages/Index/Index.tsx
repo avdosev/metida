@@ -2,7 +2,7 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/lenta.scss"
 import "../../styles/colors.scss"
-import {IndexShortPost} from "../../Molecules/IndexShortPost/IndexShortPost"
+import {IndexShortPost} from "../../Atoms/IndexShortPost/IndexShortPost"
 import {post} from "../../../services/router";
 import Feed from "../../Organisms/Feed/Feed";
 import SimplePage from "../../Templates/SimpleTemplate";
