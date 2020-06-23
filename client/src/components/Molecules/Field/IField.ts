@@ -6,7 +6,7 @@ interface ITextFieldErrored extends ITextField {
     regexp: string
     showErrorStrategy: IShowStrategy
     errorText: string
-    validate(str: string): ValidatorState
+    validate: (str: string) => ValidatorState
 }
 
 export type {ITextFieldErrored}

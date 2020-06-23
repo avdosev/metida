@@ -1,6 +1,6 @@
 import React from "react";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
-import {initialValidator, Validators, ValidatorState} from "../IValidators";
+import {validators, Validators, ValidatorState} from "../IValidators";
 import {IIState} from "../IAuth";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
@@ -31,7 +31,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
         this.state = {
             isAuth: false,
             comment: {value: '', valid: ValidatorState.Intermediate},
-            validators: initialValidator,
+            validators: validators,
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`

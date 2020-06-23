@@ -6,7 +6,7 @@ import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";
-import {initialValidator, Validators} from "../IValidators";
+import {validators, Validators} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {getCurrentUser} from "../../../services/user";
@@ -25,7 +25,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
             password: {value: '', valid: Valid.Intermediate},
             referrer: <></>,
             serverError: {value: '', valid: Valid.Intermediate},
-            validators: initialValidator
+            validators: validators
         }
     }
 

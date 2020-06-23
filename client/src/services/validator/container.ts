@@ -1,6 +1,6 @@
 import {IVerifiable, ValidatorState} from "./validator";
 
-interface VerifiableContainer {
+export interface VerifiableContainer {
     elements: Iterable<IVerifiable>
     verifyElements(): void
     add(...items: IVerifiable[]): void

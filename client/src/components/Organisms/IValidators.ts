@@ -1,10 +1,20 @@
-import { regexpVerifiable } from "../../services/validator/validator";
+import {IValid, ValidatorState, verifyByRegexp} from "../../services/validator/validator";
 export { ValidatorState } from "../../services/validator/validator";
 
-interface ValidatorFields {
-    error_str: string,
-    EventError: Array<string>,
+export interface Field {
+    value: string,
+    valid: ValidatorState
+}
+
+export interface ValidatorFields {
+    error_str: string
     regexp: string
+    EventError?: Array<string>
+}
+
+export function validateField(field: ValidatorFields): (str: string) => ValidatorState {
+    const regexp = new RegExp(field.regexp);
+    return (str: string) => verifyByRegexp(str, regexp);
 }
 
 export interface Validators {
@@ -18,13 +28,44 @@ export interface Validators {
     login: ValidatorFields
 }
 
-export const initialValidator: Validators = {
-    login: {error_str: '', regexp: '', EventError: ['']},
-    repassword: {error_str: '', regexp: '', EventError: ['']},
-    email: {error_str: '', regexp: '', EventError: ['']},
-    password: {error_str: '', regexp: '', EventError: ['']},
-    comment: {error_str: '', regexp: '', EventError: ['']},
-    content: {error_str: '', regexp: '', EventError: ['']},
-    disclaimer: {error_str: '', regexp: '', EventError: ['']},
-    header: {error_str: '', regexp: '', EventError: ['']}
+export const validators: Validators = {
+    "comment": {
+        "error_str": "Коммент уж слишком маленький. Прям как ...",
+        "EventError": ["Коммент не удовлетворяет требованиям"],
+        "regexp": "^.{6,}"
+    },
+    "header": {
+        "error_str": "Заголовок должен быть длиннее",
+        "EventError": ["Тебе не стыдно?"],
+        "regexp": ".{10,}"
+    },
+    "disclaimer": {
+        "error_str": "Дисклеймер должен быть длиннее",
+        "EventError": ["Почему ты такой немногословный?"],
+        "regexp": ".{10,}"
+    },
+    "content": {
+        "error_str": "Контент должен быть длиннее",
+        "EventError": ["Все совсем плохо? Напиши мне на почту, побеседуем"],
+        "regexp": ".{10,}"
+    },
+    "email": {
+        "error_str": "Проверьте правильность введенного e-mail",
+        "EventError": ["Вводи почту правильно"],
+        "regexp": ".+@.+\\..+"
+    },
+    "password": {
+        "error_str": "Пароль должен содержать более 5 символов",
+        "EventError": ["EventErrorPassword"],
+        "regexp": ".{5,}"
+    },
+    "repassword": {
+        "error_str": "Введенные пароли не совпадают",
+        "regexp": ".{5,}"
+    },
+    "login": {
+        "error_str": "Логин должен состоять более чем из 3 символов",
+        "regexp": ".{3,}"
+    }
 }
+

@@ -1,4 +1,4 @@
-import {IIState} from "../IAuth";
+import {ValidatorState, Field} from "../IValidators";
 import {IPublicUser} from "../IPrivateUser";
 
 
@@ -9,14 +9,11 @@ interface IProps {
     setAuth: any
 }
 
-interface IState extends IIState {
+interface IState {
     email: Field,
     password: Field,
     serverError: Field,
-    [field: string]: any
-
-    [Symbol.iterator](): IterableIterator<Field> //если понадобится, то писать так
-
+    referrer: JSX.Element
 }
 
 export type {IProps, IState}

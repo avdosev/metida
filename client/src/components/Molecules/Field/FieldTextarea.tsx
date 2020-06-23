@@ -2,23 +2,36 @@ import Textarea from "../../Atoms/Textarea/Textarea";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import React from "react";
 import {ITextFieldErrored} from "./IField";
-import {IValid, IVerifiable, ValidatorState} from "../../../services/validator/validator";
+import {ITextValid, IValid, IVerifiable, ValidatorState} from "../../../services/validator/validator";
 
-interface IState extends IValid {
+interface IState extends ITextValid {
 
 }
 
-interface IProps extends ITextFieldErrored {
+interface IProps extends ITextFieldErrored, IValid {
 
 }
 
 export default class FieldTextarea extends React.Component<IProps, IState> implements IVerifiable {
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            'value': props.value,
+            'valid': props.valid
+        }
+    }
+
     validate(): ValidatorState {
-        return this.props.validate(this.props.value)
+        return this.props.validate(this.state.value)
     }
 
     changeValidatorState(state: ValidatorState): void {
         this.setState({valid: state})
+    }
+
+    onChange(event: React.ChangeEvent<HTMLInputElement>): void {
+        this.setState({'value': event.target.value});
+        this.props.onChange(event)
     }
 
     render() {
@@ -32,7 +45,7 @@ export default class FieldTextarea extends React.Component<IProps, IState> imple
                 fieldType={this.props.fieldType}
                 fieldDescription={this.props.fieldDescription}
                 placeholder={this.props.placeholder}
-                value={this.props.value}
+                value={this.state.value}
             />
             <ErrorPlaceholder valid={this.state.valid} value={this.props.errorText} showStrategy={this.props.showErrorStrategy} />
         </>);

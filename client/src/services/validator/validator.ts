@@ -7,6 +7,10 @@ export interface IValid {
     valid: ValidatorState
 }
 
+export interface ITextValid extends IValid{
+    value: string
+}
+
 export interface regexpVerifiable {
     acceptable: RegExp
     intermediate: RegExp

@@ -8,7 +8,7 @@ import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import Form from "../../Molecules/Form/Form";
-import {initialValidator, Validators} from "../IValidators";
+import {validators, Validators} from "../IValidators";
 import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
 import {Valid} from "../IAuth";
 
@@ -23,7 +23,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             isPreview: false,
             referrer: <></>,
             serverError: {value: '', valid: Valid.Intermediate},
-            validators: initialValidator
+            validators: validators
         }
     }
 

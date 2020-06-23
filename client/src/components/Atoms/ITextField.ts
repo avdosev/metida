@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ITextField {
-    onChange: (event: React.ChangeEvent<any>) => void
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
     value: string
     fieldName: string
 

@@ -2,18 +2,19 @@ import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
 import {IProps, IState} from "./ISign_InForm"
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../../Molecules/Form/Form";
-import {initialValidator, Validators} from "../IValidators";
+import {validators, Validators, ValidatorState} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper"
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
-import {Valid} from "../IAuth";
 import {initialUser, IPublicUser} from "../IPrivateUser";
 import {getCurrentUser} from "../../../services/user";
 import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispatcher";
-
+import ValidateForm from "../ValidableForm/ValidateForm";
+import {Container} from "../../../services/validator/container";
+import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
 
 export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
@@ -21,27 +22,10 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
         super(props)
         console.log(props)
         this.state = {
-            email: {value: '', valid: Valid.Intermediate}, password: {value: '', valid: Valid.Intermediate},
+            email: {value: '', valid: ValidatorState.Intermediate}, password: {value: '', valid: ValidatorState.Intermediate},
             referrer: <></>,
-            serverError: {value: '', valid: Valid.Intermediate},
-            validators: initialValidator,
+            serverError: {value: '', valid: ValidatorState.Intermediate}
         }
-    }
-
-    onValidatorChange = (validators: Validators) => {
-        this.setState({validators: validators})
-    }
-
-    handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({serverError: {value: '', valid: Valid.Acceptable}})
-        const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
-    }
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
-        if (fieldValid) return Valid.Acceptable
-        else return Valid.Invalid
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
@@ -54,7 +38,7 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
                 console.warn("Сервер не отвечает")
                 error = "Сервер не отвечает, попробуйте позже."
             }
-            this.setState({serverError: {value: error, valid: Valid.Invalid}})
+            this.setState({serverError: {value: error, valid: ValidatorState.Invalid}})
         } else {
             const user = getCurrentUser()
             if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
@@ -71,24 +55,41 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
         const fd = this.state
         const v = this.state.validators
 
+        const email = <FieldInput fieldName="email"
+                                  regexp={v!.email.regexp}
+                                  valid={fd.email.valid}
+                                  autofocus
+                                  value={fd.email.value}
+                                  errorText={v!.email.error_str}
+                                  showErrorStrategy={IntermediateIsValid}
+                                  validate={(str) => ValidatorState.Intermediate}
+        />;
+        const password = <FieldInput fieldName="password"
+                                     regexp={v!.password.regexp}
+                                     valid={fd.password.valid}
+                                     value={fd.password.value}
+                                     errorText={v!.password.error_str}
+                                     showErrorStrategy={IntermediateIsValid}
+                                     validate={(str) => ValidatorState.Intermediate}
+        />;
+
+        const container = new Container();
+        container.add(email, password);
+
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                {this.state.block}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler}
-                      action={ROUTES.SIGN_IN}>
+                <ValidateForm onSubmit={this.submitBtnHandler}
+                      action={ROUTES.SIGN_IN} verifiableElements={container}>
 
-                    <FieldInput fieldName="email" regexp={v!.email.regexp} valid={fd.email.valid} autofocus
-                                validateFunc={this.handleUserInput} value={fd.email.value}
-                                text={v!.email.error_str}/>
-                    <FieldInput fieldName="password" regexp={v!.password.regexp} valid={fd.password.valid}
-                                validateFunc={this.handleUserInput} value={fd.password.value}
-                                text={v!.password.error_str}/>
-                    <ErrorPlaceholder valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-                    
+                    {email}
+                    {password}
+
                     <button type="submit" className="mainButton">Войти </button>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value}/>
 
-                </Form>
+
+                </ValidateForm>
 
             </div>
         )
