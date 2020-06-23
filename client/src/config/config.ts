@@ -1,5 +1,3 @@
-export const lexTableUrl = '/json/lexem_table.json'
-
 console.log(process.env.NODE_ENV)
 let serverUri: string;
 
@@ -13,3 +11,4 @@ if (process.env.NODE_ENV === "development") {
 }
 
 export {serverUri}
+export const lexTableUrl = '/json/lexem_table.json'
