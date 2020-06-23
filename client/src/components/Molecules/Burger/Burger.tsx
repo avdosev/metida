@@ -1,14 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import BurgerImage from "../../Images/BurgerImage/BurgerImage";
 
-function BurgerImage(props: { toggleMethod: (event: any) => void }) {
-    return (
-        <svg width={40} viewBox="0 0 12 10" fill="hsl(0, 0%, 20%)" className="icon" id="burger" onClick={props.toggleMethod}>
-            <rect width={12} height={2} x={0} y={0} />
-            <rect width={12} height={2} x={0} y={4} />
-            <rect width={12} height={2} x={0} y={8} />
-        </svg>)
-}
+
 
 export default function Burger(props: { authorised: boolean }) {
     function toggleSubmenu(event: any) {
@@ -45,7 +39,7 @@ export default function Burger(props: { authorised: boolean }) {
     const burger = <nav>
         <ul className="topmenu">
             <li>
-                <BurgerImage toggleMethod={toggleSubmenu}/>
+                <BurgerImage toggleMethod={toggleSubmenu} lineHeight={2} lineWidth={12}/>
                 <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
                     {buttons}
                 </ul>

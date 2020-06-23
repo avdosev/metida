@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {theme} from "../../../config/localstorage";
-import logger from "redux-logger";
+import {get} from "../../../services/localstorage";
+import { curry } from 'ramda';
 
 enum Themes {
     dark="dark",
@@ -8,7 +9,10 @@ enum Themes {
 }
 
 const ThemeChanger = () => {
-    const [themeState, setThemeState] = useState(Themes.light);
+    const curryGet = curry(get)
+    const themeGetter = curryGet(theme)
+
+    const [themeState, setThemeState] = useState(themeGetter);
 
     const handleChange = () => {
         setThemeState(themeState === Themes.light ? Themes.dark : Themes.light);
@@ -22,7 +26,7 @@ const ThemeChanger = () => {
         }
     }
     useEffect(() => {
-        const getTheme = localStorage.getItem(theme);
+        const getTheme = themeGetter;
         if (getTheme === Themes.dark) {
             document.body.classList.add('dark-mode');
         }
