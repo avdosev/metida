@@ -1,0 +1,7 @@
+parser: typescript
+overrides:
+  - files: ["*.ts", "*.tsx"]
+    options:
+      semi: true
+      tabWidth: 4
+      singleQuote: true
