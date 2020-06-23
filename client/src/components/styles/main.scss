@@ -63,10 +63,15 @@ body.dark-mode {
         fill: $ccc-color;
     }
     .GreyButton {
-        color: $main-back-color !important;
+        color: $ccc-color;
+        background-color: $main-back-color;
     }
     .GreyButton:hover {
-        color: $ccc-color !important;
+        //background-color: $url-color;
+    }
+
+    .logo__image {
+        content: url("/img/header__logo_white.svg");
     }
 
 }
