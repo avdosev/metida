@@ -1,7 +1,7 @@
 import { serverUri } from "../config/config";
 import {IPrivateUser} from "../components/Organisms/IPrivateUser";
 import * as ls from "./localstorage"
-import {getUserFromLS} from "./localstorage";
+import {userFieldName} from "../config/localstorage";
 
 async function query(method: string, url: string, data: any=null, callback?: {(response: any): void } ) {
     let response;
@@ -54,7 +54,7 @@ async function deleteMethod(url: string, data: any, callback?: {(response: any):
 }
 
 function authHeader() {
-    const authInfo = getUserFromLS()
+    const authInfo = ls.get(userFieldName)
     //console.log(authInfo)
     if (authInfo) {
         const user: IPrivateUser = JSON.parse(authInfo);

@@ -21,8 +21,8 @@ interface IState {
 
 
 export default class Index extends React.Component<IProps, IState> {
-    articlesCount = 10; //число статей, которые будут на странице до нажатия кнопки
-    currentCountOfArticles = 0; //мини костылек, не смотри сюда //это статическая переменная
+    articlesCount = 10; //число статей, которые будут на странице до нажатия кнопки (а также столько мы будем гетить за раз)
+    currentCountOfArticles = 0; //это статическая переменная
 
     constructor(props: IProps) {
         super(props);
@@ -30,6 +30,14 @@ export default class Index extends React.Component<IProps, IState> {
         this.state = {json: {}, lenta: []}
         document.title = "Metida";
 
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = async () => {
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight)
+            return;
+        await this.getArticle(this.articlesCount)
+        console.log('Fetch more list items!');
     }
 
     getArticle = async (articlesCount = 0) => {
@@ -72,13 +80,11 @@ export default class Index extends React.Component<IProps, IState> {
                     <Feed>
                         {this.state.lenta}
                     </Feed>
-                    <button type="button" className="getMoreArticles" onClick={this.getMoreArticles}>Показать больше</button>
+                    <button type="button" className="mainButton" onClick={this.getMoreArticles}>Показать больше</button>
                 </div>
             </div>
         </SimplePage>)
     }
-
-
 }
 
 

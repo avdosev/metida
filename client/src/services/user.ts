@@ -1,11 +1,13 @@
 import {IPublicUser} from "../components/Organisms/IPrivateUser";
 import {post} from "./router";
-import {deleteUserFromLS, getUserFromLS} from "./localstorage";
+import {remove as removeLS, get as getLS} from "./localstorage";
+import {userFieldName} from "../config/localstorage";
 
 
 function getCurrentUser(): IPublicUser | null {
-    const userstring = getUserFromLS()
+    const userstring = getLS(userFieldName)
     if (!userstring) return null
+    console.log(userstring)
     return JSON.parse(userstring)
 }
 
@@ -15,7 +17,7 @@ async function isAuth() {
     console.log(body)
 
     if (body.hasOwnProperty('error')) {
-        deleteUserFromLS()
+        removeLS(userFieldName)
     }
     return body.hasOwnProperty('message')
 }
