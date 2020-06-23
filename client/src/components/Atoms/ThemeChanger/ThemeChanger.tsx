@@ -3,7 +3,7 @@ import {theme} from "../../../config/localstorage";
 import {get} from "../../../services/localstorage";
 import { curry } from 'ramda';
 
-enum Themes {
+const enum Themes {
     dark="dark",
     light="light"
 }
