@@ -20,11 +20,11 @@ export default class FieldInput extends React.Component<IProps, IState> implemen
         }
     }
 
-    validate(): ValidatorState {
+    public validate(): ValidatorState {
         return this.props.validate(this.state.value)
     }
 
-    changeValidatorState(state: ValidatorState): void {
+    public changeValidatorState(state: ValidatorState): void {
         this.setState({valid: state})
     }
 

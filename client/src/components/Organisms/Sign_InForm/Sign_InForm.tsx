@@ -1,12 +1,11 @@
 import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
-import {IProps, IState} from "./ISign_InForm"
 import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
 import Form from "../../Molecules/Form/Form";
-import {validators, Validators, ValidatorState} from "../IValidators";
+import {Field, validators, Validators, ValidatorState} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper"
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {initialUser, IPublicUser} from "../IPrivateUser";
@@ -16,13 +15,28 @@ import ValidateForm from "../ValidableForm/ValidateForm";
 import {Container} from "../../../services/validator/container";
 import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
+interface IProps extends ChangeHeaderInterface {
+    // user: null | IPublicUser
+    // signIn: () => any // какую-то функцию
+    // logout: () => any
+    setAuth: any
+}
 
-export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
-    constructor(props: ChangeHeaderInterface) {
+interface IState {
+    email: Field,
+    password: Field,
+    serverError: Field,
+    referrer: JSX.Element
+}
+
+
+export default class Sign_InForm extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props)
         console.log(props)
         this.state = {
-            email: {value: '', valid: ValidatorState.Intermediate}, password: {value: '', valid: ValidatorState.Intermediate},
+            email: {value: '', valid: ValidatorState.Intermediate},
+            password: {value: '', valid: ValidatorState.Intermediate},
             referrer: <></>,
             serverError: {value: '', valid: ValidatorState.Intermediate}
         }
@@ -53,25 +67,25 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
 
     render() {
         const fd = this.state
-        const v = this.state.validators
+        const v = validators
 
-        const email = <FieldInput fieldName="email"
-                                  regexp={v!.email.regexp}
-                                  valid={fd.email.valid}
-                                  autofocus
-                                  value={fd.email.value}
-                                  errorText={v!.email.error_str}
-                                  showErrorStrategy={IntermediateIsValid}
-                                  validate={(str) => ValidatorState.Intermediate}
-        />;
-        const password = <FieldInput fieldName="password"
-                                     regexp={v!.password.regexp}
-                                     valid={fd.password.valid}
-                                     value={fd.password.value}
-                                     errorText={v!.password.error_str}
-                                     showErrorStrategy={IntermediateIsValid}
-                                     validate={(str) => ValidatorState.Intermediate}
-        />;
+        const email = new FieldInput({fieldName: "email",
+                                  regexp: v!.email.regexp,
+                                  valid: fd.email.valid,
+                                  autofocus: true,
+                                  value: fd.email.value,
+                                  errorText: v!.email.error_str,
+                                  showErrorStrategy: IntermediateIsValid,
+                                  validate: (str) => ValidatorState.Intermediate,
+        });
+        const password = new FieldInput({ fieldName: "password",
+                                     regexp: v!.password.regexp,
+                                     valid: fd.password.valid,
+                                     value: fd.password.value,
+                                     errorText: v!.password.error_str,
+                                     showErrorStrategy: IntermediateIsValid,
+                                     validate: (str) => ValidatorState.Intermediate,
+        });
 
         const container = new Container();
         container.add(email, password);
@@ -87,10 +101,7 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
 
                     <button type="submit" className="mainButton">Войти </button>
                     <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value}/>
-
-
                 </ValidateForm>
-
             </div>
         )
     }

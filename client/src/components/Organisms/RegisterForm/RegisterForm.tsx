@@ -6,7 +6,7 @@ import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
 import Form from "../../Molecules/Form/Form";
-import {validators, Validators} from "../IValidators";
+import {validators, Validators, ValidatorState} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {getCurrentUser} from "../../../services/user";
@@ -19,50 +19,30 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
     constructor(props: ChangeHeaderInterface) {
         super(props)
         this.state = {
-            repassword: {value: '', valid: Valid.Intermediate},
-            login: {value: '', valid: Valid.Intermediate},
-            email: {value: '', valid: Valid.Intermediate},
-            password: {value: '', valid: Valid.Intermediate},
-            referrer: <></>,
-            serverError: {value: '', valid: Valid.Intermediate},
+            repassword: {value: '', valid: ValidatorState.Intermediate},
+            login: {value: '', valid: ValidatorState.Intermediate},
+            email: {value: '', valid: ValidatorState.Intermediate},
+            password: {value: '', valid: ValidatorState.Intermediate},
+            // referrer: <></>,
+            serverError: {value: '', valid: ValidatorState.Intermediate},
             validators: validators
         }
     }
 
-    onValidatorChange = (validators: Validators) => {
-        this.setState({validators: validators})
-    }
-
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
-        if (fieldValid) return Valid.Acceptable
-        else return Valid.Invalid
-    }
-
-
     comparePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valid = this.validateField(event.target.name, event.target.value)
 
-        let isPasswordEqual = Valid.Invalid
-        if (event.target.value === this.state.repassword.value) {
-            isPasswordEqual = Valid.Acceptable
-        } else {
-            isPasswordEqual = Valid.Invalid
-        }
 
-        this.setState({
-            repassword: {
-                value: this.state.repassword.value,
-                valid: isPasswordEqual
-            }
-        })
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+        // let isPasswordEqual = ValidatorState.Invalid
+        // if (event.target.value === this.state.repassword.value) {
+        //     isPasswordEqual = ValidatorState.Acceptable
+        // } else {
+        //     isPasswordEqual = ValidatorState.Invalid
+        // }
     }
 
     compareRepassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+        // const valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
+        // this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
