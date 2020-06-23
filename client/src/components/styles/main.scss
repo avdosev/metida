@@ -53,8 +53,11 @@ body.dark-mode {
     a:visited:hover, a:hover {
         color: $main-metida-color;
     }
-    .post, p,  a,  .logo__title, .logo__underline, .content, button {
+    .post, p,  a,  .logo__title, .content, button {
         color: $ccc-color;
+    }
+    .logo__underline {
+        border-color: $ccc-color;
     }
     .after_post_icon {
         fill: $ccc-color;
