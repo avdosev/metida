@@ -7,12 +7,13 @@ import * as ROUTES from '../../../config/routes';
 import { Redirect } from 'react-router-dom';
 import Form from '../../Molecules/Form/Form';
 import { initialValidator, Validators } from '../IValidators';
-import { loginQuery } from '../../Molecules/Form/FormHelper';
+import { loginQuery, postLogin } from '../../Molecules/Form/FormHelper';
 import FieldError from '../../Atoms/FieldError/FieldError';
 import { Valid } from '../IAuth';
 import { initialUser, IPublicUser } from '../IPrivateUser';
 import { getCurrentUser } from '../../../services/user';
 import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
+import { composeAsync, curry } from '../../../services/functional';
 
 export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
     constructor(props: ChangeHeaderInterface) {
@@ -44,26 +45,17 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
     };
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        let error = await loginQuery(event, ROUTES.SIGN_IN, {
+        const allFields = {
             email: this.state.email.value,
             password: this.state.password.value,
-        });
-        if (error) {
-            if (error.match('Cannot POST')) {
-                console.warn('Сервер не отвечает');
-                error = 'Сервер не отвечает, попробуйте позже.';
-            }
-            this.setState({ serverError: { value: error, valid: Valid.Invalid } });
-        } else {
-            const user = getCurrentUser();
-            if (!user) throw new Error('После входа, нам не вернулся пользователь, это ужасно');
+        };
+        const sendDataToServer = curry(loginQuery)(ROUTES.SIGN_IN);
+        const curryPost = curry(postLogin)(this.props.signIn);
 
-            this.props.signIn(user);
+        const conveyor = composeAsync(curryPost, sendDataToServer);
 
-            this.setState({ referrer: <Redirect to={ROUTES.LANDING} /> });
-            console.log(this.state);
-            //да, я знаю что такое document.refferer, но в данном случае он не подходит, т.к. перерендер формы он считает за переход на другую страницу
-        }
+        const res = await conveyor(allFields);
+        this.setState({ ...res });
     };
 
     render() {

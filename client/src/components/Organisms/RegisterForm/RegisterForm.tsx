@@ -67,7 +67,7 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
     };
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        let error = await loginQuery(event, ROUTES.REGISTER, {
+        let error = await loginQuery(ROUTES.REGISTER, {
             email: this.state.email.value,
             password: this.state.password.value,
             login: this.state.login.value,
