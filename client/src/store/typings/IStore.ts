@@ -1,7 +1,5 @@
-import {ChangeHeader} from "./actionType";
+import { ChangeHeader } from './actionType';
 
-interface IStore extends ChangeHeader{
+interface IStore extends ChangeHeader {}
 
-}
-
-export type {IStore}
+export type { IStore };

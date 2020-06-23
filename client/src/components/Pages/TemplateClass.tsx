@@ -1,12 +1,8 @@
-import React from "react";
+import React from 'react';
 
-interface IState {
+interface IState {}
 
-}
-
-interface IProps {
-
-}
+interface IProps {}
 
 export default class TemplateClass extends React.Component<IProps, IState> {
     render() {

@@ -1,32 +1,33 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import * as ROUTES from "../../../config/routes"
-import {IRoute} from "../../Organisms/IRoute";
+import * as ROUTES from '../../../config/routes';
+import { IRoute } from '../../Organisms/IRoute';
 
 interface IState {
-    auth: boolean,
-    requested: boolean
+    auth: boolean;
+    requested: boolean;
 }
 
-export class PrivateRoute extends React.Component<IRoute, IState>{
+export class PrivateRoute extends React.Component<IRoute, IState> {
     redirectPath = ROUTES.SIGN_IN;
 
     constructor(props: IRoute) {
         super(props);
         this.state = {
             auth: false,
-            requested: false // если мы запросили значение с сервера, выставляем флаг на true
-        }
+            requested: false, // если мы запросили значение с сервера, выставляем флаг на true
+        };
     }
 
     async componentDidMount() {
-        const auth = await this.props.isAuth()
-        this.setState({auth: auth, requested: true})
+        const auth = await this.props.isAuth();
+        this.setState({ auth: auth, requested: true });
     }
 
     render() {
-        if (!this.state.requested) { // это нужно для того, чтобы поддержать redirect компонент, т.к. если мы сразу отправим редирект, мы не дождемся никогда окончания работы асинхронной функции
-            return <> </>
+        if (!this.state.requested) {
+            // это нужно для того, чтобы поддержать redirect компонент, т.к. если мы сразу отправим редирект, мы не дождемся никогда окончания работы асинхронной функции
+            return <> </>;
         }
 
         if (!this.state.auth) {
@@ -38,5 +39,4 @@ export class PrivateRoute extends React.Component<IRoute, IState>{
     }
 }
 
-
-export default PrivateRoute
+export default PrivateRoute;

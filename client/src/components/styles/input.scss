@@ -1,51 +1,51 @@
 @import "colors";
 
 .inputForm {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .reg {
-    display: flex;
-    flex-direction: column;
-    width: 20rem;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  justify-content: space-between;
 
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
+  font-family: "Lato", sans-serif;
+  font-size: 1rem;
 }
 
 .error {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 input {
-    padding: 5px 5px 5px 2px;
-    /* -webkit-appearance: none; */
-    border: 1px solid #333;
-    font-family: inherit;
-    font-size: 1rem;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  padding: 5px 5px 5px 2px;
+  /* -webkit-appearance: none; */
+  border: 1px solid #333;
+  font-family: inherit;
+  font-size: 1rem;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 input:invalid {
-    background-color: #FDD ;
-    border: 1px solid #900;
+  background-color: #fdd;
+  border: 1px solid #900;
 }
 
-
-.welcome, .welcome:hover {
-    margin-top: 1.5rem;
-    border: 1px solid black;
-    background: rgba(255, 255, 255, 0.1);
-    font-size: 1rem;
-    font-family: 'Montserrat', sans-serif;
+.welcome,
+.welcome:hover {
+  margin-top: 1.5rem;
+  border: 1px solid black;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
 }
 
 .welcome:hover {
-    background: rgba(255, 255, 1, 0.5);
-    transition: 0.7s;
+  background: rgba(255, 255, 1, 0.5);
+  transition: 0.7s;
 }
 
 /* Тут хочу сделать разные цвета кнопки для верных и неверных значений, проблема в том, что я хз как передать на кнопку результат */
@@ -54,59 +54,55 @@ input:invalid {
     transition: 0.3s;
 } */
 
-.welcome:valid:active{
-    background-color: white;
+.welcome:valid:active {
+  background-color: white;
 }
 
-@media(any-pointer: coarse){
-    .welcome:valid:active{
-        color: black;
-        background-color: rgb(219, 219, 219);
-        transition: 0.4s;
-        border-radius: 20px;
-    } 
+@media (any-pointer: coarse) {
+  .welcome:valid:active {
+    color: black;
+    background-color: rgb(219, 219, 219);
+    transition: 0.4s;
+    border-radius: 20px;
+  }
 }
 
 form.comment {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
-@media (hover:hover) {
-    //
-    //input:hover{
-    //    border: 1px solid $main-hover-color;
-    //}
+@media (hover: hover) {
+  //
+  //input:hover{
+  //    border: 1px solid $main-hover-color;
+  //}
 
-    .welcome:hover{
-        color: black;
-        background-color: rgb(219, 219, 219);
-        transition: 0.7s;
-        /* border-radius: 20px; */ /* раздражает */
-    }
-
+  .welcome:hover {
+    color: black;
+    background-color: rgb(219, 219, 219);
+    transition: 0.7s;
+    /* border-radius: 20px; */ /* раздражает */
+  }
 }
-
 
 /* хызы почему так надо было но пусть будет */
 
-input::-webkit-input-placeholder,       
-input::-moz-placeholder,                
-input:-moz-placeholder,                 
-input:-ms-input-placeholder,            
-input:focus::-webkit-input-placeholder, 
-input:focus::-moz-placeholder,          
-input:focus:-moz-placeholder,           
-input:focus:-ms-input-placeholder,      
-
-textarea::-webkit-input-placeholder,       
-textarea::-moz-placeholder,                
-textarea:-moz-placeholder,                 
-textarea:-ms-input-placeholder,            
-textarea:focus::-webkit-input-placeholder, 
-textarea:focus::-moz-placeholder,          
-textarea:focus:-moz-placeholder,           
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-moz-placeholder,
+input:-ms-input-placeholder,
+input:focus::-webkit-input-placeholder,
+input:focus::-moz-placeholder,
+input:focus:-moz-placeholder,
+input:focus:-ms-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea::-moz-placeholder,
+textarea:-moz-placeholder,
+textarea:-ms-input-placeholder,
+textarea:focus::-webkit-input-placeholder,
+textarea:focus::-moz-placeholder,
+textarea:focus:-moz-placeholder,
 textarea:focus:-ms-input-placeholder {
-    opacity: 0;
-    transition: opacity 0.5s ease;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
-

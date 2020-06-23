@@ -1,8 +1,7 @@
-
 interface IPost {
-    id: number,
-    header: string,
-    disclaimer: string
+    id: number;
+    header: string;
+    disclaimer: string;
 }
 
-export type {IPost}
+export type { IPost };

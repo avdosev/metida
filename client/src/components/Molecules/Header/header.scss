@@ -1,205 +1,204 @@
-@import '../../styles/colors';
-@import '../../styles/fonts';
+@import "../../styles/colors";
+@import "../../styles/fonts";
 
 /* logo */
 /* только для полужирных букв METIDA */
 @font-face {
-    font-family: 'Droid Sans';
-    src: url('/fonts/subset-DroidSans-Bold.woff2') format('woff2'),
-    url('/fonts/subset-DroidSans-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Droid Sans";
+  src: url("/fonts/subset-DroidSans-Bold.woff2") format("woff2"),
+    url("/fonts/subset-DroidSans-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: dark) {
-    * {
-    }
+  * {
+  }
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @mixin grad($vars...) {
-    background-image: -webkit-linear-gradient($vars);
-    background-image: -moz-linear-gradient($vars);
-    background-image: -ms-linear-gradient($vars);
-    background-image: -o-linear-gradient($vars);
+  background-image: -webkit-linear-gradient($vars);
+  background-image: -moz-linear-gradient($vars);
+  background-image: -ms-linear-gradient($vars);
+  background-image: -o-linear-gradient($vars);
 }
 
 hr {
-    margin: 0.5rem 0px;
-    border: 0;
-    height: 1px;
-    background: $main-back-color;
-    @include grad(left, $ccc-color, $main-back-color, $ccc-color)
+  margin: 0.5rem 0px;
+  border: 0;
+  height: 1px;
+  background: $main-back-color;
+  @include grad(left, $ccc-color, $main-back-color, $ccc-color);
 }
 
 .logo {
-    margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header_inner {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .logo__image {
-    height: 3rem;
-    width: 3rem;
-    object-fit: cover
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
 }
 
 .logo__title {
-    font-family: "Droid Sans", sans-serif;
-    color: #393939;
-    float: right;
-    margin-left: 0.5rem;
-    font-size: 2rem;
+  font-family: "Droid Sans", sans-serif;
+  color: #393939;
+  float: right;
+  margin-left: 0.5rem;
+  font-size: 2rem;
 }
 
 .logo__title:before {
-    content: "METIDA";
+  content: "METIDA";
 }
 
 .logo__underline {
-    border-bottom: 2.5px solid #393939 ;
-    margin-left: 2%;
+  border-bottom: 2.5px solid #393939;
+  margin-left: 2%;
 }
 
-
-.regSection .GreyButton, .BlackButton {
-    margin-right: 0.5rem;
-    display: inline-block;
-    font-family: arial, sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    user-select: none;
-    padding: 0.3em 1.2em;
-    border-radius: 3px;
-    transition: all 0.218s ease 0s;
+.regSection .GreyButton,
+.BlackButton {
+  margin-right: 0.5rem;
+  display: inline-block;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  user-select: none;
+  padding: 0.3em 1.2em;
+  border-radius: 3px;
+  transition: all 0.218s ease 0s;
 }
-
 
 .BlackButton {
-    background-color: $main-back-color;
-    color: $smoke-color;
+  background-color: $main-back-color;
+  color: $smoke-color;
 }
 
 .GreyButton {
-    background-color: $ccc-color;
-    color: black;
+  background-color: $ccc-color;
+  color: black;
 }
 
 .icon {
-    display: none;
+  display: none;
 }
 
 nav ul {
-    list-style: none;
+  list-style: none;
 }
 
 .submenu {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 header ul {
-    margin: 0px 0px 0px 0px;
-    padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
-.BlackButton:active, .GreyButton:active {
-    background-color: $unique-color;
-    color: $smoke-color;
+.BlackButton:active,
+.GreyButton:active {
+  background-color: $unique-color;
+  color: $smoke-color;
 }
 
-.BlackButton:hover, .GreyButton:hover, .BlackButton:focus, .GreyButton:focus {
-    background-color: $unique-color;
-    color: $smoke-color;
-    outline: none;
+.BlackButton:hover,
+.GreyButton:hover,
+.BlackButton:focus,
+.GreyButton:focus {
+  background-color: $unique-color;
+  color: $smoke-color;
+  outline: none;
 }
-
 
 @media screen and (max-width: 650px) {
-    .icon {
-        display: inline;
-        margin-right: 70px;
-        fill: $ccc-color;
-    }
+  .icon {
+    display: inline;
+    margin-right: 70px;
+    fill: $ccc-color;
+  }
 
-    .logo__title:before {
-        content: "";
-    }
+  .logo__title:before {
+    content: "";
+  }
 
-    .regSection {
-        margin-left: 10%;
-    }
+  .regSection {
+    margin-left: 10%;
+  }
 
-    .header_inner {
-        height: 3rem;
-        margin-top: 0.5rem;
+  .header_inner {
+    height: 3rem;
+    margin-top: 0.5rem;
+  }
 
-    }
+  img.logo__image {
+    height: 2.4rem;
+    width: 2.4rem;
+    object-fit: cover;
+  }
 
-    img.logo__image {
-        height: 2.4rem;
-        width: 2.4rem;
-        object-fit: cover
+  .regSection .GreyButton,
+  .regSection .BlackButton {
+    display: block;
+    background-color: $main-back-color;
+    color: $smoke-color;
+    margin-right: 0px;
+    text-decoration: none;
+    text-align: left;
+    font-family: "Lato", sans-serif;
+    padding: 12px 15px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    }
+  nav {
+    display: table;
+    margin: auto auto;
+    padding: 7px 7px 0px 0px;
+  }
 
-    .regSection .GreyButton,
-    .regSection .BlackButton {
-        display: block;
-        background-color: $main-back-color;
-        color: $smoke-color;
-        margin-right: 0px;
-        text-decoration: none;
-        text-align: left;
-        font-family: 'Lato', sans-serif;
-        padding: 12px 15px;
-        font-size: 13px;
-        border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-      
-    nav {
-        display: table;
-        margin: auto auto;
-        padding: 7px 7px 0px 0px;
-    }
+  header nav ul {
+    margin: 0;
+    padding: 0;
+  }
 
-    header nav ul {
-        margin: 0;
-        padding: 0; 
-    }
+  .topmenu > li {
+    width: 45%;
+    float: right;
+    position: relative;
+  }
 
-    .topmenu > li {
-        width: 45%;
-        float: right;
-        position: relative;
-    }
-      
-    .submenu {
-        flex-direction: column;
-        background: $main-back-color;
-        position: absolute;
-        left: -185%;
-        top: 100%;
-        z-index: 5;
-        width: 120px;
-        opacity: 0;
-        transform: scaleY(0);
-        transform-origin: 0 0;
-        transition: .5s ease-in-out;
-    }
+  .submenu {
+    flex-direction: column;
+    background: $main-back-color;
+    position: absolute;
+    left: -185%;
+    top: 100%;
+    z-index: 5;
+    width: 120px;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: 0.5s ease-in-out;
+  }
 
-    #submenu__active{
-        opacity: 1;
-        transform: scaleY(1);
-    }
-} 
-
+  #submenu__active {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

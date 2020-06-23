@@ -1,9 +1,5 @@
-import React from "react";
-
+import React from 'react';
 
 export default function Feed(props: any) {
-    return (<div className="lenta">
-        {props.children}
-    </div>)
-
+    return <div className="lenta">{props.children}</div>;
 }

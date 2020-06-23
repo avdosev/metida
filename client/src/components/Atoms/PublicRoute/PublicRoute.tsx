@@ -1,5 +1,5 @@
-import React from "react";
-import {Route, RouteProps} from "react-router-dom";
+import React from 'react';
+import { Route, RouteProps } from 'react-router-dom';
 
 interface IRoute extends RouteProps {
     // isChangeHeader
@@ -7,5 +7,4 @@ interface IRoute extends RouteProps {
 
 export default function PublicRoute(props: IRoute) {
     return <Route {...props} />;
-
 }

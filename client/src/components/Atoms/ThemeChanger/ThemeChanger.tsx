@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import {theme} from "../../../config/localstorage";
-import {get} from "../../../services/localstorage";
+import React, { useState, useEffect } from 'react';
+import { theme } from '../../../config/localstorage';
+import { get } from '../../../services/localstorage';
 import { curry } from 'ramda';
 
 const enum Themes {
-    dark="dark",
-    light="light"
+    dark = 'dark',
+    light = 'light',
 }
 
 const ThemeChanger = () => {
-    const curryGet = curry(get)
-    const themeGetter = curryGet(theme)
+    const curryGet = curry(get);
+    const themeGetter = curryGet(theme);
 
     const [themeState, setThemeState] = useState(themeGetter);
 
@@ -24,20 +24,22 @@ const ThemeChanger = () => {
             localStorage.setItem(theme, Themes.light);
             document.body.classList.remove('dark-mode');
         }
-    }
+    };
     useEffect(() => {
         const getTheme = themeGetter;
         if (getTheme === Themes.dark) {
             document.body.classList.add('dark-mode');
         }
-        console.log("Логгирую,", getTheme)
-    })
-    console.log(themeState)
+        console.log('Логгирую,', getTheme);
+    });
+    console.log(themeState);
     return (
         <div>
-            <button className="mainButton" onClick={handleChange}>{themeState === Themes.dark ? 'Light Mode' : 'Dark Mode'}</button>
+            <button className="mainButton" onClick={handleChange}>
+                {themeState === Themes.dark ? 'Light Mode' : 'Dark Mode'}
+            </button>
         </div>
-    )
-}
+    );
+};
 
 export default ThemeChanger;

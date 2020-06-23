@@ -1,8 +1,7 @@
 export function DateToStr(date: Date) {
     const now = new Date();
     let str;
-    const nearlyDay =
-        date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth();
+    const nearlyDay = date.getFullYear() == now.getFullYear() && date.getMonth() == now.getMonth();
     const subDay = now.getDate() - date.getDate();
 
     if (nearlyDay && subDay == 1) {
@@ -12,23 +11,8 @@ export function DateToStr(date: Date) {
         // сегодня
         str = 'сегодня ';
     } else {
-        const month = [
-            'Января',
-            'Февраля',
-            'Марта',
-            'Апреля',
-            'Мая',
-            'Июня',
-            'Июля',
-            'Августа',
-            'Сентября',
-            'Октября',
-            'Ноября',
-            'Декабря'
-        ];
-        str = `${date.getDate()} ${
-            month[date.getMonth() - 1]
-        } ${date.getFullYear()}`;
+        const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+        str = `${date.getDate()} ${month[date.getMonth() - 1]} ${date.getFullYear()}`;
     }
     const time = date.toLocaleTimeString();
     str += ' в ' + time.slice(0, time.lastIndexOf(':'));
