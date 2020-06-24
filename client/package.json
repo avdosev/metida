@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.1",
+    "@typed/curry": "^1.0.1",
     "@types/dotenv": "^8.2.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",

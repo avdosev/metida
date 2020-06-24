@@ -13,7 +13,8 @@ import { Valid } from '../IAuth';
 import { initialUser, IPublicUser } from '../IPrivateUser';
 import { getCurrentUser } from '../../../services/user';
 import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
-import { composeAsync, curry } from '../../../services/functional';
+import { composeAsync } from '../../../services/functional';
+import { curry } from '@typed/curry';
 
 export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
     constructor(props: ChangeHeaderInterface) {

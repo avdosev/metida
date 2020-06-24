@@ -2,7 +2,6 @@ import { get, post } from '../../../services/router';
 import { IPublicUser } from '../../Organisms/IPrivateUser';
 import { set as setls } from '../../../services/localstorage';
 import { userFieldName } from '../../../config/localstorage';
-import { curry } from 'ramda';
 import { Valid } from '../../Organisms/IAuth';
 import { getCurrentUser } from '../../../services/user';
 import { Redirect } from 'react-router-dom';
@@ -11,6 +10,7 @@ import React from 'react';
 import { LANDING } from '../../../config/routes';
 import { Simulate } from 'react-dom/test-utils';
 import submit = Simulate.submit;
+import { curry } from "@typed/curry";
 
 interface IPush {
     [name: string]: string;

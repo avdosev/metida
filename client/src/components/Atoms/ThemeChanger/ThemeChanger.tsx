@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { theme } from '../../../config/localstorage';
 import { get } from '../../../services/localstorage';
-import { curry } from 'ramda';
+import { curry } from "@typed/curry";
 
 const enum Themes {
     dark = 'dark',
