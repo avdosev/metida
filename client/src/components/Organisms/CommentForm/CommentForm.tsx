@@ -52,7 +52,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const authed = await isAuth();
         console.log(this.props);
         if (authed && !this.state.isRendered) {
-            const replyCommentAuthorName = this.props.replyCommentId || this.props.replyCommentAuthorName ? this.props.replyCommentAuthorName + ', ' : '';
+            const replyCommentAuthorName =
+                this.props.replyCommentId || this.props.replyCommentAuthorName
+                    ? this.props.replyCommentAuthorName + ', '
+                    : '';
             this.setState({
                 isAuth: authed,
                 isRendered: true,

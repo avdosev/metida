@@ -57,7 +57,9 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
     };
 
     compareRepassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value;
+        const valid =
+            this.validateField(event.target.name, event.target.value) &&
+            event.target.value === this.state.password.value;
         this.setState({ [event.target.name]: { value: event.target.value, valid: valid } });
     };
 
@@ -96,7 +98,11 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler} action={ROUTES.REGISTER}>
+                <Form
+                    onValidatorChange={this.onValidatorChange}
+                    onSubmit={this.submitBtnHandler}
+                    action={ROUTES.REGISTER}
+                >
                     <FieldInput
                         fieldName="email"
                         autofocus

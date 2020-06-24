@@ -6,7 +6,20 @@ import 'highlight.js/styles/vs2015.css';
 
 // полный список ищи либо в их доке, либо в исходниках
 // а также можно сделать для каждого пользователя отдельную кнопку при использовании языка - тип установить нужный язык, будет охуенно
-const languages = ['bash', 'c-like', 'cpp', 'csharp', 'sql', 'css', 'dart', 'dockerfile', 'javascript', 'java', 'php', 'python'];
+const languages = [
+    'bash',
+    'c-like',
+    'cpp',
+    'csharp',
+    'sql',
+    'css',
+    'dart',
+    'dockerfile',
+    'javascript',
+    'java',
+    'php',
+    'python',
+];
 
 for (const language of languages) {
     hljs.registerLanguage(language, require(`highlight.js/lib/languages/${language}`));

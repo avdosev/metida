@@ -54,7 +54,11 @@ export default class Profile extends React.Component<IProps, IState> {
                     <h1>{this.props.isHome ? 'Мой профиль' : 'Профиль'}</h1>
                     <div className="profile">
                         <div className="left">
-                            <img className="avatar" src={this.state.user.avatar ?? '/img/default/avatar_small.png'} alt="avatar" />
+                            <img
+                                className="avatar"
+                                src={this.state.user.avatar ?? '/img/default/avatar_small.png'}
+                                alt="avatar"
+                            />
                         </div>
                         <div className="right">
                             <h3>{this.state.user.username}</h3>

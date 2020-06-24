@@ -11,7 +11,20 @@ export function DateToStr(date: Date) {
         // сегодня
         str = 'сегодня ';
     } else {
-        const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+        const month = [
+            'Января',
+            'Февраля',
+            'Марта',
+            'Апреля',
+            'Мая',
+            'Июня',
+            'Июля',
+            'Августа',
+            'Сентября',
+            'Октября',
+            'Ноября',
+            'Декабря',
+        ];
         str = `${date.getDate()} ${month[date.getMonth() - 1]} ${date.getFullYear()}`;
     }
     const time = date.toLocaleTimeString();

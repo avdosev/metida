@@ -27,7 +27,12 @@ export default class Form extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <form className={this.props.className ?? 'reg'} onSubmit={this.onSubmit} action={this.props.action} method={this.props.method ?? 'post'}>
+            <form
+                className={this.props.className ?? 'reg'}
+                onSubmit={this.onSubmit}
+                action={this.props.action}
+                method={this.props.method ?? 'post'}
+            >
                 {this.props.children}
             </form>
         );

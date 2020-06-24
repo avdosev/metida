@@ -24,7 +24,10 @@ export function IndexShortPost(props: IProps) {
                     Читать дальше
                 </Link>
                 {/*{pathname: url, hash: "#comments", state: {toComments: true}}  */}
-                <Link to={{ pathname: url, hash: '#comments2', state: { toComments: true } }} className="BtnToArticleComments">
+                <Link
+                    to={{ pathname: url, hash: '#comments2', state: { toComments: true } }}
+                    className="BtnToArticleComments"
+                >
                     <CommentIcon />
                 </Link>
             </div>

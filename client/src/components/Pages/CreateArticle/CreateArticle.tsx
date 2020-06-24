@@ -30,7 +30,11 @@ export default class CreateArticle extends React.Component<IProps, IState> {
                 <div className="layout_body">
                     <div className="content">
                         <CreateArticleForm onRenderPreview={this.showArtIfCheckboxChecked} />
-                        <PreviewArticle header={this.state.header} content={this.state.content} disclaimer={this.state.disclaimer} />
+                        <PreviewArticle
+                            header={this.state.header}
+                            content={this.state.content}
+                            disclaimer={this.state.disclaimer}
+                        />
                     </div>
                 </div>
             </SimpleTemplate>

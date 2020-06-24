@@ -50,9 +50,9 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
             password: this.state.password.value,
         };
         const sendDataToServer = curry(loginQuery)(ROUTES.SIGN_IN);
-        const curryPost = curry(postLogin)(this.props.signIn);
+        const getResponse = curry(postLogin)(this.props.signIn);
 
-        const conveyor = composeAsync(curryPost, sendDataToServer);
+        const conveyor = composeAsync(getResponse, sendDataToServer);
 
         const res = await conveyor(allFields);
         this.setState({ ...res });
@@ -66,7 +66,11 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
             <div className="inputForm">
                 {this.state.referrer}
                 {this.state.block}
-                <Form onValidatorChange={this.onValidatorChange} onSubmit={this.submitBtnHandler} action={ROUTES.SIGN_IN}>
+                <Form
+                    onValidatorChange={this.onValidatorChange}
+                    onSubmit={this.submitBtnHandler}
+                    action={ROUTES.SIGN_IN}
+                >
                     <FieldInput
                         fieldName="email"
                         regexp={v!.email.regexp}

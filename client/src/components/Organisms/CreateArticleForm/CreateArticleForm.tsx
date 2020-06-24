@@ -30,7 +30,11 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         const valid = this.validateField(event.target.name, event.target.value);
         this.setState({ [event.target.name]: { value: event.target.value, valid: valid } }, () => {
             if (this.state.isPreview) {
-                this.props.onRenderPreview(this.state.header.value, this.state.disclaimer.value, this.state.content.value);
+                this.props.onRenderPreview(
+                    this.state.header.value,
+                    this.state.disclaimer.value,
+                    this.state.content.value
+                );
             }
         });
     };
@@ -115,7 +119,12 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     text={v.disclaimer.error_str}
                 />
 
-                <Checkbox id="previews" label="Предпросмотр" checked={this.state.isPreview} onClick={this.handleCheckboxChange} />
+                <Checkbox
+                    id="previews"
+                    label="Предпросмотр"
+                    checked={this.state.isPreview}
+                    onClick={this.handleCheckboxChange}
+                />
 
                 <FieldTextarea
                     valid={fd.content.valid}

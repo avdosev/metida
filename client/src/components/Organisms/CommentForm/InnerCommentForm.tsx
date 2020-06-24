@@ -16,7 +16,12 @@ interface IProps {
 
 const InnerCommentForm: FC<IProps> = (props: IProps) => {
     return (
-        <Form onValidatorChange={props.onValidatorChange} action={props.linkToSend} onSubmit={props.onSubmit} className="comment">
+        <Form
+            onValidatorChange={props.onValidatorChange}
+            action={props.linkToSend}
+            onSubmit={props.onSubmit}
+            className="comment"
+        >
             <FieldTextarea
                 fieldClass="comment_area"
                 placeholder="Комментарий..."

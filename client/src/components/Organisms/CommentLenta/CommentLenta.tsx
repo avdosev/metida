@@ -47,7 +47,12 @@ export default function CommentLenta(props: IProps) {
     return (
         <div className="lenta">
             {treeComments.map((treeComment) => (
-                <Comment key={treeComment.comment.id} comment={treeComment} currentUser={user} onCommentChanged={props.onCommentChanged} />
+                <Comment
+                    key={treeComment.comment.id}
+                    comment={treeComment}
+                    currentUser={user}
+                    onCommentChanged={props.onCommentChanged}
+                />
             ))}
         </div>
     );
