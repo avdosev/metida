@@ -16,7 +16,7 @@ export default class FieldInput extends React.Component<IProps, IState> implemen
         super(props);
         this.state = {
             'value': props.value,
-            'valid': this.props.validate(this.state.value)
+            'valid': this.props.validate(props.value)
         }
     }
 
