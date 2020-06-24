@@ -8,7 +8,7 @@ interface IState extends ITextValid {
 
 }
 
-interface IProps extends ITextFieldErrored, IValid {
+interface IProps extends ITextFieldErrored {
 
 }
 
@@ -17,7 +17,7 @@ export default class FieldTextarea extends React.Component<IProps, IState> imple
         super(props);
         this.state = {
             'value': props.value,
-            'valid': props.valid
+            'valid': this.props.validate(props.value)
         }
     }
 
@@ -31,7 +31,7 @@ export default class FieldTextarea extends React.Component<IProps, IState> imple
 
     onChange(event: React.ChangeEvent<HTMLInputElement>): void {
         this.setState({'value': event.target.value});
-        this.props.onChange(event)
+        if (this.props.onChange) this.props.onChange(event)
     }
 
     render() {

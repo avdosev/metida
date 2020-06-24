@@ -8,7 +8,11 @@ export interface VerifiableContainer {
 }
 
 export class Container implements VerifiableContainer{
-    elements: Array<IVerifiable> = [];
+    elements: Array<IVerifiable>;
+
+    constructor(...items: IVerifiable[]) {
+        this.elements = [...items];
+    }
 
     verifyElements(): void {
         for (const element of this.elements) {

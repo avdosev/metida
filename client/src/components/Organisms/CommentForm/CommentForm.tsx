@@ -1,13 +1,14 @@
 import React from "react";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
-import {validators, Validators, ValidatorState} from "../IValidators";
-import {IIState} from "../IAuth";
+import FieldTextarea from "../../Molecules/Field/FieldTextarea";
+import {Field, validators, Validators, ValidatorState} from "../IValidators";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import {getArticleId} from "../../../services/comments";
 import {IComments} from "../IComment";
-import InnerCommentForm from "./InnerCommentForm";
-import {IFieldError} from "../../../services/validator/validator";
+import ValidateForm from "../ValidableForm/ValidateForm";
+import {Container} from "../../../services/validator/container";
+import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
+import {verifyByRegexp} from "../../../services/validator/validator";
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void
@@ -16,12 +17,16 @@ interface IProps {
     onReplyCommentSend?: () => void
 }
 
-interface IState extends IIState {
+interface IState {
     isAuth: boolean,
     isRendered: boolean,
-    comment: IFieldError,
+    comment: Field,
     linkToSend: string,
     articleId: string
+}
+
+function verifyComment(str: string): ValidatorState {
+    return verifyByRegexp(str, new RegExp(validators.comment.regexp))
 }
 
 export default class CommentForm extends React.Component<IProps, IState> {
@@ -31,22 +36,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
         this.state = {
             isAuth: false,
             comment: {value: '', valid: ValidatorState.Intermediate},
-            validators: validators,
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`
         }
-    }
-
-    handleUserInput = (event: any) => {
-        const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
-    }
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
-        if (fieldValid) return Valid.Acceptable
-        else return Valid.Invalid
     }
 
     async componentDidMount() {
@@ -59,14 +52,10 @@ export default class CommentForm extends React.Component<IProps, IState> {
                 isRendered: true,
                 comment: {
                     value: replyCommentAuthorName,
-                    valid: this.validateField('comment', this.state.comment.value)
+                    valid: verifyComment(this.state.comment.value)
                 }
             })
         }
-    }
-
-    onValidatorChange = async (validators: Validators) => {
-        this.setState({validators: validators})
     }
 
     submitBtn = async (event: any) => {
@@ -95,15 +84,34 @@ export default class CommentForm extends React.Component<IProps, IState> {
     render() {
         let comment: JSX.Element
         if (this.state.isAuth) {
-            comment = <InnerCommentForm
+            const commentInput = new FieldTextarea ({
+                fieldClass: "comment_area",
+                placeholder: "Комментарий...",
+                fieldName: "comment",
+                regexp: validators.comment.regexp,
+                value: this.state.comment.value,
+                errorText: validators.comment.error_str,
+                validate: verifyComment,
+                showErrorStrategy: IntermediateIsValid
+            })
+
+            const container = new Container(commentInput);
+
+            comment = <ValidateForm
+                action={this.state.linkToSend}
                 onSubmit={this.submitBtn}
-                onValidatorChange={this.onValidatorChange}
-                validators={this.state.validators}
-                comment={this.state.comment}
-                linkToSend={this.state.linkToSend}
-                validateFunc={this.handleUserInput}
-                extendedButtons={<button type="button" className="mainButton">Предпросмотр</button>}
-            />
+                className="comment"
+                verifiableElements={container}
+            >
+
+                {commentInput}
+
+                <div className="button_block">
+                    <button type="submit" className="mainButton" >Отправить </button>
+                    <button type="button" className="mainButton" >Предпросмотр </button>
+                </div>
+
+            </ValidateForm>
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>
         }
@@ -116,4 +124,3 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     }
 }
-

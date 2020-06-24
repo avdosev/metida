@@ -1,9 +1,10 @@
 import {RouteProps} from "react-router-dom";
 
-interface IRoute extends RouteProps {
+export interface IRoute extends RouteProps {
     isAuth: any;
     isAllowed?: boolean;
 }
 
-
-export type {IRoute}
+export interface IReferable {
+    referrer: JSX.Element | null
+}

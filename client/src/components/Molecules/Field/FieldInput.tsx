@@ -8,7 +8,7 @@ interface IState extends ITextValid {
 
 }
 
-interface IProps extends ITextFieldErrored, IValid {
+interface IProps extends ITextFieldErrored {
 }
 
 export default class FieldInput extends React.Component<IProps, IState> implements IVerifiable {
@@ -16,7 +16,7 @@ export default class FieldInput extends React.Component<IProps, IState> implemen
         super(props);
         this.state = {
             'value': props.value,
-            'valid': props.valid
+            'valid': this.props.validate(this.state.value)
         }
     }
 

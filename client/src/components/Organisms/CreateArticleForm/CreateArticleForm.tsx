@@ -1,63 +1,58 @@
 import React from "react";
 import "../../styles/input.scss"
 import * as ROUTES from "../../../config/routes";
-import {FieldInput} from "../../Molecules/Field/FieldInput";
+import FieldInput from "../../Molecules/Field/FieldInput";
 import {post} from "../../../services/router";
-import {IProps, IState} from "./ICreateArticleForm";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
-import Form from "../../Molecules/Form/Form";
-import {validators, Validators} from "../IValidators";
-import {FieldTextarea} from "../../Molecules/Field/FieldTextarea";
-import {Valid} from "../IAuth";
+import {Field, validators, Validators, ValidatorState} from "../IValidators";
+import FieldTextarea from "../../Molecules/Field/FieldTextarea";
+import {IReferable} from "../IRoute";
+import ValidateForm from "../ValidableForm/ValidateForm";
+import {Container} from "../../../services/validator/container";
+import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
+
+interface IProps {
+    onRenderPreview: (header: string, disclaimer: string, content: string) => void
+}
+
+interface IState extends IReferable {
+    header: string,
+    content: string,
+    disclaimer: string,
+    serverError: Field
+    isPreview: boolean,
+}
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
         this.state = {
-            header: {value: '', valid: Valid.Intermediate},
-            disclaimer: {value: '', valid: Valid.Intermediate},
-            content: {value: '', valid: Valid.Intermediate},
+            header: '',
+            disclaimer: '',
+            content: '',
             isPreview: false,
             referrer: <></>,
-            serverError: {value: '', valid: Valid.Intermediate},
-            validators: validators
+            serverError: {value: '', valid: ValidatorState.Intermediate},
         }
-    }
-
-    handleUserInput = (event: React.ChangeEvent<any>) => {
-        const valid = this.validateField(event.target.name, event.target.value)
-        this.setState({[event.target.name]: {value: event.target.value, valid: valid}}, () => {
-            if (this.state.isPreview) {
-                this.props.onRenderPreview(this.state.header.value, this.state.disclaimer.value, this.state.content.value)
-            }
-        }) 
-    }
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp)
-        if (fieldValid) return Valid.Acceptable
-        else return Valid.Invalid
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
         event.preventDefault()
         const response = await post(ROUTES.CREATE_ARTICLE, {
-            disclaimer: this.state.disclaimer.value,
-            header: this.state.header.value,
-            content: this.state.content.value
+            disclaimer: this.state.disclaimer,
+            header: this.state.header,
+            content: this.state.content
         });
 
         if (response.hasOwnProperty('error')) {
             this.setState({serverError: response.error})
-        }
-        else {
+        } else {
             if (response.message) { // такой себе, конечно, кусок кода
                 this.setState({referrer: <Redirect to={"/post/" + response.message} />})
-            }
-            else {
+            } else {
                 this.setState({referrer: <Redirect to={ROUTES.LANDING} />})
             }
             // TODO сделать нормальный редирект на статью
@@ -67,7 +62,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {content, header, disclaimer} = this.state
         if (e.target.checked) {
-            this.props.onRenderPreview(header.value, disclaimer.value, content.value)
+            this.props.onRenderPreview(header, disclaimer, content)
         }
         else {
             this.props.onRenderPreview("", "", "")
@@ -75,59 +70,65 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         this.setState({isPreview: e.target.checked})
     }
 
-    onValidatorChange = (validators: Validators) => {
-        this.setState({validators: validators})
-    }
-
 
     render() {
         const fd = this.state
-        const v: Validators = this.state.validators
+        const v: Validators = validators
 
-        return <Form className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
-                     onSubmit={this.submitBtnHandler} onValidatorChange={this.onValidatorChange} >
+        const header = new FieldInput({
+            fieldDescription: "Заголовок",
+            regexp: v.header.regexp,
+            value: fd.header,
+            fieldType: "text",
+            fieldName: "header",
+            placeholder: "Заголовок должен передавать основной смысл публикации.",
+            errorText: v.header.error_str,
+            autofocus: true,
+            showErrorStrategy: IntermediateIsValid,
+            validate: (str) => ValidatorState.Intermediate
+        })
+
+        const disclaimer = new FieldTextarea({
+            fieldDescription: "Дисклеймер",
+            regexp: v.disclaimer.regexp,
+            value: fd.disclaimer,
+            fieldType: "text",
+            fieldName: "disclaimer",
+            placeholder: "Здесь приводится краткое описание статьи.",
+            errorText: v.disclaimer.error_str,
+            showErrorStrategy: IntermediateIsValid,
+            validate: (str) => ValidatorState.Intermediate
+        })
+
+        const article = new FieldTextarea({
+            fieldId: "article",
+            fieldClass: "create_area",
+            fieldDescription: "Текст",
+            regexp: v.content.regexp,
+            value: fd.content,
+            fieldType: "text",
+            fieldName: "content",
+            placeholder: "Текст вашей статьи...",
+            errorText: v.content.error_str,
+            showErrorStrategy: IntermediateIsValid,
+            validate: (str) => ValidatorState.Intermediate
+        })
+
+        const container = new Container(header, disclaimer, article);
+
+        return <ValidateForm className="pushArticle" action={ROUTES.CREATE_ARTICLE} method="post"
+                     onSubmit={this.submitBtnHandler} verifiableElements={container} >
             {this.state.referrer}
-
-            <FieldInput valid={fd.header.valid}
-                        fieldDescription="Заголовок"
-                        validateFunc={this.handleUserInput}
-                        regexp={v.header.regexp}
-                        value={fd.header.value}
-                        fieldType="text"
-                        fieldName="header"
-                        placeholder="Заголовок должен передавать основной смысл публикации."
-                        text={v.header.error_str}
-                        autofocus
-            />
-
-            <FieldTextarea valid={fd.disclaimer.valid}
-                        fieldDescription="Дисклеймер"
-                        validateFunc={this.handleUserInput}
-                        regexp={v.disclaimer.regexp}
-                        value={fd.disclaimer.value}
-                        fieldType="text"
-                        fieldName="disclaimer"
-                        placeholder="Здесь приводится краткое описание статьи."
-                        text={v.disclaimer.error_str}
-            />
-
+            {header}
+            {disclaimer}
             <Checkbox id="previews" label="Предпросмотр" checked={this.state.isPreview} onClick={this.handleCheckboxChange} />
 
-            <FieldTextarea valid={fd.content.valid}
-                           fieldId="article"
-                           fieldClass="create_area"
-                           fieldDescription="Текст"
-                           validateFunc={this.handleUserInput}
-                           regexp={v.content.regexp}
-                           value={fd.content.value}
-                           fieldType="text"
-                           fieldName="content"
-                           placeholder="Текст вашей статьи..."
-                           text={v.content.error_str}
-            />
-            <ErrorPlaceholder valid={this.state.serverError.valid} text={this.state.serverError.value}/>
-            <button type="submit" className="mainButton">Отправить </button>
+            {article}
 
-        </Form>;
+            <button type="submit" className="mainButton">Отправить </button>
+            <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value}/>
+
+        </ValidateForm>;
     }
 }
+// 132

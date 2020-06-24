@@ -4,8 +4,7 @@ import "../../styles/input.scss"
 import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
-import Form from "../../Molecules/Form/Form";
-import {Field, validators, Validators, ValidatorState} from "../IValidators";
+import {Field, validators, ValidatorState} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper"
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {initialUser, IPublicUser} from "../IPrivateUser";
@@ -14,21 +13,15 @@ import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispa
 import ValidateForm from "../ValidableForm/ValidateForm";
 import {Container} from "../../../services/validator/container";
 import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
+import {IReferable} from '../IRoute';
 
-interface IProps extends ChangeHeaderInterface {
-    // user: null | IPublicUser
-    // signIn: () => any // какую-то функцию
-    // logout: () => any
-    setAuth: any
-}
+interface IProps extends ChangeHeaderInterface {}
 
-interface IState {
+interface IState extends IReferable {
     email: Field,
     password: Field,
     serverError: Field,
-    referrer: JSX.Element
 }
-
 
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
@@ -37,7 +30,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         this.state = {
             email: {value: '', valid: ValidatorState.Intermediate},
             password: {value: '', valid: ValidatorState.Intermediate},
-            referrer: <></>,
+            referrer: null,
             serverError: {value: '', valid: ValidatorState.Intermediate}
         }
     }
@@ -71,7 +64,6 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
 
         const email = new FieldInput({fieldName: "email",
                                   regexp: v!.email.regexp,
-                                  valid: fd.email.valid,
                                   autofocus: true,
                                   value: fd.email.value,
                                   errorText: v!.email.error_str,
@@ -80,15 +72,13 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         });
         const password = new FieldInput({ fieldName: "password",
                                      regexp: v!.password.regexp,
-                                     valid: fd.password.valid,
                                      value: fd.password.value,
                                      errorText: v!.password.error_str,
                                      showErrorStrategy: IntermediateIsValid,
                                      validate: (str) => ValidatorState.Intermediate,
         });
 
-        const container = new Container();
-        container.add(email, password);
+        const container = new Container(email, password);
 
         return (
             <div className="inputForm">
@@ -106,5 +96,3 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         )
     }
 }
-
-
