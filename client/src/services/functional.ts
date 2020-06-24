@@ -1,12 +1,12 @@
-export const pipeAsync = (...functions: any[]) => (input) =>
+export const pipeAsync = (...functions: any[]) => (input: any) =>
     functions.reduce((chain, func) => chain.then(func), Promise.resolve(input));
 
-export const composeAsync = (...functions: any[]) => (input) =>
+export const composeAsync = (...functions: any[]) => (input: any) =>
     functions.reduceRight((chain, func) => chain.then(func), Promise.resolve(input));
 
-export function curry(fn) {
+export function curry(fn: any) {
     const arity = fn.length; // check the arity of the given function
-    let args = []; // store all arguments here
+    let args: any[] = []; // store all arguments here
     function curried() {
         // the curried function
         args = args.concat(Array.prototype.slice.call(arguments));
