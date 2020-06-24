@@ -10,7 +10,7 @@ import React from 'react';
 import { LANDING } from '../../../config/routes';
 import { Simulate } from 'react-dom/test-utils';
 import submit = Simulate.submit;
-import { curry } from "@typed/curry";
+import { curry } from '@typed/curry';
 
 interface IPush {
     [name: string]: string;
