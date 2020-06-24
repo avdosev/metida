@@ -1,10 +1,6 @@
 import React from "react";
-import {Validators} from "../IValidators";
 import Form from "../../Molecules/Form/Form";
 import {VerifiableContainer} from "../../../services/validator/container";
-interface IState {
-
-}
 
 interface IProps {
     className?: string
@@ -15,7 +11,7 @@ interface IProps {
 }
 
 
-export default class ValidateForm extends React.Component<IProps, IState> {
+export default class ValidateForm extends React.Component<IProps> {
     onSubmit(event: any) {
         if (!this.props.verifiableElements.allValid()) {
             this.props.verifiableElements.verifyElements();

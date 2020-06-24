@@ -1,9 +1,34 @@
-import {IValid, ValidatorState, verifyByRegexp} from "../../services/validator/validator";
+import {IValid, ValidatorState, verifyByRegexp, IVerifiable} from "../../services/validator/validator";
+import React from "react";
 export { ValidatorState } from "../../services/validator/validator";
 
 export interface Field {
     value: string,
     valid: ValidatorState
+}
+
+export class VerifiableField implements IVerifiable, Field {
+    validator: (str: string) => ValidatorState
+    value: string
+    valid: ValidatorState
+
+    constructor(value: string, validator: (str: string) => ValidatorState) {
+        this.value = value
+        this.valid = validator(value)
+        this.validator = validator
+    }
+
+    validate(): ValidatorState {
+        return this.validator(this.value)
+    }
+
+    changeValidatorState(state: ValidatorState): void {
+        this.valid = state
+    }
+}
+
+export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, field: K) {
+    return (event: React.ChangeEvent<any>) => obj.setState({[field]: {value: event.target.value}})
 }
 
 export interface ValidatorFields {
