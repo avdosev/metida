@@ -1,45 +1,44 @@
-
 interface LexRow {
-    regexp: string,
-    color?: string
+    regexp: string;
+    color?: string;
 }
 
 interface AbstractLexTable {
-    [name: string]: LexRow
+    [name: string]: LexRow;
 }
 
 interface LexTable extends AbstractLexTable {
     indentation: {
-        "regexp": string
-    },
+        regexp: string;
+    };
     keywords: {
-        "regexp": string,
-        "color": string
-    },
+        regexp: string;
+        color: string;
+    };
     ident: {
-        regexp: string
-    },
+        regexp: string;
+    };
     string_constant: {
-        regexp: string,
-        color: string
-    },
+        regexp: string;
+        color: string;
+    };
     operators: {
-        regexp: string
-    },
+        regexp: string;
+    };
     comment: {
-        regexp: string,
-        color: string
-    },
+        regexp: string;
+        color: string;
+    };
     separators: {
-        regexp: string
-    },
+        regexp: string;
+    };
     digit_const: {
-        regexp: string,
-        color: string
-    },
+        regexp: string;
+        color: string;
+    };
     error: {
-        regexp: string
-    }
+        regexp: string;
+    };
 }
 
-export type {LexTable}
+export type { LexTable };

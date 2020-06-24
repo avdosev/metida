@@ -1,145 +1,141 @@
-@import 'colors';
+@import "colors";
 
 .new_comment_block {
-    width: 100%
+  width: 100%;
 }
 
 .new_comment_block .comment {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .new_comment_block .comment * {
-    margin-block-end: 10px
+  margin-block-end: 10px;
 }
 
 .comment_childer {
-    padding-left: 25px;
-    border-left: solid 1px $comments-left-border-color;
+  padding-left: 25px;
+  border-left: solid 1px $comments-left-border-color;
 }
 
-.comment_control[data-type=create]::after {
-    content: "ответить";
+.comment_control[data-type="create"]::after {
+  content: "ответить";
 }
 
-.comment_control[data-type=cancel]::after {
-    content: "отмена";
+.comment_control[data-type="cancel"]::after {
+  content: "отмена";
 }
 
 .comment_control {
-    margin-block-end: 5px
+  margin-block-end: 5px;
 }
 
 .comment {
-    position: relative;
-    margin-bottom: 20px;
-    width: 100%
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .comment_text img {
-    max-width: 500px;
-    max-height: 500px;
+  max-width: 500px;
+  max-height: 500px;
 }
-
 
 .comment_area {
-    resize: none;
-    border: 1px solid $main-bord-color;
-    width: 100%;
-    min-height: 170px
+  resize: none;
+  border: 1px solid $main-bord-color;
+  width: 100%;
+  min-height: 170px;
 }
 
-.comment_area:focus{
-    border-color: $unique-color;
+.comment_area:focus {
+  border-color: $unique-color;
 }
 
 .button_block {
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Lato", sans-serif;
 }
 
-#view{
-    /*outline: none;*/
-    height: 30px;
-    width: 150px;
-    margin-left: 10px;
-    border: 1px solid black;
-    background-color: $main-metida-color;
-    transition: 0.5s;
+#view {
+  /*outline: none;*/
+  height: 30px;
+  width: 150px;
+  margin-left: 10px;
+  border: 1px solid black;
+  background-color: $main-metida-color;
+  transition: 0.5s;
 }
 
 .EnterButton {
-    /*outline: none;*/
-    height: 30px;
-    width: 150px;
-    margin-right: 10px;
-    border: 3px double;
-    background-color: $unique-color;
-    color: $main-metida-color;
-    transition: 0.5s;
+  /*outline: none;*/
+  height: 30px;
+  width: 150px;
+  margin-right: 10px;
+  border: 3px double;
+  background-color: $unique-color;
+  color: $main-metida-color;
+  transition: 0.5s;
 }
 
-#view:active{
-    background-color: $buttom-active;
+#view:active {
+  background-color: $buttom-active;
 }
 
-.EnterButton:active{
-    background-color: $buttom-active;
+.EnterButton:active {
+  background-color: $buttom-active;
 }
 
 .reply {
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    background-color: $unique-color;
-    padding: 4px;
-    border: 0;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: $unique-color;
+  padding: 4px;
+  border: 0;
 }
 
 .comment_text img {
-    max-height: 500px;
-    width: 500px;
-    max-width: 100%;
+  max-height: 500px;
+  width: 500px;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 650px) {
-    .new_comment_block form textarea {
-        min-width: 300px;
-    }
+  .new_comment_block form textarea {
+    min-width: 300px;
+  }
 
-    .comment_childer {
-        padding-left: 15px; 
-    }
-
+  .comment_childer {
+    padding-left: 15px;
+  }
 }
 
-@media (hover:hover) { 
+@media (hover: hover) {
+  .comment_area:hover {
+    border-color: $main-hover-color;
+  }
 
-    .comment_area:hover{
-        border-color: $main-hover-color;
-    }
+  .Btn:hover {
+    background-color: $buttom-hover;
+    transition: 0.5s;
+  }
 
-    .Btn:hover{
-        background-color: $buttom-hover;
-        transition: 0.5s;
-    }
+  #view:hover {
+    background-color: $buttom-hover;
+    color: $main-metida-color;
+    transition: 0.5s;
+  }
 
-    #view:hover{
-        background-color: $buttom-hover;
-        color: $main-metida-color;
-        transition: 0.5s;
-    }
+  .reply:hover {
+    background-color: black;
+    transition: 0.5s;
+  }
 
-    .reply:hover {
-        background-color: black;
-        transition: 0.5s;
-    }
-
-    .EnterButton:hover{
-        background-color: $buttom-hover;
-        transition: 0.5s;
-    }
-
+  .EnterButton:hover {
+    background-color: $buttom-hover;
+    transition: 0.5s;
+  }
 }

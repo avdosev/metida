@@ -2,100 +2,98 @@
 @import "colors";
 
 .post {
-    border-bottom: 1px solid grey;
-    margin-bottom: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 30px;
+  border-bottom: 1px solid grey;
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 30px;
 }
 
 .lenta {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .lenta {
-    width: 100%;
+  width: 100%;
 }
 
 h3 {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .head {
-    width: 100%;
+  width: 100%;
 }
 
 .after_post__button {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px 10px;
 }
 
-
 .BtnToArticleComments {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .BtnToArticle:hover {
-    color: $text-color !important;
-    background-color: rgb(219, 219, 219);
-    transition: 0.7s;
+  color: $text-color !important;
+  background-color: rgb(219, 219, 219);
+  transition: 0.7s;
 }
 
 .title {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .title a {
-    color: $text-color;
-    text-decoration: underline $ccc-color;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 6px;
+  color: $text-color;
+  text-decoration: underline $ccc-color;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
 
-.title a:visited:hover, .title a:hover {
-    color: $url-color;
+.title a:visited:hover,
+.title a:hover {
+  color: $url-color;
 }
-
 
 .title a:visited {
-    color: $unique-color;
+  color: $unique-color;
 }
 
 .title a:focus {
-    font-weight: bolder; /* не работает */
-    color: tomato;
-    outline: none
+  font-weight: bolder; /* не работает */
+  color: tomato;
+  outline: none;
 }
 
 .post p {
-    font-size: 18px;
-    line-height: 30px;
-    word-break: break-word;
-    margin-top: 0;
+  font-size: 18px;
+  line-height: 30px;
+  word-break: break-word;
+  margin-top: 0;
 }
 
-
 .after_post_icon {
-    height: 25px;
-    border-radius: unset;
-    fill: $main-back-color;
+  height: 25px;
+  border-radius: unset;
+  fill: $main-back-color;
 }
 
 .after_post_icon:hover {
-    filter: invert(27%)  brightness(104%) contrast(97%);
+  filter: invert(27%) brightness(104%) contrast(97%);
 }
 
 .after_post {
-    /* border-top: 1px solid grey; */
-    width: 99%;
-    padding: 4px 2px 0px 2px;
+  /* border-top: 1px solid grey; */
+  width: 99%;
+  padding: 4px 2px 0px 2px;
 
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }

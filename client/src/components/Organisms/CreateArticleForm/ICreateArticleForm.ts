@@ -1,17 +1,16 @@
-import {Validators} from "../IValidators";
-import {Field, IIState} from "../IAuth";
-
+import { Validators } from '../IValidators';
+import { Field, IIState } from '../IAuth';
 
 interface IProps {
-    onRenderPreview: (header: string, disclaimer: string, content: string) => void
+    onRenderPreview: (header: string, disclaimer: string, content: string) => void;
 }
 
 interface IState extends IIState {
-    header: Field,
-    content: Field,
-    disclaimer: Field,
-    serverError: Field
-    isPreview: boolean,
+    header: Field;
+    content: Field;
+    disclaimer: Field;
+    serverError: Field;
+    isPreview: boolean;
 }
 
-export type {IProps, IState}
+export type { IProps, IState };
