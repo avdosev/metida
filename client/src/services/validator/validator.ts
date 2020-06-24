@@ -23,7 +23,7 @@ export function verifyByRegexps(str: string, regexps: regexpVerifiable) : Valida
 }
 
 export function verifyByRegexp(str: string, acceptable: RegExp) : ValidatorState {
-    if (str.match(acceptable)) return ValidatorState.Acceptable
+    if (!!str.match(acceptable)) return ValidatorState.Acceptable
     else if (str.length === 0) return ValidatorState.Intermediate
     else return ValidatorState.Invalid
 }
