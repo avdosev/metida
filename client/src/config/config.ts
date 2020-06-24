@@ -1,14 +1,13 @@
-console.log(process.env.NODE_ENV)
+console.log(process.env.NODE_ENV);
 let serverUri: string;
 
-if (process.env.NODE_ENV === "development") {
-    const host = "localhost"
-    const serverPort = 7080
-    serverUri = `http://${host}:${serverPort}`
+if (process.env.NODE_ENV === 'development') {
+    const host = 'localhost';
+    const serverPort = 7080;
+    serverUri = `http://${host}:${serverPort}`;
 } else {
-    serverUri = ''
-
+    serverUri = '';
 }
 
-export {serverUri}
-export const lexTableUrl = '/json/lexem_table.json'
+export { serverUri };
+export const lexTableUrl = '/json/lexem_table.json';

@@ -20,13 +20,13 @@
     "test": "tsc",
     "jest": "jest --detectOpenHandles",
     "webpack:dev": "./node_modules/.bin/webpack-dev-server --inline --hot --watch",
-    "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production"
+    "webpack:prod": "./node_modules/.bin/webpack -p --progress --profile --env.production",
+    "prettier": "prettier --config .prettierrc.yaml --write \"./src\" "
   },
   "dependencies": {
     "highlight.js": "^10.1.0",
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^11.0.0",
-    "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.10.1",
+    "@typed/curry": "^1.0.1",
     "@types/dotenv": "^8.2.0",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -95,6 +96,7 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "yarn run prettier",
       "pre-push": "yarn test"
     }
   }
