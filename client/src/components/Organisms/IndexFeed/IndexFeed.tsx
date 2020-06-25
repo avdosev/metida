@@ -44,7 +44,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
 
         const json = await post('/top', {
             begin: this.state.lenta.length,
-            end: this.state.lenta.length + articlesCount
+            end: this.state.lenta.length + articlesCount,
         });
         //debugger;
 
