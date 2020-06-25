@@ -1,10 +1,9 @@
 import React from "react";
 import "../../styles/main.scss"
 import "../../styles/input.scss"
-import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom";
-import {Field, validators, ValidatorState} from "../IValidators";
+import {Field, UpdateVerifiableField, validateField, validators, ValidatorState, VerifiableField} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {getCurrentUser} from "../../../services/user";
@@ -12,55 +11,60 @@ import {ChangeHeaderInterface} from "../../../containers/ChangeHeaderEvent/dispa
 import ValidateForm from "../ValidableForm/ValidateForm";
 import {IReferable} from "../IRoute";
 import {Container} from "../../../services/validator/container";
-import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
+import FieldInput from "../../Molecules/Field/FieldInput";
+import {IntermediateIsInvalid, IntermediateIsValid} from "../../../services/validator/show_error_strategies";
 
-interface IProps {
+interface IProps extends ChangeHeaderInterface{
 
 }
 
 
 interface IState extends IReferable {
-    repassword: string,
-    login: string,
-    email: string,
-    password: string,
+    login: VerifiableField,
+    email: VerifiableField,
+    password: VerifiableField,
+    repassword: VerifiableField,
     serverError : Field,
-
 }
 
-export default class RegisterForm extends React.Component<ChangeHeaderInterface, IState> {
-    constructor(props: ChangeHeaderInterface) {
+function comparePasswords(password: string, repassword: string): ValidatorState {
+    let isPasswordEqual;
+    if (password === repassword) {
+        isPasswordEqual = ValidatorState.Acceptable
+    } else if (repassword.length === 0) {
+        isPasswordEqual = ValidatorState.Intermediate
+    }else {
+        isPasswordEqual = ValidatorState.Invalid
+    }
+    return isPasswordEqual;
+}
+
+export default class RegisterForm extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props)
+        // это особенность работы класса VerifiableField по другому мне лень
+        // @ts-ignore
         this.state = {
-            repassword: '',
-            login: '',
-            email: '',
-            password: '',
+            login: new VerifiableField('', validateField(validators.login)),
+            email: new VerifiableField('', validateField(validators.email)),
+            password: new VerifiableField('', validateField(validators.password)),
             referrer: null,
             serverError: {value: '', valid: ValidatorState.Intermediate},
         }
+        Object.assign(this.state, {
+            repassword: new VerifiableField('', this.compareRepassword)
+        })
     }
 
-    comparePasswords = (): ValidatorState => {
-        let isPasswordEqual;
-        if (this.state.password === this.state.repassword) {
-            isPasswordEqual = ValidatorState.Acceptable
-        } else {
-            isPasswordEqual = ValidatorState.Invalid
-        }
-        return isPasswordEqual;
-    }
-
-    compareRepassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // const valid = this.validateField(event.target.name, event.target.value) && event.target.value === this.state.password.value
-        // this.setState({[event.target.name]: {value: event.target.value, valid: valid}})
+    compareRepassword = (str: string): ValidatorState => {
+        return comparePasswords(this.state.password.value, str)
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
         let error = await loginQuery(event, ROUTES.REGISTER, {
-            email: this.state.email,
-            password: this.state.password,
-            login: this.state.login,
+            email: this.state.email.value,
+            password: this.state.password.value,
+            login: this.state.login.value,
         });
         if (error) {
             if (error.match("Cannot POST")) {
@@ -84,57 +88,63 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
         const fd = this.state
         const v = validators
 
-        // const email = new FieldInput({
-        //     fieldName: "email",
-        //     regexp: v!.email.regexp,
-        //     autofocus: true,
-        //     value: fd.email,
-        //     errorText: v!.email.error_str,
-        //     validate: (str) => ValidatorState.Intermediate,
-        //     showErrorStrategy: IntermediateIsValid
-        // })
-        // const login = new FieldInput({
-        //     fieldName: "login",
-        //     regexp: v!.login.regexp,
-        //     value: fd.login,
-        //     errorText: v!.login.error_str,
-        //     validate: (str) => ValidatorState.Intermediate,
-        //     showErrorStrategy: IntermediateIsValid
-        // })
-        //
-        // const password = new FieldInput({
-        //     fieldName: "password",
-        //     regexp: v!.password.regexp,
-        //     value: fd.password,
-        //     errorText: v!.password.error_str,
-        //     validate: (str) => ValidatorState.Intermediate,
-        //     showErrorStrategy: IntermediateIsValid
-        // })
-        //
-        // const repassword = new FieldInput({ fieldName: "repassword",
-        //     fieldType: "password",
-        //     regexp: v!.repassword.regexp,
-        //     value: fd.repassword,
-        //     errorText: v!.repassword.error_str,
-        //     validate: (str) => ValidatorState.Intermediate,
-        //     showErrorStrategy: IntermediateIsValid
-        // })
-
-        // const container = new Container(email, login, password, repassword);
+        const container = new Container(fd.email, fd.login, fd.password, fd.repassword);
 
         return (
             <div className="inputForm">
-                {/*{this.state.referrer}*/}
-                {/*<ValidateForm onSubmit={this.submitBtnHandler}*/}
-                {/*      action={ROUTES.REGISTER} verifiableElements={container}>*/}
-                {/*    /!*{email}*!/*/}
-                {/*    /!*{login}*!/*/}
-                {/*    /!*{password}*!/*/}
-                {/*    /!*{repassword}*!/*/}
-                {/*    <button type="submit" className="mainButton">Зарегистрироваться</button>*/}
-                {/*    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />*/}
+                {this.state.referrer}
+                <ValidateForm onSubmit={this.submitBtnHandler} className="reg"
+                      action={ROUTES.REGISTER} verifiableElements={container}>
 
-                {/*</ValidateForm>*/}
+                    <FieldInput
+                        fieldName="email"
+                        autofocus
+                        regexp={v!.email.regexp}
+                        value={fd.email.value}
+                        errorText={v!.email.error_str}
+                        fieldDescription="Электронная почта"
+                        showErrorStrategy={ IntermediateIsValid}
+                        onChange={UpdateVerifiableField(this, "email")}
+                        validate={fd.email.validator}
+                    />
+                    <FieldInput
+                        fieldName="login"
+                        regexp={v!.login.regexp}
+                        fieldDescription="Логин"
+                        value={fd.login.value}
+                        errorText={v!.login.error_str}
+                        showErrorStrategy={ IntermediateIsValid}
+                        onChange={UpdateVerifiableField(this, "login")}
+                        validate={fd.login.validator}
+                    />
+
+                    <FieldInput
+                        fieldName="password"
+                        regexp={v!.password.regexp}
+                        fieldDescription="Пароль"
+                        value={fd.password.value}
+                        errorText={v!.password.error_str}
+                        showErrorStrategy={ IntermediateIsValid}
+                        onChange={UpdateVerifiableField(this, "password")}
+                        validate={fd.password.validator}
+                    />
+
+                    <FieldInput
+                        fieldName="repassword"
+                        fieldType="password"
+                        regexp={v!.repassword.regexp}
+                        value={fd.repassword.value}
+                        errorText={v!.repassword.error_str}
+                        fieldDescription="Повторите пароль"
+                        showErrorStrategy={ IntermediateIsInvalid}
+                        onChange={UpdateVerifiableField(this, "repassword")}
+                        validate={fd.repassword.validator}
+                    />
+
+                    <button type="submit" className="mainButton">Зарегистрироваться</button>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
+
+                </ValidateForm>
 
             </div>
 

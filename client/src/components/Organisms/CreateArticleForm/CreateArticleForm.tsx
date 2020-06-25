@@ -6,7 +6,15 @@ import {post} from "../../../services/router";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
-import {Field, validateField, validators, Validators, ValidatorState, VerifiableField} from "../IValidators";
+import {
+    Field,
+    UpdateVerifiableField,
+    validateField,
+    validators,
+    Validators,
+    ValidatorState,
+    VerifiableField
+} from "../IValidators";
 import FieldTextarea from "../../Molecules/Field/FieldTextarea";
 import {IReferable} from "../IRoute";
 import ValidateForm from "../ValidableForm/ValidateForm";
@@ -88,9 +96,10 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 fieldName={ "header"}
                 placeholder={ "Заголовок должен передавать основной смысл публикации."}
                 errorText={ v.header.error_str}
-                autofocus={ true}
+                autofocus
                 showErrorStrategy={ IntermediateIsValid}
                 validate={fd.header.validator}
+                onChange={UpdateVerifiableField(this, "header")}
             />
             <FieldTextarea
                 fieldDescription={ "Дисклеймер"}
@@ -102,6 +111,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 errorText={ v.disclaimer.error_str}
                 showErrorStrategy={ IntermediateIsValid}
                 validate={fd.disclaimer.validator}
+                onChange={UpdateVerifiableField(this, "disclaimer")}
             />
             <Checkbox id="previews" label="Предпросмотр" checked={this.state.isPreview} onClick={this.handleCheckboxChange} />
 
@@ -117,6 +127,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 errorText={ v.content.error_str}
                 showErrorStrategy={ IntermediateIsValid}
                 validate={ fd.disclaimer.validator}
+                onChange={UpdateVerifiableField(this, "content")}
             />
 
             <button type="submit" className="mainButton">Отправить </button>

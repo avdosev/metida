@@ -95,7 +95,6 @@ export const validators: Validators = {
     },
     "password": {
         "error_str": "Пароль должен содержать более 5 символов",
-        "EventError": ["EventErrorPassword"],
         "regexp": ".{5,}"
     },
     "repassword": {
