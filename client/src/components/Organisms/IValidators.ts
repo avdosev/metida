@@ -19,8 +19,7 @@ export class VerifiableField implements IVerifiable, Field {
         this.validator = validator
     }
 
-    validate(): ValidatorState {
-        console.log(this)
+    validate = (): ValidatorState  => {
         return this.validator(this.value)
     }
 

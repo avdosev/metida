@@ -90,7 +90,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 errorText={ v.header.error_str}
                 autofocus={ true}
                 showErrorStrategy={ IntermediateIsValid}
-                validate={fd.header.validate}
+                validate={fd.header.validator}
             />
             <FieldTextarea
                 fieldDescription={ "Дисклеймер"}
@@ -101,7 +101,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 placeholder={ "Здесь приводится краткое описание статьи."}
                 errorText={ v.disclaimer.error_str}
                 showErrorStrategy={ IntermediateIsValid}
-                validate={fd.disclaimer.validate}
+                validate={fd.disclaimer.validator}
             />
             <Checkbox id="previews" label="Предпросмотр" checked={this.state.isPreview} onClick={this.handleCheckboxChange} />
 
@@ -116,7 +116,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 placeholder={ "Текст вашей статьи..."}
                 errorText={ v.content.error_str}
                 showErrorStrategy={ IntermediateIsValid}
-                validate={ fd.disclaimer.validate}
+                validate={ fd.disclaimer.validator}
             />
 
             <button type="submit" className="mainButton">Отправить </button>
