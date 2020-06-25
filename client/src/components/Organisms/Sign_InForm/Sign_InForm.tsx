@@ -1,49 +1,48 @@
 import React from 'react';
 import '../../styles/main.scss';
 import '../../styles/input.scss';
-import { IProps, IState } from './ISign_InForm';
-import { FieldInput } from '../../Atoms/Field/FieldInput';
+import FieldInput from '../../Molecules/Field/FieldInput';
 import * as ROUTES from '../../../config/routes';
 import { Redirect } from 'react-router-dom';
-import Form from '../../Molecules/Form/Form';
-import { initialValidator, Validators } from '../IValidators';
-import { loginQuery, postLogin } from '../../Molecules/Form/FormHelper';
-import FieldError from '../../Atoms/FieldError/FieldError';
-import { Valid } from '../IAuth';
-import { initialUser, IPublicUser } from '../IPrivateUser';
+import {
+    Field,
+    validators,
+    ValidatorState,
+    VerifiableField,
+    UpdateVerifiableField,
+    validateField,
+} from '../IValidators';
+import { loginQuery, postLogin } from '../../../services/FormHelper';
+import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
+import { IPublicUser } from '../IPrivateUser';
 import { getCurrentUser } from '../../../services/user';
 import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
+import ValidateForm from '../ValidableForm/ValidateForm';
+import { Container } from '../../../services/validator/container';
+import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import { IReferable } from '../IRoute';
 import { composeAsync } from '../../../services/functional';
 import { curry } from '@typed/curry';
 
-export default class Sign_InForm extends React.Component<ChangeHeaderInterface, IState> {
-    constructor(props: ChangeHeaderInterface) {
+interface IProps extends ChangeHeaderInterface {}
+
+interface IState extends IReferable {
+    email: VerifiableField;
+    password: VerifiableField;
+    serverError: Field;
+}
+
+export default class Sign_InForm extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
         console.log(props);
         this.state = {
-            email: { value: '', valid: Valid.Intermediate },
-            password: { value: '', valid: Valid.Intermediate },
-            referrer: <></>,
-            serverError: { value: '', valid: Valid.Intermediate },
-            validators: initialValidator,
+            email: new VerifiableField('', validateField(validators.email)),
+            password: new VerifiableField('', validateField(validators.password)),
+            referrer: null,
+            serverError: { value: '', valid: ValidatorState.Intermediate },
         };
     }
-
-    onValidatorChange = (validators: Validators) => {
-        this.setState({ validators: validators });
-    };
-
-    handleUserInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ serverError: { value: '', valid: Valid.Acceptable } });
-        const valid = this.validateField(event.target.name, event.target.value);
-        this.setState({ [event.target.name]: { value: event.target.value, valid: valid } });
-    };
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp);
-        if (fieldValid) return Valid.Acceptable;
-        else return Valid.Invalid;
-    };
 
     submitBtnHandler = async (event: React.FormEvent) => {
         const allFields = {
@@ -60,43 +59,46 @@ export default class Sign_InForm extends React.Component<ChangeHeaderInterface, 
     };
 
     render() {
-        const fd = this.state;
-        const v = this.state.validators;
+        const state = this.state;
+        const v = validators;
+
+        const container = new Container(state.email, state.password);
 
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                {this.state.block}
-                <Form
-                    onValidatorChange={this.onValidatorChange}
+                <ValidateForm
                     onSubmit={this.submitBtnHandler}
+                    className={'reg'}
                     action={ROUTES.SIGN_IN}
+                    verifiableElements={container}
                 >
                     <FieldInput
-                        fieldName="email"
+                        fieldName={'email'}
                         regexp={v!.email.regexp}
-                        valid={fd.email.valid}
                         autofocus
-                        validateFunc={this.handleUserInput}
-                        value={fd.email.value}
-                        fieldDescription="Электронная почта"
-                        text={v!.email.error_str}
+                        value={state.email.value}
+                        errorText={v!.email.error_str}
+                        showErrorStrategy={IntermediateIsValid}
+                        validate={state.email.validator}
+                        onChange={UpdateVerifiableField(this, 'email')}
                     />
+
                     <FieldInput
-                        fieldName="password"
+                        fieldName={'password'}
                         regexp={v!.password.regexp}
-                        valid={fd.password.valid}
-                        validateFunc={this.handleUserInput}
-                        value={fd.password.value}
-                        fieldDescription="Пароль"
-                        text={v!.password.error_str}
+                        value={state.password.value}
+                        errorText={v!.password.error_str}
+                        showErrorStrategy={IntermediateIsValid}
+                        validate={state.password.validator}
+                        onChange={UpdateVerifiableField(this, 'password')}
                     />
-                    <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value} />
 
                     <button type="submit" className="mainButton">
                         Войти{' '}
                     </button>
-                </Form>
+                    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
+                </ValidateForm>
             </div>
         );
     }

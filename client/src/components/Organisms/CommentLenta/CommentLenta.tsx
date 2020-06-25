@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from '../../Atoms/Comment/Comment';
 import { IComments, ITreeComments } from '../IComment';
-import { loginQuery } from '../../Molecules/Form/FormHelper';
+import { loginQuery } from '../../../services/FormHelper';
 import { getCurrentUser } from '../../../services/user';
 import { IPrivateUser, IPublicUser } from '../IPrivateUser';
 
