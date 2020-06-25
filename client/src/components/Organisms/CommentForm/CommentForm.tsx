@@ -1,6 +1,13 @@
 import React from "react";
 import FieldTextarea from "../../Molecules/Field/FieldTextarea";
-import {UpdateVerifiableField, validators, Validators, ValidatorState, VerifiableField} from "../IValidators";
+import {
+    UpdateVerifiableField,
+    validateField,
+    validators,
+    Validators,
+    ValidatorState,
+    VerifiableField
+} from "../IValidators";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import {getArticleId} from "../../../services/comments";
@@ -25,17 +32,13 @@ interface IState {
     articleId: string
 }
 
-function verifyComment(str: string): ValidatorState {
-    return verifyByRegexp(str, new RegExp(validators.comment.regexp))
-}
-
 export default class CommentForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         const articleId = getArticleId()
         this.state = {
             isAuth: false,
-            comment: new VerifiableField('', str => ValidatorState.Intermediate),
+            comment: new VerifiableField('', validateField(validators.comment)),
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`
@@ -96,7 +99,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
                                regexp={validators.comment.regexp}
                                value={this.state.comment.value}
                                errorText={validators.comment.error_str}
-                               validate={verifyComment}
+                               validate={this.state.comment.validator}
                                showErrorStrategy={IntermediateIsValid}
                                onChange={UpdateVerifiableField(this, "comment")}
                 />

@@ -1,5 +1,6 @@
-import {IValid, ValidatorState, verifyByRegexp, IVerifiable} from "../../services/validator/validator";
+import {IVerifiable, ValidatorState, verifyByRegexp} from "../../services/validator/validator";
 import React from "react";
+
 export { ValidatorState } from "../../services/validator/validator";
 
 export interface Field {
@@ -33,13 +34,13 @@ export class VerifiableField implements IVerifiable, Field {
     }
 }
 
-export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, field: K) {
+export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, fieldKey: K) {
     return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         event.persist()
         obj.setState(
         (state: T['state']) => ({
-                // @ts-ignore //TODO: аргх я не смог указать прям все в типах как хотел
-                [field]: state[field].updatedValue(event.target.value)
+                // @ts-ignore
+                [fieldKey]: state[fieldKey].updatedValue(event.target.value)
             })
         )
     }

@@ -4,7 +4,7 @@ import "../../styles/input.scss"
 import FieldInput from "../../Molecules/Field/FieldInput";
 import * as ROUTES from "../../../config/routes"
 import {Redirect} from "react-router-dom"
-import {Field, validators, ValidatorState, VerifiableField, UpdateVerifiableField} from "../IValidators";
+import {Field, validators, ValidatorState, VerifiableField, UpdateVerifiableField, validateField} from "../IValidators";
 import {loginQuery} from "../../../services/FormHelper"
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
 import {IPublicUser} from "../IPrivateUser";
@@ -28,8 +28,8 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         super(props)
         console.log(props)
         this.state = {
-            email: new VerifiableField('', str => ValidatorState.Intermediate),
-            password: new VerifiableField('', str => ValidatorState.Intermediate),
+            email: new VerifiableField('', validateField(validators.email)),
+            password: new VerifiableField('', validateField(validators.password)),
             referrer: null,
             serverError: {value: '', valid: ValidatorState.Intermediate}
         }
@@ -67,7 +67,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         return (
             <div className="inputForm">
                 {this.state.referrer}
-                <ValidateForm onSubmit={this.submitBtnHandler}
+                <ValidateForm onSubmit={this.submitBtnHandler} className={"reg"}
                       action={ROUTES.SIGN_IN} verifiableElements={container}>
 
                     <FieldInput fieldName={"email"}

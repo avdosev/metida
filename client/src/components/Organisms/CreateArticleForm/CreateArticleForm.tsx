@@ -6,7 +6,7 @@ import {post} from "../../../services/router";
 import Checkbox from "../../Atoms/Checkbox/Checkbox";
 import {Redirect} from "react-router-dom";
 import ErrorPlaceholder from "../../Atoms/ErrorPlaceholder/ErrorPlaceholder";
-import {Field, validators, Validators, ValidatorState, VerifiableField} from "../IValidators";
+import {Field, validateField, validators, Validators, ValidatorState, VerifiableField} from "../IValidators";
 import FieldTextarea from "../../Molecules/Field/FieldTextarea";
 import {IReferable} from "../IRoute";
 import ValidateForm from "../ValidableForm/ValidateForm";
@@ -30,9 +30,9 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props)
         this.state = {
-            header: new VerifiableField('', (str) => ValidatorState.Intermediate),
-            disclaimer: new VerifiableField('', (str) => ValidatorState.Intermediate),
-            content: new VerifiableField('', (str) => ValidatorState.Intermediate),
+            header: new VerifiableField('', validateField(validators.header)),
+            disclaimer: new VerifiableField('', validateField(validators.disclaimer)),
+            content: new VerifiableField('', validateField(validators.content)),
             isPreview: false,
             referrer: <></>,
             serverError: {value: '', valid: ValidatorState.Intermediate},
@@ -125,4 +125,3 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         </ValidateForm>;
     }
 }
-// 132
