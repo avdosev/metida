@@ -19,6 +19,7 @@ export class VerifiableField implements IVerifiable, Field {
     }
 
     validate(): ValidatorState {
+        console.log(this)
         return this.validator(this.value)
     }
 
@@ -33,12 +34,15 @@ export class VerifiableField implements IVerifiable, Field {
 }
 
 export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, field: K) {
-    return (event: React.ChangeEvent<any>) => obj.setState(
+    return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        event.persist()
+        obj.setState(
         (state: T['state']) => ({
-            // @ts-ignore //TODO: аргх я не смог указать прям все в типах как хотел
-            [field]: state[field].updatedValue(event.target.value)
-        })
-    )
+                // @ts-ignore //TODO: аргх я не смог указать прям все в типах как хотел
+                [field]: state[field].updatedValue(event.target.value)
+            })
+        )
+    }
 }
 
 export interface ValidatorFields {

@@ -12,7 +12,7 @@ interface IProps {
 
 
 export default class ValidateForm extends React.Component<IProps> {
-    onSubmit(event: any) {
+    onSubmit = (event: any) => {
         if (!this.props.verifiableElements.allValid()) {
             this.props.verifiableElements.verifyElements();
             return;

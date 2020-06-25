@@ -76,7 +76,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                                 value={state.email.value}
                                 errorText={v!.email.error_str}
                                 showErrorStrategy={IntermediateIsValid}
-                                validate={state.email.validate}
+                                validate={state.email.validator}
                                 onChange={UpdateVerifiableField(this, "email")}
                     />
 
@@ -85,7 +85,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                                 value={state.password.value}
                                 errorText={v!.password.error_str}
                                 showErrorStrategy={IntermediateIsValid}
-                                validate={state.password.validate}
+                                validate={state.password.validator}
                                 onChange={UpdateVerifiableField(this, "password")}
                     />
 

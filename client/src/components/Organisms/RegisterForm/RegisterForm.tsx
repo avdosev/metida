@@ -84,57 +84,57 @@ export default class RegisterForm extends React.Component<ChangeHeaderInterface,
         const fd = this.state
         const v = validators
 
-        const email = new FieldInput({
-            fieldName: "email",
-            regexp: v!.email.regexp,
-            autofocus: true,
-            value: fd.email,
-            errorText: v!.email.error_str,
-            validate: (str) => ValidatorState.Intermediate,
-            showErrorStrategy: IntermediateIsValid
-        })
-        const login = new FieldInput({
-            fieldName: "login",
-            regexp: v!.login.regexp,
-            value: fd.login,
-            errorText: v!.login.error_str,
-            validate: (str) => ValidatorState.Intermediate,
-            showErrorStrategy: IntermediateIsValid
-        })
+        // const email = new FieldInput({
+        //     fieldName: "email",
+        //     regexp: v!.email.regexp,
+        //     autofocus: true,
+        //     value: fd.email,
+        //     errorText: v!.email.error_str,
+        //     validate: (str) => ValidatorState.Intermediate,
+        //     showErrorStrategy: IntermediateIsValid
+        // })
+        // const login = new FieldInput({
+        //     fieldName: "login",
+        //     regexp: v!.login.regexp,
+        //     value: fd.login,
+        //     errorText: v!.login.error_str,
+        //     validate: (str) => ValidatorState.Intermediate,
+        //     showErrorStrategy: IntermediateIsValid
+        // })
+        //
+        // const password = new FieldInput({
+        //     fieldName: "password",
+        //     regexp: v!.password.regexp,
+        //     value: fd.password,
+        //     errorText: v!.password.error_str,
+        //     validate: (str) => ValidatorState.Intermediate,
+        //     showErrorStrategy: IntermediateIsValid
+        // })
+        //
+        // const repassword = new FieldInput({ fieldName: "repassword",
+        //     fieldType: "password",
+        //     regexp: v!.repassword.regexp,
+        //     value: fd.repassword,
+        //     errorText: v!.repassword.error_str,
+        //     validate: (str) => ValidatorState.Intermediate,
+        //     showErrorStrategy: IntermediateIsValid
+        // })
 
-        const password = new FieldInput({
-            fieldName: "password",
-            regexp: v!.password.regexp,
-            value: fd.password,
-            errorText: v!.password.error_str,
-            validate: (str) => ValidatorState.Intermediate,
-            showErrorStrategy: IntermediateIsValid
-        })
-
-        const repassword = new FieldInput({ fieldName: "repassword",
-            fieldType: "password",
-            regexp: v!.repassword.regexp,
-            value: fd.repassword,
-            errorText: v!.repassword.error_str,
-            validate: (str) => ValidatorState.Intermediate,
-            showErrorStrategy: IntermediateIsValid
-        })
-
-        const container = new Container(email, login, password, repassword);
+        // const container = new Container(email, login, password, repassword);
 
         return (
             <div className="inputForm">
-                {this.state.referrer}
-                <ValidateForm onSubmit={this.submitBtnHandler}
-                      action={ROUTES.REGISTER} verifiableElements={container}>
-                    {email}
-                    {login}
-                    {password}
-                    {repassword}
-                    <button type="submit" className="mainButton">Зарегистрироваться</button>
-                    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
+                {/*{this.state.referrer}*/}
+                {/*<ValidateForm onSubmit={this.submitBtnHandler}*/}
+                {/*      action={ROUTES.REGISTER} verifiableElements={container}>*/}
+                {/*    /!*{email}*!/*/}
+                {/*    /!*{login}*!/*/}
+                {/*    /!*{password}*!/*/}
+                {/*    /!*{repassword}*!/*/}
+                {/*    <button type="submit" className="mainButton">Зарегистрироваться</button>*/}
+                {/*    <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />*/}
 
-                </ValidateForm>
+                {/*</ValidateForm>*/}
 
             </div>
 

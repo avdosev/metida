@@ -13,7 +13,7 @@ interface IProps {
 
 
 export default class Form extends React.Component<IProps, IState> {
-    onSubmit(event: any) {
+    onSubmit = (event: any) => {
         event.preventDefault();
         this.props.onSubmit(event)
     }
