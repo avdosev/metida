@@ -25,10 +25,20 @@ export class VerifiableField implements IVerifiable, Field {
     changeValidatorState(state: ValidatorState): void {
         this.valid = state
     }
+
+    updatedValue(value: string) {
+        this.value = value
+        return this
+    }
 }
 
 export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, field: K) {
-    return (event: React.ChangeEvent<any>) => obj.setState({[field]: {value: event.target.value}})
+    return (event: React.ChangeEvent<any>) => obj.setState(
+        (state: T['state']) => ({
+            // @ts-ignore //TODO: аргх я не смог указать прям все в типах как хотел
+            [field]: state[field].updatedValue(event.target.value)
+        })
+    )
 }
 
 export interface ValidatorFields {

@@ -1,6 +1,6 @@
 import React from "react";
 import FieldTextarea from "../../Molecules/Field/FieldTextarea";
-import {Field, validators, Validators, ValidatorState} from "../IValidators";
+import {UpdateVerifiableField, validators, Validators, ValidatorState, VerifiableField} from "../IValidators";
 import {get, post} from "../../../services/router";
 import {getCurrentUser, isAuth} from "../../../services/user"
 import {getArticleId} from "../../../services/comments";
@@ -20,7 +20,7 @@ interface IProps {
 interface IState {
     isAuth: boolean,
     isRendered: boolean,
-    comment: Field,
+    comment: VerifiableField,
     linkToSend: string,
     articleId: string
 }
@@ -35,7 +35,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
         const articleId = getArticleId()
         this.state = {
             isAuth: false,
-            comment: {value: '', valid: ValidatorState.Intermediate},
+            comment: new VerifiableField('', str => ValidatorState.Intermediate),
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
             linkToSend: `/api/post/${articleId}/comments`
@@ -50,10 +50,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
             this.setState({
                 isAuth: authed,
                 isRendered: true,
-                comment: {
-                    value: replyCommentAuthorName,
-                    valid: verifyComment(this.state.comment.value)
-                }
+                comment: this.state.comment.updatedValue(replyCommentAuthorName)
             })
         }
     }
@@ -84,18 +81,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
     render() {
         let comment: JSX.Element
         if (this.state.isAuth) {
-            const commentInput = new FieldTextarea ({
-                fieldClass: "comment_area",
-                placeholder: "Комментарий...",
-                fieldName: "comment",
-                regexp: validators.comment.regexp,
-                value: this.state.comment.value,
-                errorText: validators.comment.error_str,
-                validate: verifyComment,
-                showErrorStrategy: IntermediateIsValid
-            })
-
-            const container = new Container(commentInput);
+            const container = new Container(this.state.comment);
 
             comment = <ValidateForm
                 action={this.state.linkToSend}
@@ -104,7 +90,16 @@ export default class CommentForm extends React.Component<IProps, IState> {
                 verifiableElements={container}
             >
 
-                {commentInput}
+                <FieldTextarea fieldClass={"comment_area"}
+                               placeholder={"Комментарий..."}
+                               fieldName={"comment"}
+                               regexp={validators.comment.regexp}
+                               value={this.state.comment.value}
+                               errorText={validators.comment.error_str}
+                               validate={verifyComment}
+                               showErrorStrategy={IntermediateIsValid}
+                               onChange={UpdateVerifiableField(this, "comment")}
+                />
 
                 <div className="button_block">
                     <button type="submit" className="mainButton" >Отправить </button>
