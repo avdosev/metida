@@ -16,7 +16,7 @@ export const loginQuery = async (serverRoute: string, allFields: IPush) => {
     const carriedLS = curry(setls);
     const setUser = carriedLS(userFieldName);
 
-    const response = await post(serverRoute, allFields, res => res);
+    const response = await post(serverRoute, allFields, (res) => res);
     console.log(response);
     if (response.ok) {
         const userinfo = await response.json();

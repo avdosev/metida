@@ -10,7 +10,7 @@ import {
     ValidatorState,
     VerifiableField,
     UpdateVerifiableField,
-    validateField
+    validateField,
 } from '../IValidators';
 import { loginQuery, postLogin } from '../../../services/FormHelper';
 import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
@@ -40,14 +40,14 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
             email: new VerifiableField('', validateField(validators.email)),
             password: new VerifiableField('', validateField(validators.password)),
             referrer: null,
-            serverError: { value: '', valid: ValidatorState.Intermediate }
+            serverError: { value: '', valid: ValidatorState.Intermediate },
         };
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
         const allFields = {
             email: this.state.email.value,
-            password: this.state.password.value
+            password: this.state.password.value,
         };
         const sendDataToServer = curry(loginQuery)(ROUTES.SIGN_IN);
         const getResponse = curry(postLogin)(this.props.signIn);

@@ -6,5 +6,5 @@ export interface IRoute extends RouteProps {
 }
 
 export interface IReferable {
-    referrer: JSX.Element | null
+    referrer: JSX.Element | null;
 }

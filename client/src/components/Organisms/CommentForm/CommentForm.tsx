@@ -1,21 +1,21 @@
-import React from "react";
-import FieldTextarea from "../../Molecules/Field/FieldTextarea";
+import React from 'react';
+import FieldTextarea from '../../Molecules/Field/FieldTextarea';
 import {
     UpdateVerifiableField,
     validateField,
     validators,
     Validators,
     ValidatorState,
-    VerifiableField
-} from "../IValidators";
-import {get, post} from "../../../services/router";
-import {getCurrentUser, isAuth} from "../../../services/user"
-import {getArticleId} from "../../../services/comments";
-import {IComments} from "../IComment";
-import ValidateForm from "../ValidableForm/ValidateForm";
-import {Container} from "../../../services/validator/container";
-import {IntermediateIsValid} from "../../../services/validator/show_error_strategies";
-import {verifyByRegexp} from "../../../services/validator/validator";
+    VerifiableField,
+} from '../IValidators';
+import { get, post } from '../../../services/router';
+import { getCurrentUser, isAuth } from '../../../services/user';
+import { getArticleId } from '../../../services/comments';
+import { IComments } from '../IComment';
+import ValidateForm from '../ValidableForm/ValidateForm';
+import { Container } from '../../../services/validator/container';
+import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import { verifyByRegexp } from '../../../services/validator/validator';
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void;
@@ -25,11 +25,11 @@ interface IProps {
 }
 
 interface IState {
-    isAuth: boolean,
-    isRendered: boolean,
-    comment: VerifiableField,
-    linkToSend: string,
-    articleId: string
+    isAuth: boolean;
+    isRendered: boolean;
+    comment: VerifiableField;
+    linkToSend: string;
+    articleId: string;
 }
 
 export default class CommentForm extends React.Component<IProps, IState> {
@@ -56,8 +56,8 @@ export default class CommentForm extends React.Component<IProps, IState> {
             this.setState({
                 isAuth: authed,
                 isRendered: true,
-                comment: this.state.comment.updatedValue(replyCommentAuthorName)
-            })
+                comment: this.state.comment.updatedValue(replyCommentAuthorName),
+            });
         }
     }
 
@@ -89,30 +89,35 @@ export default class CommentForm extends React.Component<IProps, IState> {
         if (this.state.isAuth) {
             const container = new Container(this.state.comment);
 
-            comment = <ValidateForm
-                action={this.state.linkToSend}
-                onSubmit={this.submitBtn}
-                className="comment"
-                verifiableElements={container}
-            >
+            comment = (
+                <ValidateForm
+                    action={this.state.linkToSend}
+                    onSubmit={this.submitBtn}
+                    className="comment"
+                    verifiableElements={container}
+                >
+                    <FieldTextarea
+                        fieldClass={'comment_area'}
+                        placeholder={'Комментарий...'}
+                        fieldName={'comment'}
+                        regexp={validators.comment.regexp}
+                        value={this.state.comment.value}
+                        errorText={validators.comment.error_str}
+                        validate={this.state.comment.validator}
+                        showErrorStrategy={IntermediateIsValid}
+                        onChange={UpdateVerifiableField(this, 'comment')}
+                    />
 
-                <FieldTextarea fieldClass={"comment_area"}
-                               placeholder={"Комментарий..."}
-                               fieldName={"comment"}
-                               regexp={validators.comment.regexp}
-                               value={this.state.comment.value}
-                               errorText={validators.comment.error_str}
-                               validate={this.state.comment.validator}
-                               showErrorStrategy={IntermediateIsValid}
-                               onChange={UpdateVerifiableField(this, "comment")}
-                />
-
-                <div className="button_block">
-                    <button type="submit" className="mainButton" >Отправить </button>
-                    <button type="button" className="mainButton" >Предпросмотр </button>
-                </div>
-
-            </ValidateForm>
+                    <div className="button_block">
+                        <button type="submit" className="mainButton">
+                            Отправить{' '}
+                        </button>
+                        <button type="button" className="mainButton">
+                            Предпросмотр{' '}
+                        </button>
+                    </div>
+                </ValidateForm>
+            );
         } else {
             comment = <p>Зарегистрируйся, если хочешь оставить коммент</p>;
         }

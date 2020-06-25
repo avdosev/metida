@@ -1,13 +1,13 @@
-import {IVerifiable, ValidatorState} from "./validator";
+import { IVerifiable, ValidatorState } from './validator';
 
 export interface VerifiableContainer {
-    elements: Iterable<IVerifiable>
-    verifyElements(): void
-    add(...items: IVerifiable[]): void
-    allValid(): boolean
+    elements: Iterable<IVerifiable>;
+    verifyElements(): void;
+    add(...items: IVerifiable[]): void;
+    allValid(): boolean;
 }
 
-export class Container implements VerifiableContainer{
+export class Container implements VerifiableContainer {
     elements: Array<IVerifiable>;
 
     constructor(...items: IVerifiable[]) {
@@ -17,7 +17,7 @@ export class Container implements VerifiableContainer{
     verifyElements(): void {
         for (const element of this.elements) {
             const state = element.validate();
-            element.changeValidatorState(state)
+            element.changeValidatorState(state);
         }
     }
 
