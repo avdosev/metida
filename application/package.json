@@ -9,7 +9,7 @@
     "url": "git+https://github.com/avdosev/metida"
   },
   "engines": {
-    "node": "13.7.x"
+    "node": "14.x"
   },
   "author": "K. company",
   "license": "ISC",
