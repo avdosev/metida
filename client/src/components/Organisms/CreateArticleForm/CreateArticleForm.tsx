@@ -1,56 +1,57 @@
 import React from 'react';
 import '../../styles/input.scss';
 import * as ROUTES from '../../../config/routes';
-import { FieldInput } from '../../Atoms/Field/FieldInput';
+import FieldInput from '../../Molecules/Field/FieldInput';
 import { post } from '../../../services/router';
-import { IProps, IState } from './ICreateArticleForm';
 import Checkbox from '../../Atoms/Checkbox/Checkbox';
 import { Redirect } from 'react-router-dom';
-import FieldError from '../../Atoms/FieldError/FieldError';
-import Form from '../../Molecules/Form/Form';
-import { initialValidator, Validators } from '../IValidators';
-import { FieldTextarea } from '../../Atoms/Field/FieldTextarea';
-import { Valid } from '../IAuth';
+import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
+import {
+    Field,
+    UpdateVerifiableField,
+    validateField,
+    validators,
+    Validators,
+    ValidatorState,
+    VerifiableField,
+} from '../IValidators';
+import FieldTextarea from '../../Molecules/Field/FieldTextarea';
+import { IReferable } from '../IRoute';
+import ValidateForm from '../ValidableForm/ValidateForm';
+import { Container } from '../../../services/validator/container';
+import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+
+interface IProps {
+    onRenderPreview: (header: string, disclaimer: string, content: string) => void;
+}
+
+interface IState extends IReferable {
+    header: VerifiableField;
+    content: VerifiableField;
+    disclaimer: VerifiableField;
+    serverError: Field;
+    isPreview: boolean;
+}
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            header: { value: '', valid: Valid.Intermediate },
-            disclaimer: { value: '', valid: Valid.Intermediate },
-            content: { value: '', valid: Valid.Intermediate },
+            header: new VerifiableField('', validateField(validators.header)),
+            disclaimer: new VerifiableField('', validateField(validators.disclaimer)),
+            content: new VerifiableField('', validateField(validators.content)),
             isPreview: false,
             referrer: <></>,
-            serverError: { value: '', valid: Valid.Intermediate },
-            validators: initialValidator,
+            serverError: { value: '', valid: ValidatorState.Intermediate },
         };
     }
-
-    handleUserInput = (event: React.ChangeEvent<any>) => {
-        const valid = this.validateField(event.target.name, event.target.value);
-        this.setState({ [event.target.name]: { value: event.target.value, valid: valid } }, () => {
-            if (this.state.isPreview) {
-                this.props.onRenderPreview(
-                    this.state.header.value,
-                    this.state.disclaimer.value,
-                    this.state.content.value
-                );
-            }
-        });
-    };
-
-    validateField = (fieldName: string, fieldValue: string) => {
-        const fieldValid = !!fieldValue.match(this.state.validators![fieldName].regexp);
-        if (fieldValid) return Valid.Acceptable;
-        else return Valid.Invalid;
-    };
 
     submitBtnHandler = async (event: React.FormEvent) => {
         event.preventDefault();
         const response = await post(ROUTES.CREATE_ARTICLE, {
-            disclaimer: this.state.disclaimer.value,
-            header: this.state.header.value,
-            content: this.state.content.value,
+            disclaimer: this.state.disclaimer,
+            header: this.state.header,
+            content: this.state.content,
         });
 
         if (response.hasOwnProperty('error')) {
@@ -76,49 +77,46 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         this.setState({ isPreview: e.target.checked });
     };
 
-    onValidatorChange = (validators: Validators) => {
-        this.setState({ validators: validators });
-    };
-
     render() {
         const fd = this.state;
-        const v: Validators = this.state.validators;
+        const v: Validators = validators;
+
+        const container = new Container(this.state.header, this.state.disclaimer, this.state.content);
 
         return (
-            <Form
+            <ValidateForm
                 className="pushArticle"
                 action={ROUTES.CREATE_ARTICLE}
                 method="post"
                 onSubmit={this.submitBtnHandler}
-                onValidatorChange={this.onValidatorChange}
+                verifiableElements={container}
             >
                 {this.state.referrer}
-
                 <FieldInput
-                    valid={fd.header.valid}
-                    fieldDescription="Заголовок"
-                    validateFunc={this.handleUserInput}
+                    fieldDescription={'Заголовок'}
                     regexp={v.header.regexp}
                     value={fd.header.value}
-                    fieldType="text"
-                    fieldName="header"
-                    placeholder="Заголовок должен передавать основной смысл публикации."
-                    text={v.header.error_str}
+                    fieldType={'text'}
+                    fieldName={'header'}
+                    placeholder={'Заголовок должен передавать основной смысл публикации.'}
+                    errorText={v.header.error_str}
                     autofocus
+                    showErrorStrategy={IntermediateIsValid}
+                    validate={fd.header.validator}
+                    onChange={UpdateVerifiableField(this, 'header')}
                 />
-
                 <FieldTextarea
-                    valid={fd.disclaimer.valid}
-                    fieldDescription="Дисклеймер"
-                    validateFunc={this.handleUserInput}
+                    fieldDescription={'Дисклеймер'}
                     regexp={v.disclaimer.regexp}
                     value={fd.disclaimer.value}
-                    fieldType="text"
-                    fieldName="disclaimer"
-                    placeholder="Здесь приводится краткое описание статьи."
-                    text={v.disclaimer.error_str}
+                    fieldType={'text'}
+                    fieldName={'disclaimer'}
+                    placeholder={'Здесь приводится краткое описание статьи.'}
+                    errorText={v.disclaimer.error_str}
+                    showErrorStrategy={IntermediateIsValid}
+                    validate={fd.disclaimer.validator}
+                    onChange={UpdateVerifiableField(this, 'disclaimer')}
                 />
-
                 <Checkbox
                     id="previews"
                     label="Предпросмотр"
@@ -127,23 +125,25 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                 />
 
                 <FieldTextarea
-                    valid={fd.content.valid}
-                    fieldId="article"
-                    fieldClass="create_area"
-                    fieldDescription="Текст"
-                    validateFunc={this.handleUserInput}
+                    fieldId={'article'}
+                    fieldClass={'create_area'}
+                    fieldDescription={'Текст'}
                     regexp={v.content.regexp}
                     value={fd.content.value}
-                    fieldType="text"
-                    fieldName="content"
-                    placeholder="Текст вашей статьи..."
-                    text={v.content.error_str}
+                    fieldType={'text'}
+                    fieldName={'content'}
+                    placeholder={'Текст вашей статьи...'}
+                    errorText={v.content.error_str}
+                    showErrorStrategy={IntermediateIsValid}
+                    validate={fd.disclaimer.validator}
+                    onChange={UpdateVerifiableField(this, 'content')}
                 />
-                <FieldError valid={this.state.serverError.valid} text={this.state.serverError.value} />
+
                 <button type="submit" className="mainButton">
                     Отправить{' '}
                 </button>
-            </Form>
+                <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
+            </ValidateForm>
         );
     }
 }

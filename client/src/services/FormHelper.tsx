@@ -1,16 +1,12 @@
-import { get, post } from '../../../services/router';
-import { IPublicUser } from '../../Organisms/IPrivateUser';
-import { set as setls } from '../../../services/localstorage';
-import { userFieldName } from '../../../config/localstorage';
-import { Valid } from '../../Organisms/IAuth';
-import { getCurrentUser } from '../../../services/user';
-import { Redirect } from 'react-router-dom';
-import * as ROUTES from '../../../config/routes';
-import React from 'react';
-import { LANDING } from '../../../config/routes';
-import { Simulate } from 'react-dom/test-utils';
-import submit = Simulate.submit;
+import { get, post } from './router';
 import { curry } from '@typed/curry';
+import { set as setls } from './localstorage';
+import { userFieldName } from '../config/localstorage';
+import { ValidatorState } from './validator/validator';
+import { getCurrentUser } from './user';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import * as ROUTES from '../config/routes';
 
 interface IPush {
     [name: string]: string;
@@ -41,7 +37,7 @@ export const postLogin = async (signIn: (user: any) => any, error: any) => {
             console.warn('Сервер не отвечает');
             error = 'Сервер не отвечает, попробуйте позже.';
         }
-        return { serverError: { value: error, valid: Valid.Invalid } };
+        return { serverError: { value: error, valid: ValidatorState.Invalid } };
     } else {
         const user = getCurrentUser();
         if (!user) throw new Error('После входа, нам не вернулся пользователь, это ужасно');

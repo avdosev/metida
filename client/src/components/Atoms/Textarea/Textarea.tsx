@@ -1,24 +1,20 @@
 import React from 'react';
-import { IField } from '../IField';
+import { ITextInput } from '../ITextField';
 
-interface IState {}
+interface IProps extends ITextInput {}
 
-interface IProps extends IField {}
-
-export default class Textarea extends React.Component<IProps, IState> {
-    render() {
-        return (
-            <>
-                <textarea
-                    className={this.props.fieldClass ?? this.props.fieldName}
-                    id={this.props.fieldId ?? this.props.fieldName}
-                    name={this.props.fieldName}
-                    placeholder={this.props.placeholder ?? this.props.fieldName}
-                    required
-                    onChange={this.props.validateFunc}
-                    value={this.props.value}
-                />
-            </>
-        );
-    }
+export default function Textarea(props: IProps) {
+    return (
+        <>
+            <textarea
+                className={props.fieldClass ?? props.fieldName}
+                id={props.fieldId ?? props.fieldName}
+                name={props.fieldName}
+                placeholder={props.placeholder ?? props.fieldName}
+                required
+                onChange={props.onChange}
+                value={props.value}
+            />
+        </>
+    );
 }
