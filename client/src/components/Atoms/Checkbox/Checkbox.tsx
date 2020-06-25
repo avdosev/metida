@@ -1,35 +1,38 @@
-import React, {useState} from "react";
+import React, { useState } from 'react';
 
 interface IProps {
-    id: string,
-    label: string,
+    id: string;
+    label: string;
 
-    [field: string]: any
+    [field: string]: any;
 }
 
 interface IState {
-    isChecked: boolean
+    isChecked: boolean;
 }
 
 export default class Checkbox extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {isChecked: false}
+        this.state = { isChecked: false };
     }
 
     soldCheckbox = (event: any) => {
-        this.setState({isChecked: event.target.checked});
+        this.setState({ isChecked: event.target.checked });
     };
 
     render() {
-        return (<label>
-            <input type="checkbox"
-                   checked={this.state.isChecked}
-                   onClick={this.soldCheckbox}
-                   onChange={this.soldCheckbox}
-                   {...this.props} />
-            {this.props.label}
-        </label>)
+        return (
+            <label>
+                <input
+                    type="checkbox"
+                    checked={this.state.isChecked}
+                    onClick={this.soldCheckbox}
+                    onChange={this.soldCheckbox}
+                    {...this.props}
+                />
+                {this.props.label}
+            </label>
+        );
     }
 }
-

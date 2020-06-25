@@ -18,14 +18,22 @@
 Команды терминала сервера:
 
     cd application
-    npm i
-    npm start
+    yarn install
+    yarn start
 
 Команды MySQL Command Line:
 
     create database usersDB2; 
     create user 'metidaSQL'@'localhost' identified with mysql_native_password by '123456';
     grant all privileges on usersDB2.* to 'metidaSQL'@'localhost';
+
+Сделать бекап БД:
+
+    mysqldump -h HOST -u USERNAME -pPASSWORD DATABASE > backup.sql
+    mysql -u root -p usersDB2 < backup.sql
+
+
+Пароль написан слитно, это не ошибка
 
 Таблицы и поля в ней создадутся автоматически
 
@@ -63,7 +71,7 @@
 
 ## Код стайл
 
-<p> Да, возможно, не всем нравится за ним следить, но это важно, т.к. проект развивается, и становится все больше и больше (на момент написания было окло 1-1.5к строк), за этим достаточно тяжело следить так, что хотя бы код стайл должен быть плюс-минус одинаковым
+<p> Да, возможно, не всем нравится за ним следить, но это важно, т.к. проект развивается, и становится все больше и больше (на момент написания было окло 3-3.5к строк), за этим достаточно тяжело следить так, что хотя бы код стайл должен быть плюс-минус одинаковым
 <p> Венгерской нотации я думаю смысла придерживаться нет (хотя это топово особенно для жабкаскрипт), но есть минимальный набор:
 
 1. отступы: 4 пробела
@@ -98,9 +106,6 @@
 1. Добавь новый столбец в локальную БД с соблюдением типов:
 
         ALTER TABLE <db>.<table> ADD COLUMN <puk> <type> (<size>)
-1. Урони таблицу
-
-        drop table <usersDB2>.<pukTable>;  
 
 1. Для этого были придуманы миграции
 
@@ -153,5 +158,5 @@
 <a href="https://github.com/tankistqazwsx"><img src="https://avatars0.githubusercontent.com/u/10173245?s=460&v=4" alt="tankistqazwsx" width="50" height="50"> </a>
 
 ### Благодарности
-<a href="https://github.com/FallenHopes"><img src="https://avatars0.githubusercontent.com/u/48473470?s=460&v=4" alt="FallenHopes" width="50" height="50"> </a>
+<a href="https://github.com/unterumarmung"><img src="https://avatars0.githubusercontent.com/u/39276703?s=460&u=d185412c39977cc3144135eba1c1d5c26ddc0580&v=4" alt="unterumarmung" width="50" height="50"> </a>
 

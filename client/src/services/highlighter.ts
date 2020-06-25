@@ -1,28 +1,35 @@
-import { getData } from "./helper.js";
-import {LexTable} from "./typings/IHighlighter";
+const hljs = require('highlight.js/lib/core'); // так можно выбрать конкретные языки
+import 'highlight.js/styles/vs2015.css';
 
+// TODO  можно поробовать определять на этапе открытия статьи, какой там код используется, и подгрузить нужный
+// но не сегодня
 
-export function highLighter(codeText: string, lexTable: LexTable) {
-    let text = '';
-    while (codeText.length != 0) {
-        let str;
-        for (let param in lexTable) {
-            str = codeText.match(lexTable[param].regexp); // ищем а потом удаляем
-            if (str !== null) {
-                codeText = codeText.replace(lexTable[param].regexp, '');
-                if (lexTable[param].color != undefined)
-                    text += `<span style = 'color: ${
-                        lexTable[param].color
-                    }'>${str[0]}</span>`;
-                else text += str[0];
-                break;
-            }
-        }
-        if (str == null) {
-            console.error('you regexp don`t ready');
-            break;
-        }
-    }
-    return text;
+// полный список ищи либо в их доке, либо в исходниках
+// а также можно сделать для каждого пользователя отдельную кнопку при использовании языка - тип установить нужный язык, будет охуенно
+const languages = [
+    'bash',
+    'c-like',
+    'cpp',
+    'csharp',
+    'sql',
+    'css',
+    'dart',
+    'dockerfile',
+    'javascript',
+    'java',
+    'php',
+    'python',
+];
+
+for (const language of languages) {
+    hljs.registerLanguage(language, require(`highlight.js/lib/languages/${language}`));
 }
 
+export function highlighter(str: string, lang: string) {
+    if (lang && hljs.getLanguage(lang)) {
+        try {
+            return hljs.highlight(lang, str).value;
+        } catch (__) {}
+    }
+    return 'Укажите язык, который вы используете. Пока доступны ' + languages.toString() + '.'; // use external default escaping
+}

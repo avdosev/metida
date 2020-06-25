@@ -1,5 +1,5 @@
-import {createStore, applyMiddleware, compose} from "redux";
-import rootReducer from "./reducers";
+import { createStore, applyMiddleware, compose } from 'redux';
+import rootReducer from './reducers';
 
 const middlewares = [];
 
@@ -9,5 +9,3 @@ if (process.env.NODE_ENV === `development`) {
 }
 
 export const store = compose(applyMiddleware(...middlewares))(createStore)(rootReducer);
-
-

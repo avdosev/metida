@@ -1,16 +1,12 @@
-import {IPublicUser, UserInfo} from "../components/Organisms/IPrivateUser";
-
-export const userFieldName = 'user' // объект в локал сторедже
-
-
-export function writeUserInLS(user: UserInfo) {
-    localStorage.setItem(userFieldName, JSON.stringify(user))
+export function get(item: string) {
+    return localStorage.getItem(item);
 }
 
-export function deleteUserFromLS() {
-    localStorage.removeItem(userFieldName);
+export function set(item: string, data: string) {
+    console.log(item, data);
+    localStorage.setItem(item, data);
 }
 
-export function getUserFromLS() {
-    return localStorage.getItem(userFieldName)
+export function remove(item: string) {
+    localStorage.removeItem(item);
 }

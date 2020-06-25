@@ -30,15 +30,15 @@
       "webpack-env",
       "jest"
     ]
-
   },
+
   "include": [
     "src",
     "typings",
     "node_modules/@types/jest/index.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules", "dist"
   ]
 
 }

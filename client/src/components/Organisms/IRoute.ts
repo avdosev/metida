@@ -1,4 +1,4 @@
-import {RouteProps} from "react-router-dom";
+import { RouteProps } from 'react-router-dom';
 
 export interface IRoute extends RouteProps {
     isAuth: any;

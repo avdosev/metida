@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // TODO тут надо написать фунцию, которая соберет все дефолтные импорты из вложенных папок и экспорнет их
 
 // const cache = {key: ''};
@@ -11,6 +11,8 @@ import React from "react";
 //
 // importAll(require.context(".", true, /\.tsx$/));
 
-function requireAll(r: any) { r.keys().forEach(r); }
+function requireAll(r: any) {
+    r.keys().forEach(r);
+}
 requireAll(require.context('/^\\.\\/.*$/', true, /\.tsx$/));
 // https://webpack.js.org/guides/dependency-management/

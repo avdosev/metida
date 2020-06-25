@@ -4,10 +4,9 @@ import {ITextInput} from "../ITextField"
 
 interface IProps extends ITextInput {}
 
-
 const Input: React.FC<IProps> = (props: IProps) => {
      return(<>
-        <h3>{props.fieldDescription ?? props.fieldName} </h3>
+        <p>{props.fieldDescription ?? props.fieldName} </p>
         <input
             id={props.fieldId ?? props.fieldName}
             className={props.fieldClass ?? props.fieldName}

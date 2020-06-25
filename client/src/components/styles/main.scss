@@ -1,159 +1,218 @@
-@import 'colors.scss';
-@import '../Molecules/Header/header';
-@import 'fonts';
+@import "colors.scss";
+@import "../Molecules/Header/header";
+@import "fonts";
 @import "button";
 
 .onfullwidth {
-    width: 100%;
+  width: 100%;
 }
 
 .no_horizontal_border {
-    border-left-width: 0px;
-    border-right-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
 }
 
 .no_vertical_margin {
-    margin-bottom: 0px;
-    margin-top: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .with_top_margin {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .with_bottom_margin {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* universal */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden; // скроем для мобилок горизонтальный скролл(он появляется только там)
+  overflow-y: scroll; // а обычный будем показывать всегда
+}
 
 body {
-    background: $main-metida-color;
-    word-wrap: break-word;
-    margin: 0;
-    font-size: 16px;
+  background: $main-metida-color;
+  word-wrap: break-word;
+  margin: 0;
+  font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body.dark-mode {
+  background-color: $main-back-color;
+  color: $ccc-color;
+
+  a:visited {
+    color: $comments-left-border-color;
+  }
+  a:visited:hover,
+  a:hover {
+    color: $main-metida-color;
+  }
+  .post,
+  p,
+  a,
+  .logo__title,
+  .content,
+  button {
+    color: $ccc-color;
+  }
+  .logo__underline {
+    border-color: $ccc-color;
+  }
+  .after_post_icon {
+    fill: $ccc-color;
+  }
+  .GreyButton {
+    color: $ccc-color;
+    background-color: $main-back-color;
+  }
+  .GreyButton:hover {
+    //background-color: $url-color;
+  }
+
+  .logo__image {
+    content: url("/img/header__logo_white.svg");
+  }
 }
 
 a {
-    text-decoration: none;
-    color: var(--url-color);
+  text-decoration: none;
+  color: $url-color;
 }
 
 pre {
-    word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 img {
-    max-width: 100%;
-    max-height: 600px;
+  max-width: 100%;
+  max-height: 600px;
 
-    height: auto;
-    border: 10px black;
-    border-radius: 15px; /* хз может убрать */
+  height: auto;
+  border: 10px black;
+  border-radius: 15px; /* хз может убрать */
 }
 
 button {
-    border-style: none;
-    padding: 0.3em 1em
+  border-style: none;
+  padding: 0.3em 1em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    align-self: center;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  align-self: center;
 }
 
 /* class */
 
 .content {
-    display: flex;
-    justify-content: center;
-    float: left;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    width: 100%;
-    max-width: 780px; /* очень спорно но пускай пока будет так */
+  display: flex;
+  justify-content: center;
+  float: left;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  width: 100%;
+  max-width: 780px; /* очень спорно но пускай пока будет так */
 }
 
 .content .post_text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .content .lenta {
-    /*display: flex;*/
-    flex-direction: column;
-    align-items: center;
+  /*display: flex;*/
+  flex-direction: column;
+  align-items: center;
 }
 
 .content pre {
-    background-color: #2e2f30;
-    color: $ccc-color;
-    padding: 1.5%;
-    width: 97%;
-    max-width: 100%;
-    border-radius: 3px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #2e2f30;
+  color: $ccc-color;
+  padding: 1.5%;
+  width: 97%;
+  max-width: 100%;
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .content pre code {
-    background-color: #2e2f30;
-    overflow-x: auto;
-    white-space: unset;
-    display: block;
-    line-height: 25px;
+  background-color: #2e2f30;
+  overflow-x: auto;
+  white-space: unset;
+  display: block;
+  line-height: 25px;
 }
 
 .content .pre_table {
-    background-color: inherit;
-    color: $main-back-color;
-    box-shadow: none;
+  background-color: inherit;
+  color: $main-back-color;
+  box-shadow: none;
 }
 
 .scroll_inner_pre {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 .content table {
-    width: 100%;
-    border: 1px solid #d5dddf;
-    border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #d5dddf;
+  border-collapse: collapse;
 }
 
 .content table td,
 .content table th {
-    padding: 6px 12px 9px;
-    border: 1px solid #d5dddf;
-    line-height: 1.5;
+  padding: 6px 12px 9px;
+  border: 1px solid #d5dddf;
+  line-height: 1.5;
 }
 
 table thead {
-    background: #eaecea;
-    /* display: block; */
+  background: #eaecea;
+  /* display: block; */
 }
 
 @media screen and (max-width: 650px) {
-    .content .post_text {
-        align-items: flex-start;
-    }
+  .content .post_text {
+    align-items: flex-start;
+  }
 }
 
 .layout_body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 5px;
-    /* font-size: 18px; */
-    padding: 15px 5px 15px 5px;
-    font-family: 'Montserrat', 'Cabin', sans-serif;
-    font-size: 1rem; 
-    color: $main-back-color;
-    line-height: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  /* font-size: 18px; */
+  padding: 15px 5px 15px 5px;
+  font-family: "Montserrat", "Cabin", sans-serif;
+  font-size: 1rem;
+  color: $main-back-color;
+  line-height: 1.5rem;
 }
-
 
 input#previews:checked {
-    background-color: black;
+  background-color: black;
 }
 
+@media print {
+  .header_inner {
+    display: none;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}

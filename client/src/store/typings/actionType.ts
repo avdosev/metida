@@ -1,28 +1,24 @@
-import {LOGOUT, SIGN_IN} from "../../actions/events";
-import {IPublicUser} from "../../components/Organisms/IPrivateUser";
-
+import { LOGOUT, SIGN_IN } from '../../actions/events';
+import { IPublicUser } from '../../components/Organisms/IPrivateUser';
 
 interface ActionType {
-    type: string
-    payload: any
+    type: string;
+    payload: any;
 }
 
-
-
 interface ChangeHeader {
-    user: IPublicUser | null
-
+    user: IPublicUser | null;
 }
 
 interface SignInAction extends ActionType {
-    type: typeof SIGN_IN
-    payload: IPublicUser
+    type: typeof SIGN_IN;
+    payload: IPublicUser;
 }
 
 interface LogoutAction extends ActionType {
-    type: typeof LOGOUT
-    payload: null
+    type: typeof LOGOUT;
+    payload: null;
 }
 
-export type {ActionType, ChangeHeader }
-export type ChangeHeaderAction = SignInAction | LogoutAction
+export type { ActionType, ChangeHeader };
+export type ChangeHeaderAction = SignInAction | LogoutAction;

@@ -9,4 +9,5 @@ src/components/Pages/TemplateClass.tsx
 yarn.lock
 dist
 yarn*
+coverage
 __snapshots__

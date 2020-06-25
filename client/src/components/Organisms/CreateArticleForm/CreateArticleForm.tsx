@@ -36,7 +36,7 @@ interface IState extends IReferable {
 
 export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
-        super(props)
+        super(props);
         this.state = {
             header: new VerifiableField('', validateField(validators.header)),
             disclaimer: new VerifiableField('', validateField(validators.disclaimer)),
@@ -48,7 +48,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        event.preventDefault()
+        event.preventDefault();
         const response = await post(ROUTES.CREATE_ARTICLE, {
             disclaimer: this.state.disclaimer,
             header: this.state.header,
@@ -65,18 +65,17 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
             }
             // TODO сделать нормальный редирект на статью
         }
-    }
+    };
 
     handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {content, header, disclaimer} = this.state
+        const { content, header, disclaimer } = this.state;
         if (e.target.checked) {
-            this.props.onRenderPreview(header.value, disclaimer.value, content.value)
+            this.props.onRenderPreview(header.value, disclaimer.value, content.value);
+        } else {
+            this.props.onRenderPreview('', '', '');
         }
-        else {
-            this.props.onRenderPreview("", "", "")
-        }
-        this.setState({isPreview: e.target.checked})
-    }
+        this.setState({ isPreview: e.target.checked });
+    };
 
 
     render() {

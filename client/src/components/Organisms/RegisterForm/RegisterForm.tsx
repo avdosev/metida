@@ -61,28 +61,27 @@ export default class RegisterForm extends React.Component<IProps, IState> {
     }
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        let error = await loginQuery(event, ROUTES.REGISTER, {
+        let error = await loginQuery(ROUTES.REGISTER, {
             email: this.state.email.value,
             password: this.state.password.value,
             login: this.state.login.value,
         });
         if (error) {
-            if (error.match("Cannot POST")) {
-                console.warn("Сервер не отвечает")
-                error = "Сервер не отвечает, попробуйте позже."
+            if (error.match('Cannot POST')) {
+                console.warn('Сервер не отвечает');
+                error = 'Сервер не отвечает, попробуйте позже.';
             }
             this.setState({serverError: {value: error, valid: ValidatorState.Invalid}})
         } else {
-            const user = getCurrentUser()
-            if (!user) throw new Error("После входа, нам не вернулся пользователь, это ужасно")
+            const user = getCurrentUser();
+            if (!user) throw new Error('После входа, нам не вернулся пользователь, это ужасно');
 
-            this.props.signIn(user)
+            this.props.signIn(user);
 
-            this.setState({referrer: <Redirect to={ROUTES.LANDING}/>})
-            console.log(this.state)
+            this.setState({ referrer: <Redirect to={ROUTES.LANDING} /> });
+            console.log(this.state);
         }
-
-    }
+    };
 
     render() {
         const fd = this.state
@@ -147,8 +146,6 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                 </ValidateForm>
 
             </div>
-
-        )
+        );
     }
 }
-

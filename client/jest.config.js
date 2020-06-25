@@ -15,7 +15,15 @@ module.exports = {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  // collectCoverage: false,
+  collectCoverage: true,
+
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$": "<rootDir>/src/.jest/fileMock.js",
+    "\\.(css|scss)$": "identity-obj-proxy",
+    "^Containers/(.*)$": "<rootDir>/src/containers/$1",
+    "^Components/(.*)$": "/src/components/$1",
+    "^Styles/(.*)$": "/src/components/styles/$1"
+  },
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,

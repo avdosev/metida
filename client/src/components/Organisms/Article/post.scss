@@ -1,31 +1,38 @@
-h1, h2, h3, h4, h5, h6, p { 
-    font-family: 'Montserrat', sans-serif;
-    word-break: break-word;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: "Montserrat", sans-serif;
+  word-break: break-word;
 }
 
 p {
-    font-size: 16px; 
-    color: #333;
-    line-height: 24px;
+  font-size: 16px;
+  color: #333;
+  line-height: 24px;
+  hyphens: auto;
+  text-align: justify;
 }
 
 .error {
-    padding: 0;
-    
-    font-size: 80%;
-    color: white;
-    border-radius: 0 0 5px 5px;
-   
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  border-radius: 0 0 5px 5px;
+
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .error.active {
-    padding: 0.3em;
-    background-color: #900
+  padding: 0.3em;
+  background-color: #900;
 }
 
-
 .post_text div {
-   width: 100%;
+  width: 100%;
 }

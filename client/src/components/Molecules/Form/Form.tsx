@@ -1,8 +1,6 @@
 import React from "react";
 
-interface IState {
-
-}
+interface IState {}
 
 interface IProps {
     className?: string
@@ -10,7 +8,6 @@ interface IProps {
     method?: string
     onSubmit: (event: any) => void
 }
-
 
 export default class Form extends React.Component<IProps, IState> {
     onSubmit = (event: any) => {
