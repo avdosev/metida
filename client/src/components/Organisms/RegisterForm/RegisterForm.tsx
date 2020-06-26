@@ -1,8 +1,7 @@
 import React from 'react';
-import '../../styles/main.scss';
-import '../../styles/input.scss';
+import 'Styles/main.scss';
+import 'Styles/input.scss';
 import * as ROUTES from '../../../config/routes';
-import { Redirect } from 'react-router-dom';
 import {
     Field,
     UpdateVerifiableField,
@@ -11,15 +10,16 @@ import {
     ValidatorState,
     VerifiableField,
 } from '../IValidators';
-import { loginQuery } from '../../../services/FormHelper';
+import { curry } from '@typed/curry';
+import { loginQuery, postLogin } from 'Services/FormHelper';
 import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
-import { getCurrentUser } from '../../../services/user';
-import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
+import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { IReferable } from '../IRoute';
-import { Container } from '../../../services/validator/container';
+import { Container } from 'Services/validator/container';
 import FieldInput from '../../Molecules/Field/FieldInput';
-import { IntermediateIsInvalid, IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import { IntermediateIsInvalid, IntermediateIsValid } from 'Services/validator/show_error_strategies';
+import { composeAsync } from 'Services/functional';
 
 interface IProps extends ChangeHeaderInterface {}
 
@@ -65,26 +65,18 @@ export default class RegisterForm extends React.Component<IProps, IState> {
     };
 
     submitBtnHandler = async (event: React.FormEvent) => {
-        let error = await loginQuery(ROUTES.REGISTER, {
+        const allFields = {
             email: this.state.email.value,
             password: this.state.password.value,
             login: this.state.login.value,
-        });
-        if (error) {
-            if (error.match('Cannot POST')) {
-                console.warn('Сервер не отвечает');
-                error = 'Сервер не отвечает, попробуйте позже.';
-            }
-            this.setState({ serverError: { value: error, valid: ValidatorState.Invalid } });
-        } else {
-            const user = getCurrentUser();
-            if (!user) throw new Error('После входа, нам не вернулся пользователь, это ужасно');
+        };
+        const sendDataToServer = curry(loginQuery)(ROUTES.REGISTER);
+        const getResponse = curry(postLogin)(this.props.signIn);
 
-            this.props.signIn(user);
+        const conveyor = composeAsync(getResponse, sendDataToServer);
 
-            this.setState({ referrer: <Redirect to={ROUTES.LANDING} /> });
-            console.log(this.state);
-        }
+        const res = await conveyor(allFields);
+        this.setState({ ...res });
     };
 
     render() {
@@ -142,7 +134,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                         value={fd.repassword.value}
                         errorText={v!.repassword.error_str}
                         fieldDescription="Повторите пароль"
-                        showErrorStrategy={IntermediateIsInvalid}
+                        showErrorStrategy={IntermediateIsValid}
                         onChange={UpdateVerifiableField(this, 'repassword')}
                         validate={fd.repassword.validator}
                     />
