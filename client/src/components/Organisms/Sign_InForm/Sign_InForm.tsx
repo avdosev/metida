@@ -14,8 +14,6 @@ import {
 } from '../IValidators';
 import { loginQuery, postLogin } from '../../../services/FormHelper';
 import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
-import { IPublicUser } from '../IPrivateUser';
-import { getCurrentUser } from '../../../services/user';
 import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { Container } from '../../../services/validator/container';

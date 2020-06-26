@@ -22,7 +22,8 @@ module.exports = {
     "\\.(css|scss)$": "identity-obj-proxy",
     "^Containers/(.*)$": "<rootDir>/src/containers/$1",
     "^Components/(.*)$": "/src/components/$1",
-    "^Styles/(.*)$": "/src/components/styles/$1"
+    "^Styles/(.*)$": "/src/components/styles/$1",
+    "^Services/(.*)$": "/src/services/$1"
   },
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
