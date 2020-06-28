@@ -18,7 +18,7 @@ import { IReferable } from '../IRoute';
 import { Container } from 'Services/validator/container';
 import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
 import { composeAsync } from 'Services/functional';
-import {FieldInput, ErrorPlaceholder, FormButton} from 'Components';
+import { FieldInput, ErrorPlaceholder, FormButton } from 'Components';
 
 interface IProps extends ChangeHeaderInterface {}
 

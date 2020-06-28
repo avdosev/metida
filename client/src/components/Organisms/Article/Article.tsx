@@ -11,7 +11,7 @@ import 'Styles/main.scss';
 import 'Styles/comments.scss';
 import './post.scss';
 import { getCurrentUser } from '../../../services/user';
-import {CustomButton} from "../..";
+import { CustomButton } from '../..';
 
 interface IProps {
     articleId: string;

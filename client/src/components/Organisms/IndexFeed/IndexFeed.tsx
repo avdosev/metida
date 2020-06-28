@@ -36,7 +36,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
     };
 
     componentWillUnmount() {
-        debugger
+        debugger;
         //document.removeEventListener('scroll', this.handleScroll)
     }
 

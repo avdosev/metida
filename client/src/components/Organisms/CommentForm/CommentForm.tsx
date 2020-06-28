@@ -16,7 +16,7 @@ import ValidateForm from '../ValidableForm/ValidateForm';
 import { Container } from '../../../services/validator/container';
 import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
 import { verifyByRegexp } from '../../../services/validator/validator';
-import {CustomButton, FormButton} from "../..";
+import { CustomButton, FormButton } from '../..';
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void;
@@ -112,7 +112,6 @@ export default class CommentForm extends React.Component<IProps, IState> {
                     <div className="button_block">
                         <FormButton text="Отправить" />
                         {/*<CustomButton onClick={} text="Предпросмотр" />*/}
-
                     </div>
                 </ValidateForm>
             );

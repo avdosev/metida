@@ -11,7 +11,7 @@ import {
     validateField,
 } from '../IValidators';
 import { loginQuery, postLogin } from '../../../services/FormHelper';
-import {ErrorPlaceholder, FieldInput, FormButton} from 'Components';
+import { ErrorPlaceholder, FieldInput, FormButton } from 'Components';
 import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { Container } from 'Services/validator/container';

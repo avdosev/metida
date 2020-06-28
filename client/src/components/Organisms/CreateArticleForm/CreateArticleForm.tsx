@@ -16,7 +16,7 @@ import { IReferable } from '../IRoute';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { Container } from 'Services/validator/container';
 import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
-import {FormButton, FieldTextarea, ErrorPlaceholder, FieldInput, Checkbox} from "Components";
+import { FormButton, FieldTextarea, ErrorPlaceholder, FieldInput, Checkbox } from 'Components';
 
 interface IProps {
     onRenderPreview: (header: string, disclaimer: string, content: string) => void;
@@ -135,7 +135,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     validate={fd.disclaimer.validator}
                     onChange={UpdateVerifiableField(this, 'content')}
                 />
-                <FormButton text="Отправить"/>
+                <FormButton text="Отправить" />
                 <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
             </ValidateForm>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 // TODO тут надо написать фунцию, которая соберет все дефолтные импорты из вложенных папок и экспорнет их
 
 import BubbleLoader from './Atoms/BubbleLoader/BubbleLoader';
-import {FormButton, CustomButton} from './Atoms/Button/Button';
+import { FormButton, CustomButton } from './Atoms/Button/Button';
 import Checkbox from './Atoms/Checkbox/Checkbox';
 import Comment from './Atoms/Comment/Comment';
 import ErrorPlaceholder from './Atoms/ErrorPlaceholder/ErrorPlaceholder';
@@ -15,7 +15,8 @@ import ThemeChanger from './Atoms/ThemeChanger/ThemeChanger';
 
 export {
     BubbleLoader,
-    FormButton, CustomButton,
+    FormButton,
+    CustomButton,
     Checkbox,
     Comment,
     ErrorPlaceholder,

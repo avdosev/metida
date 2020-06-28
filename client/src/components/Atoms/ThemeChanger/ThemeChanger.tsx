@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { theme } from '../../../config/localstorage';
 import { get } from '../../../services/localstorage';
 import { curry } from '@typed/curry';
-import {CustomButton, FormButton} from "Components";
+import { CustomButton, FormButton } from 'Components';
 
 const enum Themes {
     dark = 'dark',
