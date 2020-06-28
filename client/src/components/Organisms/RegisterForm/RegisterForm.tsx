@@ -12,14 +12,13 @@ import {
 } from '../IValidators';
 import { curry } from '@typed/curry';
 import { loginQuery, postLogin } from 'Services/FormHelper';
-import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
 import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { IReferable } from '../IRoute';
 import { Container } from 'Services/validator/container';
-import FieldInput from '../../Molecules/Field/FieldInput';
-import { IntermediateIsInvalid, IntermediateIsValid } from 'Services/validator/show_error_strategies';
+import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
 import { composeAsync } from 'Services/functional';
+import {FieldInput, ErrorPlaceholder, Button} from "Components";
 
 interface IProps extends ChangeHeaderInterface {}
 
@@ -97,9 +96,9 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     <FieldInput
                         fieldName="email"
                         autofocus
-                        regexp={v!.email.regexp}
+                        regexp={v.email.regexp}
                         value={fd.email.value}
-                        errorText={v!.email.error_str}
+                        errorText={v.email.error_str}
                         fieldDescription="Электронная почта"
                         showErrorStrategy={IntermediateIsValid}
                         onChange={UpdateVerifiableField(this, 'email')}
@@ -107,10 +106,10 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     />
                     <FieldInput
                         fieldName="login"
-                        regexp={v!.login.regexp}
+                        regexp={v.login.regexp}
                         fieldDescription="Логин"
                         value={fd.login.value}
-                        errorText={v!.login.error_str}
+                        errorText={v.login.error_str}
                         showErrorStrategy={IntermediateIsValid}
                         onChange={UpdateVerifiableField(this, 'login')}
                         validate={fd.login.validator}
@@ -118,10 +117,10 @@ export default class RegisterForm extends React.Component<IProps, IState> {
 
                     <FieldInput
                         fieldName="password"
-                        regexp={v!.password.regexp}
+                        regexp={v.password.regexp}
                         fieldDescription="Пароль"
                         value={fd.password.value}
-                        errorText={v!.password.error_str}
+                        errorText={v.password.error_str}
                         showErrorStrategy={IntermediateIsValid}
                         onChange={UpdateVerifiableField(this, 'password')}
                         validate={fd.password.validator}
@@ -130,18 +129,16 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                     <FieldInput
                         fieldName="repassword"
                         fieldType="password"
-                        regexp={v!.repassword.regexp}
+                        regexp={v.repassword.regexp}
                         value={fd.repassword.value}
-                        errorText={v!.repassword.error_str}
+                        errorText={v.repassword.error_str}
                         fieldDescription="Повторите пароль"
                         showErrorStrategy={IntermediateIsValid}
                         onChange={UpdateVerifiableField(this, 'repassword')}
                         validate={fd.repassword.validator}
                     />
 
-                    <button type="submit" className="mainButton">
-                        Зарегистрироваться
-                    </button>
+                    <Button<"submit"> text="Зарегистрироваться" type="submit" />
                     <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
                 </ValidateForm>
             </div>

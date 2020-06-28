@@ -8,7 +8,7 @@ interface IProps {
     json: IPost;
 }
 
-export function IndexShortPost(props: IProps) {
+export default function IndexShortPost(props: IProps) {
     const url = `/post/${props.json.id}`;
 
     return (

@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from '../../Molecules/Form/Form';
+import {Form} from 'Components';
 import { VerifiableContainer } from '../../../services/validator/container';
 
 interface IProps {
     className?: string;
     action: string;
     method?: string;
-    onSubmit: (event: any) => void;
+    onSubmit: (event: React.MouseEvent) => void;
     verifiableElements: VerifiableContainer;
 }
 

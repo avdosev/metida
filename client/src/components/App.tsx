@@ -3,14 +3,10 @@ import { isAuth } from '../services/user';
 
 import * as ROUTES from '../config/routes';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import PrivateRoute from './Atoms/PrivateRoute/PrivateRoute';
 import Header from 'Containers/ChangeHeaderEvent/HeaderContainer';
 import Logout from 'Containers/ChangeHeaderEvent/LogoutContainer';
-import BubbleLoader from './Atoms/BubbleLoader/BubbleLoader';
-import PublicRoute from './Atoms/PublicRoute/PublicRoute';
+import {Footer, PublicRoute, BubbleLoader, PrivateRoute} from 'Components';
 import Offline from './Pages/Offline/Offline';
-import Footer from './Molecules/Footer/Footer';
-//import {BubbleLoader } from "components"
 
 const PostPage = lazy(() => import('./Pages/Post/PostPage'));
 const Index = lazy(() => import('./Pages/Index/Index'));

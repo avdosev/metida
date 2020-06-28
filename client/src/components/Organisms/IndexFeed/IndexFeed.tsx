@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import '../../styles/main.scss';
 import '../../styles/lenta.scss';
 import '../../styles/colors.scss';
-import { IndexShortPost } from '../../Atoms/IndexShortPost/IndexShortPost';
 import { post } from '../../../services/router';
 import Feed from '../../Organisms/Feed/Feed';
 import SimplePage from '../../Templates/SimpleTemplate';
-import Header from '../../../containers/ChangeHeaderEvent/HeaderContainer';
-import Footer from '../../Molecules/Footer/Footer';
-import InfiniteFeed from '../../Organisms/InfiniteFeed/InfiniteFeed';
 import { debounce } from '../../../services/functional';
+import {Button, IndexShortPost} from "Components";
 
 interface IProps {}
 
@@ -79,9 +76,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
                         <h1>Умная лента</h1>
                         <hr className="head" />
                         <Feed>{this.state.lenta}</Feed>
-                        <button type="button" className="mainButton" onClick={this.getMoreArticles}>
-                            Показать больше
-                        </button>
+                        <Button text="Показать больше" type="button" onClick={this.getMoreArticles} />
                     </div>
                 </div>
             </SimplePage>
