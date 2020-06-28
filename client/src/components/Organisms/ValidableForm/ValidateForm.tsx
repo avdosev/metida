@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from 'Components';
+import { Form } from 'Components';
 import { VerifiableContainer } from '../../../services/validator/container';
 
 interface IProps {

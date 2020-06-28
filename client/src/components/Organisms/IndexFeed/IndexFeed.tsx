@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import '../../styles/main.scss';
-import '../../styles/lenta.scss';
-import '../../styles/colors.scss';
+import 'Styles/main.scss';
+import 'Styles/lenta.scss';
+import 'Styles/colors.scss';
 import { post } from '../../../services/router';
 import Feed from '../../Organisms/Feed/Feed';
 import SimplePage from '../../Templates/SimpleTemplate';
 import { debounce } from '../../../services/functional';
-import {Button, IndexShortPost} from "Components";
+import { CustomButton, IndexShortPost } from 'Components';
 
 interface IProps {}
 
@@ -23,7 +23,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
 
         this.state = { lenta: [] };
         document.title = 'Metida';
-        document.addEventListener('scroll', this.handleScroll);
+        //document.addEventListener('scroll', this.handleScroll);
     }
 
     handleScroll = async () => {
@@ -34,6 +34,11 @@ export default class IndexFeed extends React.Component<IProps, IState> {
         const getter = debounce(this.getArticle, 100);
         await getter(10);
     };
+
+    componentWillUnmount() {
+        debugger
+        //document.removeEventListener('scroll', this.handleScroll)
+    }
 
     getArticle = async (articlesCount = 10) => {
         console.log('Fetch more list items!');
@@ -76,7 +81,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
                         <h1>Умная лента</h1>
                         <hr className="head" />
                         <Feed>{this.state.lenta}</Feed>
-                        <Button text="Показать больше" type="button" onClick={this.getMoreArticles} />
+                        <CustomButton text="Показать больше" onClick={this.getMoreArticles} />
                     </div>
                 </div>
             </SimplePage>

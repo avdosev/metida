@@ -5,7 +5,7 @@ import * as ROUTES from '../config/routes';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import Header from 'Containers/ChangeHeaderEvent/HeaderContainer';
 import Logout from 'Containers/ChangeHeaderEvent/LogoutContainer';
-import {Footer, PublicRoute, BubbleLoader, PrivateRoute} from 'Components';
+import { Footer, PublicRoute, BubbleLoader, PrivateRoute } from 'Components';
 import Offline from './Pages/Offline/Offline';
 
 const PostPage = lazy(() => import('./Pages/Post/PostPage'));

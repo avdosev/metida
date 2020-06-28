@@ -18,7 +18,7 @@ import { IReferable } from '../IRoute';
 import { Container } from 'Services/validator/container';
 import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
 import { composeAsync } from 'Services/functional';
-import {FieldInput, ErrorPlaceholder, Button} from "Components";
+import {FieldInput, ErrorPlaceholder, FormButton} from 'Components';
 
 interface IProps extends ChangeHeaderInterface {}
 
@@ -138,7 +138,7 @@ export default class RegisterForm extends React.Component<IProps, IState> {
                         validate={fd.repassword.validator}
                     />
 
-                    <Button<"submit"> text="Зарегистрироваться" type="submit" />
+                    <FormButton text="Зарегистрироваться" />
                     <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
                 </ValidateForm>
             </div>

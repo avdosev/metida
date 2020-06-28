@@ -4,7 +4,7 @@ import { get } from '../../../services/router';
 import { getCurrentUser } from '../../../services/user';
 import IndexShortPost from '../../Atoms/IndexShortPost/IndexShortPost';
 import Feed from '../../Organisms/Feed/Feed';
-import '../../styles/lenta.scss';
+import 'Styles/lenta.scss';
 
 interface IState {
     user: UserInfo;

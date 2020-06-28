@@ -1,11 +1,8 @@
 import React from 'react';
-import '../../styles/input.scss';
+import 'Styles/input.scss';
 import * as ROUTES from '../../../config/routes';
-import FieldInput from '../../Molecules/Field/FieldInput';
-import { post } from '../../../services/router';
-import Checkbox from '../../Atoms/Checkbox/Checkbox';
+import { post } from 'Services/router';
 import { Redirect } from 'react-router-dom';
-import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
 import {
     Field,
     UpdateVerifiableField,
@@ -15,11 +12,11 @@ import {
     ValidatorState,
     VerifiableField,
 } from '../IValidators';
-import FieldTextarea from '../../Molecules/Field/FieldTextarea';
 import { IReferable } from '../IRoute';
 import ValidateForm from '../ValidableForm/ValidateForm';
-import { Container } from '../../../services/validator/container';
-import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import { Container } from 'Services/validator/container';
+import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
+import {FormButton, FieldTextarea, ErrorPlaceholder, FieldInput, Checkbox} from "Components";
 
 interface IProps {
     onRenderPreview: (header: string, disclaimer: string, content: string) => void;
@@ -138,10 +135,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     validate={fd.disclaimer.validator}
                     onChange={UpdateVerifiableField(this, 'content')}
                 />
-
-                <button type="submit" className="mainButton">
-                    Отправить{' '}
-                </button>
+                <FormButton text="Отправить"/>
                 <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
             </ValidateForm>
         );

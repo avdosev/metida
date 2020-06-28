@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import './header.scss';
-import '../../styles/flex.scss';
-import '../../styles/main.scss';
+import 'Styles/flex.scss';
+import 'Styles/main.scss';
 import { Link } from 'react-router-dom';
 import Burger from '../Burger/Burger';
 import { isAuth } from '../../../services/user';

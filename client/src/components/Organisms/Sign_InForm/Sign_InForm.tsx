@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../styles/main.scss';
-import '../../styles/input.scss';
+import 'Styles/main.scss';
+import 'Styles/input.scss';
 import * as ROUTES from '../../../config/routes';
 import {
     Field,
@@ -11,7 +11,7 @@ import {
     validateField,
 } from '../IValidators';
 import { loginQuery, postLogin } from '../../../services/FormHelper';
-import {ErrorPlaceholder, FieldInput} from "Components";
+import {ErrorPlaceholder, FieldInput, FormButton} from 'Components';
 import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
 import { Container } from 'Services/validator/container';
@@ -90,9 +90,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                         onChange={UpdateVerifiableField(this, 'password')}
                     />
 
-                    <button type="submit" className="mainButton">
-                        Войти{' '}
-                    </button>
+                    <FormButton text="Войти" />
                     <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
                 </ValidateForm>
             </div>

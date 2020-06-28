@@ -11,6 +11,7 @@ import 'Styles/main.scss';
 import 'Styles/comments.scss';
 import './post.scss';
 import { getCurrentUser } from '../../../services/user';
+import {CustomButton} from "../..";
 
 interface IProps {
     articleId: string;
@@ -66,12 +67,8 @@ export default class Article extends React.Component<IProps, IState> {
         if (currentUser && this.state.authorId === currentUser.id) {
             buttons = (
                 <div className="button_block">
-                    <button className="mainButton" onClick={this.updateArticle}>
-                        Удалить статью
-                    </button>
-                    <button className="mainButton" onClick={this.deleteArticle}>
-                        Редактировать статью
-                    </button>
+                    <CustomButton onClick={this.updateArticle} text="Удалить статью" />
+                    <CustomButton onClick={this.deleteArticle} text="Редактировать статью" />
                 </div>
             );
         }

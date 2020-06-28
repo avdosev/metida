@@ -1,7 +1,7 @@
 @import "colors.scss";
 @import "../Molecules/Header/header";
 @import "fonts";
-@import "button";
+@import "src/components/Atoms/Button/button";
 
 .onfullwidth {
   width: 100%;

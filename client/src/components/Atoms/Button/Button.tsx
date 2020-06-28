@@ -1,27 +1,33 @@
-import ValidateForm from "../../Organisms/ValidableForm/ValidateForm";
 import React from "react";
+import "./button.scss"
 
 type MouseClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 
-interface CustomButton {
+interface CustomButton extends Button{
     onClick: MouseClick
 }
 
-interface FormButton {
+interface FormButton extends Button{
     onClick?: MouseClick
 }
 
-interface Button<T> {
+interface Button {
     text: string
     type: ButtonType
-    onClick?: T extends "submit" ? FormButton[keyof FormButton] : CustomButton[keyof CustomButton]
 }
 
 type ButtonType = "submit" | "button"
 
-
-export default function Button<T extends ButtonType[keyof ButtonType]>({text, type, onClick}: Button<T>) {
+function Button({text, type, onClick=()=>undefined}: FormButton | CustomButton) {
     return(<button type={type} className="mainButton" onClick={onClick}>
         {text}
     </button>)
+}
+
+export function FormButton(props: Omit<FormButton, "type">) {
+    return <Button text={props.text} type="submit" onClick={props.onClick} />
+}
+
+export function CustomButton(props: Omit<CustomButton, "type">) {
+    return <Button text={props.text} type="button" onClick={props.onClick} />
 }
