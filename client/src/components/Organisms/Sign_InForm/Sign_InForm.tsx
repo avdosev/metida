@@ -31,7 +31,6 @@ interface IState extends IReferable {
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        console.log(props);
         this.state = {
             email: new VerifiableField('', validateField(validators.email)),
             password: new VerifiableField('', validateField(validators.password)),

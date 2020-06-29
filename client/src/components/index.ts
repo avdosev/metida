@@ -9,6 +9,7 @@ import ErrorPlaceholder from './Atoms/ErrorPlaceholder/ErrorPlaceholder';
 import IndexShortPost from './Atoms/IndexShortPost/IndexShortPost';
 import IndexShortPostPlaceholder from './Atoms/IndexShortPost/IndexShortPostPlaceholder';
 import Input from './Atoms/Input/Input';
+import MainLogo from './Atoms/MainLogo/MainLogo';
 import PrivateRoute from './Atoms/PrivateRoute/PrivateRoute';
 import PublicRoute from './Atoms/PublicRoute/PublicRoute';
 import SkeletonSvgTransition from './Atoms/SkeletonSvgTransition/SkeletonSvgTransition';
@@ -25,6 +26,7 @@ export {
     IndexShortPost,
     IndexShortPostPlaceholder,
     Input,
+    MainLogo,
     PrivateRoute,
     PublicRoute,
     SkeletonSvgTransition,

@@ -34,6 +34,7 @@ describe('<CommentForm/>', () => {
 
         const commentInput = commentForm.find('.comment_area');
         commentInput.simulate('change', { target: { value: inputableString } });
+
         expect(commentInput.text()).toBe(inputableString);
         commentForm.unmount();
     });

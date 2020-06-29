@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow, ShallowWrapper, ReactWrapper } from 'enzyme';
+
 import Sign_InForm from '../../../containers/ChangeHeaderEvent/SignInFormContainer';
-//import Sign_InForm from "./Sign_InForm";
 import config from '../../../test/enzymeConfig';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -9,10 +9,11 @@ import App from '../../App';
 import { Provider } from 'react-redux';
 import renderer, { ReactTestRenderer } from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import { FieldInput, FormButton } from '../../index';
-import ValidateForm from '../ValidableForm/ValidateForm';
+import { ErrorPlaceholder, FieldInput, FormButton } from '../../index';
+import fetch, { Response } from 'node-fetch';
 
 const mockStore = configureStore([]);
+jest.mock('node-fetch');
 
 describe('<SignInForm/>', () => {
     const config = configure({ adapter: new Adapter() });
@@ -42,19 +43,25 @@ describe('<SignInForm/>', () => {
     });
 
     it('should change fields', () => {
-        const changeUsernameSpy = jest.fn();
+        const myform = mount(
+            <Provider store={mockStore()}>
+                <Sign_InForm />
+            </Provider>
+        );
 
-        const emailInput = wrapper.find('.email');
-        const passwordInput = wrapper.find('.password');
+        const emailInput = myform.find('#email');
+        const passwordInput = myform.find('#password');
 
-        emailInput.simulate('change', { target: { value: 'email23@yandex.ru' } });
+        emailInput.simulate('change', { target: { name: 'email', value: 'email23@yandex.ru' } });
         passwordInput.simulate('change', { target: { value: 'sssssss1' } });
-
         expect(emailInput.text()).toBe('email23@yandex.ru');
         expect(passwordInput.text()).toBe('sssssss1');
 
-        const submitBtn = wrapper.find(FormButton);
+        const submitBtn = myform.find(FormButton);
         submitBtn.simulate('click');
+
+        expect(myform.find(ErrorPlaceholder).last().text()).toBeTruthy(); // last т.к. мы проверяем серверный отклик
+        // для строки сойдет
 
         expect(fetch).toHaveBeenCalled();
     });
