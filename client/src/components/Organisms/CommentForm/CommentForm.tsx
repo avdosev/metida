@@ -1,31 +1,24 @@
 import React from 'react';
 import FieldTextarea from '../../Molecules/Field/FieldTextarea';
-import {
-    UpdateVerifiableField,
-    validateField,
-    validators,
-    Validators,
-    ValidatorState,
-    VerifiableField,
-} from '../IValidators';
-import { get, post } from '../../../services/router';
-import { getCurrentUser, isAuth } from '../../../services/user';
-import { getArticleId } from '../../../services/comments';
+import { UpdateVerifiableField, validateField, validators, VerifiableField } from '../IValidators';
+import { get, post } from 'Services/router';
+import { getCurrentUser, isAuth } from 'Services/user';
+import { getArticleId } from 'Services/comments';
 import { IComments } from '../IComment';
 import ValidateForm from '../ValidableForm/ValidateForm';
-import { Container } from '../../../services/validator/container';
-import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
-import { verifyByRegexp } from '../../../services/validator/validator';
+import { Container } from 'Services/validator/container';
+import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
+import { CustomButton, FormButton } from 'Components';
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void;
     replyCommentId?: number;
     replyCommentAuthorName?: string;
     onReplyCommentSend?: () => void;
+    isAuth: boolean;
 }
 
 interface IState {
-    isAuth: boolean;
     isRendered: boolean;
     comment: VerifiableField;
     linkToSend: string;
@@ -37,7 +30,6 @@ export default class CommentForm extends React.Component<IProps, IState> {
         super(props);
         const articleId = getArticleId();
         this.state = {
-            isAuth: false,
             comment: new VerifiableField('', validateField(validators.comment)),
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
@@ -46,15 +38,12 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     async componentDidMount() {
-        const authed = await isAuth();
-        console.log(this.props);
-        if (authed && !this.state.isRendered) {
+        if (this.props.isAuth && !this.state.isRendered) {
             const replyCommentAuthorName =
                 this.props.replyCommentId || this.props.replyCommentAuthorName
                     ? this.props.replyCommentAuthorName + ', '
                     : '';
             this.setState({
-                isAuth: authed,
                 isRendered: true,
                 comment: this.state.comment.updatedValue(replyCommentAuthorName),
             });
@@ -86,7 +75,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     render() {
         let comment: JSX.Element;
-        if (this.state.isAuth) {
+        if (this.props.isAuth) {
             const container = new Container(this.state.comment);
 
             comment = (
@@ -109,12 +98,8 @@ export default class CommentForm extends React.Component<IProps, IState> {
                     />
 
                     <div className="button_block">
-                        <button type="submit" className="mainButton">
-                            Отправить{' '}
-                        </button>
-                        <button type="button" className="mainButton">
-                            Предпросмотр{' '}
-                        </button>
+                        <FormButton text="Отправить" />
+                        {/*<CustomButton onClick={} text="Предпросмотр" />*/}
                     </div>
                 </ValidateForm>
             );

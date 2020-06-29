@@ -10,7 +10,8 @@ import 'Styles/input.scss';
 import 'Styles/main.scss';
 import 'Styles/comments.scss';
 import './post.scss';
-import { getCurrentUser } from '../../../services/user';
+import { getCurrentUser, isAuth } from '../../../services/user';
+import { CustomButton } from '../..';
 
 interface IProps {
     articleId: string;
@@ -22,12 +23,13 @@ interface IState {
     content: string;
     comments: Array<IComments>;
     authorId: number;
+    isAuth: boolean;
 }
 
 export default class Article extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = { header: '', content: '', disclaimer: '', authorId: -1, comments: [] };
+        this.state = { header: '', content: '', disclaimer: '', authorId: -1, comments: [], isAuth: false };
         document.title = this.state.header;
     }
 
@@ -51,8 +53,12 @@ export default class Article extends React.Component<IProps, IState> {
 
     async componentDidMount() {
         const articleId = this.props.articleId;
-        const [article, comments] = await Promise.all([this.getArticle(articleId), loadComments(articleId)]);
-        this.setState({ ...article, comments: comments });
+        const [article, comments, authed] = await Promise.all([
+            this.getArticle(articleId),
+            loadComments(articleId),
+            isAuth(),
+        ]);
+        this.setState({ ...article, comments: comments, isAuth: authed });
         document.title = this.state.header;
     }
 
@@ -66,12 +72,8 @@ export default class Article extends React.Component<IProps, IState> {
         if (currentUser && this.state.authorId === currentUser.id) {
             buttons = (
                 <div className="button_block">
-                    <button className="mainButton" onClick={this.updateArticle}>
-                        Удалить статью
-                    </button>
-                    <button className="mainButton" onClick={this.deleteArticle}>
-                        Редактировать статью
-                    </button>
+                    <CustomButton onClick={this.updateArticle} text="Удалить статью" />
+                    <CustomButton onClick={this.deleteArticle} text="Редактировать статью" />
                 </div>
             );
         }
@@ -88,10 +90,14 @@ export default class Article extends React.Component<IProps, IState> {
 
                     <div className="comments_lenta onfullwidth" id="comments2">
                         <h3>Комментарии:</h3>
-                        <CommentLenta onCommentChanged={this.onCommentChanged} comments={this.state.comments} />
+                        <CommentLenta
+                            isAuth={this.state.isAuth}
+                            onCommentChanged={this.onCommentChanged}
+                            comments={this.state.comments}
+                        />
                     </div>
                     <div className="new_comment_block">
-                        <CommentForm onCommentChanged={this.onCommentChanged} />
+                        <CommentForm isAuth={this.state.isAuth} onCommentChanged={this.onCommentChanged} />
                     </div>
                 </div>
             </div>

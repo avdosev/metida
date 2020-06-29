@@ -1,7 +1,7 @@
 import React from 'react';
-import { getArticleId } from '../../../services/comments';
+import { getArticleId } from 'Services/comments';
 import SimpleTemplate from '../../Templates/SimpleTemplate';
-import Article from '../../Organisms/Article/Article';
+import { Article } from 'Components';
 
 interface IProps {}
 
