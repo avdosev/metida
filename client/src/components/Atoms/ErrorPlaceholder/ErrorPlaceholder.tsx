@@ -1,7 +1,7 @@
 import React from 'react';
-import './error.css';
-import { ValidatorState, IValid } from '../../../services/validator/validator';
-import { IShowStrategy, IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import './error.scss';
+import { ValidatorState, IValid } from 'Services/validator/validator';
+import { IShowStrategy, IntermediateIsValid } from 'Services/validator/show_error_strategies';
 
 interface IProps extends IValid {
     value: string;

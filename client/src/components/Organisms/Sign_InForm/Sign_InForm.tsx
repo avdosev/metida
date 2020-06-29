@@ -1,9 +1,7 @@
 import React from 'react';
-import '../../styles/main.scss';
-import '../../styles/input.scss';
-import FieldInput from '../../Molecules/Field/FieldInput';
+import 'Styles/main.scss';
+import 'Styles/input.scss';
 import * as ROUTES from '../../../config/routes';
-import { Redirect } from 'react-router-dom';
 import {
     Field,
     validators,
@@ -12,14 +10,14 @@ import {
     UpdateVerifiableField,
     validateField,
 } from '../IValidators';
-import { loginQuery, postLogin } from '../../../services/FormHelper';
-import ErrorPlaceholder from '../../Atoms/ErrorPlaceholder/ErrorPlaceholder';
-import { ChangeHeaderInterface } from '../../../containers/ChangeHeaderEvent/dispatcher';
+import { loginQuery, postLogin } from 'Services/FormHelper';
+import { ErrorPlaceholder, FieldInput, FormButton } from 'Components';
+import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
-import { Container } from '../../../services/validator/container';
-import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
+import { Container } from 'Services/validator/container';
+import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
 import { IReferable } from '../IRoute';
-import { composeAsync } from '../../../services/functional';
+import { composeAsync } from 'Services/functional';
 import { curry } from '@typed/curry';
 
 interface IProps extends ChangeHeaderInterface {}
@@ -33,7 +31,6 @@ interface IState extends IReferable {
 export default class Sign_InForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        console.log(props);
         this.state = {
             email: new VerifiableField('', validateField(validators.email)),
             password: new VerifiableField('', validateField(validators.password)),
@@ -53,6 +50,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         const conveyor = composeAsync(getResponse, sendDataToServer);
 
         const res = await conveyor(allFields);
+
         this.setState({ ...res });
     };
 
@@ -73,10 +71,10 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
                 >
                     <FieldInput
                         fieldName={'email'}
-                        regexp={v!.email.regexp}
+                        regexp={v.email.regexp}
                         autofocus
                         value={state.email.value}
-                        errorText={v!.email.error_str}
+                        errorText={v.email.error_str}
                         showErrorStrategy={IntermediateIsValid}
                         validate={state.email.validator}
                         onChange={UpdateVerifiableField(this, 'email')}
@@ -84,17 +82,15 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
 
                     <FieldInput
                         fieldName={'password'}
-                        regexp={v!.password.regexp}
+                        regexp={v.password.regexp}
                         value={state.password.value}
-                        errorText={v!.password.error_str}
+                        errorText={v.password.error_str}
                         showErrorStrategy={IntermediateIsValid}
                         validate={state.password.validator}
                         onChange={UpdateVerifiableField(this, 'password')}
                     />
 
-                    <button type="submit" className="mainButton">
-                        Войти{' '}
-                    </button>
+                    <FormButton text="Войти" />
                     <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
                 </ValidateForm>
             </div>

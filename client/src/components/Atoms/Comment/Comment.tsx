@@ -9,6 +9,7 @@ interface IProps {
     comment: ITreeComments;
     currentUser: IPublicUser | null;
     onCommentChanged: (comment: Array<IComments>) => void;
+    isAuth: boolean;
 }
 
 interface IState {
@@ -40,6 +41,7 @@ export default class Comment extends React.Component<IProps, IState> {
 
         const commentform = this.state.isReplying ? (
             <CommentForm
+                isAuth={this.props.isAuth}
                 replyCommentId={comment.id}
                 replyCommentAuthorName={comment.user.username}
                 onReplyCommentSend={this.onChanged}
@@ -89,6 +91,7 @@ export default class Comment extends React.Component<IProps, IState> {
                 <div className="comment_childer">
                     {this.props.comment.childs?.map((treecomment) => (
                         <Comment
+                            isAuth={this.props.isAuth}
                             key={treecomment.comment.id}
                             comment={treecomment}
                             currentUser={this.props.currentUser}

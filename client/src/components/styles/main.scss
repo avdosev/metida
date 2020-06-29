@@ -1,7 +1,7 @@
 @import "colors.scss";
 @import "../Molecules/Header/header";
 @import "fonts";
-@import "button";
+@import "src/components/Atoms/Button/button";
 
 .onfullwidth {
   width: 100%;
@@ -78,6 +78,9 @@ body.dark-mode {
 
   .logo__image {
     content: url("/img/header__logo_white.svg");
+  }
+  .icon {
+    fill: $ccc-color;
   }
 }
 

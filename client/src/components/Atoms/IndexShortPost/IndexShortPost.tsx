@@ -8,7 +8,7 @@ interface IProps {
     json: IPost;
 }
 
-export function IndexShortPost(props: IProps) {
+export default function IndexShortPost(props: IProps) {
     const url = `/post/${props.json.id}`;
 
     return (
@@ -18,7 +18,7 @@ export function IndexShortPost(props: IProps) {
                     <h3 dangerouslySetInnerHTML={{ __html: props.json.header }} />
                 </Link>
             </div>
-            <div className="disclaimer" dangerouslySetInnerHTML={{ __html: md.render(props.json.disclaimer) }}></div>
+            <div className="disclaimer" dangerouslySetInnerHTML={{ __html: md.render(props.json.disclaimer) }} />
             <div className="after_post">
                 <Link to={url} className="after_post__button mainButton">
                     Читать дальше
