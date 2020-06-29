@@ -50,6 +50,7 @@ export default class Sign_InForm extends React.Component<IProps, IState> {
         const conveyor = composeAsync(getResponse, sendDataToServer);
 
         const res = await conveyor(allFields);
+
         this.setState({ ...res });
     };
 

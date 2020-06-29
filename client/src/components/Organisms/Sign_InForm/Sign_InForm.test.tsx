@@ -30,7 +30,7 @@ describe('<SignInForm/>', () => {
                 <Sign_InForm />
             </Provider>
         );
-        console.log(wrapper.debug());
+        //console.log(wrapper.debug());
     });
 
     it('should render self an', () => {
@@ -54,13 +54,13 @@ describe('<SignInForm/>', () => {
 
         emailInput.simulate('change', { target: { name: 'email', value: 'email23@yandex.ru' } });
         passwordInput.simulate('change', { target: { value: 'sssssss1' } });
-        expect(emailInput.text()).toBe('email23@yandex.ru');
-        expect(passwordInput.text()).toBe('sssssss1');
 
-        const submitBtn = myform.find(FormButton);
-        submitBtn.simulate('click');
+        const fakeEvent = { preventDefault: () => console.log('gdgsgsdgsdgsgsdgsgsgsgsgsdgs222') };
+        myform.find('form').simulate('submit', fakeEvent);
 
-        expect(myform.find(ErrorPlaceholder).last().text()).toBeTruthy(); // last т.к. мы проверяем серверный отклик
+        //console.log(myform.debug())
+
+        //expect(myform.find(ErrorPlaceholder).last().text()).toBeTruthy(); // last т.к. мы проверяем серверный отклик
         // для строки сойдет
 
         expect(fetch).toHaveBeenCalled();
