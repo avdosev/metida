@@ -7,22 +7,29 @@ import Feed from '../../Organisms/Feed/Feed';
 import SimplePage from '../../Templates/SimpleTemplate';
 import { debounce } from '../../../services/functional';
 import { CustomButton, IndexShortPost } from 'Components';
+import IndexShortPostPlaceholder from '../../Atoms/IndexShortPost/IndexShortPostPlaceholder';
 
 interface IProps {}
 
 interface IState {
     lenta: Array<JSX.Element>;
+    placeholderFeed: Array<JSX.Element>;
+    isLoaded: boolean;
 }
 
 export default class IndexFeed extends React.Component<IProps, IState> {
-    articlesCount = 10; //число статей, которые будут на странице до нажатия кнопки (а также столько мы будем гетить за раз)
-    timeFromPreviousLoad = 0;
+    private articlesCount = 10; //число статей, которые будут на странице до нажатия кнопки (а также столько мы будем гетить за раз)
+    private skeletonsCount = 3;
 
     constructor(props: IProps) {
         super(props);
-
-        this.state = { lenta: [] };
+        let lenta = [];
+        for (let i = 0; i < this.skeletonsCount; i++) {
+            lenta.push(<IndexShortPostPlaceholder key={i} />);
+        }
+        this.state = { lenta: [], placeholderFeed: lenta, isLoaded: false };
         document.title = 'Metida';
+
         //document.addEventListener('scroll', this.handleScroll);
     }
 
@@ -36,7 +43,6 @@ export default class IndexFeed extends React.Component<IProps, IState> {
     };
 
     componentWillUnmount() {
-        debugger;
         //document.removeEventListener('scroll', this.handleScroll)
     }
 
@@ -47,7 +53,6 @@ export default class IndexFeed extends React.Component<IProps, IState> {
             begin: this.state.lenta.length,
             end: this.state.lenta.length + articlesCount,
         });
-        //debugger;
 
         for (let i = 0; i < json.length; i++) {
             // ну го проверим, а так хз зачем нужен этот блок
@@ -62,7 +67,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
             lenta.push(<IndexShortPost key={post.id} json={post} />);
         }
 
-        this.setState({ lenta: lenta }, () => console.log(this.state));
+        this.setState({ lenta: lenta, isLoaded: true }, () => console.log(this.state));
     };
 
     getMoreArticles = async (e: any) => {
@@ -80,7 +85,10 @@ export default class IndexFeed extends React.Component<IProps, IState> {
                     <div className="content">
                         <h1>Умная лента</h1>
                         <hr className="head" />
-                        <Feed>{this.state.lenta}</Feed>
+                        <Feed>{this.state.isLoaded ? this.state.lenta : this.state.placeholderFeed}</Feed>
+                        <Feed>
+                            <IndexShortPostPlaceholder />
+                        </Feed>
                         <CustomButton text="Показать больше" onClick={this.getMoreArticles} />
                     </div>
                 </div>
