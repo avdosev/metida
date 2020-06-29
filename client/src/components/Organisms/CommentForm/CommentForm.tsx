@@ -15,10 +15,10 @@ interface IProps {
     replyCommentId?: number;
     replyCommentAuthorName?: string;
     onReplyCommentSend?: () => void;
+    isAuth: boolean;
 }
 
 interface IState {
-    isAuth: boolean;
     isRendered: boolean;
     comment: VerifiableField;
     linkToSend: string;
@@ -30,7 +30,6 @@ export default class CommentForm extends React.Component<IProps, IState> {
         super(props);
         const articleId = getArticleId();
         this.state = {
-            isAuth: false,
             comment: new VerifiableField('', validateField(validators.comment)),
             isRendered: false, // нужно для того, чтобы сразу после рендера добавить никнейм автора, на который  мы отвечаем
             articleId: articleId,
@@ -39,15 +38,12 @@ export default class CommentForm extends React.Component<IProps, IState> {
     }
 
     async componentDidMount() {
-        const authed = await isAuth();
-        console.log(this.props);
-        if (authed && !this.state.isRendered) {
+        if (this.props.isAuth && !this.state.isRendered) {
             const replyCommentAuthorName =
                 this.props.replyCommentId || this.props.replyCommentAuthorName
                     ? this.props.replyCommentAuthorName + ', '
                     : '';
             this.setState({
-                isAuth: authed,
                 isRendered: true,
                 comment: this.state.comment.updatedValue(replyCommentAuthorName),
             });
@@ -79,7 +75,7 @@ export default class CommentForm extends React.Component<IProps, IState> {
 
     render() {
         let comment: JSX.Element;
-        if (this.state.isAuth) {
+        if (this.props.isAuth) {
             const container = new Container(this.state.comment);
 
             comment = (

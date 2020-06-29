@@ -18,12 +18,13 @@ module.exports = {
   collectCoverage: true,
 
   moduleNameMapper: {
-    "\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$": "<rootDir>/src/.jest/fileMock.js",
+    "\\.(jpg|jpeg|png|gif|webp|svg|ttf|woff|woff2)$":
+      "<rootDir>/src/.jest/fileMock.js",
     "\\.(css|scss)$": "identity-obj-proxy",
     "^Containers/(.*)$": "<rootDir>/src/containers/$1",
-    "^Components/(.*)$": "/src/components/$1",
-    "^Styles/(.*)$": "/src/components/styles/$1",
-    "^Services/(.*)$": "/src/services/$1"
+    "^Components$": "<rootDir>/src/components/index.ts",
+    "^Styles/(.*)$": "<rootDir>/src/components/styles/$1",
+    "^Services/(.*)$": "<rootDir>/src/services/$1",
   },
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
@@ -75,14 +76,7 @@ module.exports = {
   // ],
 
   // An array of file extensions your modules use
-  moduleFileExtensions: [
-    "js",
-    "json",
-    "jsx",
-    "ts",
-    "tsx",
-    "node"
-  ],
+  moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx", "node"],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   // moduleNameMapper: {},
@@ -121,9 +115,7 @@ module.exports = {
   // rootDir: undefined,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    "<rootDir>/src"
-  ],
+  roots: ["<rootDir>/src"],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -158,7 +150,7 @@ module.exports = {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
@@ -174,7 +166,7 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.tsx?$": "ts-jest",
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation

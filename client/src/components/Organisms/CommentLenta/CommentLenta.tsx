@@ -1,12 +1,14 @@
 import React from 'react';
 import { Comment } from 'Components';
 import { IComments, ITreeComments } from '../IComment';
-import { getCurrentUser } from 'Services/user';
+import { getCurrentUser, isAuth } from 'Services/user';
 import { IPrivateUser, IPublicUser } from '../IPrivateUser';
+import { is, propSatisfies } from 'ramda';
 
 interface IProps {
     comments: Array<IComments>;
     onCommentChanged: (comment: Array<IComments>) => void;
+    isAuth: boolean;
 }
 
 function buildTreeComments(comments: Array<IComments>): Array<ITreeComments> {
@@ -47,6 +49,7 @@ export default function CommentLenta(props: IProps) {
         <div className="lenta">
             {treeComments.map((treeComment) => (
                 <Comment
+                    isAuth={props.isAuth}
                     key={treeComment.comment.id}
                     comment={treeComment}
                     currentUser={user}

@@ -10,7 +10,7 @@ import {
     UpdateVerifiableField,
     validateField,
 } from '../IValidators';
-import { loginQuery, postLogin } from '../../../services/FormHelper';
+import { loginQuery, postLogin } from 'Services/FormHelper';
 import { ErrorPlaceholder, FieldInput, FormButton } from 'Components';
 import { ChangeHeaderInterface } from 'Containers/ChangeHeaderEvent/dispatcher';
 import ValidateForm from '../ValidableForm/ValidateForm';
