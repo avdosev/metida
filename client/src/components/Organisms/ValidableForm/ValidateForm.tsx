@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'Components';
-import { VerifiableContainer } from '../../../services/validator/container';
+import { VerifiableContainer } from 'Services/validator/container';
 
 interface IProps {
     className?: string;

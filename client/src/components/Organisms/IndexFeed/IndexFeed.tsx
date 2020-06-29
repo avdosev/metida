@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import 'Styles/main.scss';
 import 'Styles/lenta.scss';
 import 'Styles/colors.scss';
-import { post } from '../../../services/router';
-import Feed from '../../Organisms/Feed/Feed';
 import SimplePage from '../../Templates/SimpleTemplate';
-import { debounce } from '../../../services/functional';
-import { CustomButton, IndexShortPost } from 'Components';
-import IndexShortPostPlaceholder from '../../Atoms/IndexShortPost/IndexShortPostPlaceholder';
+import { post } from 'Services/router';
+import { debounce } from 'Services/functional';
+import { CustomButton, IndexShortPost, IndexShortPostPlaceholder, Feed } from 'Components';
 
 interface IProps {}
 

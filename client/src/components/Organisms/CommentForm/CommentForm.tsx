@@ -1,22 +1,14 @@
 import React from 'react';
 import FieldTextarea from '../../Molecules/Field/FieldTextarea';
-import {
-    UpdateVerifiableField,
-    validateField,
-    validators,
-    Validators,
-    ValidatorState,
-    VerifiableField,
-} from '../IValidators';
-import { get, post } from '../../../services/router';
-import { getCurrentUser, isAuth } from '../../../services/user';
-import { getArticleId } from '../../../services/comments';
+import { UpdateVerifiableField, validateField, validators, VerifiableField } from '../IValidators';
+import { get, post } from 'Services/router';
+import { getCurrentUser, isAuth } from 'Services/user';
+import { getArticleId } from 'Services/comments';
 import { IComments } from '../IComment';
 import ValidateForm from '../ValidableForm/ValidateForm';
-import { Container } from '../../../services/validator/container';
-import { IntermediateIsValid } from '../../../services/validator/show_error_strategies';
-import { verifyByRegexp } from '../../../services/validator/validator';
-import { CustomButton, FormButton } from '../..';
+import { Container } from 'Services/validator/container';
+import { IntermediateIsValid } from 'Services/validator/show_error_strategies';
+import { CustomButton, FormButton } from 'Components';
 
 interface IProps {
     onCommentChanged: (comment: Array<IComments>) => void;

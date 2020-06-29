@@ -3,7 +3,6 @@ export function get(item: string) {
 }
 
 export function set(item: string, data: string) {
-    console.log(item, data);
     localStorage.setItem(item, data);
 }
 

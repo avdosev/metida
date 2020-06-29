@@ -79,6 +79,9 @@ body.dark-mode {
   .logo__image {
     content: url("/img/header__logo_white.svg");
   }
+  .icon {
+    fill: $ccc-color;
+  }
 }
 
 a {
