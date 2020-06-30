@@ -37,7 +37,7 @@ const initAuthControllers = (app) => {
   if (process.env.NODE_ENV === "production") {
     initClientControllers(app);
   } else {
-    morgan("tiny");
+    app.use(morgan("combined"));
   }
 
   // -- ARTICLES API --
