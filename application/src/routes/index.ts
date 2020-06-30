@@ -1,4 +1,5 @@
 import express from "express";
+import morgan from "morgan";
 import config, { mainDir } from "../config/index";
 
 import {
@@ -35,6 +36,8 @@ const initAuthControllers = (app) => {
 
   if (process.env.NODE_ENV === "production") {
     initClientControllers(app);
+  } else {
+    morgan("tiny");
   }
 
   // -- ARTICLES API --
