@@ -22,7 +22,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         let lenta = [];
-        for (let i = 0; i < this.skeletonsCount; i++) {
+        for (let i = 0; i < this.articlesCount; i++) {
             lenta.push(<IndexShortPostPlaceholder key={i} />);
         }
         this.state = { lenta: [], placeholderFeed: lenta, isLoaded: false };
@@ -77,6 +77,7 @@ export default class IndexFeed extends React.Component<IProps, IState> {
     }
 
     render() {
+        console.log(this.state.isLoaded, this.state.lenta, this.state.placeholderFeed);
         return (
             <SimplePage>
                 <div className="layout_body">
@@ -84,9 +85,6 @@ export default class IndexFeed extends React.Component<IProps, IState> {
                         <h1>Умная лента</h1>
                         <hr className="head" />
                         <Feed>{this.state.isLoaded ? this.state.lenta : this.state.placeholderFeed}</Feed>
-                        <Feed>
-                            <IndexShortPostPlaceholder />
-                        </Feed>
                         <CustomButton text="Показать больше" onClick={this.getMoreArticles} />
                     </div>
                 </div>

@@ -5,6 +5,10 @@ import { userFieldName } from '../config/localstorage';
 
 async function query(method: string, url: string, data: any = null, callback?: { (response: any): void }) {
     let response;
+    if (serverUri === undefined) {
+        throw new Error('Server URI is not defined');
+    }
+    const fullRouteUrl = serverUri + url;
     if (method === 'post') {
         const options = {
             method: method,
@@ -16,7 +20,7 @@ async function query(method: string, url: string, data: any = null, callback?: {
                 ...data,
             }),
         };
-        response = await fetch(serverUri + url, options);
+        response = await fetch(fullRouteUrl, options);
     } else {
         const options = {
             method: method,

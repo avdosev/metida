@@ -11,6 +11,8 @@ import renderer, { ReactTestRenderer } from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { ErrorPlaceholder, FieldInput, FormButton } from '../../index';
 import fetch, { Response } from 'node-fetch';
+import { enableFetchMocks } from 'jest-fetch-mock';
+enableFetchMocks();
 
 const mockStore = configureStore([]);
 jest.mock('node-fetch');
@@ -42,7 +44,7 @@ describe('<SignInForm/>', () => {
         expect(wrapper.find('.email').length).toBe(1);
     });
 
-    it('should change fields', () => {
+    it('should change fields', async () => {
         const myform = mount(
             <Provider store={mockStore()}>
                 <Sign_InForm />
@@ -56,7 +58,12 @@ describe('<SignInForm/>', () => {
         passwordInput.simulate('change', { target: { value: 'sssssss1' } });
 
         const fakeEvent = { preventDefault: () => console.log('gdgsgsdgsdgsgsdgsgsgsgsgsdgs222') };
-        myform.find('form').simulate('submit', fakeEvent);
+
+        try {
+            await myform.find('form').simulate('submit', fakeEvent);
+        } catch (e) {
+            expect(e).toMatch('error');
+        }
 
         //console.log(myform.debug())
 
