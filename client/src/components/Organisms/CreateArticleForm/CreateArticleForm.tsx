@@ -64,14 +64,17 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
         }
     };
 
+    rerenderPreview = () => {
+        console.log('rerender');
+        const { content, header, disclaimer, isPreview } = this.state;
+        const args: [string, string, string] = isPreview
+            ? [header.value, disclaimer.value, content.value]
+            : ['', '', ''];
+        this.props.onRenderPreview(...args);
+    };
+
     handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { content, header, disclaimer } = this.state;
-        if (e.target.checked) {
-            this.props.onRenderPreview(header.value, disclaimer.value, content.value);
-        } else {
-            this.props.onRenderPreview('', '', '');
-        }
-        this.setState({ isPreview: e.target.checked });
+        this.setState({ isPreview: e.target.checked }, this.rerenderPreview);
     };
 
     render() {
@@ -100,7 +103,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     autofocus
                     showErrorStrategy={IntermediateIsValid}
                     validate={fd.header.validator}
-                    onChange={UpdateVerifiableField(this, 'header')}
+                    onChange={UpdateVerifiableField(this, 'header', this.rerenderPreview)}
                 />
                 <FieldTextarea
                     fieldDescription={'Дисклеймер'}
@@ -112,7 +115,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     errorText={v.disclaimer.error_str}
                     showErrorStrategy={IntermediateIsValid}
                     validate={fd.disclaimer.validator}
-                    onChange={UpdateVerifiableField(this, 'disclaimer')}
+                    onChange={UpdateVerifiableField(this, 'disclaimer', this.rerenderPreview)}
                 />
                 <Checkbox
                     id="previews"
@@ -133,7 +136,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     errorText={v.content.error_str}
                     showErrorStrategy={IntermediateIsValid}
                     validate={fd.disclaimer.validator}
-                    onChange={UpdateVerifiableField(this, 'content')}
+                    onChange={UpdateVerifiableField(this, 'content', this.rerenderPreview)}
                 />
                 <FormButton text="Отправить" />
                 <ErrorPlaceholder valid={this.state.serverError.valid} value={this.state.serverError.value} />
