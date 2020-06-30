@@ -41,6 +41,7 @@
     "jsonwebtoken": "^8.5.1",
     "markdown-it": "^8.4.2",
     "mysql2": "^2.0.1",
+    "morgan": "^1.10.0",
     "nodemailer": "^6.1.1",
     "sequelize": "^5.7.4",
     "ts-node": "^8.10.2"
@@ -55,7 +56,6 @@
     "chai-http": "^4.3.0",
     "concurrently": "^4.1.1",
     "eslint": "^6.6.0",
-    "morgan": "^1.10.0",
     "lorem-ipsum": "^2.0.2",
     "mocha": "^6.1.4",
     "nodemon": "^2.0.4",
