@@ -1,5 +1,5 @@
-import * as Articles from './article.js';
-import * as Comments from './comments.js';
-import * as Users from './user.js';
+import * as Articles from './article';
+import * as Comments from './comments';
+import * as Users from './user';
 
-export default {...Articles, ...Comments, ...Users}
+export default { ...Articles, ...Comments, ...Users };
