@@ -8,6 +8,7 @@ async function query(method: string, url: string, data: any = null, callback?: {
     if (serverUri === undefined) {
         throw new Error('Server URI is not defined');
     }
+
     const fullRouteUrl = serverUri + url;
     if (method === 'post') {
         const options = {

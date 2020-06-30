@@ -38,6 +38,7 @@ export default class Article extends React.Component<IProps, IState> {
             method: 'delete',
         });
         const jsn = await res.json();
+        console.log(jsn);
         if (jsn['success']) document.location.href = '/';
     };
 
@@ -72,8 +73,8 @@ export default class Article extends React.Component<IProps, IState> {
         if (currentUser && this.state.authorId === currentUser.id) {
             buttons = (
                 <div className="button_block">
-                    <CustomButton onClick={this.updateArticle} text="Удалить статью" />
-                    <CustomButton onClick={this.deleteArticle} text="Редактировать статью" />
+                    <CustomButton onClick={this.deleteArticle} text="Удалить статью" />
+                    <CustomButton onClick={this.updateArticle} text="Редактировать статью" />
                 </div>
             );
         }

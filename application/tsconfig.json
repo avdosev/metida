@@ -1,27 +1,20 @@
 {
   "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "target": "es6",
-      "noImplicitAny": false,
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "outDir": "dist",
-      "baseUrl": ".",
-      "resolveJsonModule": true,
-      "paths": {
-          "*": [
-              "node_modules/*",
-              "src/types/*"
-          ]
-      },
-      "typeRoots": [
-          "src/declarations.d.ts",
-          "./node_modules/@types"
-      ]
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es6",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./src/declarations.d.ts"]
   },
-  "include": [
-      "src/**/*"
-  ]
+  "files": ["src/declarations.d.ts"],
+  "include": ["src/**/*"]
 }

@@ -1,6 +1,6 @@
 {
   "ignore": [".git", "node_modules"],
-  "watch": ["src"],
-  "exec": "yarn run serve",
-  "ext": "ts"
+  "watch": ["src/"],
+  "exec": "ts-node ./src/app.ts --files",
+  "ext": "ts,tsx,json,js"
 }
