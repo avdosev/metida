@@ -33,13 +33,20 @@ export class VerifiableField implements IVerifiable, Field {
     }
 }
 
-export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(obj: T, fieldKey: K) {
+export function UpdateVerifiableField<T extends React.Component, K extends keyof T['state']>(
+    obj: T,
+    fieldKey: K,
+    callback?: (() => void) | undefined
+) {
     return (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         event.persist();
-        obj.setState((state: T['state']) => ({
-            // @ts-ignore
-            [fieldKey]: state[fieldKey].updatedValue(event.target.value),
-        }));
+        obj.setState(
+            (state: T['state']) => ({
+                // @ts-ignore
+                [fieldKey]: state[fieldKey].updatedValue(event.target.value),
+            }),
+            callback
+        );
     };
 }
 
