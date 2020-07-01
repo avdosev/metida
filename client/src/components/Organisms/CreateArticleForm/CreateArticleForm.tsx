@@ -46,9 +46,9 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     submitBtnHandler = async (event: React.FormEvent) => {
         event.preventDefault();
         const response = await post(ROUTES.CREATE_ARTICLE, {
-            disclaimer: this.state.disclaimer,
-            header: this.state.header,
-            content: this.state.content,
+            disclaimer: this.state.disclaimer.value,
+            header: this.state.header.value,
+            content: this.state.content.value,
         });
 
         if (response.hasOwnProperty('error')) {

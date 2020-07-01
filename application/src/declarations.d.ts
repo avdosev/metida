@@ -1,15 +1,15 @@
-// нужно для корректного распознавание css модулей
 export {};
 
-declare global{
+declare global {
     namespace Express {
         interface Request {
-            userId: number,
-            values: any,
-            user: any
+            userId: number;
+            values: any;
+            user: any;
         }
+
         interface Response {
-            values: any
+            values: any;
         }
     }
 }
