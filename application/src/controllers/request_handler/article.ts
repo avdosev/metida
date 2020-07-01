@@ -3,7 +3,7 @@ import { MarkdownToHtml } from '../../services/markdown.js';
 import { NextFunction, Request, Response } from 'express';
 import { initValues } from '../../services/initValues';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
-import { getJwtTokenFromHeaderParams, verify } from '../logged';
+//import { getJwtTokenFromHeaderParams, verify } from '../logged';
 import { secretKey } from '../../config';
 
 export async function updateArticle(req: Request, res: Response, next: NextFunction) {

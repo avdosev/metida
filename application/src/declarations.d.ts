@@ -1,3 +1,5 @@
+import { DecodedObject } from './controllers/logged';
+
 export {};
 
 declare global {
@@ -6,6 +8,7 @@ declare global {
             userId: number;
             values: any;
             user: any;
+            status: DecodedObject | null;
         }
 
         interface Response {

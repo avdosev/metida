@@ -10,41 +10,51 @@ export function getJwtTokenFromHeaderParams(req: Request): string {
     return token;
 }
 
-export function verify(token): any | null {
-    jwt.verify(token, secretKey, (err: VerifyErrors | null, decoded: any) => {
+export interface DecodedObject {
+    id: number;
+    iat: number;
+    exp: number;
+}
+
+export function verify(token): DecodedObject | string {
+    // ля да почему
+    // @ts-ignore
+    return jwt.verify(token, secretKey, (err: VerifyErrors | null, decoded: DecodedObject | null) => {
         if (err) {
-            return null;
+            return err.message;
         } else {
             return decoded;
         }
     });
-    return null;
 }
 
 //топовая проверка на допуск юзера до страницы(но другая)
 export function verifyToken(req: Request, res: Response, next: NextFunction) {
     const token = getJwtTokenFromHeaderParams(req);
 
-    res.status(200);
     if (!token) {
-        return res.send({
+        return res.status(403).send({
             error: 'No token provided! Please set your auth token in header parameter "x-access-token". ',
         });
     }
 
     const user = verify(token);
-    if (user) {
-        req.userId = user.id;
-        next();
-    } else {
-        return res.send({
-            error: 'Unauthorized!',
+
+    if (typeof user === 'string') {
+        // это ошибка, значится
+        return res.status(403).send({
+            error: user,
         });
+    } else {
+        req.userId = user.id;
+        req.status = user;
+        next();
     }
 }
 
 export function sendSuccess(req: Request, res: Response, next: NextFunction) {
-    res.send({
+    res.status(200).send({
         message: 'Success',
+        status: req.status,
     });
 }
