@@ -1,7 +1,6 @@
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import config, { secretKey } from '../config/index.js';
 import { Request, Response, NextFunction } from 'express';
-import { IPublicUser } from '../../../client/src/components/Organisms/IPrivateUser';
 
 export function getJwtTokenFromHeaderParams(req: Request): string {
     let token = req.headers['x-access-token'];
@@ -11,8 +10,8 @@ export function getJwtTokenFromHeaderParams(req: Request): string {
     return token;
 }
 
-export function verify(token): IPublicUser | null {
-    jwt.verify(token, secretKey, (err: VerifyErrors | null, decoded: IPublicUser) => {
+export function verify(token): any | null {
+    jwt.verify(token, secretKey, (err: VerifyErrors | null, decoded: any) => {
         if (err) {
             return null;
         } else {
