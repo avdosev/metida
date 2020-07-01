@@ -3,7 +3,11 @@ import { IPrivateUser } from '../components/Organisms/IPrivateUser';
 import * as ls from './localstorage';
 import { userFieldName } from '../config/localstorage';
 
-async function query(method: string, url: string, data: any = null, callback?: { (response: any): void }) {
+interface IData {
+    [name: string]: string | number | undefined;
+}
+
+async function query(method: string, url: string, data?: IData, callback?: { (response: any): void }) {
     let response;
     if (serverUri === undefined) {
         throw new Error('Server URI is not defined');
@@ -50,11 +54,11 @@ async function get(url: string) {
     return await query('get', url);
 }
 
-async function post(url: string, data: any, callback?: { (response: any): void }) {
+async function post(url: string, data: IData, callback?: { (response: any): void }) {
     return await query('post', url, data, callback);
 }
 
-async function deleteMethod(url: string, data: any, callback?: { (response: any): void }) {
+async function deleteMethod(url: string, data: IData, callback?: { (response: any): void }) {
     return await query('delete', url, data, callback);
 }
 
