@@ -7,14 +7,16 @@ interface IData {
     [name: string]: string | number | undefined;
 }
 
-async function query(method: string, url: string, data?: IData, callback?: { (response: any): void }) {
+export type HTTP_method = 'get' | 'head' | 'post' | 'put' | 'delete' | 'connect' | 'options' | 'trace' | 'patch';
+
+async function query(method: HTTP_method, url: string, data?: IData, callback?: { (response: any): void }) {
     let response;
     if (serverUri === undefined) {
         throw new Error('Server URI is not defined');
     }
 
     const fullRouteUrl = serverUri + url;
-    if (method === 'post') {
+    if (method in ['post', 'put', 'patch']) {
         const options = {
             method: method,
             headers: {
@@ -50,16 +52,22 @@ async function query(method: string, url: string, data?: IData, callback?: { (re
     }
 }
 
-async function get(url: string) {
+type callback_t = { (response: any): any };
+
+async function get(url: string, callback?: callback_t) {
     return await query('get', url);
 }
 
-async function post(url: string, data: IData, callback?: { (response: any): void }) {
+async function post(url: string, data: IData, callback?: callback_t) {
     return await query('post', url, data, callback);
 }
 
-async function deleteMethod(url: string, data: IData, callback?: { (response: any): void }) {
+async function delete_(url: string, data: IData, callback?: callback_t) {
     return await query('delete', url, data, callback);
+}
+
+async function put(url: string, data: IData, callback?: callback_t) {
+    return await query('put', url, data, callback);
 }
 
 function authHeader() {
@@ -74,4 +82,4 @@ function authHeader() {
     }
 }
 
-export { get, post };
+export { get, post, query };

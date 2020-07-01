@@ -1,7 +1,7 @@
 import React from 'react';
 import 'Styles/input.scss';
 import * as ROUTES from '../../../config/routes';
-import { post } from 'Services/router';
+import { HTTP_method, query } from 'Services/router';
 import { Redirect } from 'react-router-dom';
 import {
     Field,
@@ -20,6 +20,11 @@ import { FormButton, FieldTextarea, ErrorPlaceholder, FieldInput, Checkbox } fro
 
 interface IProps {
     onRenderPreview: (header: string, disclaimer: string, content: string) => void;
+    headerDefault: string;
+    disclaimerDefault: string;
+    contentDefault: string;
+    requestURL: string;
+    method: HTTP_method;
 }
 
 interface IState extends IReferable {
@@ -34,9 +39,9 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            header: new VerifiableField('', validateField(validators.header)),
-            disclaimer: new VerifiableField('', validateField(validators.disclaimer)),
-            content: new VerifiableField('', validateField(validators.content)),
+            header: new VerifiableField(props.headerDefault, validateField(validators.header)),
+            disclaimer: new VerifiableField(props.disclaimerDefault, validateField(validators.disclaimer)),
+            content: new VerifiableField(props.contentDefault, validateField(validators.content)),
             isPreview: false,
             referrer: <></>,
             serverError: { value: '', valid: ValidatorState.Intermediate },
@@ -45,7 +50,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     submitBtnHandler = async (event: React.FormEvent) => {
         event.preventDefault();
-        const response = await post(ROUTES.CREATE_ARTICLE, {
+        const response = await query(this.props.method, this.props.requestURL, {
             disclaimer: this.state.disclaimer.value,
             header: this.state.header.value,
             content: this.state.content.value,

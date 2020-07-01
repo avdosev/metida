@@ -4,6 +4,7 @@ import Header from '../../../containers/ChangeHeaderEvent/HeaderContainer';
 import 'Styles/create_article.scss';
 import CreateArticleForm from '../../Organisms/CreateArticleForm/CreateArticleForm';
 import PreviewArticle from '../../Molecules/PreviewArticles/PreviewArticle';
+import * as ROUTES from '../../../config/routes';
 
 interface IProps {}
 
@@ -29,7 +30,14 @@ export default class CreateArticle extends React.Component<IProps, IState> {
             <SimpleTemplate>
                 <div className="layout_body">
                     <div className="content">
-                        <CreateArticleForm onRenderPreview={this.showArtIfCheckboxChecked} />
+                        <CreateArticleForm
+                            onRenderPreview={this.showArtIfCheckboxChecked}
+                            headerDefault=""
+                            contentDefault=""
+                            disclaimerDefault=""
+                            requestURL={ROUTES.CREATE_ARTICLE}
+                            method="post"
+                        />
                         <PreviewArticle
                             header={this.state.header}
                             content={this.state.content}
