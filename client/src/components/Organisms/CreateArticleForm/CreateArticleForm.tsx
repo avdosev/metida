@@ -106,6 +106,7 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
                     onChange={UpdateVerifiableField(this, 'header', this.rerenderPreview)}
                 />
                 <FieldTextarea
+                    fieldClass="create_area"
                     fieldDescription={'Дисклеймер'}
                     regexp={v.disclaimer.regexp}
                     value={fd.disclaimer.value}
