@@ -2,6 +2,7 @@ import { serverUri } from '../config/config';
 import { IPrivateUser } from '../components/Organisms/IPrivateUser';
 import * as ls from './localstorage';
 import { userFieldName } from '../config/localstorage';
+import { has } from './utils';
 
 interface IData {
     [name: string]: string | number | undefined;
@@ -16,7 +17,7 @@ async function query(method: HTTP_method, url: string, data?: IData, callback?: 
     }
 
     const fullRouteUrl = serverUri + url;
-    if (method in ['post', 'put', 'patch']) {
+    if (has(['post', 'put', 'patch'], method)) {
         const options = {
             method: method,
             headers: {
