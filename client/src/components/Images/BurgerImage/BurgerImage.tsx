@@ -1,9 +1,11 @@
 import React from 'react';
+import { eqProps } from 'ramda';
 
 interface IProps {
     toggleMethod: (event: any) => void;
     lineHeight: number;
     lineWidth: number;
+    id: string;
 }
 
 export default function BurgerImage(props: IProps) {
@@ -14,7 +16,7 @@ export default function BurgerImage(props: IProps) {
             viewBox={viewBox}
             fill="hsl(0, 0%, 20%)"
             className="icon"
-            id="burger"
+            id={props.id}
             onClick={props.toggleMethod}
             aria-label="Меню"
         >

@@ -101,7 +101,7 @@ nav ul {
   list-style: none;
 }
 
-.submenu {
+#submenu {
   display: flex;
   flex-direction: row;
 }
@@ -183,7 +183,7 @@ header ul {
     position: relative;
   }
 
-  .submenu {
+  #submenu {
     flex-direction: column;
     background: $main-back-color;
     position: absolute;
@@ -191,13 +191,19 @@ header ul {
     top: 100%;
     z-index: 5;
     width: 120px;
-    opacity: 0;
-    transform: scaleY(0);
+  }
+
+  .submenu {
     transform-origin: 0 0;
     transition: 0.5s ease-in-out;
   }
 
-  #submenu__active {
+  .submenu__close {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+
+  .submenu__active {
     opacity: 1;
     transform: scaleY(1);
   }

@@ -4,16 +4,14 @@ import BurgerImage from '../../Images/BurgerImage/BurgerImage';
 
 export default function Burger(props: { authorised: boolean }) {
     function toggleSubmenu(event: any) {
-        const burger = document.getElementsByClassName('submenu')[0];
+        const burger = document.getElementById('submenu');
+        if (burger === null) return;
 
         if (event.target.id === 'burger') {
-            if (burger.id === 'submenu') {
-                burger.id = 'submenu__active';
-            } else {
-                burger.id = 'submenu';
-            }
+            burger.classList.toggle('submenu__active');
+            burger.classList.toggle('submenu__close');
         } else {
-            burger.id = 'submenu';
+            burger.classList.replace('submenu__active', 'submenu__close');
         }
     }
 
@@ -59,8 +57,8 @@ export default function Burger(props: { authorised: boolean }) {
         <nav>
             <ul className="topmenu">
                 <li>
-                    <BurgerImage toggleMethod={toggleSubmenu} lineHeight={2} lineWidth={12} />
-                    <ul className="submenu" id="submenu" onClick={toggleSubmenu}>
+                    <BurgerImage toggleMethod={toggleSubmenu} lineHeight={2} lineWidth={12} id="burger" />
+                    <ul className="submenu submenu__close" id="submenu" onClick={toggleSubmenu}>
                         {buttons}
                     </ul>
                 </li>
