@@ -2,7 +2,7 @@ import React from 'react';
 import { eqProps } from 'ramda';
 
 interface IProps {
-    toggleMethod: (event: any) => void;
+    toggleMethod?: (event: any) => void;
     lineHeight: number;
     lineWidth: number;
     id: string;

@@ -129,7 +129,6 @@ header ul {
 @media screen and (max-width: 650px) {
   .icon {
     display: inline;
-    margin-right: 70px;
     fill: $main-back-color;
   }
 
@@ -186,9 +185,9 @@ header ul {
   #submenu {
     flex-direction: column;
     background: $main-back-color;
-    position: absolute;
-    left: -185%;
-    top: 100%;
+    position: fixed;
+    right: 0px;
+    margin-top: 10px;
     z-index: 5;
     width: 120px;
   }
