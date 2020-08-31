@@ -8,36 +8,47 @@ import * as ROUTES from '../../../config/routes';
 
 interface IProps {}
 
-interface IState {
+interface IArticle {
     header: string;
     disclaimer: string;
     content: string;
 }
 
+interface IState extends IArticle {
+    showPreview: boolean;
+}
+
 export default class CreateArticle extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = { header: '', disclaimer: '', content: '' };
+        this.state = { header: '', disclaimer: '', content: '', showPreview: false };
         document.title = 'Создание статьи';
     }
 
-    showArtIfCheckboxChecked = (header: string, disclaimer: string, content: string) => {
+    onChangeArticle = (header: string, disclaimer: string, content: string) => {
         this.setState({ header: header, content: content, disclaimer: disclaimer });
+    };
+
+    onShowPreview = (show: boolean) => {
+        this.setState({ showPreview: show });
     };
 
     render() {
         return (
             <SimpleTemplate>
-                <div className="layout_body">
+                <div className="layout_body space_around_inner">
                     <div className="content">
                         <CreateArticleForm
-                            onRenderPreview={this.showArtIfCheckboxChecked}
+                            onRenderPreview={this.onChangeArticle}
+                            onPreviewChange={this.onShowPreview}
                             headerDefault=""
                             contentDefault=""
                             disclaimerDefault=""
                             requestURL={ROUTES.CREATE_ARTICLE}
                             method="post"
                         />
+                    </div>
+                    <div className="content" style={this.state.showPreview ? {} : { display: 'none' }}>
                         <PreviewArticle
                             header={this.state.header}
                             content={this.state.content}

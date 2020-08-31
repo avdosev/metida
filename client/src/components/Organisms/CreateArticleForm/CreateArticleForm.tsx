@@ -20,6 +20,7 @@ import { FormButton, FieldTextarea, ErrorPlaceholder, FieldInput, Checkbox } fro
 
 interface IProps {
     onRenderPreview: (header: string, disclaimer: string, content: string) => void;
+    onPreviewChange: (isPreview: boolean) => void;
     headerDefault: string;
     disclaimerDefault: string;
     contentDefault: string;
@@ -71,15 +72,14 @@ export default class CreateArticleForm extends React.Component<IProps, IState> {
 
     rerenderPreview = () => {
         console.log('rerender');
-        const { content, header, disclaimer, isPreview } = this.state;
-        const args: [string, string, string] = isPreview
-            ? [header.value, disclaimer.value, content.value]
-            : ['', '', ''];
-        this.props.onRenderPreview(...args);
+        const { content, header, disclaimer } = this.state;
+        this.props.onRenderPreview(header.value, disclaimer.value, content.value);
     };
 
     handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({ isPreview: e.target.checked }, this.rerenderPreview);
+        this.setState({ isPreview: e.target.checked }, () => {
+            this.props.onPreviewChange(this.state.isPreview);
+        });
     };
 
     render() {
